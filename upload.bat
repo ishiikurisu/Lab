@@ -1,3 +1,3 @@
 git add -A
 git commit
-git push -u origin master
+git push -u origin to_c

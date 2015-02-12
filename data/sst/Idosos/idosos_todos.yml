@@ -1,0 +1,7 @@
+
+C:\Users\cris\Documents\work\EEG\data\sst\Idosos>dir /B *.csv *.txt   | multiple.exe
+<RT>: 384.116+-142.708
+<SSD>: 300.949+-142.877
+<SSRT>: 83.168+-272.725
+<%I>: 52.604+-24.568
+<%I>: 40.451+-26.444

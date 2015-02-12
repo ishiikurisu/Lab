@@ -1,0 +1,2 @@
+Class-Path: lib\rocks.crisjr.tiny-0.1.0-SNAPSHOT.jar lib\clojure-1.7.0.jar
+Main-Class: Big

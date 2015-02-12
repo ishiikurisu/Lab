@@ -1,0 +1,11 @@
+C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\bin\Debug\Raven.exe.config
+C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\bin\Debug\Raven.exe
+C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\bin\Debug\Raven.pdb
+C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.Form1.resources
+C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.Properties.Resources.resources
+C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.csproj.GenerateResource.Cache
+C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.exe
+C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.pdb
+C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.csprojResolveAssemblyReference.cache
+C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.Resultado.resources
+C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.FormOps.resources
