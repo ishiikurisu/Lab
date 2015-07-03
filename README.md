@@ -1,3 +1,4 @@
 # Description
 
-Code made in EEG lab.
+Code made while working for Neurosciences
+and behaviour laboratory at UnB.
