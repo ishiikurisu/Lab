@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0038)http://www.edfplus.info/specs/edf.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  
+  <meta name="GENERATOR" content="Mozilla/4.76 [en] (Win95; U) [Netscape]">
+  <title>EDF specification</title><meta content="Bob Kemp" name="author"></head>
+<body style="color: black; background-color: white; background-image: url(../background.jpg);" alink="#ff0000" link="#0000ee" vlink="#800080">&nbsp;
+<span style="font-family: arial;"></span>
+<center style="font-family: arial; color: black;"><div style="text-align: center; font-family: arial; font-weight: bold;"><font style="color: rgb(0, 102, 0);" size="+3"><font style="color: rgb(0, 102, 0); font-family: comic sans ms;" size="+3"><span style="font-family: Arial;"><span style="color: black;">European
+Data
+Format</span></span></font></font><font size="+3">
+</font></div>
+<table style="width: 500px; height: 48px; text-align: left; margin-left: auto; margin-right: auto; font-family: arial; font-weight: bold;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><img src="./EDF_specification_files/edf_icon.gif" border="0" height="36" width="37"></td>
+      <td style="text-align: center; width: 25%; vertical-align: middle;"><a href="http://www.edfplus.info/specs/index.html">Specs</a><br>
+      </td>
+      <td style="text-align: center; width: 25%; vertical-align: middle;"><a href="http://www.edfplus.info/downloads/index.html">Downloads</a><br>
+      </td>
+      <td style="text-align: center; width: 25%; vertical-align: middle;"><a href="http://www.edfplus.info/companies/index.html">Companies</a><br>
+      </td>
+      
+      <td style="vertical-align: top;"><font size="+3"><img alt="" src="./EDF_specification_files/edf_edfplus_icon.gif" style="width: 37px; height: 36px;"></font></td>
+    </tr>
+  </tbody>
+</table>
+<div style="text-align: center; font-family: arial; font-weight: bold;">
+<font size="-1"><span style="font-weight: normal;"><a href="http://www.edfplus.info/index.html">Home EDF</a>
+<span style="font-family: arial;">&gt; </span></span><span style="font-family: arial; font-weight: normal;"><a href="http://www.edfplus.info/specs/index.html">Specs</a>
+&gt; </span></font><font style="font-weight: normal;" size="-1"><span style="font-style: italic;">EDF</span></font><br>
+</div>
+<div style="font-family: arial; font-weight: bold;">
+</div>
+<hr style="width: 100%; height: 2px; margin-left: auto; margin-right: auto; font-family: arial; font-weight: bold;">
+<div style="text-align: center;"><span style="font-family: arial; font-weight: bold;">&nbsp;
+<br>
+</span></div>
+<font style="font-family: arial;" size="+2"><b>Full specification of
+EDF</b>
+</font><br style="font-family: arial;">
+<span style="font-family: arial;">&nbsp;&nbsp;
+</span><b style="font-family: arial;"><br></b><span style="font-family: arial;">
+The specs are also in the <a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&list_uids=1374708&dopt=Abstract">original
+article</a></span><span style="font-family: arial;">&nbsp;as published by <a href="http://www.elsevier.com/">Elsevier</a> that also includes&nbsp;background information and
+examples:</span><span style="font-family: arial;"></span><br style="font-family: arial;">
+<span style="font-family: arial;"></span><span style="font-family: arial;">Bob Kemp, Alpo Värri,
+Agostinho C. Rosa, Kim D. Nielsen and
+John Gade</span><span style="font-family: arial;">. </span><span style="font-family: arial;">"A simple format for exchange of
+digitized polygraphic recordings"</span><span style="font-family: arial;">. </span><span style="font-family: arial;">Electroencephalography and Clinical
+Neurophysiology, 82 (1992):
+391-393.</span><span style="font-family: arial;">
+</span><br style="font-family: arial;">
+<span style="font-family: arial;">&nbsp;<br>
+</span><span style="font-family: arial;"></span><span style="font-family: arial;">Implementing EDF
+takes a week. <a href="http://www.edfplus.info/specs/edfplus.html">EDF+</a> takes a few weeks
+but is better and more powerfull. </span>If you still decide to start with
+EDF, it is wise to adopt the 12 simple <a href="http://www.edfplus.info/specs/edfplus.html#additionalspecs">additional EDF+ specs</a>.<br>
+<br>
+</center>
+<hr style="font-family: arial; color: black;" width="100%">
+<p style="font-family: arial; color: black;"><font size="+2"><span style="font-weight: bold;">The specification </span><small style="color: rgb(51, 51, 255);"><small>(blue text was added after the
+original publication)</small></small></font><br>
+</p>
+<p style="font-family: arial; color: black;">One data file contains one
+uninterrupted digitized polygraphic recording.
+A data file consists of a header record followed by data records. The
+variable-length
+header record identifies the patient and specifies the technical
+characteristics
+of the recorded signals. The data records contain consecutive
+fixed-duration
+epochs of the polygraphic recording.
+</p>
+<p style="font-family: arial; color: black;">The first 256 bytes of the header
+record specify the version number
+of this format, local patient and recording identification, time
+information
+about the recording, the number of data records and finally the number
+of signals (ns) in each data record. Then for each signal another 256
+bytes
+follow in the header record, each specifying the type of signal (e.g.
+EEG,
+body temperature, etc.), amplitude calibration and the number of
+samples
+in each data record (from which the sampling frequency can be derived
+since
+the duration of a data record is also known). In this way, the format
+allows
+for different gains and sampling frequencies for each signal. The
+header
+record contains 256 + (ns * 256) bytes. Figure 1 shows its detailed
+format.
+</p>
+<p style="font-family: arial; color: black;">The information in the ASCII strings
+must be left-justified and filled
+out with spaces. Midnight time is 00:00:00. The duration of each data
+record
+is recommended to be a whole number of seconds and its size (number of
+bytes) is recommended not to exceed 61440. Only if a 1s data record
+exceeds
+this size limit, the duration is recommended to be smaller than 1s
+(e.g.
+0.01).
+</p>
+<p style="font-family: arial; color: black;">The digital minimum and maximum of
+each signal should specify the
+extreme values that can occur in the data records. These often are the
+extreme output values of the A/D converter. The physical (usually also
+physiological) minimum and maximum of this signal should correspond to
+these digital extremes and be expressed in the also specified physical
+dimension of the signal. These 4 extreme values specify offset and
+amplification
+of the signal.
+</p>
+<p style="font-family: arial; color: black;">Following the header record, each of
+the subsequent data records
+contains 'duration' seconds of 'ns' signals, with each signal being
+represented
+by the specified (in the header) number of samples. In order to reduce
+data size and adapt to commonly used software for acquisition,
+processing
+and graphical display of polygraphic signals, each sample value is
+represented
+as a 2-byte integer in 2's complement format. Figure 1 shows the
+detailed
+format of each data record.
+</p>
+<p style="font-family: arial; color: black;">Gains, electrode montages and filters
+should remain fixed during
+the recording. Of course, these may all be digitally modified during
+replay
+of the digitized recording.<br>
+</p>
+<p style="font-family: arial; color: black;">Below is the detailed digital format
+of
+the header record (upper block,
+ascii's only) and of each subsequent data record (lower block, integers
+only). Note that each one of the ns signals is characterized separately
+in the header.</p>
+<p style="font-family: arial; color: black;">HEADER RECORD <span style="color: rgb(51, 51, 255);">(we suggest to also adopt the 12
+simple </span><a style="color: rgb(51, 51, 255);" href="http://www.edfplus.info/specs/edfplus.html#additionalspecs">additional EDF+ specs</a><span style="color: rgb(51, 51, 255);">)</span><br>
+8 ascii : version of this data format (0)
+<br>
+80 ascii : local patient identification
+<span style="color: rgb(51, 51, 255);">(mind
+item 3 of the </span><a style="color: rgb(51, 51, 255);" href="http://www.edfplus.info/specs/edfplus.html#additionalspecs">additional EDF+ specs</a><span style="color: rgb(51, 51, 255);">)</span><br>
+80 ascii : local recording identification
+<span style="color: rgb(51, 51, 255);">(mind
+item 4 of the </span><a style="color: rgb(51, 51, 255);" href="http://www.edfplus.info/specs/edfplus.html#additionalspecs">additional EDF+ specs</a><span style="color: rgb(51, 51, 255);">)</span><br>
+8 ascii : startdate of recording (dd.mm.yy)
+<span style="color: rgb(51, 51, 255);">(mind item 2 of the </span><a style="color: rgb(51, 51, 255);" href="http://www.edfplus.info/specs/edfplus.html#additionalspecs">additional
+EDF+ specs</a><span style="color: rgb(51, 51, 255);">)</span><br>
+8 ascii : starttime of recording (hh.mm.ss)
+<br>
+8 ascii : number of bytes in header record
+<br>
+44 ascii : reserved
+<br>
+8 ascii : number of data records (-1 if unknown<span style="color: rgb(51, 51, 255);">, obey item 10 of the </span><a style="color: rgb(51, 51, 255);" href="http://www.edfplus.info/specs/edfplus.html#additionalspecs">additional
+EDF+ specs</a>)
+<br>
+8 ascii : duration of a data record, in seconds
+<br>
+4 ascii : number of signals (ns) in data record
+<br>
+ns * 16 ascii : ns * label (e.g. EEG Fpz-Cz or Body temp)
+<span style="color: rgb(51, 51, 255);">(mind item 9 of the </span><a style="color: rgb(51, 51, 255);" href="http://www.edfplus.info/specs/edfplus.html#additionalspecs">additional
+EDF+ specs</a><span style="color: rgb(51, 51, 255);">)</span><br>
+ns * 80 ascii : ns * transducer type (e.g. AgAgCl electrode)
+<br>
+ns * 8 ascii : ns * physical dimension (e.g. uV or degreeC)
+<br>
+ns * 8 ascii : ns * physical minimum (e.g. -500 or 34)
+<br>
+ns * 8 ascii : ns * physical maximum (e.g. 500 or 40)
+<br>
+ns * 8 ascii : ns * digital minimum (e.g. -2048)
+<br>
+ns * 8 ascii : ns * digital maximum (e.g. 2047)
+<br>
+ns * 80 ascii : ns * prefiltering (e.g. HP:0.1Hz LP:75Hz)
+<br>
+ns * 8 ascii : ns * nr of samples
+in each data record
+<br>
+ns * 32 ascii : ns * reserved
+</p>
+<span style="font-family: arial; color: black;">DATA RECORD</span><span style="font-family: arial; color: black;">
+</span><br style="font-family: arial; color: black;">
+<span style="font-family: arial; color: black;">nr of samples[1] * integer : first
+signal in the data record</span><span style="font-family: arial; color: black;">
+</span><br style="font-family: arial; color: black;">
+<span style="font-family: arial; color: black;">nr of samples[2] * integer : second
+signal</span><span style="font-family: arial; color: black;">
+</span><br style="font-family: arial; color: black;">
+<span style="font-family: arial; color: black;">..</span><span style="font-family: arial; color: black;">
+</span><br style="font-family: arial; color: black;">
+<span style="font-family: arial; color: black;">..</span><span style="font-family: arial; color: black;">
+</span><br style="font-family: arial; color: black;">
+<span style="font-family: arial; color: black;">nr of samples[ns] * integer : last signal</span><span style="font-family: arial; color: black;">
+<br>
+<br>
+<br>
+<font style="font-weight: bold;" size="+2">Example</font><br>
+<br>
+Below is the header record of a 24h
+recording of
+EEG and Rectal temperature sampled at
+500Hz and 0.1Hz, respectively. The recording starts at September 16,
+1987 at 20:35hr and ends 1440 minutes (2880 x 30s) later. Note
+that the offsets of EEG Fpz-Cz and Rectal temperature are 35uV and 37.3
+degC (degrees centigrade), respectively while the gains are
+4.31/uV and 706.2/degC, respectively. Each 30s data record contains
+15000 samples of the EEG followed by 3 samples of the Rectal
+temperature
+signal. All fields
+are not only EDF but also <a href="http://www.edfplus.info/specs/edfplus.html#additionalspecs">EDF+</a>
+compatible, except the 'Reserved field of 44 characters' which is EDF
+but not EDF+ compatible. </span>
+<table style="width: 100%; text-align: left; color: black;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-family: arial;">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><font>MCH-0234567
+F 16-SEP-1987
+Haagse_Harry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; </font>Startdate 16-SEP-1987
+PSG-1234/1987
+NN Telemetry03&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16.09.8720.35.00768&nbsp;&nbsp;&nbsp;&nbsp;
+Reserved field of 44 characters&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 2880&nbsp;&nbsp;&nbsp;
+30&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp; EEG
+Fpz-Cz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Temp
+rectal&nbsp;&nbsp;&nbsp;&nbsp; AgAgCl cup
+electrodes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Rectal thermistor <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+uV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+degC&nbsp;&nbsp;&nbsp; -440&nbsp;&nbsp;&nbsp; 34.4&nbsp;&nbsp;&nbsp;
+510&nbsp;&nbsp;&nbsp;&nbsp; 40.2&nbsp;&nbsp;&nbsp; -2048&nbsp;&nbsp;
+-2048&nbsp;&nbsp; 2047&nbsp; &nbsp; 2047&nbsp;&nbsp;&nbsp; HP:0.1Hz
+LP:75Hz
+N:50Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+LP:0.1Hz
+(first
+order)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+15000&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reserved for
+EEG signal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reserved for
+Body temperature&nbsp; &nbsp; <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<span style="font-family: arial; color: black;"><br>
+</span><span style="color: black;"></span><span style="font-family: arial; color: black;"></span>
+</body></html>
