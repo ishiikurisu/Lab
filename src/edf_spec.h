@@ -8,7 +8,7 @@ void EDF_SETUP()
 	EDF_SPECS.push_back("recording");
 	EDF_SPECS.push_back("startdate");
 	EDF_SPECS.push_back("starttime");
-	EDF_SPECS.push_back("bytes_headerrecord");
+	EDF_SPECS.push_back("bytesheader");
 	EDF_SPECS.push_back("reserved");
 	EDF_SPECS.push_back("datarecords");
 	EDF_SPECS.push_back("duration");
@@ -29,6 +29,7 @@ void EDF_SETUP()
 	EDF_SPEC["recording"]         = 80;
 	EDF_SPEC["startdate"]         = 8;
 	EDF_SPEC["starttime"]         = 8;
+	EDF_SPEC["bytesheader"]       = 8;
 	EDF_SPEC["reserved"]          = 44;
 	EDF_SPEC["datarecords"]       = 8;
 	EDF_SPEC["duration"]          = 8;
@@ -40,7 +41,7 @@ void EDF_SETUP()
 	EDF_SPEC["physicalmaximum"]   = 8;
 	EDF_SPEC["digitalminimum"]    = 8;
 	EDF_SPEC["digitalmaximum"]    = 8;
-	EDF_SPEC["prefiltering"]      = 8;
+	EDF_SPEC["prefiltering"]      = 80;
 	EDF_SPEC["samplesrecord"]     = 8;
 	EDF_SPEC["chanreserved"]      = 32;
 }

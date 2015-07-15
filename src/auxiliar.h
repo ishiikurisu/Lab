@@ -11,7 +11,7 @@ std::string read_bytes(FILE* stream, size_t number_bytes)
 
 	for (size_t i = 0; i < number_bytes; ++i)
 	{
-		scanf("%c", &just_read);
+		fscanf(stream, "%c", &just_read);
 		outlet += just_read;
 	}
 

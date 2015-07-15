@@ -1,2 +1,7 @@
+SET SRC=%1
+
 cls
-g++ emotivedf.cpp -o emo.exe -lm -O2 -ansi -pipe -Wall
+g++ %SRC% -o emo.exe -lm -O2 -ansi -pipe -Wall
+emo.exe ../data/thiago_emotiv.edf > log.txt
+more log.txt
+del emo.exe log.txt

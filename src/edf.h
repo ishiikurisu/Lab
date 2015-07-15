@@ -48,21 +48,22 @@ class EDF
 */
 void debug(std::string key, std::string value)
 {
-	printf("%s\t%s\n", key.c_str(), value.c_str());
+	std::cout << "  " << key << ": " << value << std::endl;
+	return;
 }
 
 void EDF::read_header(FILE* inlet)
 {
 	std::vector<std::string>::iterator it;
 	std::string data;
+	int aux_number;
 	size_t bytes;
 
 	it = EDF_SPECS.begin();
-	while ((*it).compare("datarecords"))
+	while ((*it).compare("datarecords") != 0)
 	{
 		bytes = EDF_SPEC[*it];
-		data = read_bytes(inlet, bytes);
-		header[*it] = data;
+		data = read_bytes(inlet, bytes);header[*it] = data;
 		debug(*it, data);
 		++it;
 	}
@@ -72,7 +73,8 @@ void EDF::read_header(FILE* inlet)
 	data = read_bytes(inlet, bytes);
 	header[*it] = data;
 	debug(*it, data);
-	sscanf(data.c_str(), "%d", &data_records);
+	sscanf(data.c_str(), "%d", &aux_number);
+	data_records = (size_t) aux_number;
 	++it;
 	/* get record duration*/
 	bytes = EDF_SPEC[*it];
@@ -85,22 +87,29 @@ void EDF::read_header(FILE* inlet)
 	data = read_bytes(inlet, bytes);
 	header[*it] = data;
 	debug(*it, data);
-	sscanf(data.c_str(), "%d", &number_signals);
+	sscanf(data.c_str(), "%d", &aux_number);
+	number_signals = (size_t) aux_number;
 	++it;
 
 	/* init records */
 	records = (RECORD*) malloc(sizeof(RECORD)*number_signals);
+	for (size_t r = 0; r < number_signals; ++r)
+		records[r] = RECORD();
 
 	while (it != EDF_SPECS.end()) 
 	{
 		bytes = EDF_SPEC[*it];
+		std::cout << "  " << *it << ":\n";
 		for (size_t i = 0; i < number_signals; ++i)
 		{
+			std::cout << "  - " << i << ": ";
 			data = read_bytes(inlet, bytes);
 			records[i].header[*it] = data;
-			debug(*it, data);
-			if ((*it).compare("samples") == 0)
-				sscanf(data.c_str()	, "%d", &records[i].number_samples);
+			std::cout << data << std::endl;
+			if ((*it).compare("samples") == 0) {
+				sscanf(data.c_str(), "%d", &aux_number);
+				records[i].number_samples = (size_t) aux_number;
+			}
 		}
 		++it;
 	}
@@ -121,17 +130,23 @@ void EDF::read_records(FILE* inlet)
 	{
 		record = records[i];
 		samples = record.number_samples;
+		std::cout << i << ":\n";
 		for (int j = 0; j < samples; ++j)
 		{
 			fscanf(inlet, "%d", &data);
 			record.records.push_back(data);
+			std::cout << "- " << data << "\n";
 		}
 	}
 }
 
 void EDF::readfile(FILE* inlet)
 {
+	EDF_SETUP();
+
+	printf("header:\n");
 	read_header(inlet);
+	printf("reading records...\n");
 	read_records(inlet);
 }
 
