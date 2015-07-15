@@ -21,7 +21,7 @@ void EDF_SETUP()
 	EDF_SPECS.push_back("digitalminimum");
 	EDF_SPECS.push_back("digitalmaximum");
 	EDF_SPECS.push_back("prefiltering");
-	EDF_SPECS.push_back("samples");
+	EDF_SPECS.push_back("samplesrecord");
 	EDF_SPECS.push_back("chanreserved");
 
 	EDF_SPEC["version"]           = 8;

@@ -17,7 +17,6 @@ class EDF
 	size_t data_records;
 	void read_header(FILE*);
 	void read_records(FILE*);
-	friend class RECORD;
 
 	public:
 	EDF(void) {};
@@ -90,17 +89,18 @@ void EDF::read_header(FILE* inlet)
 		std::cout << "  " << *it << ":\n";
 		for (size_t i = 0; i < number_signals; ++i)
 		{
-			std::cout << "  - " << i << ": ";
+			std::cout << "  - " << i+1 << ": ";
 			data = read_bytes(inlet, bytes);
 			records[i].header[*it] = data;
 			std::cout << data << std::endl;
-			if ((*it).compare("samples") == 0) {
+			if ((*it).compare("samplesrecord") == 0) {
 				sscanf(data.c_str(), "%d", &aux_number);
 				records[i].number_samples = (size_t) aux_number;
 			}
 		}
 		++it;
 	}
+	read_bytes(inlet, 1);
 }
 
 /*
