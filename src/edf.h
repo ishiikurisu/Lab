@@ -100,7 +100,6 @@ void EDF::read_header(FILE* inlet)
 		}
 		++it;
 	}
-	fscanf(inlet,"%c", &aux_number);
 }
 
 /*
@@ -112,7 +111,8 @@ void EDF::read_records(FILE* inlet)
 {
 	RECORD record;
 	int samples;
-	int data;
+	std::string data;
+	int sig;
 
 	for (size_t i = 0; i < number_signals; ++i)
 	{
@@ -121,9 +121,10 @@ void EDF::read_records(FILE* inlet)
 		std::cout << i << ":\n";
 		for (int j = 0; j < samples; ++j)
 		{
-			fscanf(inlet, "%d", &data);
-			record.records.push_back(data);
-			std::cout << "- " << data << "\n";
+			data = read_bytes(inlet, 2);
+			sscanf(data.c_str(), "%d", &sig);
+			record.records.push_back(sig);
+			std::cout << "- " << sig << "\n";
 		}
 	}
 }
