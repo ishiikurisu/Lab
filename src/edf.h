@@ -100,7 +100,7 @@ void EDF::read_header(FILE* inlet)
 		}
 		++it;
 	}
-	read_bytes(inlet, 1);
+	fscanf(inlet,"%c", &aux_number);
 }
 
 /*
@@ -134,7 +134,7 @@ void EDF::readfile(FILE* inlet)
 
 	printf("header:\n");
 	read_header(inlet);
-	printf("reading records...\n");
+	printf("records:\n");
 	read_records(inlet);
 }
 
