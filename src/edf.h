@@ -35,7 +35,7 @@ class EDF
 	8: number of data records
 	8: duration of a data record in seconds
 	4: ns = number of signals in data record
-	ns * 16: ns * label 
+	ns * 16: ns * label
 	ns * 80: ns * transducer type
 	ns * 8: physical dimension
 	ns * 8: physical minimum
@@ -60,43 +60,31 @@ void EDF::read_header(FILE* inlet)
 	size_t bytes;
 
 	it = EDF_SPECS.begin();
-	while ((*it).compare("datarecords") != 0)
+	while (it != EDF_SPECS.end())
 	{
 		bytes = EDF_SPEC[*it];
 		data = read_bytes(inlet, bytes);header[*it] = data;
 		debug(*it, data);
+
+		if ((*it).compare("datarecords") == 0) {
+			sscanf(data.c_str(), "%d", &aux_number);
+			data_records = (size_t) aux_number;
+		}
+		else if ((*it).compare("numbersignals") == 0) {
+			sscanf(data.c_str(), "%d", &aux_number);
+			number_signals = (size_t) aux_number;
+			++it;
+			break;
+		}
+
 		++it;
 	}
 
-	/* get how many data records */
-	bytes = EDF_SPEC[*it];
-	data = read_bytes(inlet, bytes);
-	header[*it] = data;
-	debug(*it, data);
-	sscanf(data.c_str(), "%d", &aux_number);
-	data_records = (size_t) aux_number;
-	++it;
-	/* get record duration*/
-	bytes = EDF_SPEC[*it];
-	data = read_bytes(inlet, bytes);
-	header[*it] = data;
-	debug(*it, data);
-	++it;
-	/* get how many signals */
-	bytes = EDF_SPEC[*it];
-	data = read_bytes(inlet, bytes);
-	header[*it] = data;
-	debug(*it, data);
-	sscanf(data.c_str(), "%d", &aux_number);
-	number_signals = (size_t) aux_number;
-	++it;
-
-	/* init records */
 	records = (RECORD*) malloc(sizeof(RECORD)*number_signals);
 	for (size_t r = 0; r < number_signals; ++r)
 		records[r] = RECORD();
 
-	while (it != EDF_SPECS.end()) 
+	while (it != EDF_SPECS.end())
 	{
 		bytes = EDF_SPEC[*it];
 		std::cout << "  " << *it << ":\n";
@@ -115,7 +103,7 @@ void EDF::read_header(FILE* inlet)
 	}
 }
 
-/* 
+/*
 # samples * integer: first signal in data record
 # samples * integer: second signal
 ... ns times

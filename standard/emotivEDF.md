@@ -1,10 +1,13 @@
-# [Data File Format](http://wiki.emotiv.com/tiki-index.php?page=Data+File+Format)
+[Data File Format](http://wiki.emotiv.com/tiki-index.php?page=Data+File+Format)
+===============================================================================
 
-## Data File Format Introduction
+Data File Format Introduction
+-----------------------------
 
 Data is stored by TestBench in a standard binary format, EDF, which is compatible with various EEG analysis programs, including EEGLab. Following the initial information line, each successive row in the data file corresponds to one data sample, or a 1/128 second slice of data. Each successive row corresponds to each successive time slice. So, for example, one second of data is contained in 128 rows. Each column of the data file corresponds to either an individual sensor location or another information tag.
 
-## Descriptive Tags
+Descriptive Tags
+----------------
 
 The first line, a single information line, contains reference information for the remainder of the file, arranged as information tags. Each tag consists of a tag name, a colon (:), and information separated by one whitespace character.
 
