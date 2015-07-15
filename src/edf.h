@@ -21,6 +21,7 @@ class EDF
 	public:
 	EDF(void) {};
 	void readfile(FILE*);
+	void writefile(FILE*);
 };
 
 /* HEADER SPEC
@@ -137,6 +138,40 @@ void EDF::readfile(FILE* inlet)
 	read_header(inlet);
 	printf("records:\n");
 	read_records(inlet);
+}
+
+void EDF::writefile(FILE* outlet)
+{
+	std::vector<std::string>::iterator it;
+	std::vector<std::string>::iterator checkpoint;
+	RECORD record;
+
+	/* write */
+	it = EDF_SPECS.begin();
+	while ((*it).compare("label") != 0)
+	{
+		fprintf(outlet, "%s", header[*it].c_str());
+		printf("%s", header[*it].c_str());
+		++it;
+	}
+
+	checkpoint = it;
+	for (size_t i = 0; i < number_signals; ++i)
+	{
+		record = records[i];
+		it = checkpoint;
+
+		while (it != EDF_SPECS.end())
+		{
+			fprintf(outlet, "%s", record.header[*it].c_str());
+			printf("- %s: %s", (*it).c_str(), header[*it].c_str());
+			++it;
+		}
+	}
+
+	fflush(stdout);
+
+	/* write each signal information */
 }
 
 #endif
