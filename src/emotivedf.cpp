@@ -28,8 +28,10 @@ int main(int argc, char const *argv[])
 	fclose(input_file);
 
 	/* WRITE DATA */
+	/*
 	output_file = fopen(output_name.c_str(), "a");
 	edf.writefile(output_file);
 	fclose(output_file);
+	*/
 	return 0;
 }

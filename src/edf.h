@@ -111,19 +111,19 @@ void EDF::read_header(FILE* inlet)
 void EDF::read_records(FILE* inlet)
 {
 	RECORD record;
-	int samples;
+	size_t samples;
 	std::string data;
-	int sig;
+	float sig;
 
 	for (size_t i = 0; i < number_signals; ++i)
 	{
 		record = records[i];
 		samples = record.number_samples;
 		std::cout << i << ":\n";
-		for (int j = 0; j < samples; ++j)
+		for (size_t j = 0; j < samples; ++j)
 		{
 			data = read_bytes(inlet, 2);
-			sscanf(data.c_str(), "%d", &sig);
+			sscanf(data.c_str(), "%f", &sig);
 			record.records.push_back(sig);
 			std::cout << "- " << sig << "\n";
 		}
