@@ -44,7 +44,9 @@ EEG data is stored as floating point values directly converted from the unsigned
 
 The simplest method is to subtract the average from the entire data channel, although this method is also the least accurate. Ideally, the user should apply a high-pass filter which matches the characteristics of the electronics.  The user should use a 0.16 Hz first order high=pass filter to remove background signal (this method also removes any longer term drift, which is not achieved by the use of the average subtraction method). Another method is to use an IIR filter to track the background level and subtract that value.  For example, see the MatLab pseudocode below, which assumes the first row has been removed from the array input_data():
 
-    IIR_TC = 256;
+``` matlab
+IIR_TC = 256;
+```
 
 2 second time constant- adjust as required
 
