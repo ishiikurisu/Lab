@@ -42,7 +42,7 @@ CHANNEL **init_channels(char *keys[], DICT *values)
     CHANNEL **channels = (CHANNEL**) malloc(sizeof(CHANNEL*)* NCH);
     CHANNEL *channel = NULL;
     char *ascii = ".ascii";
-    char *id = NULL; 
+    char *id = NULL;
     int i;
 
     for (i = 0; i < NCH; ++i)
@@ -60,6 +60,32 @@ CHANNEL **init_channels(char *keys[], DICT *values)
     return channels;
 }
 
+void polish_data(char *raw_line, CHANNEL **channels)
+{
+    static int buffer = 0;
+    CHANNEL *channel;
+    LIST *line = NULL;
+    int position;
+
+    line = split(raw_line, ',');
+    free(raw_line);
+    for (i = 0; i < NCH; ++i)
+    {
+        free(raw_line);
+        channel = channels[i];
+        position = channel->position;
+        raw_line = get_from_list(line, position);
+        fprintf(channel->outlet, "%s", raw_line);
+        free_list(line);
+    }
+
+    ++buffer;
+    if (buffer == 256) {
+        for (i = 0; i < NCH; ++i)
+            fflush(channels[i]->outlet);
+        buffer = 0;
+    }
+}
 void mine_data(FILE *mine, CHANNEL **channels)
 {
     CHANNEL* channel = NULL;
@@ -67,18 +93,9 @@ void mine_data(FILE *mine, CHANNEL **channels)
     LIST* line = NULL;
     int position = -1;
     int i = 0;
-    
+
     raw_line = read_from_file(mine);
-    line = split(raw_line, ',');
-    free(raw_line);
-    for (i = 0; i < NCH; ++i)
-    {
-        channel = channels[i];
-        position = channel->position;
-        raw_line = get_from_list(line, position);
-        fprintf(channel->outlet, "%s", raw_line);
-        free_list(line);
-    }
+    polish_data();
 
     while (raw_line = read_from_file(mine))
     {
