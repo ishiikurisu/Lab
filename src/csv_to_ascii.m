@@ -1,4 +1,4 @@
-out = '..\data\ana_data';
+out = '..\data\1.01.1.1.1';
 
 % # Reading data
 %
@@ -16,7 +16,7 @@ out = '..\data\ana_data';
 % ```
 %
 % matlab's csvread function is 0-indexed
-% 
+%
 % for FC5,read from 1, 5
 
 inl = strcat(out, '.csv');
@@ -48,4 +48,3 @@ for ii = (1:4)
 	fprintf(fp, '%f', data(samples + 1,ii));
 	fclose(fp);
 end
-
