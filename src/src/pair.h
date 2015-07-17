@@ -63,12 +63,12 @@ void write_pair(PAIR* head)
     PAIR* pair = head->next;
 
     if (pair != NULL) {
-        printf("%s", pair->key);
+        printf("%s:%s", pair->key, pair->value);
         inc(pair);
     }
     while (pair != NULL)
     {
-        printf("\t%s", pair->key);
+        printf(" %s:%s", pair->key, pair->value);
         inc(pair);
     }
 }

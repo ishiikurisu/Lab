@@ -32,6 +32,12 @@ char* to_array(char ch)
     out[1] = '\0';
     return out;
 }
+char* itos(int number)
+{
+    char* str = (char*) malloc(sizeof(char) * 6);
+    sprintf(str, "%d", number);
+    return str;
+}
 
 char* int_to_string(int input)
 {
@@ -77,6 +83,7 @@ int equals(char* s1, char* s2)
 #define BIGGER  (+1)
 #define SMALLER (-1)
 #define EQUAL   (0)
+#define EQUALS  (EQUAL)
 
 int compare(char* s, char* t)
 {
