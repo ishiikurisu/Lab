@@ -70,25 +70,27 @@ void mine_data(FILE *mine, CHANNEL **channels)
     
     raw_line = read_from_file(mine);
     line = split(raw_line, ',');
+    free(raw_line);
     for (i = 0; i < NCH; ++i)
     {
         channel = channels[i];
         position = channel->position;
         raw_line = get_from_list(line, position);
         fprintf(channel->outlet, "%s", raw_line);
-        fflush(channel->outlet);
+        free_list(line);
     }
 
     while (raw_line = read_from_file(mine))
     {
         line = split(raw_line, ',');
+        free(raw_line);
         for (i = 0; i < NCH; ++i)
         {
             channel = channels[i];
             position = channel->position;
             raw_line = get_from_list(line, position);
             fprintf(channel->outlet, ", %s", raw_line);
-            fflush(channel->outlet);
+            free_list(line);
         }
     }
 
