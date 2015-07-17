@@ -30,7 +30,7 @@ void test_map(DICT *labels)
     char* value = NULL;
     int i;
 
-    for (i = 0; i < 4; ++i)
+    for (i = 0; i < NCH; ++i)
     {
         value = get_from_map(labels, IDS[i]);
         printf("%s: %s\n", IDS[i], value);
@@ -102,7 +102,6 @@ void mine_data(FILE *mine, CHANNEL **channels)
         polish_data(raw_line, channels);
     }
 
-    /* close data buckets */
     for (i = 0; i < NCH; ++i)
         fclose(channels[i]->outlet);
 }
