@@ -66,19 +66,19 @@ void polish_data(char *raw_line, CHANNEL **channels)
     CHANNEL *channel;
     LIST *line = NULL;
     int position;
+    int i;
 
     line = split(raw_line, ',');
     free(raw_line);
     for (i = 0; i < NCH; ++i)
     {
-        free(raw_line);
         channel = channels[i];
         position = channel->position;
         raw_line = get_from_list(line, position);
-        fprintf(channel->outlet, "%s", raw_line);
-        free_list(line);
+        fprintf(channel->outlet, ", %s", raw_line);
     }
 
+    free_list(line);
     ++buffer;
     if (buffer == 256) {
         for (i = 0; i < NCH; ++i)
@@ -88,32 +88,32 @@ void polish_data(char *raw_line, CHANNEL **channels)
 }
 void mine_data(FILE *mine, CHANNEL **channels)
 {
-    CHANNEL* channel = NULL;
     char* raw_line = NULL;
-    LIST* line = NULL;
     int position = -1;
     int i = 0;
 
-    raw_line = read_from_file(mine);
-    polish_data();
+    /* first line */
+    line = split(raw_line, ',');
+    free(raw_line);
+    for (i = 0; i < NCH; ++i)
+    {
+        channel = channels[i];
+        position = channel->position;
+        raw_line = get_from_list(line, position);
+        fprintf(channel->outlet, "%s", raw_line);
+    }
 
+    free_list(line);
+
+    /* other lines */
     while (raw_line = read_from_file(mine))
     {
-        line = split(raw_line, ',');
-        free(raw_line);
-        for (i = 0; i < NCH; ++i)
-        {
-            channel = channels[i];
-            position = channel->position;
-            raw_line = get_from_list(line, position);
-            fprintf(channel->outlet, ", %s", raw_line);
-            free_list(line);
-        }
+        polish_data(raw_line, channels);
     }
 
     /* close data buckets */
     for (i = 0; i < NCH; ++i)
-        fclose(channel->outlet);
+        fclose(channels[i]->outlet);
 }
 
 int main(int argc, char *argv[])
