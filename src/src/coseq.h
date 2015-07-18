@@ -29,8 +29,13 @@ char* get_line_from_file(FILE* inlet, int line_number)
     char* output = NULL;
     int i = 0;
 
-    for (i = 0, rewind(inlet); i < line_number && !feof(inlet); ++i)
+    rewind(inlet);
+    while (i < line_number && !feof(inlet))
+    {
         line = read_from_file(inlet);
+        free(line);
+        ++i;
+    }
 
     if (i == line_number && !feof(inlet))
         output = read_from_file(inlet);

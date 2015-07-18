@@ -77,6 +77,26 @@ void map_print(DICT* map)
         printf("\n");
     }
 }
+char* map_to_string(DICT* map)
+{
+    char* result = "---\n";
+    char* pairs  = NULL;
+    int i = 0;
+
+    for (i = 0; i < map->size; ++i)
+    {
+        pairs = pair_to_string(map->data[i]);
+
+        cat(result, itos(i));
+        cat(result, ": \n");
+        cat(result, pairs);
+    }
+
+    cat(result, "...\n");
+    return result;
+}
+
+char* map_yaml(DICT* m) { return map_to_string(m); }
 
 DICT* map_feed(DICT* map, char* input, char sep)
 {
