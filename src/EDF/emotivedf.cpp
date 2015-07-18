@@ -1,8 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
-#include <vector>
-#include <map>
 #include "edf.h"
 
 int main(int argc, char const *argv[])

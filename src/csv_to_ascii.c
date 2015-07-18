@@ -117,9 +117,12 @@ int main(int argc, char *argv[])
     csv = fopen(input, "r");
     labels = get_labels(csv);
     labels = get_needed_labels(labels, IDS);
+    test_map(labels);
 
+    /*
     channels = init_channels(IDS, labels);
     mine_data(csv, channels);
+    */
 
     fclose(csv);
     return 0;
