@@ -2,9 +2,10 @@
 %
 % In the specified file, the header follows this convention:
 %
-%     Sujeito, Teste, Fragmento, DCS_Mnemônico, int1, int2...
+%     Sujeito, Teste, Fragmento, DCS_Mnemônico, int1, int2,...
 %
-% that means we have to get only the X, Y and Z rows
+% that means we have to get only the 4th, 5th and 6th rows.
+% Do not forget to convert int1 and int2 to integers.
 %
 
 function [file_name, beginning, ending] = parse_row(row)

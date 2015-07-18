@@ -5,7 +5,7 @@
 %
 % ## Algorithm
 % 
-%     for each file
+%     for each row on csv
 %       GET FILE NAME fn
 %       GET INTERVALS b, e
 %       csv to ascii(fn, b, e)
@@ -18,13 +18,15 @@
 %
 
 input_file = 'EEG.csv';
-inlet = fopen(input_file, 'r');
-row =  fgetl(inlet); %reading header
-row = fgetl(inlet); %first row
+fp = fopen(input_file, 'r');
+row = fgetl(fp); % reading header
+row = fgetl(fp); % first row
 while ischar(row)
 	[fn, b, e] = parse_row(row);
-	csv2ascii(fn, b, e);
-	row = fgetl(inlet);
+	ff = strcat(fullfile(cd, fn), '.csv');
+	if exist(ff, 'file') == 2
+		csv2ascii(fn, b, e);
+	end
+	row = fgetl(fp);
 end
-
-% csv2ascii('..\data\1.01.1.1.1', 60, 100);
+fclose(fp);
