@@ -1,11 +1,11 @@
 #ifndef HASH_H
 #define HASH_H 0
 
-/* please include the pair.h header*/
+/* please include the list.h header */
 
 typedef struct {
     int size;
-    PAIR** data;
+    LIST** data;
     int (*func)(char*);
     int (*hash)(char*);
 } DICT;
@@ -13,11 +13,11 @@ typedef struct {
 DICT* new_map(int size, int (*hash)(char*))
 {
     DICT* map = (DICT*) malloc(sizeof(DICT));
-    PAIR** data = (PAIR**) malloc(size * sizeof(PAIR*));
+    LIST** data = (LIST**) malloc(size * sizeof(LIST*));
     int i = 0;
 
     for (i = 0; i < size; ++i)
-        data[i] = new_pair();
+        data[i] = new_list();
 
     map->size = size;
     map->data = data;
@@ -26,6 +26,7 @@ DICT* new_map(int size, int (*hash)(char*))
 
     return map;
 }
+DICT* map_new(int sz, int(*h)(char*)) { return new_map(sz,h); }
 
 int get_address(DICT* map, char* key)
 {
@@ -39,12 +40,15 @@ DICT* put_in_map(DICT* map, char* key, char* value)
     map->data[index] = associate(map->data[index], key, value);
     return map;
 }
+DICT* map_put(DICT* m, char* k, char* v){ return put_in_map(m, k, v); }
+DICT* map_add(DICT* m, char* k, char* v){ return put_in_map(m, k, v); }
 
 char* get_from_map(DICT* map, char* key)
 {
     if (map == NULL || key == NULL) return NULL;
-    return find_in_pair(map->data[get_address(map, key)], key);
+    return pair_find(map->data[get_address(map, key)], key);
 }
+char* map_get(DICT* m, char* k) { return get_from_map(m, k); }
 
 int map_contains_key(DICT* map, char* key)
 {
@@ -56,21 +60,25 @@ int map_contains_key(DICT* map, char* key)
     else
         return 0;
 }
+int map_contains(DICT* m, char* k) { return map_contains_key(m, k); }
 
-void write_map(DICT* map)
+void map_print(DICT* map)
 {
-    PAIR* pair = NULL;
+    LIST* LIST = NULL;
+    char* str = NULL;
     int i = 0;
 
     for (i = 0; i < map->size; ++i)
     {
-        printf("%d: ", i);
-        write_pair(map->data[i]);
+        str = pair_to_string(map->data[i]);
+
+        printf("%d: \n", i);
+        printf("%s", str);
         printf("\n");
     }
 }
 
-DICT* feed_map(DICT* map, char* input, char sep)
+DICT* map_feed(DICT* map, char* input, char sep)
 {
     FILE* inlet  = fopen(input, "r");
     char* line = read_from_file(inlet);
@@ -94,7 +102,9 @@ DICT* feed_map(DICT* map, char* input, char sep)
 char* remove_key(DICT* map, char* key)
 {
     int index = get_address(map, key);
-    return delete_pair(map->data[index], key);
+    return pair_delete(map->data[index], key);
 }
+char* map_remove(DICT* m, char* k){ return remove_key(m, k); }
+
 
 #endif

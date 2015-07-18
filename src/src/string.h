@@ -25,6 +25,8 @@ char* concat(char* string, char* to_add)
     return new_str;
 }
 
+#define cat(A,B) ((A)=concat((A), (B)))
+
 char* to_array(char ch)
 {
     char* out = (char*) malloc(sizeof(char) * 2);
@@ -32,11 +34,10 @@ char* to_array(char ch)
     out[1] = '\0';
     return out;
 }
-char* itos(int number)
+
+char* ctos(char ch)
 {
-    char* str = (char*) malloc(sizeof(char) * 6);
-    sprintf(str, "%d", number);
-    return str;
+    return to_array(ch);
 }
 
 char* int_to_string(int input)
@@ -52,6 +53,11 @@ char* int_to_string(int input)
 
     return output;
 }
+char* itos(int number)
+{
+    return int_to_string(number);
+}
+
 
 char* substring(char* string, int start, int end)
 {

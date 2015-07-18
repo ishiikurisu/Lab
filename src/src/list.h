@@ -6,20 +6,23 @@
 typedef struct NODE
 {
     struct NODE* next;
-    char* info;
+    char* key;
+    char* value;
 } NODE;
 
 typedef NODE LIST;
 
-LIST* new_list()
+LIST* list_new()
 {
     LIST* list = (LIST*) malloc(sizeof(LIST));
 
     list->next = NULL;
-    list->info = NULL;
+    list->key = NULL;
+    list->value = NULL;
 
     return list;
 }
+LIST* new_list() { return list_new(); }
 
 LIST* tail(LIST* head)
 {
@@ -45,7 +48,7 @@ int list_length(LIST* head)
     return result;
 }
 
-char* get_from_list(LIST* head, int index)
+char* list_get(LIST* head, int index)
 {
     LIST* list = head->next;
     char* outlet = NULL;
@@ -58,29 +61,29 @@ char* get_from_list(LIST* head, int index)
     }
 
     if (list != NULL)
-        outlet = list->info;
+        outlet = list->value;
 
     return outlet;
 }
 
-LIST* add_to_list(LIST* head, char* data)
+LIST* list_add(LIST* head, char* data)
 {
     LIST* new_node = new_list();
     LIST* list = tail(head);
 
-    new_node->info = data;
+    new_node->value = data;
     list->next = new_node;
 
     return head;
 }
 
-LIST* add_to_list_at_index(LIST* head, char* data, int index)
+LIST* list_add_at(LIST* head, char* data, int index)
 {
     LIST* new_node = new_list();
     LIST* list = head;
     int i = 0;
 
-    new_node->info = data;
+    new_node->value = data;
     while (list != NULL)
     {
         if (i == index) {
@@ -102,7 +105,19 @@ LIST* add_to_list_at_index(LIST* head, char* data, int index)
     return head;
 }
 
-int find_in_list(LIST* head, char* to_find)
+LIST* associate(LIST* head, char* key, char* value)
+{
+    LIST* pair = tail(head);
+
+    pair->next = new_list();
+    pair = pair->next;
+    pair->key = key;
+    pair->value = value;
+
+    return head;
+}
+
+int list_find(LIST* head, char* to_find)
 {
     LIST* list = head->next;
     int outlet = -1;
@@ -110,11 +125,27 @@ int find_in_list(LIST* head, char* to_find)
 
     while ((list != NULL) && (outlet < 0))
     {
-        if (equals(to_find, list->info))
+        if (equals(to_find, list->value))
             outlet = index;
 
         ++index;
         inc(list);
+    }
+
+    return outlet;
+}
+char* pair_find(LIST* head, char* to_find)
+{
+    LIST* pair = head->next;
+    char* outlet = NULL;
+    int index = 0;
+
+    while ((pair != NULL) && (outlet == NULL))
+    {
+        if (compare(to_find, pair->key) == EQUAL)
+            outlet = pair->value;
+
+        inc(pair);
     }
 
     return outlet;
@@ -130,7 +161,7 @@ char* to_string(LIST* head)
     while (list != NULL)
     {
         outlet = concat(outlet, "  - ");
-        outlet = concat(outlet, list->info);
+        outlet = concat(outlet, list->value);
         outlet = concat(outlet, "\n");
         inc(list);
     }
@@ -139,14 +170,14 @@ char* to_string(LIST* head)
     return outlet;
 }
 */
-char* to_string(LIST* head)
+char* list_to_string(LIST* head)
 {
     LIST* list = head->next;
     char* outlet = "";
 
     while (list != NULL)
     {
-        outlet = concat(outlet, list->info);
+        outlet = concat(outlet, list->value);
         outlet = concat(outlet, "\n");
         inc(list);
     }
@@ -154,7 +185,7 @@ char* to_string(LIST* head)
     return outlet;
 }
 
-char* to_string_with_title(LIST* head, char* title)
+char* list_yaml_with_title(LIST* head, char* title)
 {
     LIST* list = head->next;
     char* outlet = "";
@@ -166,7 +197,7 @@ char* to_string_with_title(LIST* head, char* title)
     while (list != NULL)
     {
         outlet = concat(outlet, "  - ");
-        outlet = concat(outlet, list->info);
+        outlet = concat(outlet, list->value);
         outlet = concat(outlet, "\n");
         inc(list);
     }
@@ -175,21 +206,24 @@ char* to_string_with_title(LIST* head, char* title)
     return outlet;
 }
 
-void print_list(LIST* head)
+char* list_yaml(LIST* head)
 {
     LIST* list = head->next;
+    char* yaml = "---\n";
 
-    printf("---\n");
-    printf("- list:\n");
     while (list != NULL)
     {
-        if (list->info != NULL)
-            printf("  - %s\n", list->info);
+        cat(yaml, "- ");
+        if (list->value != NULL)
+            yaml = concat(yaml, list->value);
         else
-            printf("  - NULL\n");
+            yaml = concat(yaml, "NULL");
+        cat(yaml, "\n");
         inc(list);
     }
-    printf("...\n");
+
+    cat(yaml, "...\n");
+    return yaml;
 }
 
 void write_list_to_file(LIST* head, char* output)
@@ -198,19 +232,45 @@ void write_list_to_file(LIST* head, char* output)
     LIST* list   = head->next;
 
     for (list = head->next; list != NULL; inc(list))
-        fprintf(outlet, "%s\n", list->info);
+        fprintf(outlet, "%s\n", list->value);
 
     fclose(outlet);
 }
 
-int contains(LIST* head, char* to_find)
+char* pair_to_string(LIST* head)
+{
+    LIST* pair = head->next;
+    char* result = "";
+
+    while (pair != NULL)
+    {
+        cat(result, "- ");
+        cat(result, pair->key);
+        cat(result, ":");
+        cat(result, pair->value);
+        cat(result, "\n");
+        inc(pair);
+    }
+
+    return result;
+}
+
+void list_print(LIST* head)
+{
+    LIST* list   = head->next;
+
+    for (list = head->next; list != NULL; inc(list))
+        printf("%s\n", list->value);
+}
+
+int list_contains(LIST* head, char* to_find)
 {
     LIST* list = head->next;
     int result = 0;
 
     while ((list != NULL) && (result == 0))
     {
-        result = equals(to_find, list->info);
+        result = equals(to_find, list->value);
         inc(list);
     }
 
@@ -233,21 +293,21 @@ LIST* using_bubblesort(LIST* head, int(*function)(int))
 
         for (i = 0, list = head->next; i < len - 1; ++i, inc(list))
         {
-            stri = list->info;
-            strj = (list->next)->info;
+            stri = list->value;
+            strj = (list->next)->value;
 
             if (function(compare(stri, strj)))
             {
-                temp = (list->next)->info;
-                (list->next)->info = list->info;
-                list->info = temp;
+                temp = (list->next)->value;
+                (list->next)->value = list->value;
+                list->value = temp;
                 flag = 1;
             }
         }
     }
 
     /* MEOW */
-    if ((head->next)->info == NULL)
+    if ((head->next)->value == NULL)
         head->next = (head->next)->next;
 
     return head;
@@ -261,12 +321,12 @@ int is_bigger(int result)
         return 0;
 }
 
-LIST* sort_list(LIST* head)
+LIST* list_sort(LIST* head)
 {
     return using_bubblesort(head, &is_bigger);
 }
 
-char* pop_from_list(LIST* head)
+char* list_pop(LIST* head)
 {
     LIST* list   = head->next;
     char* result = NULL;
@@ -274,23 +334,24 @@ char* pop_from_list(LIST* head)
     if (list != NULL)
     {
         head->next = list->next;
-        result = list->info;
+        result = list->value;
     }
 
     return result;
 }
 
-LIST* push_to_list(LIST* head, char* item)
+LIST* list_push(LIST* head, char* item)
 {
     LIST* list = tail(head);
     list->next = (LIST*) malloc(sizeof(LIST));
     inc(list);
-    list->info = item;
+    list->value = item;
     list->next = NULL;
     return head;
 }
+#define push(A,B) ((A) = list_push((A),(B)))
 
-LIST* remove_from_list(LIST* head, int index)
+LIST* list_remove(LIST* head, int index)
 {
     LIST* list   = head->next;
     LIST* to_del = NULL;
@@ -313,7 +374,34 @@ LIST* remove_from_list(LIST* head, int index)
     return head;
 }
 
-void free_list(LIST* head)
+char* pair_delete(LIST* head, char* to_find)
+{
+    LIST* list  = head;
+    LIST* del   = NULL;
+    char* key   = NULL;
+    char* value = NULL;
+
+    while (list->next != NULL)
+    {
+        key = (list->next)->key;
+
+        if (compare(to_find, key) == EQUAL)
+            break;
+
+        inc(list);
+    }
+
+    if (list->next != NULL) {
+        del = list->next;
+        list->next = del->next;
+        value = del->value;
+        free(del);
+    }
+
+    return value;
+}
+
+void list_free(LIST* head)
 {
     LIST* list = head;
     LIST* memo;
@@ -328,7 +416,7 @@ void free_list(LIST* head)
     free(list);
 }
 
-LIST* split(char* string, char to_divide)
+LIST* list_strsplit(char* string, char to_divide)
 {
     LIST* result  = new_list();
     char* section = "";
@@ -346,7 +434,7 @@ LIST* split(char* string, char to_divide)
             i++;
         }
 
-        result = add_to_list(result, section);
+        push(result, section);
     }
 
     return result;
