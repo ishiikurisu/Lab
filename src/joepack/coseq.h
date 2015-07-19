@@ -58,7 +58,7 @@ LIST* read_whole_file(char* input_file)
     while (!feof(fp))
     {
         str = read_from_file(fp);
-        if (str) add_to_list(list, str);
+        if (str) list_add(list, str);
     }
 
     fclose(fp);
@@ -76,7 +76,7 @@ void sort_on_RAM(char* input_file, char* output_file)
     FILE* out  = fopen(output_file, "w");
     LIST* list = read_whole_file(input_file);
 
-    list = sort_list(list);
+    list = list_sort(list);
     inc(list);
 
     while (list != NULL)
@@ -105,13 +105,13 @@ int build_runs(char* input)
         while (data != NULL && !feof(inlet) && added_data < BUFFER_SIZE)
         {
             ++added_data;
-            add_to_list(subset, data);
+            list_add(subset, data);
             data= read_from_file(inlet);
         }
 
         run_name = concat(input, to_array('0' + added_files));
 
-        sort_list(subset);
+        list_sort(subset);
         write_list_to_file(subset, run_name);
         ++added_files;
     }
@@ -172,8 +172,8 @@ LIST* match_on_RAM(LIST* list1, LIST* list2)
     LIST* output = new_list();
     int   index1 = 0;
     int   index2 = 0;
-    char* item1  = get_from_list(list1, index1);
-    char* item2  = get_from_list(list2, index2);
+    char* item1  = list_get(list1, index1);
+    char* item2  = list_get(list2, index2);
 
     while (item1 != NULL && item2 != NULL)
     {
@@ -181,25 +181,25 @@ LIST* match_on_RAM(LIST* list1, LIST* list2)
         {
             case SMALLER:
                 ++index1;
-                item1 = get_from_list(list1, index1);
+                item1 = list_get(list1, index1);
             break;
 
             case BIGGER:
                 ++index2;
-                item2 = get_from_list(list2, index2);
+                item2 = list_get(list2, index2);
             break;
 
             default:
-                add_to_list(output, item1);
+                list_add(output, item1);
                 ++index1;
                 ++index2;
-                item1 = get_from_list(list1, index1);
-                item2 = get_from_list(list2, index2);
+                item1 = list_get(list1, index1);
+                item2 = list_get(list2, index2);
         }
     }
 
-    free_list(list1);
-    free_list(list2);
+    list_free(list1);
+    list_free(list2);
     return output;
 }
 
@@ -243,8 +243,8 @@ LIST* merge_on_RAM(LIST* list1, LIST* list2)
     LIST* output = new_list();
     int   index1 = 0;
     int   index2 = 0;
-    char* item1  = get_from_list(list1 ,index1);
-    char* item2  = get_from_list(list2, index2);
+    char* item1  = list_get(list1 ,index1);
+    char* item2  = list_get(list2, index2);
 
     while (item1 != NULL || item2 != NULL)
     {
@@ -252,22 +252,22 @@ LIST* merge_on_RAM(LIST* list1, LIST* list2)
         switch (compare(item1, item2))
         {
             case BIGGER:
-                output = add_to_list(output, item2);
+                output = list_add(output, item2);
                 ++index2;
-                item2 = get_from_list(list2, index2);
+                item2 = list_get(list2, index2);
             break;
 
             case SMALLER:
-                output = add_to_list(output, item1);
+                output = list_add(output, item1);
                 ++index1;
-                item1 = get_from_list(list1, index1);
+                item1 = list_get(list1, index1);
             break;
 
             default:
-                output = add_to_list(output, item1);
+                output = list_add(output, item1);
                 ++index1; ++index2;
-                item1 = get_from_list(list1, index1);
-                item2 = get_from_list(list2, index2);
+                item1 = list_get(list1, index1);
+                item2 = list_get(list2, index2);
         }
     }
 
