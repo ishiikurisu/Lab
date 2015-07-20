@@ -1,5 +1,3 @@
-out = '..\data\1.01.1.1.1';
-
 % # Reading data
 %
 % assuming they are all the same place...
@@ -19,8 +17,9 @@ out = '..\data\1.01.1.1.1';
 %
 % for FC5,read from 1, 5
 
+out = '..\data\1.01.1.1.1';
 inl = strcat(out, '.csv');
-samples = 13400;
+samples = 13430;
 ending = 1 + samples;
 fc5_i = 5;
 fc6_i = 12;
@@ -31,8 +30,6 @@ fc6 = csvread(inl, 1, fc6_i, [1, fc6_i, ending, fc6_i]);
 t7  = csvread(inl, 1, t7_i, [1, t7_i, ending, t7_i]);
 t8  = csvread(inl, 1, t8_i, [1, t8_i, ending, t8_i]);
 data = [fc5 fc6 t7 t8];
-
-% # Writing data
 
 fc5_o = strcat(out, '.fc5.ascii');
 fc6_o = strcat(out, '.fc6.ascii');

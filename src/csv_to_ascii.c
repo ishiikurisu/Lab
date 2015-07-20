@@ -62,6 +62,7 @@ CHANNEL **init_channels(char *keys[], DICT *values)
 
 void polish_data(char *raw_line, CHANNEL **channels)
 {
+    static int first = 0;
     static int buffer = 0;
     CHANNEL *channel;
     LIST *line = NULL;
@@ -75,10 +76,14 @@ void polish_data(char *raw_line, CHANNEL **channels)
         channel = channels[i];
         position = channel->position;
         raw_line = get_from_list(line, position);
-        fprintf(channel->outlet, ", %s", raw_line);
+        if (first != 0)
+            fprintf(channel->outlet, ", %s", raw_line);
+        else
+            fprintf(channel->outlet, "%s", raw_line);
     }
 
     free_list(line);
+    if (first == 0)++first;
     ++buffer;
     if (buffer == 256) {
         for (i = 0; i < NCH; ++i)
@@ -92,20 +97,6 @@ void mine_data(FILE *mine, CHANNEL **channels)
     int position = -1;
     int i = 0;
 
-    /* first line */
-    line = split(raw_line, ',');
-    free(raw_line);
-    for (i = 0; i < NCH; ++i)
-    {
-        channel = channels[i];
-        position = channel->position;
-        raw_line = get_from_list(line, position);
-        fprintf(channel->outlet, "%s", raw_line);
-    }
-
-    free_list(line);
-
-    /* other lines */
     while (raw_line = read_from_file(mine))
     {
         polish_data(raw_line, channels);
