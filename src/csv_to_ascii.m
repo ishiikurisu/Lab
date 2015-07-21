@@ -19,16 +19,18 @@
 
 out = '..\data\1.01.1.1.1';
 inl = strcat(out, '.csv');
+ns = 128;
 samples = 13430;
-ending = 1 + samples;
+beginning = 20 * ns;
+ending = 60 * ns; % ending = 1 + samples;
 fc5_i = 5;
 fc6_i = 12;
 t7_i = 6;
 t8_i = 11;
-fc5 = csvread(inl, 1, fc5_i, [1, fc5_i, ending, fc5_i]);
-fc6 = csvread(inl, 1, fc6_i, [1, fc6_i, ending, fc6_i]);
-t7  = csvread(inl, 1, t7_i, [1, t7_i, ending, t7_i]);
-t8  = csvread(inl, 1, t8_i, [1, t8_i, ending, t8_i]);
+fc5 = csvread(inl, 1, fc5_i, [1, fc5_i, samples, fc5_i]);
+fc6 = csvread(inl, 1, fc6_i, [1, fc6_i, samples, fc6_i]);
+t7  = csvread(inl, 1, t7_i, [1, t7_i, samples, t7_i]);
+t8  = csvread(inl, 1, t8_i, [1, t8_i, samples, t8_i]);
 data = [fc5 fc6 t7 t8];
 
 fc5_o = strcat(out, '.fc5.ascii');
@@ -36,12 +38,11 @@ fc6_o = strcat(out, '.fc6.ascii');
 t7_o = strcat(out, '.t7.ascii');
 t8_o = strcat(out, '.t8.ascii');
 files = {fc5_o fc6_o t7_o t8_o};
-samples = samples - 1;
 for ii = (1:4)
 	fp = fopen(files{ii}, 'w');
-	for jj = (1:samples)
+	for jj = (beginning:ending)
 		fprintf(fp, '%f, ', data(jj, ii));
 	end
-	fprintf(fp, '%f', data(samples + 1,ii));
+	fprintf(fp, '%f', data(ending+1, ii));
 	fclose(fp);
 end
