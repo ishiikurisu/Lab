@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "joepack.h"
+#include "oa.h"
 
 int isnum(char ch)
 { return (ch >= '0' && ch <= '9')? 1 : 0; }
