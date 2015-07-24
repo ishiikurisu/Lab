@@ -108,9 +108,9 @@ DICT* map_feed(DICT* map, char* input, char sep)
 
     while (!feof(inlet))
     {
-        data = split(line, sep);
-        key = get_from_list(data, 0);
-        value = get_from_list(data, 1);
+        data = list_strsplit(line, sep);
+        key = list_get(data, 0);
+        value = list_get(data, 1);
         map = put_in_map(map, key, value);
         line = read_from_file(inlet);
     }

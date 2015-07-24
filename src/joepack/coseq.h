@@ -80,7 +80,7 @@ void sort_on_RAM(char* input_file, char* output_file)
     inc(list);
 
     while (list != NULL)
-        fprintf(out, "%s\n", list->info),
+        fprintf(out, "%s\n", list->value),
         inc(list);
     fclose(out);
 }
