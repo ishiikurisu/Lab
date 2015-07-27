@@ -13,7 +13,6 @@ char* get_new_name(char* old)
 
     for (i = 0; isnum(old[i]); ++i)
         ;
-
     for (; i < limit; ++i)
         cat(new, ctos(old[i]));
 
@@ -25,7 +24,6 @@ int main(int argc, char const *argv[]) {
     char* line = read_from_file(files);
     char* old_name = NULL;
     char* new_name = NULL;
-    char* command = NULL;
 
     while (line)
     {

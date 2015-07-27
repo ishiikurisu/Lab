@@ -64,7 +64,6 @@ int map_contains(DICT* m, char* k) { return map_contains_key(m, k); }
 
 void map_print(DICT* map)
 {
-    LIST* LIST = NULL;
     char* str = NULL;
     int i = 0;
 

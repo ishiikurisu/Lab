@@ -138,7 +138,6 @@ char* pair_find(LIST* head, char* to_find)
 {
     LIST* pair = head->next;
     char* outlet = NULL;
-    int index = 0;
 
     while ((pair != NULL) && (outlet == NULL))
     {
@@ -355,7 +354,6 @@ LIST* list_remove(LIST* head, int index)
 {
     LIST* list   = head->next;
     LIST* to_del = NULL;
-    char* outlet = NULL;
     int i = 0;
 
     while ((i + 1 != index) && (list != NULL))
@@ -420,7 +418,6 @@ LIST* list_strsplit(char* string, char to_divide)
 {
     LIST* result  = new_list();
     char* section = "";
-    char  to_add  = '\n';
     int   length  = strlen(string);
     int   i       = 0;
 

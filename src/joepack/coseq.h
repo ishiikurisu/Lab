@@ -89,7 +89,6 @@ void sort_on_RAM(char* input_file, char* output_file)
 int build_runs(char* input)
 {
     FILE* inlet       = fopen(input, "r");
-    FILE* run         = NULL;
     LIST* subset      = NULL;
     char* data        = NULL;
     char* run_name    = NULL;
@@ -119,6 +118,8 @@ int build_runs(char* input)
     fclose(inlet);
     return added_files;
 }
+
+/*
 char* sort_on_memory(char* input)
 {
     char*  output      = concat(input, ".sorted");
@@ -129,11 +130,12 @@ char* sort_on_memory(char* input)
 
     added_files = build_runs(input);
 
-    /* merge runs */
+    // merge runs
 
 
     return output;
 }
+*/
 
 void match_on_memory(char* i1, char* i2, char* o)
 {
