@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 
 std::string read_bytes(FILE* stream, size_t number_bytes)
 {
@@ -16,6 +17,19 @@ std::string read_bytes(FILE* stream, size_t number_bytes)
 	}
 
 	return outlet;
+}
+
+void debug(std::string key, std::string value)
+{
+	std::cout << key << ": " << value << std::endl;
+	return;
+}
+
+int read_int(FILE* stream)
+{
+	int i;
+	fread(&i, sizeof(int), 1, stream);
+	return i;
 }
 
 #endif
