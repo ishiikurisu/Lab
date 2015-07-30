@@ -24,8 +24,8 @@ Below is the detailed digital format of the header record (upper block, ascii's 
 + 44 ascii : reserved
 + 8 ascii : number of data records (-1 if unknown, obey item 10 of the additional EDF+ specs)
 + 8 ascii : duration of a data record, in seconds
-+ ns * 16 ascii : ns * label (e.g. EEG Fpz-Cz or Body temp) (mind item 9 of the additional EDF+ specs)
 + 4 ascii : number of signals (ns) in data record
++ ns * 16 ascii : ns * label (e.g. EEG Fpz-Cz or Body temp) (mind item 9 of the additional EDF+ specs)
 + ns * 8 ascii : ns * physical dimension (e.g. uV or degreeC)
 + ns * 80 ascii : ns * transducer type (e.g. AgAgCl electrode)
 + ns * 8 ascii : ns * physical minimum (e.g. -500 or 34)
