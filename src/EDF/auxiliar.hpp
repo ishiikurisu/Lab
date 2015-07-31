@@ -38,4 +38,11 @@ int read_int(FILE* stream)
 	return i;
 }
 
+short read_short(FILE* stream)
+{
+	short i = 0;
+	fread(&i, sizeof(short), 1, stream);
+	return i;
+}
+
 #endif

@@ -6,24 +6,24 @@
 class DATA_RECORD
 {
 	std::map<std::string, std::string> header;
-	std::vector< std::vector<int> > records;
+	std::vector< std::vector<short> > records;
 	size_t number_samples;
 
 public:
 	void read_record(FILE*, size_t);
 	void write_record(FILE*, size_t, size_t);
-	std::vector<int> get_record();
+	std::vector<short> get_record();
 	friend class EDF;
 };
 
 void DATA_RECORD::read_record(FILE* inlet, size_t duration)
 {
-	std::vector<int> record;
-	int sig;
+	std::vector<short> record;
+	short sig;
 
 	for (size_t j = 0; j < duration * number_samples; ++j)
 	{
-		sig = read_int(inlet);		
+		sig = read_short(inlet);		
 		record.push_back(sig);
 	}
 
@@ -32,21 +32,22 @@ void DATA_RECORD::read_record(FILE* inlet, size_t duration)
 
 void DATA_RECORD::write_record(FILE* outlet, size_t duration, size_t which)
 {
-	std::vector<int> current = records[which];
-	int bmo;
+	std::vector<short> current = records[which];
+	std::vector<short>::iterator it = current.begin();
+	short bmo;
 
-	for (size_t j = 0; j < duration * number_samples; ++j)
+	for (it = current.begin(); it != current.end(); ++it)
 	{
-		bmo = current[j];
-		fwrite(&bmo, sizeof(int), 1, outlet);
+		bmo = *it;
+		fwrite(&bmo, sizeof(short), 1, outlet);
 	}
 }
 
-std::vector<int> DATA_RECORD::get_record()
+std::vector<short> DATA_RECORD::get_record()
 {
-	std::vector< std::vector<int> >::iterator current = records.begin();
-	std::vector<int>::iterator it;
-	std::vector<int> result;
+	std::vector< std::vector<short> >::iterator current = records.begin();
+	std::vector<short>::iterator it;
+	std::vector<short> result;
 
 	while (current != records.end())
 	{
