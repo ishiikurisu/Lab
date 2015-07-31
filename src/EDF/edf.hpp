@@ -23,6 +23,7 @@ public:
 	EDF(void) {};
 	void read_file(const char*);
 	void write_file(const char*);
+	void yaml(void);
 	friend class DATA_RECORD;
 };
 
@@ -114,7 +115,7 @@ void EDF::read_data_record(FILE* inlet)
 void EDF::read_file(const char* input)
 {
 	FILE* inlet = fopen(input, "rb");
-	
+
 	EDF_SETUP();
 	read_header(inlet);
 	for (size_t k = 0; k < number_data_records; ++k)
@@ -161,6 +162,53 @@ void EDF::write_file(const char* output)
 
 	fflush(outlet);
 	fclose(outlet);
+}
+
+void EDF::yaml()
+{
+   std::vector<std::string>::iterator it;
+   std::vector<std::string>::iterator checkpoint;
+   DATA_RECORD data_record;
+   size_t i;
+
+   // write header's header
+   it = EDF_SPECS.begin();
+   while ((*it).compare("label"))
+   {
+	   write_bytes(stdout, *it);
+	   write_bytes(stdout, ":");
+	   write_bytes(stdout, header[*it]);
+	   write_bytes(stdout, "\n");
+	   ++it;
+   }
+
+   // write records' header
+   while (it != EDF_SPECS.end())
+   {
+	   write_bytes(stdout, *it);
+	   write_bytes(stdout, ": ");
+	   for (i = 0; i < number_signals; ++i)
+	   {
+		   write_bytes(stdout, "- ");
+		   write_bytes(stdout, data_records[i].header[*it]);
+		   write_bytes(stdout, "\n");
+	   }
+	   ++it;
+   }
+
+   // write records' records
+   printf("Signals:");
+   for (i = 0; i < number_signals; ++i)
+   {
+	   printf("  %d:\n", i);
+	   std::vector<short> record = data_records[i].get_record();
+	   for (std::vector<short>::iterator r = record.begin(); r != record.end(); ++r)
+	   {
+		   printf("  - %d\n", *r);
+	   }
+
+   }
+
 }
 
 #endif

@@ -23,7 +23,7 @@ void DATA_RECORD::read_record(FILE* inlet, size_t duration)
 
 	for (size_t j = 0; j < duration * number_samples; ++j)
 	{
-		sig = read_short(inlet);		
+		sig = read_short(inlet);
 		record.push_back(sig);
 	}
 
