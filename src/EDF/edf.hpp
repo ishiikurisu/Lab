@@ -186,7 +186,7 @@ void EDF::yaml()
    while (it != EDF_SPECS.end())
    {
 	   write_bytes(stdout, *it);
-	   write_bytes(stdout, ": ");
+	   write_bytes(stdout, ":\n");
 	   for (i = 0; i < number_signals; ++i)
 	   {
 		   write_bytes(stdout, "- ");
@@ -197,15 +197,16 @@ void EDF::yaml()
    }
 
    // write records' records
-   printf("Signals:");
+   printf("Signals:\n");
    for (i = 0; i < number_signals; ++i)
    {
-	   printf("  %d:\n", i);
+	   printf("  %d: ", i);
 	   std::vector<short> record = data_records[i].get_record();
 	   for (std::vector<short>::iterator r = record.begin(); r != record.end(); ++r)
 	   {
-		   printf("  - %d\n", *r);
+		   printf("%d\t", *r);
 	   }
+	   printf("\n");
 
    }
 
