@@ -1,7 +1,5 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include <iostream>
-#include "edf.h"
+#include "edf.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -11,14 +9,14 @@ int main(int argc, char const *argv[])
 
 	/* READ DATA */
 	if (argc == 0) {
-		printf("Input: ");
+		std::cout << "Input: ";
 		std::cin >> input;
-		printf("Output: ");
+		std::cout << "Output: ";
 		std::cin >> output;
 	}
 	else if (argc == 1) {
 		input = argv[1];
-		printf("Output: ");
+		std::cout << "Output: ";
 		std::cin >> output;
 	}
 	else {

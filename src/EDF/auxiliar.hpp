@@ -20,12 +20,7 @@ size_t write_bytes(FILE* stream, std::string outlet)
 	const char* to_be_written = outlet.c_str();
 	size_t written_chars = outlet.length();
 
-	fwrite(
-		to_be_written, 
-		sizeof(char),
-		outlet.length(),
-		stream
-	);
+	fwrite(to_be_written, sizeof(char),	outlet.length(), stream);
 
 	return written_chars;
 }

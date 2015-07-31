@@ -1,14 +1,13 @@
 #ifndef EDFP_H
 #define EDFP_H 0
 
-#include <cstdlib>
 #include <cstdio>
 #include <map>
 #include <vector>
 
-#include "auxiliar.h"
-#include "edf_spec.h"
-#include "record.h"
+#include "auxiliar.hpp"
+#include "edf_spec.hpp"
+#include "record.hpp"
 
 class EDF
 {
@@ -143,7 +142,6 @@ void EDF::write_file(const char* output)
 	while ((*it).compare("label"))
 	{
 		write_bytes(outlet, header[*it]);
-		// fprintf(outlet, "%s", header[*it].c_str());
 		++it;
 	}
 
@@ -151,10 +149,7 @@ void EDF::write_file(const char* output)
 	while (it != EDF_SPECS.end())
 	{
 		for (i = 0; i < number_signals; ++i)
-		{
 			write_bytes(outlet, data_records[i].header[*it]);
-			// fprintf(outlet, "%s", data_records[i].header[*it].c_str());
-		}
 		fflush(outlet);
 		++it;
 	}
