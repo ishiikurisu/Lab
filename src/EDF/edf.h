@@ -5,24 +5,25 @@
 #include <cstdio>
 #include <map>
 #include <vector>
-#include "auxiliar.h"
 
+#include "auxiliar.h"
 #include "edf_spec.h"
 #include "record.h"
+
 class EDF
 {
 	std::map<std::string, std::string> header;
 	std::vector<DATA_RECORD> data_records;
 	size_t number_signals;
 	size_t number_data_records;
-	size_t duration;
+	double duration;
 	void read_header(FILE*);
 	void read_data_record(FILE*);
 
 public:
 	EDF(void) {};
-	void readfile(const char*);
-	void writefile(const char*);
+	void read_file(const char*);
+	void write_file(const char*);
 	friend class DATA_RECORD;
 };
 
@@ -66,9 +67,8 @@ void EDF::read_header(FILE* inlet)
 			sscanf(data.c_str(), "%d", &aux_number);
 			number_data_records = (size_t) aux_number;
 		}
-		if ((*it).compare("duration") == 0) {
-			sscanf(data.c_str(), "%d", &aux_number);
-			duration = (size_t) aux_number;
+		else if ((*it).compare("duration") == 0) {
+			sscanf(data.c_str(), "%lf", &duration);
 		}
 		else if ((*it).compare("numbersignals") == 0) {
 			sscanf(data.c_str(), "%d", &aux_number);
@@ -80,7 +80,7 @@ void EDF::read_header(FILE* inlet)
 		++it;
 	}
 
-	/* allocate memory */
+	// allocate memory
 	for (size_t r = 0; r < number_signals; ++r)
 		data_records.push_back(DATA_RECORD());
 
@@ -112,7 +112,7 @@ void EDF::read_data_record(FILE* inlet)
 		data_records[i].read_record(inlet, duration);
 }
 
-void EDF::readfile(const char* input)
+void EDF::read_file(const char* input)
 {
 	FILE* inlet = fopen(input, "rb");
 	
@@ -125,7 +125,7 @@ void EDF::readfile(const char* input)
 }
 
 /* SAVING EDF DATA TO FILE */
-void EDF::writefile(const char* output)
+void EDF::write_file(const char* output)
 {
 	FILE* outlet = NULL;
 	std::vector<std::string>::iterator it;
@@ -142,7 +142,8 @@ void EDF::writefile(const char* output)
 	it = EDF_SPECS.begin();
 	while ((*it).compare("label"))
 	{
-		fprintf(outlet, "%s", header[*it].c_str());
+		write_bytes(outlet, header[*it]);
+		// fprintf(outlet, "%s", header[*it].c_str());
 		++it;
 	}
 
@@ -150,7 +151,10 @@ void EDF::writefile(const char* output)
 	while (it != EDF_SPECS.end())
 	{
 		for (i = 0; i < number_signals; ++i)
-			fprintf(outlet, "%s", data_records[i].header[*it].c_str());
+		{
+			write_bytes(outlet, data_records[i].header[*it]);
+			// fprintf(outlet, "%s", data_records[i].header[*it].c_str());
+		}
 		fflush(outlet);
 		++it;
 	}

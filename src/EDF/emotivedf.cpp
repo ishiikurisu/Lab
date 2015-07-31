@@ -27,9 +27,9 @@ int main(int argc, char const *argv[])
 	}
 
 	/* PROCESS DATA */
-	edf.readfile(input.c_str());
+	edf.read_file(input.c_str());
 
 	/* WRITE DATA */
-	edf.writefile(output.c_str());
+	edf.write_file(output.c_str());
 	return 0;
 }

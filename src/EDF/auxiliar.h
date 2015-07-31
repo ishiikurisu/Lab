@@ -8,15 +8,26 @@
 std::string read_bytes(FILE* stream, size_t number_bytes)
 {
 	std::string outlet;
-	char just_read;
 
 	for (size_t i = 0; i < number_bytes; ++i)
-	{
-		just_read = fgetc(stream);
-		outlet += just_read;
-	}
+		outlet += fgetc(stream);
 
 	return outlet;
+}
+
+size_t write_bytes(FILE* stream, std::string outlet)
+{
+	const char* to_be_written = outlet.c_str();
+	size_t written_chars = outlet.length();
+
+	fwrite(
+		to_be_written, 
+		sizeof(char),
+		outlet.length(),
+		stream
+	);
+
+	return written_chars;
 }
 
 void debug(std::string key, std::string value)
@@ -27,7 +38,7 @@ void debug(std::string key, std::string value)
 
 int read_int(FILE* stream)
 {
-	int i;
+	int i = 0;
 	fread(&i, sizeof(int), 1, stream);
 	return i;
 }

@@ -12,6 +12,7 @@ class DATA_RECORD
 public:
 	void read_record(FILE*, size_t);
 	void write_record(FILE*, size_t, size_t);
+	std::vector<int> get_record();
 	friend class EDF;
 };
 
@@ -31,13 +32,35 @@ void DATA_RECORD::read_record(FILE* inlet, size_t duration)
 
 void DATA_RECORD::write_record(FILE* outlet, size_t duration, size_t which)
 {
-	int bmo = 0;
+	std::vector<int> current = records[which];
+	int bmo;
 
-	for (size_t j = 0; j < number_samples * duration; ++j)
+	for (size_t j = 0; j < duration * number_samples; ++j)
 	{
-		bmo = records[which].at(j);
+		bmo = current[j];
 		fwrite(&bmo, sizeof(int), 1, outlet);
 	}
+}
+
+std::vector<int> DATA_RECORD::get_record()
+{
+	std::vector< std::vector<int> >::iterator current = records.begin();
+	std::vector<int>::iterator it;
+	std::vector<int> result;
+
+	while (current != records.end())
+	{
+		it = current->begin();
+		while (it != current->end())
+		{
+			result.push_back((*it));
+			++it;
+		}
+
+		++current;
+	}
+
+	return result;
 }
 
 #endif

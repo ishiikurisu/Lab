@@ -1,7 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iso646.h>
-#include "joepack/string.h"
-#include "joepack/list.h"
-#include "joepack/coseq.h"
-#include "joepack/dict.h"
+#include "oa/string.h"
+#include "oa/list.h"
+#include "oa/coseq.h"
+#include "oa/dict.h"
+#include "oa/hashfunctions.h"
