@@ -19,7 +19,8 @@ function dummy = csv2asciiV2(output, starttime, endtime)
 	files = {fc5, fc6, t7, t8};
 
 	%   + first iteration
-	for moment = 2:beginning
+	row = fgetl(inlet);
+	for moment = 3:beginning
 		row = fgetl(inlet);
 	end
 
@@ -39,7 +40,7 @@ function dummy = csv2asciiV2(output, starttime, endtime)
 			fp = files{ii};
 			jj = positions(ii);
 			data = columns{jj};
-			fprintf(fp, ', %s', data);
+			fprintf(fp, ', %f', data);
 		end
 	end
 

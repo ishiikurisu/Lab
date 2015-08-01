@@ -176,7 +176,7 @@ void EDF::yaml()
    while ((*it).compare("label"))
    {
 	   write_bytes(stdout, *it);
-	   write_bytes(stdout, ":");
+	   write_bytes(stdout, ": ");
 	   write_bytes(stdout, header[*it]);
 	   write_bytes(stdout, "\n");
 	   ++it;
@@ -209,7 +209,28 @@ void EDF::yaml()
 	   printf("\n");
 
    }
+}
 
+void EDF::csv()
+{
+	std::vector<std::string>::iterator it;
+   std::vector<std::string>::iterator checkpoint;
+   DATA_RECORD data_record;
+   size_t i;
+
+   // write header
+   printf("title:%s,", header["recording"]);
+   printf("record:%s %s,", header["startdate"], header["starttime"]);
+   printf("sampling:128,");
+   printf("subject:%s," header["patient"]);
+   printf("chan:%d,", numbersignals);
+   printf("units:emotiv\n");
+
+   // write data records
+   for (i = 0; i < number_signals; ++i)
+   {
+	   // how the fuck do I do this?
+   }
 }
 
 #endif
