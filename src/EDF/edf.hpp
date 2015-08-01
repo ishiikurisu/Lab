@@ -24,6 +24,7 @@ public:
 	void read_file(const char*);
 	void write_file(const char*);
 	void yaml(void);
+	void csv(void);
 	friend class DATA_RECORD;
 };
 
@@ -207,30 +208,45 @@ void EDF::yaml()
 		   printf("%d\t", *r);
 	   }
 	   printf("\n");
-
    }
 }
 
 void EDF::csv()
 {
-	std::vector<std::string>::iterator it;
-   std::vector<std::string>::iterator checkpoint;
-   DATA_RECORD data_record;
-   size_t i;
+	std::vector< std::vector<short> > records;
+	std::vector<short> record;
+	unsigned long limit = -1;
+	size_t i, j;
+	short data;
 
-   // write header
-   printf("title:%s,", header["recording"]);
-   printf("record:%s %s,", header["startdate"], header["starttime"]);
-   printf("sampling:128,");
-   printf("subject:%s," header["patient"]);
-   printf("chan:%d,", numbersignals);
-   printf("units:emotiv\n");
+	// write header
+	printf("title:%s,", header["recording"].c_str());
+	printf("recorded:%s %s,",
+		header["startdate"].c_str(), header["starttime"].c_str());
+	printf("sampling:128,");
+	printf("subject:%s,", header["patient"].c_str());
+	printf("labels:");
+	for (i = 0; i < number_signals; ++i)
+		printf("%s ", data_records[i].header["label"].c_str()); printf(",");
+	printf("chan:%d,", number_signals);
+	printf("units:emotiv\n");
 
-   // write data records
-   for (i = 0; i < number_signals; ++i)
-   {
-	   // how the fuck do I do this?
-   }
+	// write data records
+	for (i = 0; i < number_signals; ++i)
+		records.push_back(data_records[i].get_record());
+	limit = records.at(0).size();
+	for (j = 0; j < limit; ++j)
+	{
+		for (i = 0; i < number_signals; ++i)
+		{
+			record = records.at(i);
+			data = record.at(j); // translate this fucker
+			if (i != 0) printf(", %d", data);
+			else printf("%d", data);
+		}
+		printf("\n");
+	}
+	records.clear();
 }
 
 #endif
