@@ -17,12 +17,20 @@ typedef struct
 }
 EDF;
 
-/*
 EDF* edf_new()
 {
+    EDF* edf = (EDF*) malloc(sizeof(EDF));
 
+    edf->header = map_new(8, dumb);
+    edf->data_records = NULL;
+    edf->number_signals = 0;
+    edf->number_data_records = 0;
+    edf->duration = 0.0;
+
+    return edf;
 }
 
+/*
 EDF* read_edf_file()
 {
 
