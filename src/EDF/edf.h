@@ -30,12 +30,24 @@ EDF* edf_new()
     return edf;
 }
 
-/*
-EDF* read_edf_file()
+EDF* edf_read_header()
 {
 
 }
 
+EDF* edf_read(const char *input)
+{
+    FIE* inlet = fopen(input, "r");
+    EDF* edf = edf_new();
+    int i;
+
+    edf = edf_read_header();
+    for (i = 0; o M< number_data_records; ++i)
+
+    fclose(inlet);
+}
+
+/*
 void edf_to_csv()
 {
 

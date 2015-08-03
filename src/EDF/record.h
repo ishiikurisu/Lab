@@ -3,7 +3,7 @@
 typedef struct
 {
     DICT* header;
-    short* records;
+    short* record;
     size_t number_samples;
     size_t number_records;
 }
@@ -15,16 +15,45 @@ DATAREC* new_data_record()
     DATAREC* data_record = (DATAREC*) malloc(sizeof(DATAREC));
 
     data_record->header = map_new(8, dumb);
-    data_record->records = NULL;
+    data_record->record = (short*) malloc(sizeof(short));
     data_record->number_samples = 0;
     data_record->number_records = 0;
+
+    records[0] = NULL;
 
     return data_record;
 }
 
-DATAREC* datarec_read(DATAREC* data_record, FILE* inlet, size_t duration)
+short read_short(FILE* stream)
 {
-    short* record = (short*) 
+    short i = 0;
+    fread(&i, sizeof(short), 1, stream);
+    return i;
+}
+short* push_back(short* array, short to_add)
+{
+    unsigned int i = 0;
+
+    while (array[i] != NULL)
+        ++i;
+    array = realloc(array, sizeof(short) * (i + 1));
+    array[i] = to_add;
+
+    return array;
+}
+DATAREC* datarec_read(DATAREC* data_record, FILE* inlet, double duration)
+{
+    short sig;
+    size_t i = 0;
+
+    for (i = 0; i < duration * data_record->number_samples; ++i)
+    {
+        sig = read_short(inlet);
+        data_record->record = push_back(data_record->record, sig);
+        data_record->number_records++;
+    }
+
+    return data_record;
 }
 
 #endif

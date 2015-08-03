@@ -202,7 +202,7 @@ void EDF::yaml()
    for (i = 0; i < number_signals; ++i)
    {
 	   printf("  %d: ", i);
-	   std::vector<short> record = data_records[i].get_record();
+	   std::vector<short> record = data_records[i].record;
 	   for (std::vector<short>::iterator r = record.begin(); r != record.end(); ++r)
 	   {
 		   printf("%d\t", *r);
