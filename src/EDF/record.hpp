@@ -6,7 +6,7 @@
 class DATA_RECORD
 {
 	std::map<std::string, std::string> header;
-	std::vector< std::vector<short> > records;
+	std::vector<short> record;
 	size_t number_samples;
 
 public:
@@ -18,7 +18,6 @@ public:
 
 void DATA_RECORD::read_record(FILE* inlet, size_t duration)
 {
-	std::vector<short> record;
 	short sig;
 
 	for (size_t j = 0; j < duration * number_samples; ++j)
@@ -26,23 +25,21 @@ void DATA_RECORD::read_record(FILE* inlet, size_t duration)
 		sig = read_short(inlet);
 		record.push_back(sig);
 	}
-
-	records.push_back(record);
 }
 
 void DATA_RECORD::write_record(FILE* outlet, size_t duration, size_t which)
 {
-	std::vector<short> current = records[which];
-	std::vector<short>::iterator it = current.begin();
+	std::vector<short>::iterator it = record.begin();
 	short bmo;
 
-	for (it = current.begin(); it != current.end(); ++it)
+	for (it = record.begin(); it != record.end(); ++it)
 	{
 		bmo = *it;
 		fwrite(&bmo, sizeof(short), 1, outlet);
 	}
 }
 
+/*
 std::vector<short> DATA_RECORD::get_record()
 {
 	std::vector< std::vector<short> >::iterator current = records.begin();
@@ -62,6 +59,12 @@ std::vector<short> DATA_RECORD::get_record()
 	}
 
 	return result;
+}
+*/
+
+std::vector<short> DATA_RECORD::get_record()
+{
+	return record;
 }
 
 #endif
