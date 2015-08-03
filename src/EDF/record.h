@@ -5,7 +5,6 @@ typedef struct
     DICT* header;
     short* record;
     size_t number_samples;
-    size_t number_records;
 }
 DATA_RECORD;
 typedef DATA_RECORD DATAREC;
@@ -16,10 +15,8 @@ DATAREC* new_data_record()
 
     data_record->header = map_new(8, dumb);
     data_record->record = (short*) malloc(sizeof(short));
+    data_record->record[0] = 0;
     data_record->number_samples = 0;
-    data_record->number_records = 0;
-
-    records[0] = NULL;
 
     return data_record;
 }
@@ -32,12 +29,8 @@ short read_short(FILE* stream)
 }
 short* push_back(short* array, short to_add)
 {
-    unsigned int i = 0;
-
-    while (array[i] != NULL)
-        ++i;
-    array = realloc(array, sizeof(short) * (i + 1));
-    array[i] = to_add;
+    array = realloc(array, sizeof(short) * (array[0] + 2));
+    array[++array[0]] = to_add;
 
     return array;
 }
@@ -50,7 +43,6 @@ DATAREC* datarec_read(DATAREC* data_record, FILE* inlet, double duration)
     {
         sig = read_short(inlet);
         data_record->record = push_back(data_record->record, sig);
-        data_record->number_records++;
     }
 
     return data_record;

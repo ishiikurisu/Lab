@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include "oa/string.h"
 #include "oa/list.h"
 #include "oa/coseq.h"
