@@ -3,12 +3,12 @@
 typedef struct
 {
     DICT* header;
-    short** records;
+    short* records;
     size_t number_samples;
     size_t number_records;
 }
 DATA_RECORD;
-typedef DATA_RECORD DATAREC
+typedef DATA_RECORD DATAREC;
 
 DATAREC* new_data_record()
 {
@@ -20,6 +20,11 @@ DATAREC* new_data_record()
     data_record->number_records = 0;
 
     return data_record;
+}
+
+DATAREC* datarec_read(DATAREC* data_record, FILE* inlet, size_t duration)
+{
+    short* record = (short*) 
 }
 
 #endif
