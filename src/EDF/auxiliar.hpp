@@ -45,4 +45,11 @@ short read_short(FILE* stream)
 	return i;
 }
 
+long stol(std::string str)
+{
+	long result;
+	sscanf(str.c_str(), "%ld", &result);
+	return result;
+}
+
 #endif

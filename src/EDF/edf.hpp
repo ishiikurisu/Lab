@@ -15,7 +15,7 @@ class EDF
 	std::vector<DATA_RECORD> data_records;
 	size_t number_signals;
 	size_t number_data_records;
-	double duration;
+	float duration;
 	void read_header(FILE*);
 	void read_data_record(FILE*);
 
@@ -69,7 +69,7 @@ void EDF::read_header(FILE* inlet)
 			number_data_records = (size_t) aux_number;
 		}
 		else if ((*it).compare("duration") == 0) {
-			sscanf(data.c_str(), "%lf", &duration);
+			sscanf(data.c_str(), "%f", &duration);
 		}
 		else if ((*it).compare("numbersignals") == 0) {
 			sscanf(data.c_str(), "%d", &aux_number);
@@ -213,11 +213,11 @@ void EDF::yaml()
 
 void EDF::csv()
 {
-	std::vector< std::vector<short> > records;
-	std::vector<short> record;
+	std::vector< std::vector<float> > records;
+	std::vector<float> record;
 	unsigned long limit = -1;
 	size_t i, j;
-	short data;
+	float data;
 
 	// write header
 	printf("title:%s,", header["recording"].c_str());
@@ -233,16 +233,16 @@ void EDF::csv()
 
 	// write data records
 	for (i = 0; i < number_signals; ++i)
-		records.push_back(data_records[i].get_record());
+		records.push_back(data_records[i].get_translated_record());
 	limit = records.at(0).size();
 	for (j = 0; j < limit; ++j)
 	{
 		for (i = 0; i < number_signals; ++i)
 		{
 			record = records.at(i);
-			data = record.at(j); // translate this fucker
-			if (i != 0) printf(", %d", data);
-			else printf("%d", data);
+			data = record.at(j);
+			if (i == 0) printf("%f", data);
+			else printf(", %f", data);
 		}
 		printf("\n");
 	}
