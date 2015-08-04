@@ -23,7 +23,7 @@ public:
 	EDF(void) {};
 	void read_file(const char*);
 	void write_file(const char*);
-	void yaml(void);
+	void yaml(const char*);
 	void csv(void);
 	friend class DATA_RECORD;
 };
@@ -58,7 +58,7 @@ void EDF::read_header(FILE* inlet)
 	size_t bytes;
 
 	it = EDF_SPECS.begin();
-	while (it != EDF_SPECS.end())
+	while ((*it).compare("label") != 0)
 	{
 		bytes = EDF_SPEC[*it];
 		data = read_bytes(inlet, bytes);
@@ -74,8 +74,6 @@ void EDF::read_header(FILE* inlet)
 		else if ((*it).compare("numbersignals") == 0) {
 			sscanf(data.c_str(), "%d", &aux_number);
 			number_signals = (size_t) aux_number;
-			++it;
-			break;
 		}
 
 		++it;
@@ -115,7 +113,12 @@ void EDF::read_data_record(FILE* inlet)
 
 void EDF::read_file(const char* input)
 {
-	FILE* inlet = fopen(input, "rb");
+	FILE* inlet = NULL;
+
+	if (input == NULL)
+		inlet = stdin;
+	else
+		inlet = fopen(input, "rb");
 
 	EDF_SETUP();
 	read_header(inlet);
@@ -165,50 +168,56 @@ void EDF::write_file(const char* output)
 	fclose(outlet);
 }
 
-void EDF::yaml()
+void EDF::yaml(const char *output)
 {
-   std::vector<std::string>::iterator it;
-   std::vector<std::string>::iterator checkpoint;
-   DATA_RECORD data_record;
-   size_t i;
+	std::vector<std::string>::iterator it;
+	std::vector<std::string>::iterator checkpoint;
+	DATA_RECORD data_record;
+	FILE *outlet = stdout;
+	size_t i;
 
-   // write header's header
-   it = EDF_SPECS.begin();
-   while ((*it).compare("label"))
-   {
-	   write_bytes(stdout, *it);
-	   write_bytes(stdout, ": ");
-	   write_bytes(stdout, header[*it]);
-	   write_bytes(stdout, "\n");
+	if (output != NULL)
+		outlet = fopen(output, "wb");
+		
+
+	// write header's header
+	it = EDF_SPECS.begin();
+	while ((*it).compare("label"))
+	{
+	   write_bytes(outlet, *it);
+	   write_bytes(outlet, ": ");
+	   write_bytes(outlet, header[*it]);
+	   write_bytes(outlet, "\n");
 	   ++it;
-   }
+	}
 
-   // write records' header
-   while (it != EDF_SPECS.end())
-   {
-	   write_bytes(stdout, *it);
-	   write_bytes(stdout, ":\n");
-	   for (i = 0; i < number_signals; ++i)
-	   {
-		   write_bytes(stdout, "- ");
-		   write_bytes(stdout, data_records[i].header[*it]);
-		   write_bytes(stdout, "\n");
-	   }
-	   ++it;
-   }
+	// write records' header
+	while (it != EDF_SPECS.end())
+	{
+		write_bytes(outlet, *it);
+		write_bytes(outlet, ":\n");
+		for (i = 0; i < number_signals; ++i)
+		{
+			write_bytes(outlet, "- ");
+			write_bytes(outlet, data_records[i].header[*it]);
+			write_bytes(outlet, "\n");
+		}
+		++it;
+	}
 
-   // write records' records
-   printf("Signals:\n");
-   for (i = 0; i < number_signals; ++i)
-   {
-	   printf("  %d: ", i);
-	   std::vector<short> record = data_records[i].record;
-	   for (std::vector<short>::iterator r = record.begin(); r != record.end(); ++r)
-	   {
-		   printf("%d\t", *r);
-	   }
-	   printf("\n");
-   }
+	// write records' records
+	fprintf(outlet, "Signals:\n");
+	for (i = 0; i < number_signals; ++i)
+	{
+		fprintf(outlet, "  %d: ", i);
+		std::vector<short> record = data_records[i].record;
+		for (std::vector<short>::iterator r = record.begin(); r != record.end(); ++r)
+			fprintf(outlet, "%d\t", *r);
+		fprintf(outlet, "\n");
+	}
+
+	if (output != NULL)
+		fclose(outlet);
 }
 
 void EDF::csv()
