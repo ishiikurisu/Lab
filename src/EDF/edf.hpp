@@ -61,7 +61,7 @@ void EDF::read_header(FILE* inlet)
 	while ((*it).compare("label") != 0)
 	{
 		bytes = EDF_SPEC[*it];
-		data = read_bytes(inlet, bytes);
+		data = read_to_string(inlet, bytes);
 		header[*it] = data;
 
 		if ((*it).compare("datarecords") == 0) {
@@ -88,7 +88,7 @@ void EDF::read_header(FILE* inlet)
 		bytes = EDF_SPEC[*it];
 		for (size_t i = 0; i < number_signals; ++i)
 		{
-			data = read_bytes(inlet, bytes);
+			data = read_to_string(inlet, bytes);
 			data_records[i].header[*it] = data;
 
 			if ((*it).compare("samplesrecord") == 0) {
@@ -146,7 +146,7 @@ void EDF::write_file(const char* output)
 	it = EDF_SPECS.begin();
 	while ((*it).compare("label"))
 	{
-		write_bytes(outlet, header[*it]);
+		write_from_string(outlet, header[*it]);
 		++it;
 	}
 
@@ -154,7 +154,7 @@ void EDF::write_file(const char* output)
 	while (it != EDF_SPECS.end())
 	{
 		for (i = 0; i < number_signals; ++i)
-			write_bytes(outlet, data_records[i].header[*it]);
+			write_from_string(outlet, data_records[i].header[*it]);
 		fflush(outlet);
 		++it;
 	}
@@ -184,23 +184,23 @@ void EDF::yaml(const char *output)
 	it = EDF_SPECS.begin();
 	while ((*it).compare("label"))
 	{
-	   write_bytes(outlet, *it);
-	   write_bytes(outlet, ": ");
-	   write_bytes(outlet, header[*it]);
-	   write_bytes(outlet, "\n");
+	   write_from_string(outlet, *it);
+	   write_from_string(outlet, ": ");
+	   write_from_string(outlet, header[*it]);
+	   write_from_string(outlet, "\n");
 	   ++it;
 	}
 
 	// write records' header
 	while (it != EDF_SPECS.end())
 	{
-		write_bytes(outlet, *it);
-		write_bytes(outlet, ":\n");
+		write_from_string(outlet, *it);
+		write_from_string(outlet, ":\n");
 		for (i = 0; i < number_signals; ++i)
 		{
-			write_bytes(outlet, "- ");
-			write_bytes(outlet, data_records[i].header[*it]);
-			write_bytes(outlet, "\n");
+			write_from_string(outlet, "- ");
+			write_from_string(outlet, data_records[i].header[*it]);
+			write_from_string(outlet, "\n");
 		}
 		++it;
 	}

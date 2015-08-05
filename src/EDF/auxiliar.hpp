@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <iostream>
 
-std::string read_bytes(FILE* stream, size_t number_bytes)
+std::string read_to_string(FILE* stream, size_t number_bytes)
 {
 	std::string outlet;
 
@@ -15,7 +15,7 @@ std::string read_bytes(FILE* stream, size_t number_bytes)
 	return outlet;
 }
 
-size_t write_bytes(FILE* stream, std::string outlet)
+size_t write_from_string(FILE* stream, std::string outlet)
 {
 	const char* to_be_written = outlet.c_str();
 	size_t written_chars = outlet.length();
