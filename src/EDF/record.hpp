@@ -1,3 +1,4 @@
+#ifdef EDFP_H
 #ifndef RECORD_H
 #define RECORD_H 0
 #include <vector>
@@ -67,4 +68,5 @@ std::vector<short> DATA_RECORD::get_record()
 	return record;
 }
 
+#endif
 #endif

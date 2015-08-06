@@ -13,7 +13,7 @@ Following the header record, each of the subsequent data records contains 'durat
 Gains, electrode montages and filters should remain fixed during the recording. Of course, these may all be digitally modified during replay of the digitized recording.
 Below is the detailed digital format of the header record (upper block, ascii's only) and of each subsequent data record (lower block, integers only). Note that each one of the ns signals is characterized separately in the header.
 
-## HEADER RECORD (we suggest to also adopt the 12 simple additional EDF+ specs)
+## Header Record (we suggest to also adopt the 12 simple additional EDF+ specs)
 
 + 8 ascii : version of this data format (0)
 + 80 ascii : local patient identification (mind item 3 of the additional EDF+ specs)
@@ -36,7 +36,7 @@ Below is the detailed digital format of the header record (upper block, ascii's 
 + ns * 8 ascii : ns * nr of samples in each data record
 + ns * 32 ascii : ns * reserved
 
-## DATA RECORD
+## Data Record
 
 + nr of samples[1] * integer : first signal in the data record
 + nr of samples[2] * integer : second signal

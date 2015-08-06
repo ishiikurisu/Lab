@@ -8,11 +8,14 @@
 #include "auxiliar.hpp"
 #include "edfP_spec.hpp"
 #include "record.hpp"
+#include "annotations.hpp"
 
-class EDFPP
+class EDFP
 {
 	std::map<std::string, std::string> header;
 	std::vector<DATA_RECORD> data_records;
+	std::vector<std::string> labels;
+	ANNOTATION annotations;
 	size_t number_signals;
 	size_t number_data_records;
 	float duration;
@@ -23,8 +26,6 @@ public:
 	EDFP(void) {};
 	~EDFP(void) {};
 	void read_file(const char*);
-	void yaml(const char*);
-	void csv(void);
 	friend class DATA_RECORD;
 };
 
@@ -84,7 +85,10 @@ void EDFP::read_header(FILE* inlet)
 
 	// allocate memory
 	for (size_t r = 0; r < number_signals; ++r)
+	{
+		/* add EDF+ annotations case */
 		data_records.push_back(DATA_RECORD());
+	}
 
 	while (it != EDFP_SPECS.end())
 	{
@@ -111,7 +115,10 @@ void EDFP::read_header(FILE* inlet)
 void EDFP::read_data_record(FILE* inlet)
 {
 	for (size_t i = 0; i < number_signals; ++i)
+	{
+		/* add EDF+ annotations case */
 		data_records[i].read_record(inlet, duration);
+	}
 }
 
 void EDFP::read_file(const char* input)
@@ -130,96 +137,5 @@ void EDFP::read_file(const char* input)
 
 	fclose(inlet);
 }
-
-void EDFP::yaml(const char *output)
-{
-	std::vector<std::string>::iterator it;
-	std::vector<std::string>::iterator checkpoint;
-	DATA_RECORD data_record;
-	FILE *outlet = stdout;
-	size_t i;
-
-	if (output != NULL)
-		outlet = fopen(output, "wb");
-		
-
-	// write header's header
-	it = EDFP_SPECS.begin();
-	while ((*it).compare("label"))
-	{
-	   write_from_string(outlet, *it);
-	   write_from_string(outlet, ": ");
-	   write_from_string(outlet, header[*it]);
-	   write_from_string(outlet, "\n");
-	   ++it;
-	}
-
-	// write records' header
-	while (it != EDFP_SPECS.end())
-	{
-		write_from_string(outlet, *it);
-		write_from_string(outlet, ":\n");
-		for (i = 0; i < number_signals; ++i)
-		{
-			write_from_string(outlet, "- ");
-			write_from_string(outlet, data_records[i].header[*it]);
-			write_from_string(outlet, "\n");
-		}
-		++it;
-	}
-
-	// write records' records
-	fprintf(outlet, "Signals:\n");
-	for (i = 0; i < number_signals; ++i)
-	{
-		fprintf(outlet, "  %d: ", i);
-		std::vector<short> record = data_records[i].record;
-		for (std::vector<short>::iterator r = record.begin(); r != record.end(); ++r)
-			fprintf(outlet, "%d\t", *r);
-		fprintf(outlet, "\n");
-	}
-
-	if (output != NULL)
-		fclose(outlet);
-}
-
-void EDFP::csv()
-{
-	std::vector< std::vector<float> > records;
-	std::vector<float> record;
-	unsigned long limit = -1;
-	size_t i, j;
-	float data;
-
-	// write header
-	printf("title:%s,", header["recording"].c_str());
-	printf("recorded:%s %s,",
-		header["startdate"].c_str(), header["starttime"].c_str());
-	printf("sampling:128,");
-	printf("subject:%s,", header["patient"].c_str());
-	printf("labels:");
-	for (i = 0; i < number_signals; ++i)
-		printf("%s ", data_records[i].header["label"].c_str()); printf(",");
-	printf("chan:%d,", number_signals);
-	printf("units:emotiv\n");
-
-	// write data records
-	for (i = 0; i < number_signals; ++i)
-		records.push_back(data_records[i].get_translated_record());
-	limit = records.at(0).size();
-	for (j = 0; j < limit; ++j)
-	{
-		for (i = 0; i < number_signals; ++i)
-		{
-			record = records.at(i);
-			data = record.at(j);
-			if (i == 0) printf("%f", data);
-			else printf(", %f", data);
-		}
-		printf("\n");
-	}
-	records.clear();
-}
-
 
 #endif

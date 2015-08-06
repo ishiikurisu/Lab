@@ -1,9 +1,9 @@
-#ifndef AUXILIAR_H
-#define AUXILIAR_H 0
+#pragma once
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <vector>
 
 std::string read_to_string(FILE* stream, size_t number_bytes)
 {
@@ -52,4 +52,45 @@ long stol(std::string str)
 	return result;
 }
 
-#endif
+std::vector<std::string> split(std::string str, char delimit)
+{
+	std::vector<std::string> result;
+	std::string::iterator ch = str.begin();
+
+	while (ch != str.end())
+	{
+		std::string token;
+
+		while (*ch != delimit && ch != str.end()) {
+			token += *ch;
+			++ch;
+		}
+
+		result.push_back(token);
+
+		if (ch != str.end()) {
+			token.clear();
+			++ch;
+		}
+	}
+
+	return result;
+}
+
+std::string read_line_from_file(FILE* stream)
+{
+	std::string outlet;
+	char just_read;
+
+	if (!feof(stream))
+	{
+		just_read = fgetc(stream);
+		while (just_read != '\n' && !feof(stream))
+		{
+			outlet += just_read;		
+			just_read = fgetc(stream);
+		}
+	}
+
+	return outlet;
+}
