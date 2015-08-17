@@ -25,7 +25,7 @@ public:
 	void read_file(const char*);
 	void write_file(const char*);
 	void yaml(const char*);
-	void csv(void);
+	void csv(const char*);
 	friend class DATA_RECORD;
 };
 
@@ -221,25 +221,30 @@ void EDF::yaml(const char *output)
 		fclose(outlet);
 }
 
-void EDF::csv()
+void EDF::csv(const char *output = NULL)
 {
+	FILE *outlet = stdout;
 	std::vector< std::vector<float> > records;
 	std::vector<float> record;
 	unsigned long limit = -1;
 	size_t i, j;
 	float data;
 
+	if (output != NULL)
+		outlet = fopen(output, "wb");
+
 	// write header
-	printf("title:%s,", header["recording"].c_str());
-	printf("recorded:%s %s,",
+	fprintf(outlet, "title:%s,", header["recording"].c_str());
+	fprintf(outlet, "recorded:%s %s,",
 		header["startdate"].c_str(), header["starttime"].c_str());
-	printf("sampling:128,");
-	printf("subject:%s,", header["patient"].c_str());
-	printf("labels:");
+	fprintf(outlet, "sampling:128,");
+	fprintf(outlet, "subject:%s,", header["patient"].c_str());
+	fprintf(outlet, "labels:");
 	for (i = 0; i < number_signals; ++i)
-		printf("%s ", data_records[i].header["label"].c_str()); printf(",");
-	printf("chan:%d,", number_signals);
-	printf("units:emotiv\n");
+		fprintf(outlet, "%s ", 
+		data_records[i].header["label"].c_str()); printf(",");
+	fprintf(outlet, "chan:%d,", number_signals);
+	fprintf(outlet, "units:emotiv\n");
 
 	// write data records
 	for (i = 0; i < number_signals; ++i)
@@ -251,12 +256,15 @@ void EDF::csv()
 		{
 			record = records.at(i);
 			data = record.at(j);
-			if (i == 0) printf("%f", data);
-			else printf(", %f", data);
+			if (i == 0) fprintf(outlet, "%f", data);
+			else fprintf(outlet, ", %f", data);
 		}
-		printf("\n");
+		fprintf(outlet, "\n");
 	}
 	records.clear();
+
+	if (output != NULL)
+		fclose(outlet);
 }
 
 #endif
