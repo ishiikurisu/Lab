@@ -10,10 +10,14 @@ the neuron can be modelled as a summing and threshold device. the signficance is
 
 The most popular neural networks are:
 
-    ...
+* hopfield nets
+* kohonen's self-organizing maps
+* multi-layer perceptrons
+* ART nets
 
 Papers
 ------
 
 * foundations of neural networks
-* ...
+* neural networks and physical systems with emergent collective computational abilities
+* bidirectional associative memories
