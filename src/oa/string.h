@@ -1,5 +1,6 @@
 #ifndef JOE_STRING_H
 #define JOE_STRING_H 0
+#include <stdbool.h>
 
 int strlen(char* s)
 {
@@ -118,6 +119,29 @@ int compare(char* s, char* t)
         r = SMALLER;
 
     return r;
+}
+
+bool whitespace(char c)
+{
+    if (c == ' ' || c == '\t' || c == '\n') {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+char* tidy_string(char *str)
+{
+    int beg = 0;
+    int end = strlen(str);
+
+    while (whitespace(str[beg]))
+        ++beg;
+
+    while (whitespace(str[end]))
+        --end;
+
+    return substring(str, beg, end);
 }
 
 char last_char(char* string)

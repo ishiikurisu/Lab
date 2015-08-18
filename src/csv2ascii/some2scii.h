@@ -1,4 +1,6 @@
 #pragma once
+#include <stdlib.h>
+#include <stdio.h>
 #include <oa.h>
 
 typedef struct
@@ -8,6 +10,7 @@ typedef struct
 	int position;
 
 } CHANNEL;
+
 
 DICT* process_labels(char* raw_data)
 {

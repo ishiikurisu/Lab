@@ -7,6 +7,7 @@
 + char* substr(char*, int, int)
 + int compare(char*, char*)
 + char last_char(char*)
++ char* tidy_string(char*)
 + char** strsplit(char*,char) -- under construction
 
 # Linked data types

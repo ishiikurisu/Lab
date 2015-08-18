@@ -1,7 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <oa.h>
-#include "csv_to_ascii.h"
+#include <buffer.h>
+#include "csv2ascii.h"
 
 char* ask_for_name(int argc, char *argv[])
 {
@@ -17,101 +18,38 @@ char* ask_for_name(int argc, char *argv[])
     return answer;
 }
 
-void test_map(DICT *labels)
+LIST *process_header(FILE *csv)
 {
-    char* value = NULL;
-    int i;
-
-    for (i = 0; i < NCH; ++i)
-    {
-        value = map_get(labels, IDS[i]);
-        printf("%s: %s\n", IDS[i], value);
-    }
+    char *header = read_from_file(csv);
+    LIST *fields = list_strsplit(header, ',');
+    return get_labels(get_labels_field(fields));
 }
 
-CHANNEL **init_channels(char *keys[], DICT *values)
+/*
+void process_channels(FILE *csv, LIST *channels)
 {
-    CHANNEL **channels = malloc(sizeof(CHANNEL*)* NCH);
-    CHANNEL *channel = NULL;
-    char *ascii = ".ascii";
-    char *id = NULL;
-    int i;
+    char comment[] = "this string is the objective!";
+    BUFFER **buffers = get_buffers_from_channels(channels);
 
-    for (i = 0; i < NCH; ++i)
-    {
-        channel = (CHANNEL*) malloc(sizeof(CHANNEL));
 
-        id = keys[i];
-        channel->id = id;
-        channel->outlet = fopen(concat(id, ascii), "w");
-        sscanf(map_get(values, id), "%d", &channel->position);
-
-        channels[i] = channel;
-    }
-
-    return channels;
+    return;
 }
-
-void polish_data(char *raw_line, CHANNEL **channels)
-{
-    static int first = 0;
-    static int buffer = 0;
-    CHANNEL *channel;
-    LIST *line = NULL;
-    int position;
-    int i;
-
-    line = list_strsplit(raw_line, ',');
-    free(raw_line);
-    for (i = 0; i < NCH; ++i)
-    {
-        channel = channels[i];
-        position = channel->position;
-        raw_line = list_get(line, position);
-        if (first != 0)
-            fprintf(channel->outlet, ", %s", raw_line);
-        else
-            fprintf(channel->outlet, "%s", raw_line);
-    }
-
-    list_free(line);
-    if (first == 0)++first;
-    ++buffer;
-    if (buffer == 256) {
-        for (i = 0; i < NCH; ++i)
-            fflush(channels[i]->outlet);
-        buffer = 0;
-    }
-}
-void mine_data(FILE *mine, CHANNEL **channels)
-{
-    char* raw_line = NULL;
-    int i = 0;
-
-    while ((raw_line = read_from_file(mine)))
-    {
-        polish_data(raw_line, channels);
-    }
-
-    for (i = 0; i < NCH; ++i)
-        fclose(channels[i]->outlet);
-}
+*/
 
 int main(int argc, char *argv[])
 {
-    char* input = NULL;
-    FILE* csv = NULL;
-    DICT* labels = NULL;
-    CHANNEL **channels = NULL;
+    char *input = NULL;
+    FILE *csv = NULL;
+    LIST *channels = NULL;
 
     input = ask_for_name(argc, argv);
     csv = fopen(input, "r");
-    labels = get_labels(csv);
-    test_map(labels);
 
-    channels = init_channels(IDS, labels);
-    mine_data(csv, channels);
-
+    channels = process_header(csv);
+    printf("%s\n", list_yaml(channels));
+    /* process_channels(csv, channels); */
+    
     fclose(csv);
+
     return 0;
 }
