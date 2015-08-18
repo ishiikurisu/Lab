@@ -1,5 +1,5 @@
-#include "joe_pack.h"
-#include "src/hashfunctions.h"
+#pragma once
+#include <oa.h>
 
 typedef struct
 {
@@ -11,7 +11,7 @@ typedef struct
 
 DICT* process_labels(char* raw_data)
 {
-    LIST* labels = split(raw_data, ' ');
+    LIST* labels = list_strsplit(raw_data, ' ');
     LIST* label = NULL;
     DICT* enumeration = new_map(7, dumb);
     char* indexstr;
@@ -20,7 +20,7 @@ DICT* process_labels(char* raw_data)
     for (label = labels->next; label != NULL; inc(label), ++index)
     {
         indexstr = itos(index);
-        enumeration = put_in_map(enumeration, label->info, indexstr);
+        map_put(enumeration, label->value, indexstr);
     }
 
     return enumeration;
@@ -28,9 +28,9 @@ DICT* process_labels(char* raw_data)
 DICT* process_column(char* column)
 {
     DICT* labels = NULL;
-    LIST* data = split(column, ':');
-    char* key = get_from_list(data, 0);
-    char* value = get_from_list(data, 1);
+    LIST* data = list_strsplit(column, ':');
+    char* key = list_get(data, 0);
+    char* value = list_get(data, 1);
 
     if (compare(key, " labels") == EQUAL) {
         labels = process_labels(value);
@@ -41,13 +41,13 @@ DICT* process_column(char* column)
 DICT* get_labels(FILE* csv)
 {
     char* header = read_from_file(csv);
-    LIST* columns = split(header, ',');
+    LIST* columns = list_strsplit(header, ',');
     LIST* column = NULL;
     DICT* labels = NULL;
 
     for (column = columns->next; column != NULL && labels == NULL; inc(column))
     {
-        labels = process_column(column->info);
+        labels = process_column(column->value);
     }
 
     return labels;
@@ -62,10 +62,9 @@ DICT* get_needed_labels(DICT *all, char **channels)
     for (i = 0; i < 4; ++i)
     {
         key = channels[i];
-        value = get_from_map(all, key);
-        labels = put_in_map(labels, key, value);
+        value = map_get(all, key);
+        labels = map_put(labels, key, value);
     }
 
     return labels;
 }
-

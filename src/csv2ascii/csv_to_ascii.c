@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "joe_pack.h"
 #include "csv_to_ascii.h"
 
 #define NCH (4)
@@ -32,7 +31,7 @@ void test_map(DICT *labels)
 
     for (i = 0; i < NCH; ++i)
     {
-        value = get_from_map(labels, IDS[i]);
+        value = map_get(labels, IDS[i]);
         printf("%s: %s\n", IDS[i], value);
     }
 }
@@ -52,7 +51,7 @@ CHANNEL **init_channels(char *keys[], DICT *values)
         id = keys[i];
         channel->id = id;
         channel->outlet = fopen(concat(id, ascii), "w");
-        sscanf(get_from_map(values, id), "%d", &channel->position);
+        sscanf(map_get(values, id), "%d", &channel->position);
 
         channels[i] = channel;
     }
@@ -69,20 +68,20 @@ void polish_data(char *raw_line, CHANNEL **channels)
     int position;
     int i;
 
-    line = split(raw_line, ',');
+    line = list_strsplit(raw_line, ',');
     free(raw_line);
     for (i = 0; i < NCH; ++i)
     {
         channel = channels[i];
         position = channel->position;
-        raw_line = get_from_list(line, position);
+        raw_line = list_get(line, position);
         if (first != 0)
             fprintf(channel->outlet, ", %s", raw_line);
         else
             fprintf(channel->outlet, "%s", raw_line);
     }
 
-    free_list(line);
+    list_free(line);
     if (first == 0)++first;
     ++buffer;
     if (buffer == 256) {
@@ -94,10 +93,9 @@ void polish_data(char *raw_line, CHANNEL **channels)
 void mine_data(FILE *mine, CHANNEL **channels)
 {
     char* raw_line = NULL;
-    int position = -1;
     int i = 0;
 
-    while (raw_line = read_from_file(mine))
+    while ((raw_line = read_from_file(mine)))
     {
         polish_data(raw_line, channels);
     }
@@ -119,10 +117,8 @@ int main(int argc, char *argv[])
     labels = get_needed_labels(labels, IDS);
     test_map(labels);
 
-    /*
     channels = init_channels(IDS, labels);
     mine_data(csv, channels);
-    */
 
     fclose(csv);
     return 0;
