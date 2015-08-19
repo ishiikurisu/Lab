@@ -13,7 +13,7 @@ int main(int argc, char const *argv[]) {
         just_read = buffer_read(inlet);
         buffer_write(outlet, ctos(just_read));
     }
-    buffer_write(outlet, ctos(just_read));
+    buffer_flush(outlet);
 
     buffer_close(inlet);
     buffer_close(outlet);

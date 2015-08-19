@@ -1,13 +1,7 @@
 #ifndef JOE_STRING_H
 #define JOE_STRING_H 0
 #include <stdbool.h>
-
-int strlen(char* s)
-{
-    int i = 0;
-    if (s) while (s[i]) ++i;
-    return i;
-}
+#include <string.h>
 
 char* concat(char* string, char* to_add)
 {
