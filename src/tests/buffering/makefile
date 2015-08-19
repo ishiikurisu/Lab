@@ -1,4 +1,4 @@
-oapath = -I"C:\Users\cris\Documents\work\EEG\src"
+oapath = -I"..\.."
 options = -lm -O2 -ansi -pipe -Wall
 
 buffer.exe: buffer.c

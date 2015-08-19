@@ -4,8 +4,8 @@
 #include "buffer.h"
 
 int main(int argc, char const *argv[]) {
-    BUFFER *inlet = buffer_new(fopen(argv[1], "r"), 1024);
-    BUFFER *outlet = buffer_new(fopen(argv[2], "w"), 1024);
+    BUFFER *inlet = buffer_new(fopen(argv[1], "r"), 2048);
+    BUFFER *outlet = buffer_new(fopen(argv[2], "w"), 2048);
     char just_read = ' ';
 
     while (buffer_is_available(inlet))
