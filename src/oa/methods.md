@@ -1,14 +1,16 @@
 # String
 
-+ int strlen(char*)
-+ char* concat(char*, char*)
-+ char* ctos(char)
-+ char* itos(int)
-+ char* substr(char*, int, int)
-+ int compare(char*, char*)
-+ char last_char(char*)
-+ char* tidy_string(char*)
-+ char** strsplit(char*,char) -- under construction
+``` C
+int strlen(char*);
+char* concat(char*, char*);
+char* ctos(char);
+char* itos(int);
+char* substr(char*, int, int);
+int compare(char*, char*);
+char last_char(char*);
+char* tidy_string(char*);
+char** strsplit(char*,char); /* under construction */
+```
 
 # Linked data types
 

@@ -8,6 +8,7 @@ typedef struct
 {
     char *data;
     int size;
+    bool available;
     FILE *stream;
 }
 BUFFER;
@@ -19,6 +20,7 @@ BUFFER* buffer_new(FILE *stream, int buffer_size)
 	buffer->data = "";
 	buffer->size = buffer_size;
 	buffer->stream = stream;
+    buffer->available = 1;
 
 	return buffer;
 }
@@ -29,7 +31,7 @@ void buffer_status(BUFFER *buffer)
 }
 
 BUFFER* buffer_flush(BUFFER *buffer)
-{	
+{
 	fwrite(buffer->data, strlen(buffer->data), 1, buffer->stream);
 	free(buffer->data);
 	buffer->data = "";
@@ -61,21 +63,32 @@ void buffer_write(BUFFER *buffer, char *to_write)
 
 char buffer_read(BUFFER *buffer)
 {
-	char outlet = ' ';
+	char outlet = '\0';
 
 	if (strlen(buffer->data) == 0) {
-		buffer = buffer_feed(buffer);
+        if (!feof(buffer->stream))
+		    buffer = buffer_feed(buffer);
+        else {
+            buffer->available = 0;
+            return outlet;
+        }
 	}
 
 	outlet = buffer->data[0];
-	buffer->data = substring(buffer->data, 1, strlen(buffer->data));
-	
+    buffer->data++;
+
 	return outlet;
+}
+
+int buffer_is_available(BUFFER *buffer)
+{
+    return buffer->available;
 }
 
 void buffer_close(BUFFER *buffer)
 {
 	/* if it was open for reading, do not forget to flush it */
+    buffer->available = 0;
 	fclose(buffer->stream);
 	free(buffer->data);
 	free(buffer);
