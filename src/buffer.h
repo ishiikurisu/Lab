@@ -75,7 +75,7 @@ char buffer_read(BUFFER *buffer)
 	}
 
 	outlet = buffer->data[0];
-    buffer->data++;
+    buffer->data = substring(buffer->data, 1, strlen(buffer->data));
 
 	return outlet;
 }
