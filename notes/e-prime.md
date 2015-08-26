@@ -14,4 +14,13 @@ Issues and solutions
 
 - [ ] Discover how to choose between two procedures and how to log its data. 
 
+- [ ] Try to call an image with a negative offset delay.
+
 - [ ] Regarding the license key issue, we might try [this](http://www.pstnet.com/support/kb.asp?TopicID=5539).
+  - It requires us to try something that depends on the owner of the software. Let's try to talk to her later?
+
+### Small lessons ###
+
+It is better to change directly the value of an property instead of relying on the contexts attributes.
+
+Whenever you change the filename of an ImageDisplay, you have to the method ImageDisplay.Load
