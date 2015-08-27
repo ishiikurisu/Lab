@@ -6,6 +6,8 @@
 
 typedef struct
 {
+    char *source;
+    char *mode;
     char *data;
     int size;
     bool available;
@@ -13,13 +15,15 @@ typedef struct
 }
 BUFFER;
 
-BUFFER* buffer_new(FILE *stream, int buffer_size)
+BUFFER* buffer_new(char *source, char *mode, int buffer_size)
 {
 	BUFFER *buffer = malloc(sizeof(BUFFER));
 
-	buffer->data = "";
+	buffer->source = source;
+    buffer->mode = mode;
+    buffer->data = "";
 	buffer->size = buffer_size;
-	buffer->stream = stream;
+	buffer->stream = fopen(source, mode);
     buffer->available = 1;
 
 	return buffer;
@@ -85,9 +89,15 @@ int buffer_is_available(BUFFER *buffer)
     return buffer->available;
 }
 
+int buffer_feof(BUFFER *buffer)
+{
+    return feof(buffer->stream);
+}
+
 void buffer_close(BUFFER *buffer)
 {
-	/* if it was open for reading, do not forget to flush it */
+	if (buffer->mode[0] == 'a' || buffer->mode[0] == 'w')
+        buffer_flush(buffer);
     buffer->available = 0;
 	fclose(buffer->stream);
 	free(buffer->data);

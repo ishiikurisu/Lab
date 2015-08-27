@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "csv_to_ascii.h"
+#include "some2ascii.h"
 
 #define NCH (4)
 char *IDS[] = {
