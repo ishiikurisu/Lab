@@ -67,7 +67,7 @@ void buffer_write(BUFFER *buffer, char *to_write)
 
 char buffer_read(BUFFER *buffer)
 {
-	char outlet = '\0';
+	char outlet = EOF;
     char *temp;
 
 	if (strlen(buffer->data) == 0) {
