@@ -68,6 +68,7 @@ void buffer_write(BUFFER *buffer, char *to_write)
 char buffer_read(BUFFER *buffer)
 {
 	char outlet = '\0';
+    char *temp;
 
 	if (strlen(buffer->data) == 0) {
         if (!feof(buffer->stream))
@@ -79,7 +80,9 @@ char buffer_read(BUFFER *buffer)
 	}
 
 	outlet = buffer->data[0];
-    buffer->data = substring(buffer->data, 1, strlen(buffer->data));
+    temp = substring(buffer->data, 1, strlen(buffer->data));
+    free(buffer->data);
+    buffer->data = temp;
 
 	return outlet;
 }
