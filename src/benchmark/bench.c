@@ -3,13 +3,11 @@
 #include <time.h>
 #include "benchmark.h"
 
-int main(int argc, char *argv[]) {
-    char *process_name = NULL;
+int main(int argc, char const *argv[]) {
     clock_t now = clock();
 
-    process_name = get_process_name(argc, argv);
     now = clock();
-    execute(argv[1], process_name);
+    execute(argv);
     now = clock() - now;
     write_results(now);
 

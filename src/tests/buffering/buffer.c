@@ -8,10 +8,11 @@ int main(int argc, char *argv[]) {
     BUFFER *outlet = buffer_new(argv[2], "w", 2048);
     char just_read = ' ';
 
-    while (inlet->available)
+    just_read = buffer_read(inlet);
+    while (just_read != EOF)
     {
-        just_read = buffer_read(inlet);
         buffer_write(outlet, ctos(just_read));
+        just_read = buffer_read(inlet);
     }
 
     buffer_close(inlet);
