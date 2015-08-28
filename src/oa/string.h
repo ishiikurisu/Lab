@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-char* concat(char* string, char* to_add)
+char* old_concat(char* string, char* to_add)
 {
     char* new_str = NULL;
     char *s = NULL;
@@ -21,7 +21,7 @@ char* concat(char* string, char* to_add)
     return new_str;
 }
 
-char* new_concat(char* to_hold, char* to_add)
+char* concat(char* to_hold, char* to_add)
 {
     int l1 = strlen(to_hold);
     int l2 = strlen(to_add);
@@ -37,7 +37,7 @@ char* new_concat(char* to_hold, char* to_add)
 
 char *CAT_MACRO(char *to_hold, char *to_add)
 {
-    char *outlet = new_concat(to_hold, to_add);
+    char *outlet = concat(to_hold, to_add);
     free(to_hold); free(to_add);
     return outlet;
 }
@@ -149,7 +149,7 @@ bool whitespace(char c)
 char* tidy_string(char *str)
 {
     int beg = 0;
-    int end = strlen(str);
+    int end = strlen(str) - 1;
 
     while (whitespace(str[beg]))
         ++beg;
@@ -157,7 +157,7 @@ char* tidy_string(char *str)
     while (whitespace(str[end]))
         --end;
 
-    return substring(str, beg, end);
+    return substring(str, beg, end + 1);
 }
 
 char last_char(char* string)
