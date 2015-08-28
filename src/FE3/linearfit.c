@@ -19,10 +19,10 @@ char *get_name(int argc, char *argv[])
     return input_name;
 }
 
-double **read_table(FILE *inlet)
+float **read_table(FILE *inlet)
 {
     LIST *lines = read_lines(inlet);
-    double **table = treat_lines(lines);
+    float **table = treat_lines(lines);
     list_free(lines);
     return table;
 }
@@ -30,7 +30,7 @@ double **read_table(FILE *inlet)
 int main(int argc, char *argv[]) {
     char *input = NULL;
     FILE *inlet = NULL;
-    double **table = NULL;
+    float **table = NULL;
 
     input = get_name(argc, argv);
     inlet = fopen(input, "r");
