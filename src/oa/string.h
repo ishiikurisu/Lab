@@ -3,6 +3,13 @@
 #include <stdbool.h>
 #include <string.h>
 
+char* string_new()
+{
+    char *s = malloc(sizeof(char));
+    s[0] = '\0';
+    return s;
+}
+
 char* old_concat(char* string, char* to_add)
 {
     char* new_str = NULL;

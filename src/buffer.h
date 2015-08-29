@@ -21,7 +21,7 @@ BUFFER* buffer_new(char *source, char *mode, int buffer_size)
 
 	buffer->source = source;
     buffer->mode = mode;
-    buffer->data = "";
+    buffer->data = string_new();
 	buffer->size = buffer_size;
 	buffer->stream = fopen(source, mode);
     buffer->available = 1;
@@ -38,7 +38,7 @@ BUFFER* buffer_flush(BUFFER *buffer)
 {
 	fwrite(buffer->data, strlen(buffer->data), 1, buffer->stream);
 	free(buffer->data);
-	buffer->data = "";
+	buffer->data = string_new();
 	return buffer;
 }
 
