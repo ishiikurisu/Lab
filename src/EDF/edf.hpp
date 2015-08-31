@@ -241,8 +241,8 @@ void EDF::csv(const char *output = NULL)
 	fprintf(outlet, "subject:%s,", header["patient"].c_str());
 	fprintf(outlet, "labels:");
 	for (i = 0; i < number_signals; ++i)
-		fprintf(outlet, "%s ", 
-		data_records[i].header["label"].c_str()); printf(",");
+		fprintf(outlet, "%s ", data_records[i].header["label"].c_str()); 
+	printf(",");
 	fprintf(outlet, "chan:%d,", number_signals);
 	fprintf(outlet, "units:emotiv\n");
 

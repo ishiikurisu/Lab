@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
     csv = buffer_new(input, "r", 2048);
 
     channels = process_header(csv);
+    /* printf("%s\n", list_yaml(channels)); */
     process_channels(csv, channels);
     
     buffer_close(csv);

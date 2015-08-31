@@ -431,7 +431,8 @@ LIST* list_strsplit(char* string, char to_divide)
             i++;
         }
 
-        push(result, section);
+        if (strlen(section) > 0)
+            push(result, section);
     }
 
     return result;
