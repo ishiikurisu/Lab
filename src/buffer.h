@@ -67,7 +67,7 @@ void buffer_write(BUFFER *buffer, char *to_write)
 
 char buffer_read(BUFFER *buffer)
 {
-	char outlet = EOF;
+	char outlet = '\0';
     char *temp;
 
 	if (strlen(buffer->data) == 0) {
@@ -97,6 +97,31 @@ int buffer_feof(BUFFER *buffer)
     return feof(buffer->stream);
 }
 
+char* buffer_read_line(BUFFER *buffer)
+{
+	char* line = string_new();
+	char to_add = '\0';
+
+	do {
+		free(line);
+		line = string_new();
+		to_add = buffer_read(buffer);
+
+		while (to_add != '\n' && to_add != '\0' && buffer->available)
+		{
+			cat(line, ctos(to_add));
+			to_add = buffer_read(buffer);
+		}
+	}
+	while (strlen(line) == 0 && buffer->available);
+
+	if (strlen(line) == 0)
+		free(line),
+		line = NULL;
+
+	return line;
+}
+
 void buffer_close(BUFFER *buffer)
 {
 	if (buffer->mode[0] == 'a' || buffer->mode[0] == 'w')
@@ -104,7 +129,6 @@ void buffer_close(BUFFER *buffer)
     buffer->available = 0;
 	fclose(buffer->stream);
 	free(buffer->data);
-	free(buffer);
 }
 
 #endif
