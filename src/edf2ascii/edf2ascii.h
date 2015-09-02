@@ -14,6 +14,7 @@ void edf2csv(char *source)
 {
 	char *edf = concat(source, ".edf");
 	spawnl(P_WAIT, EDF2CSV, EDF2CSV, edf, TEMP, NULL);
+	free(edf);
 }
 
 void csv2ascii(char *source)
@@ -22,10 +23,8 @@ void csv2ascii(char *source)
 
 	spawnl(P_WAIT, CSV2ASCII, CSV2ASCII, TEMP, NULL);
 	sprintf(os_command, "dir *.ascii /B > %s", ASCII);
-	printf("%s\n", os_command);
 	system(os_command);
 	sprintf(os_command, "FOR /F %%F IN (%s) DO move %%F %s.%%F", ASCII, source);
-	printf("%s\n", os_command);
 	system(os_command);
 
 	free(os_command);

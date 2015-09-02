@@ -49,7 +49,15 @@ char *CAT_MACRO(char *to_hold, char *to_add)
     return outlet;
 }
 
+char *APE_MACRO(char *to_hold, char *to_add)
+{
+    char *outlet = concat(to_hold, to_add);
+    free(to_hold);
+    return outlet;
+}
+
 #define cat(A,B) ((A)=CAT_MACRO((A), (B)))
+#define ape(A,B) ((A)=APE_MACRO((A), (B)))
 
 char* to_array(char ch)
 {
