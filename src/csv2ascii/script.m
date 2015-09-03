@@ -6,7 +6,8 @@ while ischar(row)
 	[fn, b, e] = parse_row(row);
 	ff = strcat(fullfile(cd, fn), '.csv');
 	if exist(ff, 'file') == 2
-		csv2ascii(fn, b, e);
+		% csv2ascii(fn, b, e);
+		csv2ascii(fn, 0, 50);
 	end
 	row = fgetl(fp);
 end
