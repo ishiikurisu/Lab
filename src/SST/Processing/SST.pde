@@ -8,6 +8,7 @@ PImage INSTRUCTIONS_IMAGE;
 String INSTRUCTIONS_TEXT;
 PImage LEFT_ARROW;
 PImage RIGHT_ARROW;
+PImage NO_ARROW;
 PImage EMPTY_IMAGE;
 PFont TEST_FONT;
 
@@ -31,23 +32,29 @@ void loadImages()
 void loadText()
 {
   BufferedReader BR = createReader("instructions.txt");
+  
+  try {
+    String line = BR.readLine();
 
-  while (true)
-  {
-    try {
-      INSTRUCTIONS_TEXT += BR.readLine();
-    }
-    catch (Exception any) {
-      break;
+    while (line != null)
+    {
+      INSTRUCTIONS_TEXT += line + "\n";
+      line = BR.readLine();
     }
   }
+  catch (Exception any) {
+  }
 
+  println(INSTRUCTIONS_TEXT);
   return;
 }
 
 void loadFonts()
 {
-  
+  /*
+  TEST_FONT = loadFont("sstfont  .ttf");
+  textFont(TEST_FONT, 15);
+  */
 }
 
 /*
@@ -72,6 +79,7 @@ void decideIfMustPress()
 }
 void instructions()
 {
+  text(INSTRUCTIONS_TEXT, 10, 10);
 }
 
 /*
@@ -82,6 +90,7 @@ void instructions()
 *   MAIN FUNCTIONS
 */
 
+/*
 void run()
 {
 
@@ -91,10 +100,12 @@ void run()
 
 
 }
+*/
 
 void setup()
 {
   size(500, 500);
+  background(0);
   randomSeed(getTestMoment());
 
   loadImages();
@@ -106,6 +117,7 @@ void draw()
 {
   instructions();
 
+  /*
   for (int i = 0; i < NUMBER_TRIALS; ++i)
   {
     decideIfMustPress();
@@ -114,4 +126,6 @@ void draw()
 
   ending();
   exit();
+  */
 }
+
