@@ -1,6 +1,7 @@
 final int NUMBER_TRIALS = 8;
 final int RUN_DURATION = 3500;
 final int FIX_DURATION = 500;
+final int TRIAL_DURATION = RUN_DURATION + FIX_DURATION;
 final int SSD_STEP = 50;
 final String RIGHT = "RIGHT";
 final String LEFT = "LEFT";
@@ -159,10 +160,10 @@ void run()
 {
     int moment = millis() - PAST;
 
-    if (moment > 0 && moment < ) {
+    if (moment > 0 && moment < FIX_DURATION) {
 
     }
-    else if () {
+    else if (moment > FIX_DURATION && moment < TRIAL_DURATION) {
 
     }
 }
@@ -192,10 +193,10 @@ void processData()
     {
         case INST_MSG:
         case FEEDBACK_MSG:
-            if (COMMANDS_HISTORY.size() > 0) {
-                TEST_STEP++;
-                PAST = millis();
-            }
+        if (COMMANDS_HISTORY.size() > 0) {
+            TEST_STEP++;
+            PAST = millis();
+        }
         break;
 
         case PRESS_MSG:
@@ -227,7 +228,7 @@ void writeData()
 
         case PRESS_MSG:
         case NOT_PRESS_MSG:
-            run();
+            // run();
         // break;
 
         case FEEDBACK_MSG:
@@ -263,20 +264,4 @@ void draw()
     readData();
     processData();
     writeData();
-    /*
-    */
-
-    /*
-    instructions();
-
-    for (int i = 0; i < NUMBER_TRIALS; ++i)
-    {
-        decideIfMustPress();
-        run();
-        saveResults();
-    }
-
-    ending();
-    exit();
-    */
 }
