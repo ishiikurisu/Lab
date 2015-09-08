@@ -1,31 +1,17 @@
-final int NUMBER_TRIALS = 8;
-final int RUN_DURATION = 3500;
-final int FIX_DURATION = 500;
-final int TRIAL_DURATION = RUN_DURATION + FIX_DURATION;
-final int SSD_STEP = 50;
-final String RIGHT_DIR = "RIGHT";
-final String LEFT_DIR = "LEFT";
-final int INST_MSG = 1;
-final int PRESS_MSG = 2;
-final int FEEDBACK_MSG = 4;
-final int EXIT_MSG = 8;
-final int NOT_PRESS_MSG = 16;
+int NUMBER_TRIALS = 8;
+int RUN_DURATION = 3500;
+int FIX_DURATION = 500;
+int TRIAL_DURATION = RUN_DURATION + FIX_DURATION;
+int SSD_STEP = 50;
 
 int TEST_STEP = 0;
 int STOP_SIGNAL_DELAY = 250;
 
 boolean MUST_PRESS = true;
 String INSTRUCTIONS_TEXT = new String();
-String DIRECTION;
+int DIRECTION = 0;
 StringDict ALLOWED_KEYS;
 StringList COMMANDS_HISTORY;
-IntList TEST_STEPS;
-PImage INSTRUCTIONS_IMAGE;
-PImage LEFT_ARROW;
-PImage RIGHT_ARROW;
-PImage NO_ARROW;
-PImage EMPTY_IMAGE;
-PFont TEST_FONT;
 int PAST;
 int FUTURE;
 
@@ -39,39 +25,24 @@ int getTestMoment()
     return minute() + hour() * 60;
 }
 
-void loadImages()
-{
-    /*
-    LEFT_ARROW = loadImage("esquerda.png", "png");
-    RIGHT_ARROW = loadImage("direita.png", "png");
-    NO_ARROW = loadImage("fix.png", "png");
-    */
-}
-
 void loadText()
 {
     BufferedReader BR = createReader("instructions.txt");
 
     try {
         String line = BR.readLine();
+        println(line);
 
         while (line != null)
         {
           INSTRUCTIONS_TEXT += line + "\n";
           line = BR.readLine();
+          println(line);
         }
     }
     catch (Exception any) {
     }
 
-}
-
-void loadFonts()
-{
-    /*
-    TEST_FONT = loadFont("sstfont  .ttf");
-    textFont(TEST_FONT, 15);
-    */
 }
 
 void loadKeys()
@@ -82,6 +53,7 @@ void loadKeys()
 
     try {
         String line = BR.readLine();
+        println(line);
 
         while (line != null)
         {
@@ -90,8 +62,8 @@ void loadKeys()
             String value = data[1];
 
             ALLOWED_KEYS.set(key, value);
-
             line = BR.readLine();
+            println(line);
         }
     }
     catch (Exception any) {
@@ -99,25 +71,6 @@ void loadKeys()
 
 }
 
-void createTest()
-{
-    TEST_STEPS = new IntList();
-
-    TEST_STEPS.append(INST_MSG);
-    for (int i = 0; i < NUMBER_TRIALS; ++i)
-    {
-        decideIfMustPress();
-        if (MUST_PRESS)
-            TEST_STEPS.append(PRESS_MSG);
-        else
-            TEST_STEPS.append(NOT_PRESS_MSG);
-        TEST_STEPS.append(FEEDBACK_MSG);
-    }
-    TEST_STEPS.append(EXIT_MSG);
-    TEST_STEP = 0;
-
-    println(TEST_STEP);
-}
 
 /************************
 *   DRAW FUNCTIONS      *
@@ -147,29 +100,24 @@ void decideDirection()
     switch (dice % 2)
     {
         case 0:
-            DIRECTION = RIGHT_DIR;
+            DIRECTION = 1;
         break;
 
         default:
-            DIRECTION = LEFT_DIR;
+            DIRECTION = -1;
     }
 }
 
 void instructions()
 {
+    background(0);
     text(INSTRUCTIONS_TEXT, 10, 10, width - 10, height - 10);
 }
 
-void run()
+void feedback()
 {
-    int moment = millis() - PAST;
-
-    if (moment > 0 && moment < FIX_DURATION) {
-
-    }
-    else if (moment > FIX_DURATION && moment < TRIAL_DURATION) {
-
-    }
+    background(0);
+    text("this is a feedback image", 10, 10, width - 10, height - 10);
 }
 
 /************************
@@ -185,30 +133,15 @@ void readData()
 
 void processData()
 {
-    /*
-    INST_MSG: 1
-    PRESS_MSG: 2
-    FEEDBACK_MSG: 4
-    EXIT_MSG: 8
-    NOT_PRESS_MSG: 16
-    */
-
-    switch (TEST_STEPS.get(TEST_STEP))
-    {
-        case INST_MSG:
-        case FEEDBACK_MSG:
-        if (COMMANDS_HISTORY.size() > 0) {
+    if (TEST_STEP > 2 * NUMBER_TRIALS) {
+        exit();
+    }
+    else if (TEST_STEP % 2 == 0) {
+        if (COMMANDS_HISTORY.size() > 0)
             TEST_STEP++;
-            PAST = millis();
-        }
-        break;
-
-        case PRESS_MSG:
-        case NOT_PRESS_MSG:
-        break;
-
-        case EXIT_MSG:
-        break;
+    }
+    else {
+        exit();
     }
 
     COMMANDS_HISTORY.clear();
@@ -216,31 +149,14 @@ void processData()
 
 void writeData()
 {
-    /*
-    INST_MSG: 1;
-    PRESS_MSG: 2;
-    FEEDBACK_MSG: 4;
-    EXIT_MSG: 8;
-    NOT_PRESS_MSG: 16;
-    */
+    if (TEST_STEP == 0) {
+        instructions();
+    }
+    else if (TEST_STEP % 2 == 0) {
+        feedback();
+    }
+    else {
 
-    switch (TEST_STEPS.get(TEST_STEP))
-    {
-        case INST_MSG:
-            instructions();
-        break;
-
-        case PRESS_MSG:
-        case NOT_PRESS_MSG:
-            // run();
-        // break;
-
-        case FEEDBACK_MSG:
-        // break;
-
-        case EXIT_MSG:
-            exit();
-        break;
     }
 
 }
@@ -254,13 +170,12 @@ void setup()
     textAlign(CENTER, CENTER);
     randomSeed(getTestMoment());
 
-    loadImages();
+    println("NOW LOADING...");
     loadText();
-    loadFonts();
     loadKeys();
+    println("LOADED!");
 
-    createTest();
-    instructions();
+    TEST_STEP = 0;
 }
 
 void draw()
@@ -269,3 +184,12 @@ void draw()
     processData();
     writeData();
 }
+
+
+
+
+
+
+
+
+
