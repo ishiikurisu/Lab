@@ -3,8 +3,8 @@ final int RUN_DURATION = 3500;
 final int FIX_DURATION = 500;
 final int TRIAL_DURATION = RUN_DURATION + FIX_DURATION;
 final int SSD_STEP = 50;
-final String RIGHT = "RIGHT";
-final String LEFT = "LEFT";
+final String RIGHT_DIR = "RIGHT";
+final String LEFT_DIR = "LEFT";
 final int INST_MSG = 1;
 final int PRESS_MSG = 2;
 final int FEEDBACK_MSG = 4;
@@ -41,9 +41,11 @@ int getTestMoment()
 
 void loadImages()
 {
-    LEFT_ARROW = loadImage("esquerda.png");
-    RIGHT_ARROW = loadImage("direita.png");
-    NO_ARROW = loadImage("fix.png");
+    /*
+    LEFT_ARROW = loadImage("esquerda.png", "png");
+    RIGHT_ARROW = loadImage("direita.png", "png");
+    NO_ARROW = loadImage("fix.png", "png");
+    */
 }
 
 void loadText()
@@ -113,6 +115,8 @@ void createTest()
     }
     TEST_STEPS.append(EXIT_MSG);
     TEST_STEP = 0;
+
+    println(TEST_STEP);
 }
 
 /************************
@@ -143,11 +147,11 @@ void decideDirection()
     switch (dice % 2)
     {
         case 0:
-            DIRECTION = RIGHT;
+            DIRECTION = RIGHT_DIR;
         break;
 
         default:
-            DIRECTION = LEFT;
+            DIRECTION = LEFT_DIR;
     }
 }
 
@@ -248,8 +252,8 @@ void setup()
     background(0);
     textSize(16);
     textAlign(CENTER, CENTER);
-
     randomSeed(getTestMoment());
+
     loadImages();
     loadText();
     loadFonts();
