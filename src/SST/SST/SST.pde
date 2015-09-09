@@ -20,12 +20,6 @@ String DIRECTION;
 StringDict ALLOWED_KEYS;
 StringList COMMANDS_HISTORY;
 IntList TEST_STEPS;
-PImage INSTRUCTIONS_IMAGE;
-PImage LEFT_ARROW;
-PImage RIGHT_ARROW;
-PImage NO_ARROW;
-PImage EMPTY_IMAGE;
-PFont TEST_FONT;
 int PAST;
 int FUTURE;
 
@@ -60,10 +54,10 @@ void loadText()
           INSTRUCTIONS_TEXT += line + "\n";
           line = BR.readLine();
         }
+        BR.close();
     }
     catch (Exception any) {
     }
-
 }
 
 void loadFonts()
@@ -93,10 +87,11 @@ void loadKeys()
 
             line = BR.readLine();
         }
+        
+        BR.close();
     }
     catch (Exception any) {
     }
-
 }
 
 void createTest()
