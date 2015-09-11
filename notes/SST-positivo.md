@@ -14,7 +14,7 @@ Configuração
   + BROffice
   + Firefox
   + Sigmaplot
-  + stats -- Não sei que programa é esse. Será que é o SPSS?
+  + stats -- Não sei que programa é esse. Será que é o SPSS? Não funciona.
 
 Aparentemente está bom, mas está muito devagar 
 provavelmente pois há muitos progamas instalados
@@ -28,15 +28,14 @@ Problemas
 ---------
 
 + Muito devagar para começar, mas isso é esperado
-pela quantidade de memória RAM que ele possui
-+ Bateria não dura muito, deve estar com problemas
+pela quantidade de memória RAM que ele possui.
++ Bateria não dura muito, deve estar com problemas.
 
 Lista de Afazeres
 -----------------
 
-- [ ] Permissão para desinstalar programas
-- [ ] Instalar o E-prime
-- [ ] Verificar se há mais programas para instalar
+- [ ] Permissão para desinstalar programas.
+- [ ] Instalar o E-prime.
+- [ ] Verificar se há mais programas para instalar.
 - [ ] Transferir arquivos do notebook para 
-      os donos dos arquivos
-- [ ] 
+      os donos dos arquivos.

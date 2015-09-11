@@ -1,8 +1,8 @@
 void setup() {
-  size(500, 500);
+  size(250, 250);
   noLoop();
-  background(0);
-  stroke(255);
+  background(254);
+  stroke(2);
   strokeWeight(12);
   noFill();
   smooth();
@@ -19,13 +19,14 @@ void draw() {
   ellipse(0, 0, 2*r, 2*r);
   line(-w, 0, w, 0);
   
-  /* LEFT ARROW */
+  /* LEFT ARROW
   line(-w, 0, a-w, h);
   line(-w, 0, a-w, -h);
   /* */
   
-  /* RIGHT ARROW
+  /* RIGHT ARROW */
   line(w, 0, w-a, h);
   line(w, 0, w-a, -h);
   /* */
 }
+
