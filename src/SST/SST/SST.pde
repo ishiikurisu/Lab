@@ -120,6 +120,8 @@ void feedback()
     text("this is a feedback image", 10, 10, width - 10, height - 10);
 }
 
+
+
 /************************
 *   MAIN FUNCTIONS      *
 ************************/
@@ -134,13 +136,16 @@ void readData()
 void processData()
 {
     if (TEST_STEP > 2 * NUMBER_TRIALS) {
+        /* We've come to an end */
         exit();
     }
     else if (TEST_STEP % 2 == 0) {
+        /* Instructions and feedback display */
         if (COMMANDS_HISTORY.size() > 0)
             TEST_STEP++;
     }
     else {
+        /* SST part per se */
         exit();
     }
 
@@ -160,7 +165,6 @@ void writeData()
     }
 
 }
-
 
 void setup()
 {

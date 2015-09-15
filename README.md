@@ -23,7 +23,7 @@ Minor Projects
 
 ### OA folder ###
 
-This is the code I made during the "Organização de Arquivos" discipline here at University of Brasília. I use it in the EDF project.
+This is the code I made during the "Organização de Arquivos" course here at University of Brasília. I use it in the EDF project.
 
 ### Benchmarking ###
 
