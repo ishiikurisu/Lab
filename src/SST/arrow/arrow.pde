@@ -12,7 +12,6 @@ void draw() {
   float h = (a * r) / w;
   float g = 6.0;
 
-  translate(height/2, width/2);
   background(254);
 
   /* outside */
@@ -27,13 +26,13 @@ void draw() {
   fill(2);
   quad(-w, -g, w*0.9, -g, w*0.9, g, -w, g);
 
-  /* LEFT ARROW */
+/* left arrow */
   quad(-w-g, 0, -w+a-g, (w-a)*PHI, -w+a+g, (w-a)*PHI, -w+g, 0);
   quad(-w-g, 0, -w+a-g, (a-w)*PHI, -w+a+g, (a-w)*PHI, -w+g, 0);
   save("left-arrow.jpg");
   /* */
-
-  /* RIGHT ARROW
+  
+  /* right arrow
   quad(w+g, 0, w-a+g, (w-a)*PHI, w-a-g, (w-a)*PHI, w-g, 0);
   quad(w+g, 0, w-a+g, (a-w)*PHI, w-a-g, (a-w)*PHI, w-g, 0);
   save("right-arrow.jpg");
