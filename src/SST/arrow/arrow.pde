@@ -16,9 +16,11 @@ void draw() {
   /* outside */
   translate(height/2, width/2);
   stroke(2);
-  strokeWeight(12);
+  strokeWeight(2*g);
   noFill();
   ellipse(0, 0, 2*r, 2*r);
+  save("no-arrow.jpg");
+  
   /* inner line */
   noStroke();
   fill(2);
@@ -27,11 +29,13 @@ void draw() {
   /* LEFT ARROW */
   quad(-w-g, 0, -w+a-g, (w-a)*PHI, -w+a+g, (w-a)*PHI, -w+g, 0);
   quad(-w-g, 0, -w+a-g, (a-w)*PHI, -w+a+g, (a-w)*PHI, -w+g, 0);
+  save("left-arrow.jpg");
   /* */
   
   /* RIGHT ARROW
   quad(w+g, 0, w-a+g, (w-a)*PHI, w-a-g, (w-a)*PHI, w-g, 0);
   quad(w+g, 0, w-a+g, (a-w)*PHI, w-a-g, (a-w)*PHI, w-g, 0);
+  save("right-arrow.jpg");
   /* */
 }
 
