@@ -2,9 +2,6 @@ void setup() {
   size(250, 250);
   noLoop();
   background(254);
-  stroke(2);
-  strokeWeight(12);
-  noFill();
   smooth();
 }
 
@@ -14,19 +11,31 @@ void draw() {
   float w = r / PHI;
   float a = w / PHI; 
   float h = (a * r) / w;
+  float g = 6.0;
   
+  /* outside */
   translate(height/2, width/2);
+  stroke(2);
+  strokeWeight(12);
+  noFill();
   ellipse(0, 0, 2*r, 2*r);
-  line(-w, 0, w, 0);
+  /* inner line */
+  noStroke();
+  fill(2);
+  quad(-w, -g, w*0.9, -g, w*0.9, g, -w, g);
   
-  /* LEFT ARROW
-  line(-w, 0, a-w, h);
-  line(-w, 0, a-w, -h);
+  /* LEFT ARROW */
+  quad(-w-g, 0, -w+a-g, (w-a)*PHI, -w+a+g, (w-a)*PHI, -w+g, 0);
+  quad(-w-g, 0, -w+a-g, (a-w)*PHI, -w+a+g, (a-w)*PHI, -w+g, 0);
   /* */
   
-  /* RIGHT ARROW */
-  line(w, 0, w-a, h);
-  line(w, 0, w-a, -h);
+  /* RIGHT ARROW
+  quad(w+g, 0, w-a+g, (w-a)*PHI, w-a-g, (w-a)*PHI, w-g, 0);
+  quad(w+g, 0, w-a+g, (a-w)*PHI, w-a-g, (a-w)*PHI, w-g, 0);
   /* */
 }
+
+
+
+
 
