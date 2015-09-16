@@ -12,6 +12,7 @@ void draw() {
   float h = (a * r) / w;
   float g = 6.0;
 
+  translate(height/2, width/2);
   background(254);
 
   /* outside */
