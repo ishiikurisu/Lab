@@ -1,7 +1,6 @@
 void setup() {
   size(250, 250);
   noLoop();
-  background(254);
   smooth();
 }
 
@@ -13,8 +12,10 @@ void draw() {
   float h = (a * r) / w;
   float g = 6.0;
   
-  /* outside */
   translate(height/2, width/2);
+  background(254);
+
+  /* outside */
   stroke(2);
   strokeWeight(12);
   noFill();
@@ -24,12 +25,12 @@ void draw() {
   fill(2);
   quad(-w, -g, w*0.9, -g, w*0.9, g, -w, g);
   
-  /* LEFT ARROW */
+  /* left arrow */
   quad(-w-g, 0, -w+a-g, (w-a)*PHI, -w+a+g, (w-a)*PHI, -w+g, 0);
   quad(-w-g, 0, -w+a-g, (a-w)*PHI, -w+a+g, (a-w)*PHI, -w+g, 0);
   /* */
   
-  /* RIGHT ARROW
+  /* right arrow
   quad(w+g, 0, w-a+g, (w-a)*PHI, w-a-g, (w-a)*PHI, w-g, 0);
   quad(w+g, 0, w-a+g, (a-w)*PHI, w-a-g, (a-w)*PHI, w-g, 0);
   /* */
