@@ -23,16 +23,16 @@ char *treat_line(char *line)
 {
 	LIST *values = list_strsplit(line, ',');
 	char *output = string_new();
-	LIST *it = values->next;
+	LIST *it = NULL;
 
-	while (it != NULL)
+	for (it = values->next; it != NULL; inc(it))
 	{
 		ape(output, it->value);
 		cat(output, ctos(' '));
-		inc(it);
 	}
 
-	cat(output, "\n");
+	cat(output, ctos('\n'));
+	list_free(values);
 	return output;
 }
 
@@ -42,6 +42,7 @@ void csv2fullascii(char *input)
 	BUFFER *csv = NULL;
 	BUFFER *ascii = NULL;
 	char *line = NULL;
+	char *to_write = NULL;
 
 	output = set_name(input);
 	csv = buffer_new(input, "r", 2048);
@@ -51,7 +52,9 @@ void csv2fullascii(char *input)
 	line = buffer_readline(csv);
 	while (buffer_is_available(csv))
 	{
-		buffer_write(ascii, treat_line(line));
+		to_write = treat_line(line);
+		buffer_write(ascii, to_write);
+		free(to_write);
 		free(line);
 		line = buffer_readline(csv);
 	}
