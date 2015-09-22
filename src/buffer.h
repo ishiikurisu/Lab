@@ -121,6 +121,8 @@ char* buffer_read_line(BUFFER *buffer)
 
 	return line;
 }
+char *buffer_readline(BUFFER *buffer)
+{ return buffer_read_line(buffer); }
 
 void buffer_close(BUFFER *buffer)
 {
