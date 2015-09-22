@@ -27,4 +27,3 @@ void loop() {
     width -2*g, height,
     width, height);
 }
-
