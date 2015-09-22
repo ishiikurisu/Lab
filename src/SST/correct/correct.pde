@@ -1,6 +1,6 @@
 final int WHITE = 254;
 final int BLACK = 2;
-final int GREEN = 125;
+final color GREEN = color(126, 200, 69); // PANTONE's Jasmine Green
 final float PHI = (1 + sqrt(5))/2;
 
 void setup() {
@@ -16,7 +16,7 @@ void draw() {
   float e = 0.5;
 
   background(WHITE);
-  fill(126, 200, 69);
+  fill(GREEN);
   noStroke();
 
   quad(w, h/2,
@@ -25,7 +25,7 @@ void draw() {
        h/PHI + g, h);
   quad(h/PHI + g, h,
        h/PHI - g, h,
-       h*e/PHI/2 - g, h/2 - h*e/2,
-       h*e/PHI/2 + g, h/2 - h*e/2);
+       h*e/PHI - g, h - h*e/2,
+       h*e/PHI + g, h - h*e/2);
 }
 
