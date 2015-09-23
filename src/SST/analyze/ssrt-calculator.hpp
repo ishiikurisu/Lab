@@ -2,8 +2,34 @@
 #define SSRT_CALC_H
 #define BUFFER_SIZE 256
 #include <sstream>
+#include <string>
 #include <set>
 #include <map>
+#include <vector>
+#include <stdio.h>
+
+std::string tidy_string(std::string input)
+{
+    std::string output;
+
+    for (unsigned int i = 0; i < input.length(); ++i)
+        if (input[i] != 0)
+            output += input[i];
+
+    return output;
+}
+
+std::vector<std::string> split(std::string inlet, char divider) 
+{
+    std::vector<std::string> outlet;
+    std::stringstream ss(inlet);
+    std::string item;
+
+    while (std::getline(ss, item, divider)) 
+        outlet.push_back(tidy_string(item));
+
+    return outlet;
+}
 
 class SSRT
 {
@@ -24,7 +50,7 @@ class SSRT
     void get_needed_columns();
 
 public:
-    SSRT() {};
+    SSRT() { get_needed_columns(); };
     ~SSRT() {};
     void show_columns();
     void get_columns(std::string);
@@ -77,12 +103,12 @@ void SSRT::show_columns()
 the needed columns with their respective number */
 void SSRT::get_columns(std::string line)
 {
-    std::stringstream ss(line);
-    char bit[BUFFER_SIZE];
+    std::vector<std::string> bits = split(line, '\t');
+    std::vector<std::string>::iterator it;
+    int column_number = 0;
 
-    get_needed_columns();
-    for (int column_number = 0; ss.getline(bit, BUFFER_SIZE, '\t'); ++column_number)
-        associate(bit, column_number);
+    for (it = bits.begin(); it != bits.end(); ++column_number, ++it)
+        associate((*it), column_number);
 }
 
 /* analyzes a line of the data file to extract the needed
