@@ -113,7 +113,7 @@ void SSRT::get_columns(std::string line)
 
 /* analyzes a line of the data file to extract the needed
 information for updates */
-void extract_data(std::string line)
+void SSRT::extract_data(std::string line)
 {
     std::vector<std::string> bits = split(line, '\t');
     std::string srt = "PressStimulus.RT";
@@ -148,6 +148,11 @@ void extract_data(std::string line)
         successful_stops += cssd;
         total_ssd += (cssd)? cssd : 0;   
     }
+}
+
+void SSRT::analyze_data()
+{
+    
 }
 
 #undef BUFFER_SIZE
