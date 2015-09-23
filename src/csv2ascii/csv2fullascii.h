@@ -42,7 +42,6 @@ void csv2fullascii(char *input)
 	BUFFER *csv = NULL;
 	BUFFER *ascii = NULL;
 	char *line = NULL;
-	char *to_write = NULL;
 
 	output = set_name(input);
 	csv = buffer_new(input, "r", 2048);
@@ -52,9 +51,7 @@ void csv2fullascii(char *input)
 	line = buffer_readline(csv);
 	while (buffer_is_available(csv))
 	{
-		to_write = treat_line(line);
-		buffer_write(ascii, to_write);
-		free(to_write);
+		buffer_write(ascii, treat_line(line));
 		free(line);
 		line = buffer_readline(csv);
 	}
