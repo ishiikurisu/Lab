@@ -1,6 +1,5 @@
 #pragma once
 #include <fstream>
-#include <string>
 #include "ssrt-calculator.hpp"
 
 void analyze(char const *input)
@@ -15,10 +14,9 @@ void analyze(char const *input)
     ssrt.get_columns(line);
     for (int l = 0; l < 8; std::getline(inlet, line), ++l)
         /* practice trials */;
+
     while (std::getline(inlet, line))
-    {
         ssrt.extract_data(line);
-    }
     ssrt.analyze_data();
 
     std::cout << "SSRT: " << ssrt.get_ssrt() << std::endl;
