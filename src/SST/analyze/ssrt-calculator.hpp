@@ -77,7 +77,7 @@ void SSRT::associate(std::string column, int number)
 get the needed columns for the calculations */
 void SSRT::get_needed_columns()
 {
-    /* BE SURE TO KEEP THE "variables.txt" file updated */
+    /* BE SURE TO KEEP THE "variables.txt" FILE UPDATED */
     std::fstream fs;
     char name[BUFFER_SIZE];
 
@@ -115,7 +115,39 @@ void SSRT::get_columns(std::string line)
 information for updates */
 void extract_data(std::string line)
 {
+    std::vector<std::string> bits = split(line, '\t');
+    std::string srt = "PressStimulus.RT";
+    std::string srtacc = "PressStimulus.ACC";
+    std::string sssd = "SoundStimulus.RT";
+    std::string sssacc = "SoundStimulus.ACC";
+    std::string bit;
+    unsigned int crt; // current reaction time
+    unsigned int crtacc; // current RT accuracy
+    unsigned int cssd; // current stop signal delay
+    unsigned int cssdacc; // current stop signal delay 
 
+    if (/* subject must press */) {
+        /* RT */
+        bit = bits.at(columns[srt]);
+        sscanf(bit.c_str(), "%d", crt);
+        bit = bits.at(columns[srtacc]);
+        sscanf(bit.c_str(), "%d", crtacc);
+
+        ++total_reactions;
+        successful_reactions += crtacc;
+        total_rt += (crtacc)? crt : 0;
+    }
+    else {
+        /* SSD */
+        bit = bits.at(columns[sssd]);
+        sscanf(bit.c_str(), "%d", cssd);
+        bit = bits.at(columns[sssd]);
+        sscanf(bit.c_str(), "%d", cssd);
+
+        ++total_stops;
+        successful_stops += cssd;
+        total_ssd += (cssd)? cssd : 0;   
+    }
 }
 
 #undef BUFFER_SIZE
