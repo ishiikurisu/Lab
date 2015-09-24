@@ -58,7 +58,7 @@ void SSRT::get_needed_columns()
     std::fstream fs;
     char name[BUFFER_SIZE];
 
-    fs.open("variables.txt", std::fstream::in);
+    fs.open("variables", std::fstream::in);
     while (fs.getline(name, BUFFER_SIZE))
         needed_columns.insert(name);
     fs.close();

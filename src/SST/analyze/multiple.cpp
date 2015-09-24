@@ -1,7 +1,6 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include <math.h>
 #include "analyze.hpp"
 
 double mean(std::vector<double> vec)
@@ -22,14 +21,14 @@ double variance(std::vector<double> vec)
 	double sum = 0;
 
 	for (it = vec.begin(); it != vec.end() ; ++it)
-		sum += pow(m - (*it), 2);
+		sum += (m - (*it)) * (m - (*it));
 
 	return sum / vec.size();
 }
 
 double sd(std::vector<double> vec)
 {
-	return sqrt(variance(vec));
+	return newton_sqrt(variance(vec));
 }
 
 
@@ -59,7 +58,7 @@ int main(int argc, char const *argv[])
 	std::cout << "<RT>: " << mean(rt) << "+-" << sd(rt) << std::endl;
 	std::cout << "<SSD>: " << mean(ssd) << "+-" << sd(ssd)  << std::endl;
 	std::cout << "<SSRT>: " << mean(ssrt) << "+-" << sd(ssrt)  << std::endl;
-	std::cout << "<%%I>: " << mean(inhib) << "+-" << sd(inhib)  << std::endl;
+	std::cout << "<%%I>: " << mean(inhib)*100 << "+-" << sd(inhib)*100  << std::endl;
 
 	return 0;
 }
