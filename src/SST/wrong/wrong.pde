@@ -10,7 +10,7 @@ void setup() {
 }
 
 void draw() {
-  float g = 6.0;
+  float g = 12.0;
   float p = (width*tan(ANGLE) - height/2) / tan(ANGLE);
 
   background(WHITE);
@@ -29,4 +29,3 @@ void draw() {
     width, height);
   save("wrong.jpg");
 }
-
