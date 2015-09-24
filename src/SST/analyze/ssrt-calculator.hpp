@@ -19,10 +19,10 @@ class SSRT
     unsigned int total_ssd;
     unsigned int successful_stops;
     unsigned int total_stops;
-    float ssrt;
-    float rt;
-    float ssd;
-    float inhib;
+    double ssrt;
+    double rt;
+    double ssd;
+    double inhib;
 
     void associate(std::string, int);
     void get_needed_columns();
@@ -33,10 +33,10 @@ public:
     void get_columns(std::string);
     void extract_data(std::string);
     void analyze_data();
-    float get_rt(bool);
-    float get_ssd(bool);
-    float get_ssrt();
-    float get_inhibition();
+    double get_rt(bool);
+    double get_ssd(bool);
+    double get_ssrt();
+    double get_inhibition();
 };
 
 /********************
@@ -150,7 +150,7 @@ void SSRT::analyze_data()
     inhib = (successful_stops + 0.0) / total_stops;
 }
 
-float SSRT::get_rt(bool w = false)
+double SSRT::get_rt(bool w = false)
 {
     if (w) {
         std::cout << "RT:\n";
@@ -162,7 +162,7 @@ float SSRT::get_rt(bool w = false)
     return rt;
 }
 
-float SSRT::get_ssd(bool w = false)
+double SSRT::get_ssd(bool w = false)
 {
     if (w) {
         std::cout << "SSD:\n";
@@ -174,12 +174,12 @@ float SSRT::get_ssd(bool w = false)
     return ssd;
 }
 
-float SSRT::get_inhibition()
+double SSRT::get_inhibition()
 {
     return inhib;
 }
 
-float SSRT::get_ssrt()
+double SSRT::get_ssrt()
 {
     return rt - ssd;
 }
