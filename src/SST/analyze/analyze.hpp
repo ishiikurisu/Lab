@@ -15,15 +15,11 @@ void analyze(char const *input)
     for (int l = 0; l < 8; ++l)
         std::getline(inlet, line);
 
-    while (true)
+    std::getline(inlet, line);
+    while (line.length() > 1)
     {
-        try {
-            std::getline(inlet, line);
-            ssrt.extract_data(line);
-        }
-        catch (...) {
-            break;
-        }
+        ssrt.extract_data(line);
+        std::getline(inlet, line);
     }
     ssrt.analyze_data();
 

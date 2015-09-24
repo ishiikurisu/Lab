@@ -118,37 +118,37 @@ void SSRT::extract_data(std::string line)
     std::vector<std::string> bits = split(line, '\t');
     std::string srt = "PressStimulus.RT";
     std::string srtacc = "PressStimulus.ACC";
-    std::string sssd = "SoundStimulus.RT";
-    std::string sssacc = "SoundStimulus.ACC";
+    std::string sssd = "VisualStimulus.Duration";
+    std::string sssdacc = "SoundStimulus.ACC";
     std::string procedure = "Procedure[Trial]";
     std::string bit;
-    unsigned int crt; // current reaction time
-    unsigned int crtacc; // current RT accuracy
-    unsigned int cssd; // current stop signal delay
-    unsigned int cssdacc; // current stop signal delay
+    unsigned int ct; // current time
+    unsigned int cacc; // current accuracy
 
     procedure = bits.at(columns[procedure]);
     if (procedure.compare("PressProc") == 0) {
         /* RT */
         bit = bits.at(columns[srt]);
-        sscanf(bit.c_str(), "%u", &crt);
+        sscanf(bit.c_str(), "%u", &ct);
         bit = bits.at(columns[srtacc]);
-        sscanf(bit.c_str(), "%u", &crtacc);
+        sscanf(bit.c_str(), "%u", &cacc);
 
         ++total_reactions;
-        successful_reactions += crtacc;
-        total_rt += (crtacc)? crt : 0;
+        successful_reactions += cacc;
+        total_rt += (cacc)? ct : 0;
     }
     else {
         /* SSD */
         bit = bits.at(columns[sssd]);
-        sscanf(bit.c_str(), "%u", &cssd);
-        bit = bits.at(columns[sssd]);
-        sscanf(bit.c_str(), "%u", &cssdacc);
+        sscanf(bit.c_str(), "%u", &ct);
+        std::cout << ct << " ";
+        bit = bits.at(columns[sssdacc]);
+        sscanf(bit.c_str(), "%u", &cacc);
+        std::cout << cacc << std::endl;
 
         ++total_stops;
-        successful_stops += cssdacc;
-        total_ssd += (cssdacc)? cssd : 0;
+        successful_stops += cacc;
+        total_ssd += ct;
     }
 }
 
@@ -173,7 +173,7 @@ float SSRT::get_ssd()
 {
     std::cout << "SSD:\n";
     std::cout << "  TOTAL SSD: " << total_ssd << "\n";
-    std::cout << "  STOPS: " << successful_stops << " from " << total_stops<< "\n";
+    std::cout << "  STOPS: " << successful_stops << " from " << total_stops << "\n";
     std::cout << "  MEAN SSD: " << ssd << std::endl;
 
     return ssd;
