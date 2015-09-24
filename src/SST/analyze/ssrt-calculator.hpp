@@ -7,29 +7,7 @@
 #include <map>
 #include <vector>
 #include <stdio.h>
-
-std::string tidy_string(std::string input)
-{
-    std::string output;
-
-    for (unsigned int i = 0; i < input.length(); ++i)
-        if (input[i] != 0)
-            output += input[i];
-
-    return output;
-}
-
-std::vector<std::string> split(std::string inlet, char divider)
-{
-    std::vector<std::string> outlet;
-    std::stringstream ss(inlet);
-    std::string item;
-
-    while (std::getline(ss, item, divider))
-        outlet.push_back(tidy_string(item));
-
-    return outlet;
-}
+#include "toolbox.hpp"
 
 class SSRT
 {
@@ -50,14 +28,13 @@ class SSRT
     void get_needed_columns();
 
 public:
-    SSRT() { get_needed_columns(); };
-    ~SSRT() {};
+    SSRT();
     void show_columns();
     void get_columns(std::string);
     void extract_data(std::string);
     void analyze_data();
-    float get_rt();
-    float get_ssd();
+    float get_rt(bool);
+    float get_ssd(bool);
     float get_ssrt();
     float get_inhibition();
 };
@@ -90,6 +67,22 @@ void SSRT::get_needed_columns()
 /*******************
 * PUBLIC FUNCTIONS *
 *******************/
+
+SSRT::SSRT()
+{
+    total_rt = 0;
+    successful_reactions = 0;
+    total_reactions = 0;
+    total_ssd = 0;
+    successful_stops = 0;
+    total_stops = 0;
+    ssrt = 0;
+    rt = 0;
+    ssd = 0;
+    inhib = 0;
+
+    get_needed_columns();
+}
 
 void SSRT::show_columns()
 {
@@ -141,40 +134,42 @@ void SSRT::extract_data(std::string line)
         /* SSD */
         bit = bits.at(columns[sssd]);
         sscanf(bit.c_str(), "%u", &ct);
-        std::cout << ct << " ";
         bit = bits.at(columns[sssdacc]);
         sscanf(bit.c_str(), "%u", &cacc);
-        std::cout << cacc << std::endl;
 
         ++total_stops;
         successful_stops += cacc;
-        total_ssd += ct;
+        total_ssd += (cacc)? ct : 0;
     }
 }
 
 void SSRT::analyze_data()
 {
     rt = (total_rt + 0.0) / successful_reactions;
-    ssd = (total_ssd + 0.0) / total_stops;
+    ssd = (total_ssd + 0.0) / successful_stops;
     inhib = (successful_stops + 0.0) / total_stops;
 }
 
-float SSRT::get_rt()
+float SSRT::get_rt(bool w = false)
 {
-    std::cout << "RT:\n";
-    std::cout << "  TOTAL RT: " << total_rt << "\n";
-    std::cout << "  REACTIONS: " << successful_reactions << " from " << total_reactions << "\n";
-    std::cout << "  MEAN RT: " << rt << std::endl;
+    if (w) {
+        std::cout << "RT:\n";
+        std::cout << "  TOTAL RT: " << total_rt << "\n";
+        std::cout << "  REACTIONS: " << successful_reactions << " from " << total_reactions << "\n";
+        std::cout << "  MEAN RT: " << rt << std::endl;
+    }
 
     return rt;
 }
 
-float SSRT::get_ssd()
+float SSRT::get_ssd(bool w = false)
 {
-    std::cout << "SSD:\n";
-    std::cout << "  TOTAL SSD: " << total_ssd << "\n";
-    std::cout << "  STOPS: " << successful_stops << " from " << total_stops << "\n";
-    std::cout << "  MEAN SSD: " << ssd << std::endl;
+    if (w) {
+        std::cout << "SSD:\n";
+        std::cout << "  TOTAL SSD: " << total_ssd << "\n";
+        std::cout << "  STOPS: " << successful_stops << " from " << total_stops << "\n";
+        std::cout << "  MEAN SSD: " << ssd << std::endl;
+    }
 
     return ssd;
 }

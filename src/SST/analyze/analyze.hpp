@@ -1,5 +1,6 @@
 #pragma once
 #include <fstream>
+#include <iomanip>
 #include "ssrt-calculator.hpp"
 
 void analyze(char const *input)
@@ -23,10 +24,10 @@ void analyze(char const *input)
     }
     ssrt.analyze_data();
 
-    ssrt.get_rt();
-    ssrt.get_ssd();
+    std::cout << "RT: " << ssrt.get_rt() << std::endl;
+    std::cout << "SSD: " << ssrt.get_ssd() << std::endl;
     std::cout << "SSRT: " << ssrt.get_ssrt() << std::endl;
-    std::cout << "\u0025I: " << ssrt.get_inhibition() << std::endl;
+    std::cout << "\u0025I: " << (ssrt.get_inhibition() * 100) << std::endl;
 
     inlet.close();
 }
