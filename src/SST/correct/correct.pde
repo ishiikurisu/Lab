@@ -13,19 +13,20 @@ void draw() {
   float w = width;
   float h = height;
   float g = 12.0;
-  float e = 0.5;
+  float e = 1/PHI;
 
   background(WHITE);
   fill(GREEN);
   noStroke();
 
   quad(w, h/2,
-       w - 2*g, h/2,
-       h/PHI - g, h,
-       h/PHI + g, h);
+    w - 2*g, h/2,
+    h/PHI - g, h,
+    h/PHI + g, h);
   quad(h/PHI + g, h,
-       h/PHI - g, h,
-       h*e/PHI - g, h - h*e/2,
-       h*e/PHI + g, h - h*e/2);
+    h/PHI - g, h,
+    h*e/PHI - g, h - h*e/2,
+    h*e/PHI + g, h - h*e/2);
+  save("correct.jpg");
 }
 
