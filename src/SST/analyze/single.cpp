@@ -14,6 +14,8 @@ int main(int argc, char const *argv[]) {
     getline(inlet, line); // columns
     ssrt.get_columns(line);
     ssrt.show_columns();
+    while (std::getline(inlet, line))
+        ssrt.extract_data(line);
     inlet.close();
 
     return 0;

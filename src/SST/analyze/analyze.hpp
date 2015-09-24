@@ -12,16 +12,24 @@ void analyze(char const *input)
     std::getline(inlet, line); // file path
     std::getline(inlet, line); // columns
     ssrt.get_columns(line);
-    for (int l = 0; l < 8; std::getline(inlet, line), ++l)
-        /* practice trials */;
+    for (int l = 0; l < 8; ++l)
+        std::getline(inlet, line);
 
-    while (std::getline(inlet, line))
-        ssrt.extract_data(line);
+    while (true)
+    {
+        try {
+            std::getline(inlet, line);
+            ssrt.extract_data(line);
+        }
+        catch (...) {
+            break;
+        }
+    }
     ssrt.analyze_data();
 
+    ssrt.get_rt();
+    ssrt.get_ssd();
     std::cout << "SSRT: " << ssrt.get_ssrt() << std::endl;
-    std::cout << "RT: " << ssrt.get_rt(); << std::endl;
-    std::cout << "SSD: " << ssrt.get_ssd() << std::endl;
     std::cout << "\u0025I: " << ssrt.get_inhibition() << std::endl;
 
     inlet.close();

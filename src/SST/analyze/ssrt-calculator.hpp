@@ -19,13 +19,13 @@ std::string tidy_string(std::string input)
     return output;
 }
 
-std::vector<std::string> split(std::string inlet, char divider) 
+std::vector<std::string> split(std::string inlet, char divider)
 {
     std::vector<std::string> outlet;
     std::stringstream ss(inlet);
     std::string item;
 
-    while (std::getline(ss, item, divider)) 
+    while (std::getline(ss, item, divider))
         outlet.push_back(tidy_string(item));
 
     return outlet;
@@ -120,18 +120,20 @@ void SSRT::extract_data(std::string line)
     std::string srtacc = "PressStimulus.ACC";
     std::string sssd = "SoundStimulus.RT";
     std::string sssacc = "SoundStimulus.ACC";
+    std::string procedure = "Procedure[Trial]";
     std::string bit;
     unsigned int crt; // current reaction time
     unsigned int crtacc; // current RT accuracy
     unsigned int cssd; // current stop signal delay
-    unsigned int cssdacc; // current stop signal delay 
+    unsigned int cssdacc; // current stop signal delay
 
-    if (/* subject must press */) {
+    procedure = bits.at(columns[procedure]);
+    if (procedure.compare("PressProc") == 0) {
         /* RT */
         bit = bits.at(columns[srt]);
-        sscanf(bit.c_str(), "%d", crt);
+        sscanf(bit.c_str(), "%u", &crt);
         bit = bits.at(columns[srtacc]);
-        sscanf(bit.c_str(), "%d", crtacc);
+        sscanf(bit.c_str(), "%u", &crtacc);
 
         ++total_reactions;
         successful_reactions += crtacc;
@@ -140,19 +142,51 @@ void SSRT::extract_data(std::string line)
     else {
         /* SSD */
         bit = bits.at(columns[sssd]);
-        sscanf(bit.c_str(), "%d", cssd);
+        sscanf(bit.c_str(), "%u", &cssd);
         bit = bits.at(columns[sssd]);
-        sscanf(bit.c_str(), "%d", cssd);
+        sscanf(bit.c_str(), "%u", &cssdacc);
 
         ++total_stops;
-        successful_stops += cssd;
-        total_ssd += (cssd)? cssd : 0;   
+        successful_stops += cssdacc;
+        total_ssd += (cssdacc)? cssd : 0;
     }
 }
 
 void SSRT::analyze_data()
 {
-    
+    rt = (total_rt + 0.0) / successful_reactions;
+    ssd = (total_ssd + 0.0) / total_stops;
+    inhib = (successful_stops + 0.0) / total_stops;
+}
+
+float SSRT::get_rt()
+{
+    std::cout << "RT:\n";
+    std::cout << "  TOTAL RT: " << total_rt << "\n";
+    std::cout << "  REACTIONS: " << successful_reactions << " from " << total_reactions << "\n";
+    std::cout << "  MEAN RT: " << rt << std::endl;
+
+    return rt;
+}
+
+float SSRT::get_ssd()
+{
+    std::cout << "SSD:\n";
+    std::cout << "  TOTAL SSD: " << total_ssd << "\n";
+    std::cout << "  STOPS: " << successful_stops << " from " << total_stops<< "\n";
+    std::cout << "  MEAN SSD: " << ssd << std::endl;
+
+    return ssd;
+}
+
+float SSRT::get_inhibition()
+{
+    return inhib;
+}
+
+float SSRT::get_ssrt()
+{
+    return rt - ssd;
 }
 
 #undef BUFFER_SIZE
