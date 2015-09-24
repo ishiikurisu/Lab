@@ -1,22 +1,8 @@
 #include <iostream>
-#include <fstream>
-#include "ssrt-calculator.hpp"
-using namespace std;
+#include "analyze.hpp"
 
 int main(int argc, char const *argv[]) {
     char const *input = argv[1];
-    fstream inlet;
-    string line;
-    SSRT ssrt;
-
-    inlet.open(input, std::fstream::in);
-    getline(inlet, line); // file path
-    getline(inlet, line); // columns
-    ssrt.get_columns(line);
-    ssrt.show_columns();
-    while (std::getline(inlet, line))
-        ssrt.extract_data(line);
-    inlet.close();
-
+    analyze(input, true);
     return 0;
 }
