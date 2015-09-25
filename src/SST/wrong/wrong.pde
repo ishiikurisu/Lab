@@ -1,7 +1,8 @@
 final color WHITE = color(254, 254, 254);
 final color BLACK = color(2, 2, 2);
 final color RED = color(208, 28, 31); /* PANTONE's Fiery red, 18-1664 TPX */
-final float ANGLE = PI/3.0;
+final float PHI = (1 + sqrt(5))/2.0;
+final float ANGLE = atan(PHI);
 
 void setup() {
   size(250, 250);
@@ -29,3 +30,4 @@ void draw() {
     width, height);
   save("wrong.jpg");
 }
+
