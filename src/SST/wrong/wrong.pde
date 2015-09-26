@@ -5,28 +5,31 @@ final float PHI = (1 + sqrt(5))/2.0;
 final float ANGLE = atan(PHI);
 
 void setup() {
-  size(250, 250);
+  size(500, 500);
   smooth();
   noLoop();
 }
 
 void draw() {
-  float g = 12.0;
-  float p = (width*tan(ANGLE) - height/2) / tan(ANGLE);
+  float h = height/2;
+  float w = width/2;
+  float g = 9.0;
+  float p = (w*tan(ANGLE) - h/2) / tan(ANGLE);
 
+  translate(height/2, width/2);
   background(WHITE);
   fill(RED);
   noStroke();
 
   quad(
-    width, height/2.0,
-    width - 2*g, height/2.0,
-    p - 2*g, height,
-    p, height);
+    w, h/2.0,
+    w - 2*g, h/2.0,
+    p - 2*g, h,
+    p, h);
   quad(
-    p, height/2.0,
-    p -2*g, height/2.0,
-    width -2*g, height,
-    width, height);
+    p, h/2.0,
+    p -2*g, h/2.0,
+    w -2*g, h,
+    w, h);
   save("wrong.jpg");
 }

@@ -10,22 +10,23 @@ void setup() {
 }
 
 void draw() {
-  float w = width;
-  float h = height;
-  float g = 12.0;
+  float w = width/2;
+  float h = height/2;
+  float g = 9.0;
   float e = 1/PHI;
 
   background(WHITE);
   fill(GREEN);
   noStroke();
+  translate(width/2, height/2);
 
-  quad(w, h/4,
-    w - 2*g, h/4,
+  quad(w, h/2,
+    w - 2*g, h/2,
     h/PHI - g, h,
     h/PHI + g, h);
   quad(h/PHI + g, h,
     h/PHI - g, h,
-    h*e/PHI - g, h - h*e/4,
-    h*e/PHI + g, h - h*e/4);
+    h*e/PHI - g, h - h*e/2,
+    h*e/PHI + g, h - h*e/2);
   save("correct.jpg");
 }
