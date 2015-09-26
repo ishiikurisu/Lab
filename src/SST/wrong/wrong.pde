@@ -30,4 +30,3 @@ void draw() {
     width, height);
   save("wrong.jpg");
 }
-
