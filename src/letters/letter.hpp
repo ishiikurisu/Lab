@@ -7,12 +7,17 @@
 class Letter {
 private:
 	bool* process_line(const char*);
+	int compare_slots(int, int, Letter);
 	char id;
 	bool **pattern;
+
 public:
 	Letter(void);
+	
 	void load(char, const char*);
-	int compare(Letter);
+	float compare(Letter);
+
+	/* gets and sets */
 	bool get_pattern(int, int);
 	char get_id();
 };
@@ -31,6 +36,30 @@ bool* Letter::process_line(const char* line)
 	return result;
 }
 
+int Letter::compare_slots(int x, int y, Letter to_compare)
+{
+	int result = -1;
+	int bx = x-1;
+	int by = y-1;
+	int ex = x+1;
+	int ey = y+1;
+
+	if (bx < 0) bx++;
+	if (by < 0) by++;
+	if (ex == 8) ex--;
+	if (ey == 8) ey--;
+
+	for (int i = bx; i <= ex && result <= 0; ++i)
+		for (int j = by; j <= ey && result <= 0; ++j)
+			if (to_compare.get_pattern(i, j) == true)
+				result = 1;
+
+	return result;
+}
+
+/*
+* Public functions
+*/
 void Letter::load(char identifier, const char *path)
 {
 	std::fstream inlet;
@@ -49,21 +78,18 @@ void Letter::load(char identifier, const char *path)
 	inlet.close();
 }
 
-int Letter::compare(Letter to_compare)
+float Letter::compare(Letter to_compare)
 {
-	int score = 0;
+	float score = 0;
+	int no_points = 0;
 
 	for (int x = 0; x < 8; x++)
-	{
 		for (int y = 0; y < 8; y++)
-		{
-			if (pattern[x][y] == to_compare.get_pattern(x, y)) {
-				score++;
-			}
-		}
-	}
+			if (pattern[x][y] == true)
+				score += compare_slots(x, y, to_compare),
+				++no_points;
 
-	return score;
+	return score/no_points;
 }
 
 bool Letter::get_pattern(int x, int y)
