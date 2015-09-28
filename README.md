@@ -1,4 +1,4 @@
-# Description
+﻿# Description
 
 This folder contains the code made by [me](https://github.com/ishiikurisu) while working as an intern for Neurosciences and behaviour laboratory at UnB.
 
@@ -36,3 +36,7 @@ A buffering header to make access to large files faster. Works well now but need
 ### Software adaptations ###
 
 We adapted the PROTOLIZE! software to automatically save files with an specific extension with one button click.
+
+### Letters ###
+
+Text recognition tool. Made to practice for Senses project.
