@@ -58,7 +58,7 @@ int main(int argc, char const *argv[])
 	std::cout << "<RT>: " << mean(rt) << "+-" << sd(rt) << std::endl;
 	std::cout << "<SSD>: " << mean(ssd) << "+-" << sd(ssd)  << std::endl;
 	std::cout << "<SSRT>: " << mean(ssrt) << "+-" << sd(ssrt)  << std::endl;
-	std::cout << "<%%I>: " << mean(inhib)*100 << "+-" << sd(inhib)*100  << std::endl;
+	std::cout << "<%I>: " << mean(inhib)*100 << "+-" << sd(inhib)*100  << std::endl;
 
 	return 0;
 }

@@ -17,8 +17,6 @@ double* analyze(char const *input, bool shall_write = false)
     std::getline(inlet, line); // file path
     std::getline(inlet, line); // columns
     ssrt.get_columns(line);
-    for (int l = 0; l < 8; ++l)
-        std::getline(inlet, line);
 
     std::getline(inlet, line);
     while (line.length() > 1)

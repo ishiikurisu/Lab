@@ -43,7 +43,7 @@ public:
 * PRIVATE FUNCTIONS *
 ********************/
 
-/* check if a column should of not be associated with this app */
+/* check if a column should not be associated with this app */
 void SSRT::associate(std::string column, int number)
 {
     if (needed_columns.count(column) > 0)
@@ -130,7 +130,7 @@ void SSRT::extract_data(std::string line)
         successful_reactions += cacc;
         total_rt += (cacc)? ct : 0;
     }
-    else {
+    else if (procedure.compare("NotPressProc") == 0) {
         /* SSD */
         bit = bits.at(columns[sssd]);
         sscanf(bit.c_str(), "%u", &ct);
