@@ -2,7 +2,7 @@
 #define BITMAP_H
 #include <stdlib.h>
 #include <stdio.h>
-#include "toolbox.h"
+#include <toolbox.h>
 
 typedef struct {
 	char *name;
@@ -21,8 +21,13 @@ typedef struct {
 	short bits_per_pixel;
 	int compression;
 	int image_size;
+	int horizontal_resolution;
+	int vertical_resolution;
+	int palette_size;
+	int important_colors;
 
-	/* currently void of stuff :( */
+	/* TABLE */
+	char **table;
 } BITMAP;
 
 BITMAP *bitmap_new(char *path)
@@ -61,8 +66,6 @@ Offset (hex)	Offset (dec)	Size (bytes)	Windows BITMAPINFOHEADER[2]
 */
 BITMAP *bitmap_readdib(BITMAP *bitmap, FILE *stream)
 {
-	int empty[6];
-
 	fread(&bitmap->header_size, sizeof(int), 1, stream);
 	fread(&bitmap->width, sizeof(int), 1, stream);
 	fread(&bitmap->height, sizeof(int), 1, stream);
@@ -70,7 +73,26 @@ BITMAP *bitmap_readdib(BITMAP *bitmap, FILE *stream)
 	fread(&bitmap->bits_per_pixel, sizeof(short), 1, stream);
 	fread(&bitmap->compression, sizeof(int), 1, stream);
 	fread(&bitmap->image_size, sizeof(int), 1, stream);
-	fread(&empty, sizeof(int), 4, stream);
+	fread(&bitmap->horizontal_resolution, sizeof(int), 1, stream);
+	fread(&bitmap->vertical_resolution, sizeof(int), 1, stream);
+	fread(&bitmap->palette_size, sizeof(int), 1, stream);
+	fread(&bitmap->important_colors, sizeof(int), 1, stream);
+
+	return bitmap;
+}
+
+BITMAP* bitmap_readtable(BITMAP *bitmap, FILE *stream)
+{
+	int height = bitmap->height/8;
+	int width = bitmap->width/8;
+	int j;
+
+	bitmap->table = (char**) malloc(height * sizeof(char));
+	for (j = 0; j < height; ++j)
+	{
+		bitmap->table[j] = (char*) malloc(width * sizeof(char));
+		fread(bitmap->table[j], sizeof(char), width, stream);
+	}
 
 	return bitmap;
 }
@@ -79,10 +101,10 @@ BITMAP *bitmap_load(char *path)
 {
 	BITMAP *bitmap = bitmap_new(path);
 	FILE *stream = fopen(path, "r");
-	char bit;
 
 	bitmap = bitmap_readheader(bitmap, stream);
 	bitmap = bitmap_readdib(bitmap, stream);
+	bitmap = bitmap_readtable(bitmap, stream);
 
 	fclose(stream);
 	return bitmap;
@@ -102,7 +124,32 @@ void bitmap_write(BITMAP* bm)
 	printf("  bits per pixel: %d\n", bm->bits_per_pixel);
 	printf("  compression method: %d\n", bm->compression);
 	printf("  image size: %d\n", bm->image_size);
-	printf("...\n");
+	printf("  horizontal resolution: %d\n", bm->horizontal_resolution);
+	printf("  vertical resolution: %d\n", bm->vertical_resolution);
+	printf("  number of colors in palette: %d\n", bm->palette_size);
+	printf("  number of important colors: %d\n", bm->important_colors);
 }
 
-#endif
+void bitmap_display(BITMAP* bm)
+{
+	int height = bm->height/8;
+	int width = bm->width/8;
+	int i, j, k;
+	char pixel;
+
+	printf("---\n");
+	for (j = 0; j < height; ++j)
+	{
+		for (i = 0; i < width; ++i)
+		{
+			pixel = bm->table[j][i];
+			for (k = 0; k < 8; ++k)
+			{
+				printf("%c", ((pixel >> k) & 0x1)? '#' : ' ');
+			}
+		}
+		printf("|\n");
+	}
+}
+
+#endif /* end of header guard BITMAP_H */
