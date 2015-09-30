@@ -128,7 +128,7 @@ void SSRT::extract_data(std::string line)
 
         ++total_reactions;
         successful_reactions += cacc;
-        total_rt += (cacc)? ct : 0;
+        total_rt += ct;
     }
     else if (procedure.compare("NotPressProc") == 0) {
         /* SSD */
@@ -145,7 +145,7 @@ void SSRT::extract_data(std::string line)
 
 void SSRT::analyze_data()
 {
-    rt = (total_rt + 0.0) / successful_reactions;
+    rt = (total_rt + 0.0) / total_reactions;
     ssd = (total_ssd + 0.0) / successful_stops;
     inhib = (successful_stops + 0.0) / total_stops;
 }
