@@ -1,6 +1,7 @@
 #pragma once
 #define SIDE 4
 #include <stdlib.h>
+#include <stdio.h>
 
 double** new_matrix()
 {
@@ -15,6 +16,41 @@ double** new_matrix()
 	}
 
 	return matrix;
+}
+
+double** load_matrix(const char *path)
+{
+	double **matrix = new_matrix();
+	int number;
+	FILE *inlet = fopen(path, "r");
+	int i, j;
+
+	for (j = 0; j < SIDE; ++j)
+	{
+		for (i = 0; i < SIDE; ++i)
+		{
+			fscanf(inlet, "%d", &number);
+			matrix[j][i] = number;
+		}
+	}
+
+	fclose(inlet);
+	return matrix;
+}
+
+void write_matrix(double **matrix)
+{
+	int i, j;
+
+	for (j = 0; j < SIDE; ++j)
+	{
+		for (i = 0; i < SIDE; ++i)
+		{
+			printf("%.2lf\t", matrix[j][i]);
+		}
+		printf("\n");
+	}
+	printf("\n");
 }
 
 double** transpose(double **matrix)
