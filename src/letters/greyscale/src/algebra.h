@@ -46,7 +46,7 @@ void write_matrix(double **matrix)
 	{
 		for (i = 0; i < SIDE; ++i)
 		{
-			printf("%.2lf\t", matrix[j][i]);
+			printf("%.3lf\t", matrix[j][i]);
 		}
 		printf("\n");
 	}
@@ -90,4 +90,42 @@ double** matrix_product(double **a, double **b)
 	return result;
 }
 
-/* calculate matrix modulus */
+double _det_(double **a, int n) {
+  double det=0, **temp;
+  int p, h, k, i, j;
+  temp = new_matrix();
+  if(n==1) {
+    return a[0][0];
+  } else if(n==2) {
+    det = (a[0][0]*a[1][1]-a[0][1]*a[1][0]);
+    return det;
+  } else {
+    for(p=0;p<n;p++) {
+      h = 0;
+      k = 0;
+      for(i=1;i<n;i++) {
+        for(j=0;j<n;j++) {
+          if(j==p) {
+            continue;
+          }
+          temp[h][k] = a[i][j];
+          k++;
+          if(k==n-1) {
+            h++;
+            k = 0;
+          }
+        }
+      }
+      det = det + a[0][p] * _det_(temp,n-1);
+	  det *= (p % 2 == 0)? -1 : 1;
+    }
+    return det;
+  }
+}
+
+double determinant(double **m)
+{
+	return _det_(m, SIDE);
+}
+
+#undef SIDE
