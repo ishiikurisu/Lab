@@ -1,0 +1,1 @@
+for %%F IN (*.csv *.txt) DO single.exe %%F
