@@ -32,7 +32,3 @@ A small application to clock another app's performance. Nothing fancy.
 ### Buffering ###
 
 A buffering header to make access to large files faster. Works well now but needs a whole lot more improvements, specially writing data types that aren't `char*`.
-
-### Letters ###
-
-Text recognition tool. Made to practice for Senses project.
