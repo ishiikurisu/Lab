@@ -63,7 +63,7 @@ public class Stopwatch
 			try {
 				if (this.neededFields.contains(bits[i]))
 			  		index.put(bits[i], i);
-				}
+			}
 			catch (Exception any) {
 				break;
 			}

@@ -27,23 +27,29 @@ void draw() {
 
 	for (int i = 0; i < 128; ++i)
 	{
+		println(procedures[i] + " " + times[i]);
 		/* write lines */
-		if (procedures[i].compareTo("PressProc") == 0) {
-			stroke((answers[i] == true)? GREEN : RED);
-			line(2 + 4*i, 0, 2 + 4*i, times[i]);
+		try {
+			if (procedures[i].compareTo("PressProc") == 0) {
+				stroke((answers[i] == true)? GREEN : RED);
+				line(2 + 4*i, 0, 2 + 4*i, times[i]);
+			}
+			else if (procedures[i].compareTo("NotPressProc") == 0) {
+				stroke(BLUE);
+				if (answers[i] == false) {
+					line(2 + 4*i, height, 2 + 4*i, height - times[i]);
+				}
+				else {
+					line(2 + 4*i, height/4, 2 + 4*i, 3*height/4);
+				}
+			}
 		}
-		else if (procedures[i].compareTo("NotPressProc") == 0) {
-			stroke(BLUE);
-			if (answers[i] == false) {
-				line(2 + 4*i, height, 2 + 4*i, height - times[i]);
-			}
-			else {
-				line(2 + 4*i, height/4, 2 + 4*i, 3*height/4);
-			}
+		catch (Exception any) {
+			
 		}
 
 	}
 
 	// save("graph.jpg");
-	exit();
+	// exit();
 }
