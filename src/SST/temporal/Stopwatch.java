@@ -33,6 +33,8 @@ public class Stopwatch
 	{ return this.time; }
 	public String[] getProcedures()
 	{ return this.procedure; }
+	public boolean[] getAnswers()
+	{ return this.answer; }
 	private HashSet<String> getNeededFields()
 	{
 		HashSet<String> fields;
@@ -89,12 +91,20 @@ public class Stopwatch
 	{
 		String[] data = rawData.split("\t");
 		String procedure = data[this.index.get("Procedure[Trial]")];
+		boolean answer = true;
+		int time = 0;
 
 		if (procedure.compareTo("PressProc") == 0) {
-			/* add RT information */
+			time = Integer.parseInt(data[this.index.get("PressStimulus.RT")]););
+			answer = (data[this.index.get("PressStimulus.ACC")].compareTo("0") == 0)? false : true;
 		}
 		else if (procedure.compareTo("NotPressProc") == 0) {
-			/* add SSD information */
+			time = Integer.parseInt(data[this.index.get("SoundStimulus.RT")]););
+			answer = (data[this.index.get("SoundStimulus.ACC")].compareTo("0") == 0)? false : true;
 		}
+		
+		this.procedure[numberLine] = procedure;
+		this.answer[numberLine] = answer;
+		this.time[numberLine] = time;
 	}
 }
