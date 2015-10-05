@@ -10,7 +10,7 @@ String[] procedures;
 boolean[] answers;
 
 void setup() {
-	size(WIDTH, HEIGHT);
+	size(HEIGHT, WIDTH);
 	noLoop();
 }
 
@@ -33,12 +33,11 @@ void draw() {
 			line(2 + 4*i, 0, 2 + 4*i, times[i]);
 		}
 		else if (procedures[i].compareTo("NotPressProc") == 0) {
+			stroke(BLUE);
 			if (answers[i] == false) {
-				stroke(RED);
-				line(2 + 4*i, 0, 2 + 4*i, times[i]);
+				line(2 + 4*i, height, 2 + 4*i, height - times[i]);
 			}
 			else {
-				stroke(BLUE);
 				line(2 + 4*i, height/4, 2 + 4*i, 3*height/4);
 			}
 		}
@@ -48,4 +47,3 @@ void draw() {
 	// save("graph.jpg");
 	exit();
 }
- 
