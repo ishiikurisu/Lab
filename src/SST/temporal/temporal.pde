@@ -15,7 +15,7 @@ void setup() {
 }
 
 void draw() {
-  Stopwatch stopwatch = new Stopwatch(dataPath("") + "\\sst.txt");
+  Stopwatch stopwatch = new Stopwatch(dataPath("") + "\\" + "sst.txt");
   String path = stopwatch.getPath();
   times = stopwatch.getTimes();
   procedures = stopwatch.getProcedures();

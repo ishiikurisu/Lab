@@ -61,16 +61,12 @@ public class Stopwatch
     String bit;
     int i = 0;
 
-    while (true)
-    {
-      try {
-        if (this.neededFields.contains(bits[i]))
-            index.put(bits[i], i);
-      }
-      catch (Exception any) {
-        break;
-      }
-      ++i;
+    try {
+      for (i = 0; i < 500; ++i)
+        if (this.neededFields.contains(bits[i].trim()))
+           index.put(bits[i].trim(), i);
+    }
+    catch (NullPointerException any) {
     }
 
     return index;
@@ -101,7 +97,7 @@ public class Stopwatch
 
   private void processLine(String rawData, int numberLine)
   {
-    String[] data = rawData.split("\t");
+    String[] data = rawData.split("\\t");
     String procedure = data[this.index.get("Procedure[Trial]")];
     boolean answer = true;
     int time = 0;
@@ -115,7 +111,6 @@ public class Stopwatch
       answer = (data[this.index.get("SoundStimulus.ACC")].compareTo("0") == 0)? false : true;
     }
 
-    System.out.println(procedure + " " + answer + " " + time);
     this.procedure[numberLine] = procedure;
     this.answer[numberLine] = answer;
     this.time[numberLine] = time;
