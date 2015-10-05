@@ -10,46 +10,50 @@ String[] procedures;
 boolean[] answers;
 
 void setup() {
-	size(HEIGHT, WIDTH);
-	noLoop();
+  size(HEIGHT, WIDTH);
+  noLoop();
 }
 
 void draw() {
-	Stopwatch stopwatch = new Stopwatch("sst.txt");
-	times = stopwatch.getTimes();
-	procedures = stopwatch.getProcedures();
-	answers = stopwatch.getAnswers();
+  Stopwatch stopwatch = new Stopwatch(dataPath("") + "\\sst.txt");
+  String path = stopwatch.getPath();
+  times = stopwatch.getTimes();
+  procedures = stopwatch.getProcedures();
+  answers = stopwatch.getAnswers();
 
-	smooth();
-	noFill();
-	background(WHITE);
-	strokeWeight(4);
+  smooth();
+  noFill();
+  background(WHITE);
+  strokeWeight(4);
 
-	for (int i = 0; i < 128; ++i)
-	{
-		println(procedures[i] + " " + times[i]);
-		/* write lines */
-		try {
-			if (procedures[i].compareTo("PressProc") == 0) {
-				stroke((answers[i] == true)? GREEN : RED);
-				line(2 + 4*i, 0, 2 + 4*i, times[i]);
-			}
-			else if (procedures[i].compareTo("NotPressProc") == 0) {
-				stroke(BLUE);
-				if (answers[i] == false) {
-					line(2 + 4*i, height, 2 + 4*i, height - times[i]);
-				}
-				else {
-					line(2 + 4*i, height/4, 2 + 4*i, 3*height/4);
-				}
-			}
-		}
-		catch (Exception any) {
-			
-		}
+  println(path);
+  for (int i = 0; i < 128; ++i)
+  {
+    // println(procedures[i] + " " + times[i]);
+    /* write lines */
+    try {
+      if (procedures[i].compareTo("PressProc") == 0) {
+        stroke((answers[i] == true)? GREEN : RED);
+        line(2 + 4*i, 0, 2 + 4*i, times[i]);
+      }
+      else if (procedures[i].compareTo("NotPressProc") == 0) {
+        stroke(BLUE);
+        if (answers[i] == false) {
+          line(2 + 4*i, height, 2 + 4*i, height - times[i]);
+        }
+        else {
+          line(2 + 4*i, height/4, 2 + 4*i, 3*height/4);
+        }
+      }
+    }
+    catch (Exception any) {
+    }
 
-	}
+  }
 
-	// save("graph.jpg");
-	// exit();
+  // save("graph.jpg");
+  // exit();
 }
+
+
+
