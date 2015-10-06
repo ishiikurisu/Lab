@@ -6,6 +6,7 @@ final color BLACK = color(0, 0, 0);
 final color BLUE = color(0, 90, 146); // PANTONE's Imperial blue, 19-4245 TPX
 final color RED = color(208, 28, 31); // PANTONE's Fiery red, 18-1664 TPX
 final color GREEN = color(126, 200, 69); // PANTONE's Jasmine Green
+final color YELLOW = color(255, 158, 33); // PANTONE's Radiant yellow, 15-1058 TPX
 
 void setup() {
   size(WIDTH, HEIGHT);
@@ -39,23 +40,18 @@ void draw() {
       line(x, height, x, height - time/2);
     }
     else if (procedure.compareTo("NotPressProc") == 0) {
-      stroke(BLUE);
       if (answer == false) {
+      stroke(YELLOW);
         line(x, height, x, height - time/2);
       }
       else {
+        stroke(BLUE);
         line(x, height/4, x, 3*height/4);
       }
     }
   }
 
-  // save("graph.jpg");
+  save("graph.jpg");
   // exit();
 }
-
-
-
-
-
-
 
