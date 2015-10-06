@@ -57,7 +57,7 @@ public class Stopwatch
   private HashMap<String, Integer> getIndex(String line)
   {
     HashMap<String, Integer> index = new HashMap<String, Integer>();
-    String[] bits = line.split("\t");
+    String[] bits = line.split("\\s+");
     String bit;
     int i = 0;
 
@@ -66,7 +66,10 @@ public class Stopwatch
         if (this.neededFields.contains(bits[i].trim()))
            index.put(bits[i].trim(), i);
     }
-    catch (NullPointerException any) {
+    catch (NullPointerException e1) {
+    }
+    catch (ArrayIndexOutOfBoundsException e2) {
+      this.fileHeader = line;
     }
 
     return index;

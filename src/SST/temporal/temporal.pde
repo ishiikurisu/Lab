@@ -26,7 +26,7 @@ void draw() {
   background(WHITE);
   strokeWeight(4);
 
-  println(path);
+  println("oops: " + path);
   for (int i = 0; i < 128; ++i)
   {
     // println(procedures[i] + " " + times[i]);
@@ -54,6 +54,4 @@ void draw() {
   // save("graph.jpg");
   // exit();
 }
-
-
 
