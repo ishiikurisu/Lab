@@ -1,6 +1,7 @@
 #ifndef SSRT_CALC_H
 #define SSRT_CALC_H
 #define BUFFER_SIZE 256
+#include <iostream>
 #include <sstream>
 #include <string>
 #include <set>
@@ -13,6 +14,9 @@ class SSRT
 {
     std::map<std::string, int> columns;
     std::set<std::string> needed_columns;
+    std::vector<unsigned int> times;
+    std::vector<bool> answers;
+    std::vector<std::string> procedures;
     unsigned int total_rt;
     unsigned int successful_reactions;
     unsigned int total_reactions;
@@ -37,6 +41,9 @@ public:
     double get_ssd(bool);
     double get_ssrt();
     double get_inhibition();
+    std::vector<unsigned int> get_times();
+    std::vector<bool> get_answers();
+    std::vector<std::string> get_procedures();
 };
 
 /********************
@@ -113,6 +120,7 @@ void SSRT::extract_data(std::string line)
     std::string srtacc = "PressStimulus.ACC";
     std::string sssd = "VisualStimulus.Duration";
     std::string sssdacc = "SoundStimulus.ACC";
+    std::string ssdrt = "SoundStimulus.RT";
     std::string procedure = "Procedure[Trial]";
     std::string bit;
     unsigned int ct; // current time
@@ -129,6 +137,10 @@ void SSRT::extract_data(std::string line)
         ++total_reactions;
         successful_reactions += cacc;
         total_rt += ct;
+
+        procedures.push_back(procedure);
+        times.push_back(ct);
+        answers.push_back((cacc)? true : false);
     }
     else if (procedure.compare("NotPressProc") == 0) {
         /* SSD */
@@ -140,6 +152,12 @@ void SSRT::extract_data(std::string line)
         ++total_stops;
         successful_stops += cacc;
         total_ssd += (cacc)? ct : 0;
+
+        bit = bits.at(columns[ssdrt]);
+        sscanf(bit.c_str(), "%d", &ct);
+        procedures.push_back(procedure);
+        times.push_back(ct);
+        answers.push_back((cacc)? true : false);
     }
 }
 
@@ -182,6 +200,21 @@ double SSRT::get_inhibition()
 double SSRT::get_ssrt()
 {
     return rt - ssd;
+}
+
+std::vector<unsigned int> SSRT::get_times()
+{
+    return times;
+}
+
+std::vector<bool> SSRT::get_answers()
+{
+    return answers;
+}
+
+std::vector<std::string> SSRT::get_procedures()
+{
+    return procedures;
 }
 
 #undef BUFFER_SIZE
