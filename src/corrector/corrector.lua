@@ -16,6 +16,6 @@ while true do
 		line = io.read()
 	end
 
-	nota = acertos - erros/3
-	print(nota)
+	nota = acertos - math.floor(erros/3)
+	io.write(string.format("Nota: %.2f\n", nota))
 end
