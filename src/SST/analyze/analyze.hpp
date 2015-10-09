@@ -4,11 +4,11 @@
 #include <iomanip>
 #include "ssrt-calculator.hpp"
 
-/* returns an array containing 
+/* returns an array containing
 the RT, SSD, SSRT and %INHIB of a file */
 double* analyze(char const *input, bool shall_write = false)
 {
-    double *outlet = (double*) malloc(4*sizeof(double));
+    double *outlet = (double*) malloc(10*sizeof(double));
     std::fstream inlet;
     std::string line;
     SSRT ssrt;
@@ -32,6 +32,7 @@ double* analyze(char const *input, bool shall_write = false)
         std::cout << "SSD: " << ssrt.get_ssd() << std::endl;
         std::cout << "SSRT: " << ssrt.get_ssrt() << std::endl;
         std::cout << "%I: " << (ssrt.get_inhibition() * 100) << std::endl;
+		std::cout << "\%AUS: " << (ssrt.get_ausences() * 100) << std::endl;
     }
 
     inlet.close();
@@ -39,6 +40,7 @@ double* analyze(char const *input, bool shall_write = false)
     outlet[1] = ssrt.get_ssd();
     outlet[2] = ssrt.get_ssrt();
     outlet[3] = ssrt.get_inhibition();
+	outlet[4] = ssrt.get_ausences();
 
     return outlet;
 }

@@ -1,0 +1,7 @@
+
+C:\Users\cris\Documents\work\EEG\data\sst\Jovens>dir /B *.csv *.txt   | multiple.exe
+<RT>: 600.406+-84.475
+<SSD>: 278.813+-95.780
+<SSRT>: 321.594+-41.434
+<%I>: 48.828+-9.236
+<%I>: 5.859+-2.989

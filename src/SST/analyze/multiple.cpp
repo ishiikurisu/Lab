@@ -39,6 +39,7 @@ int main(int argc, char const *argv[])
 	std::vector<double> ssd;
 	std::vector<double> ssrt;
 	std::vector<double> inhib;
+	std::vector<double> ausen;
 	double *raw_data;
 
 	/* READ DATA */
@@ -50,6 +51,7 @@ int main(int argc, char const *argv[])
 			ssd.push_back(raw_data[1]);
 			ssrt.push_back(raw_data[2]);
 			inhib.push_back(raw_data[3]);
+			ausen.push_back(raw_data[4]);
 		}
 	}
 
@@ -59,6 +61,7 @@ int main(int argc, char const *argv[])
 	std::cout << "<SSD>: " << mean(ssd) << "+-" << sd(ssd)  << std::endl;
 	std::cout << "<SSRT>: " << mean(ssrt) << "+-" << sd(ssrt)  << std::endl;
 	std::cout << "<%I>: " << mean(inhib)*100 << "+-" << sd(inhib)*100  << std::endl;
+	std::cout << "<%I>: " << mean(ausen)*100 << "+-" << sd(ausen)*100  << std::endl;
 
 	return 0;
 }

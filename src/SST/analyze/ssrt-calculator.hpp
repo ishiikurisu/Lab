@@ -27,6 +27,7 @@ class SSRT
     double rt;
     double ssd;
     double inhib;
+	double aus;
 
     void associate(std::string, int);
     void get_needed_columns();
@@ -41,6 +42,7 @@ public:
     double get_ssd(bool);
     double get_ssrt();
     double get_inhibition();
+	double get_ausences();
     std::vector<unsigned int> get_times();
     std::vector<bool> get_answers();
     std::vector<std::string> get_procedures();
@@ -200,6 +202,11 @@ double SSRT::get_inhibition()
 double SSRT::get_ssrt()
 {
     return rt - ssd;
+}
+
+double SSRT::get_ausences()
+{
+	return ((double) total_reactions - successful_reactions) / total_reactions;
 }
 
 std::vector<unsigned int> SSRT::get_times()

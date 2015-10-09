@@ -1,0 +1,44 @@
+
+C:\Users\cris\Documents\work\EEG\data\sst\Idosos>for %F IN (*.csv *.txt) DO single.exe %F 
+
+C:\Users\cris\Documents\work\EEG\data\sst\Idosos>single.exe sst-18-1.txt 
+RT: 205.167
+SSD: 479.630
+SSRT: -274.463
+%I: 84.375
+%AUS: 76.042
+
+C:\Users\cris\Documents\work\EEG\data\sst\Idosos>single.exe sst-19-1.txt 
+RT: 516.792
+SSD: 120.833
+SSRT: 395.958
+%I: 37.500
+%AUS: 10.417
+
+C:\Users\cris\Documents\work\EEG\data\sst\Idosos>single.exe sst-20-1.txt 
+RT: 501.396
+SSD: 344.444
+SSRT: 156.951
+%I: 56.250
+%AUS: 30.208
+
+C:\Users\cris\Documents\work\EEG\data\sst\Idosos>single.exe sst-21-1.txt 
+RT: 555.396
+SSD: 116.667
+SSRT: 438.729
+%I: 9.375
+%AUS: 7.292
+
+C:\Users\cris\Documents\work\EEG\data\sst\Idosos>single.exe sst-22-1.txt 
+RT: 270.896
+SSD: 294.118
+SSRT: -23.222
+%I: 53.125
+%AUS: 52.083
+
+C:\Users\cris\Documents\work\EEG\data\sst\Idosos>single.exe sst-23-1.txt 
+RT: 255.052
+SSD: 450.000
+SSRT: -194.948
+%I: 75.000
+%AUS: 66.667
