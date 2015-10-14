@@ -63,7 +63,7 @@ void SSRT::associate(std::string column, int number)
 get the needed columns for the calculations */
 void SSRT::get_needed_columns()
 {
-    /* BE SURE TO KEEP THE "variables.txt" FILE UPDATED */
+    /* BE SURE TO KEEP THE "variables" FILE UPDATED */
     std::fstream fs;
     char name[BUFFER_SIZE];
 

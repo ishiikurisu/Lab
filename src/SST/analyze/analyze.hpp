@@ -32,7 +32,7 @@ double* analyze(char const *input, bool shall_write = false)
         std::cout << "SSD: " << ssrt.get_ssd() << std::endl;
         std::cout << "SSRT: " << ssrt.get_ssrt() << std::endl;
         std::cout << "%I: " << (ssrt.get_inhibition() * 100) << std::endl;
-		std::cout << "\%AUS: " << (ssrt.get_ausences() * 100) << std::endl;
+		std::cout << "%AUS: " << (ssrt.get_ausences() * 100) << std::endl;
     }
 
     inlet.close();
