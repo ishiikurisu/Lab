@@ -97,12 +97,14 @@ public class SSRTCalculator
 
 		this.rt = ((double) totalRT) / this.totalReactions;
 		this.ssd = ((double) totalSSD) / sucessfulStops;
+		this.ssrt = this.rt - this.ssd;
 		this.inhib = ((double) sucessfulStops) / totalStops;
 
 		data[0] = this.rt;
 		data[1] = this.ssd;
-		data[2] = this.inhib;
-		data[3] = this.getAusences();
+		data[2] = this.ssrt;
+		data[3] = this.inhib;
+		data[4] = this.getAusences();
 
 		return data;
 	}
@@ -115,6 +117,11 @@ public class SSRTCalculator
 	public double getSSD()
 	{
 		return this.ssd;
+	}
+
+	public double getSSRT()
+	{
+		return this.ssrt;
 	}
 
 	public double getInhibition()

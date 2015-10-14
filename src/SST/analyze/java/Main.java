@@ -23,7 +23,7 @@ public class Main
 		for (String file: files)
 		{
 			single = new Single(file);
-			
+			/* what the fuck do I do now? */
 		}
 	}
 }
