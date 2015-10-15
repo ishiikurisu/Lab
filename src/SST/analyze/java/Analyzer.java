@@ -39,7 +39,7 @@ public class Analyzer
 			line = this.getLine(in);
 		}
 
-		while (line != null)
+		while (line.length() > 0)
 		{
 			this.ssrtCalc.extractData(line);
 			line = this.getLine(in);
