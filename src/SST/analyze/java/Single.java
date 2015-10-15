@@ -1,12 +1,20 @@
 import java.io.IOException;
-import java.io.FileWrite;
+import java.io.FileWriter;
 import java.io.BufferedWriter;
 
 public class Single
 {
 	private String inputFile;
+	private BufferedWriter BW;
 
-	public Single(String inputFile)
+	public Single()
+	throws IOException
+	{
+		BW = new BufferedWriter(new FileWriter("individual.yml"));
+		this.println("---");
+	}
+
+	public void update(String inputFile)
 	{
 		Analyzer analyzer = new Analyzer(inputFile);
 		this.inputFile = inputFile;
@@ -16,36 +24,42 @@ public class Single
 			this.write(analyzer.getData());
 		}
 		catch (Exception any) { 
-			System.out.println(any);
+			any.printStackTrace();
 		}
+
+	}
+
+	private void println(String s)
+	throws IOException
+	{
+		BW.write(s, 0, s.length());
+		BW.newLine();
 	}
 
 	public void write(double[] data)
 	throws IOException
 	{
-		BufferedWriter BW = new BufferedWriter(new FileWriter(inputFile + ".yml"));
 		String toWrite;
 
-		toWrite = "RT: " + data[0];
-		BW.write(toWrite, 0, toWrite.length());
+		this.println("--- # " + this.extractName(inputFile));
+		this.println("RT: " + data[0]);
+		this.println("SSD: " + data[1]);
+		this.println("SSRT: " + data[2]);
+		this.println("%I: " + data[3]);
+		this.println("%A: " + data[4]);
 		BW.newLine();
+	}
 
-		toWrite = "SSD: " + data[1];
-		BW.write(toWrite, 0, toWrite.length());
-		BW.newLine();
+	private String extractName(String path)
+	{
+		String[] bits = path.split(".");
+		return bits[0];
+	}
 
-		toWrite = "SSRT: " + data[2];
-		BW.write(toWrite, 0, toWrite.length());
-		BW.newLine();
-
-		toWrite = "%I: " + data[3];
-		BW.write(toWrite, 0, toWrite.length());
-		BW.newLine();
-
-		toWrite = "%A: " + data[4];
-		BW.write(toWrite, 0, toWrite.length());
-		BW.newLine();
-
+	public void close()
+	throws IOException
+	{
+		this.println("...");
 		BW.flush();
 		BW.close();
 	}

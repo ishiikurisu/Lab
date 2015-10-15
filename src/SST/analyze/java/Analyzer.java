@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 
 public class Analyzer
 {
-	private inputFile;
+	private String inputFile;
 	private SSRTCalculator ssrtCalc;
 	private double[] data;
 
@@ -15,26 +15,38 @@ public class Analyzer
 		this.inputFile = inputFile;
 	}
 
+	private String getLine(BufferedReader inlet)
+	throws IOException
+	{
+		String out = this.ssrtCalc.treatLine(inlet.readLine());
+		System.out.println(out);
+		inlet.readLine();
+		return out;
+	}
+
 	public void analyze()
 	throws IOException
 	{
-		FileReader FR = new FileReader(this.inputFile);
-		BufferedReader inlet = new BufferedReader(FR);
+		BufferedReader in= new BufferedReader(new FileReader(this.inputFile));
 		String line;
 
-		line = inlet.readLine(); // file path
-		this.ssrtCalc.getColumns(inlet.readLine());
+		line = this.getLine(in); // file path
+		line = this.getLine(in); // columns
+		this.ssrtCalc.getColumns(line);
 
-		line = inlet.readLine();
-		while (line.length() > 0)
+		for (int i = 0; i < 8; ++i)
 		{
-			this.ssrtCalc.extractData(line);
-			inlet.readLine();
+			line = this.getLine(in);
 		}
 
-		this.data = ssrtCalc.analyzeData();
-		inlet.close();
-		FR.close();
+		while (line != null)
+		{
+			this.ssrtCalc.extractData(line);
+			line = this.getLine(in);
+		}
+
+		this.data = this.ssrtCalc.analyzeData();
+		in.close();
 	}
 
 	public double[] getData()

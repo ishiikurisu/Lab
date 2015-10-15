@@ -26,11 +26,6 @@ public class SSRTCalculator
 
 	public SSRTCalculator()
 	{
-		this.getNeededColumns;	
-	}
-
-	private void getNeededColumns()
-	{
 		this.neededColumns = new TreeSet<String>();
 
 		neededColumns.add("PressStimulus.RT");
@@ -46,9 +41,20 @@ public class SSRTCalculator
 		String[] bits = line.split("\\t");
 
 		this.columns = new HashMap<String, Integer>();
-		for (int i = 0; i < bits.size(); ++i)
+		for (int i = 0; i < bits.length; ++i)
 			if (this.neededColumns.contains(bits[i]))
 				columns.put(bits[i], i);
+	}
+
+	public String treatLine(String line)
+	{
+		String out = new String();
+
+		for (int c = 0; c < line.length(); c++)
+			if (line.charAt(c) != 0)
+				out += line.charAt(c);
+
+		return out;
 	}
 
 	public void extractData(String line)
@@ -59,7 +65,7 @@ public class SSRTCalculator
 		String bit;
 		String procedure = bits[this.columns.get("Procedure[Trial]")];
 
-		if (procedure.equalsTo("PressProc")) {
+		if (procedure.equals("PressProc")) {
 			bit = bits[this.columns.get("PressStimulus.RT")];
 			time = Integer.parseInt(bit);
 			bit = bits[this.columns.get("PressStimulus.ACC")];
@@ -73,7 +79,7 @@ public class SSRTCalculator
 			this.times.add(time);
 			this.answers.add((acc != 0)? true : false);
 		}
-		else if (procedure.equalsTo("NotPressProc")) {
+		else if (procedure.equals("NotPressProc")) {
 			bit = bits[this.columns.get("VisualStimulus.Duration")];
 			time = Integer.parseInt(bit);
 			bit = bits[this.columns.get("SoundStimulus.ACC")];
@@ -81,7 +87,7 @@ public class SSRTCalculator
 
 			++this.totalStops;
 			this.sucessfulStops += acc;
-			this.totalSSD += (acc != 0): time : 0;
+			this.totalSSD += (acc != 0)? time : 0;
 
 			bit = bits[this.columns.get("SoundStimulus.RT")];
 			time = Integer.parseInt(bit);
@@ -131,7 +137,7 @@ public class SSRTCalculator
 
 	public double getAusences()
 	{
-		return (double this.totalReactions - this.sucessfulReactions) / this.totalReactions;
+		return ((double) this.totalReactions - this.sucessfulReactions) / this.totalReactions;
 	}
 
 	public ArrayList<Integer> getTimes()
@@ -141,7 +147,7 @@ public class SSRTCalculator
 
 	public ArrayList<Boolean> getAnswers()
 	{
-		returbn this.answers;
+		return this.answers;
 	}
 
 	public ArrayList<String> getProcedures()
