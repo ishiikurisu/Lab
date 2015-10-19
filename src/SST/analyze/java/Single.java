@@ -41,20 +41,24 @@ public class Single
 	{
 		String toWrite;
 
-		this.println("--- # " + this.extractName(inputFile));
-		this.println("RT: " + data[0]);
-		this.println("SSD: " + data[1]);
-		this.println("SSRT: " + data[2]);
-		this.println("%I: " + data[3]);
-		this.println("%A: " + data[4]);
+		this.println(this.extractName(inputFile) + ":");
+		this.println("  RT: " + data[0]);
+		this.println("  SSD: " + data[1]);
+		this.println("  SSRT: " + data[2]);
+		this.println("  %I: " + data[3]);
+		this.println("  %A: " + data[4]);
 		BW.newLine();
 	}
 
 	private String extractName(String path)
 	{
-		String[] bits = path.split(".");
-		// System.out.println(path);
-		return bits[0];
+		String[] bits = path.split("\\\\");
+
+		return bits[bits.length-1].split("\\.")[0];
+		// bits = path.split("\\.");
+		// path = bits[0];
+
+		// return bits[0];
 	}
 
 	public void close()

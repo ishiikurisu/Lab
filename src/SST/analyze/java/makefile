@@ -8,3 +8,6 @@ Analyzer: SSRTCalculator Analyzer.java
 	javac Analyzer.java
 SSRTCalculator: SSRTCalculator.java
 	javac SSRTCalculator.java
+
+clean:
+	del *.class

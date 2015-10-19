@@ -30,7 +30,7 @@ public class Main
 
 		for (String file: files)
 		{
-			System.out.println("--- # " + file + "...");
+			System.out.println("Processing " + file + "...");
 			file = System.getProperty("user.dir") + separator + file;
 			single.update(file);
 		}

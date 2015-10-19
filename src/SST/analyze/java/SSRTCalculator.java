@@ -123,8 +123,8 @@ public class SSRTCalculator
 		data[0] = this.rt;
 		data[1] = this.ssd;
 		data[2] = this.ssrt;
-		data[3] = this.inhib;
-		data[4] = this.getAusences();
+		data[3] = this.inhib * 100;
+		data[4] = this.getAusences() * 100;
 
 		return data;
 	}
