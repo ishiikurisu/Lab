@@ -137,7 +137,8 @@ public class SSRTCalculator
 
 	public double getAusences()
 	{
-		return ((double) this.totalReactions - this.sucessfulReactions) / this.totalReactions;
+		return ((double) this.totalReactions - this.sucessfulReactions) 
+		         / this.totalReactions;
 	}
 
 	public ArrayList<Integer> getTimes()
