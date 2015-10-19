@@ -8,9 +8,9 @@ Usando o *High Resolution Pattern Adapter*, é possível mostrar uma sequência 
 
 É possível, de alguma forma, transformar estas marcas, por exemplo, em comentários, para que apareçam no arquivos EDF? Pode-se usar um canal DC para fazer estas marcações? 
 
-> É possível usar um botão do teclado para começar um teste fora do neuron-spectrum e começar a gravação nele?
+> É possível usar um botão do teclado para começar um teste fora do NE e começar a gravação nele?
 
-Queremos começar uma apresentação de PowerPoint e a gravação de uma sessão do Neuron-Spectrum ao mesmo tempo. Como fazer isso?
+Queremos começar uma apresentação de PowerPoint e a gravação de uma sessão do NE ao mesmo tempo. Como fazer isso?
 
 > Como adicionar um comentário usando outra tecla além da `C`?
 
