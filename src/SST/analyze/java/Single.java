@@ -14,19 +14,22 @@ public class Single
 		this.println("---");
 	}
 
-	public void update(String inputFile)
+	public double[] update(String inputFile)
 	{
 		Analyzer analyzer = new Analyzer(inputFile);
+		double[] data = null;
 		this.inputFile = inputFile;
 
 		try {
 			analyzer.analyze();
-			this.write(analyzer.getData());
+			data = analyzer.getData();
+			this.write(data);
 		}
 		catch (Exception any) { 
 			any.printStackTrace();
 		}
 
+		return data;
 	}
 
 	private void println(String s)

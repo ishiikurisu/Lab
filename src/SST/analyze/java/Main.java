@@ -26,15 +26,16 @@ public class Main
 	{
 		String separator = System.getProperty("file.separator");
 		List<String> files = textFiles(".");
+		Multiple multiple = new Multiple();
 		Single single = new Single();
 
 		for (String file: files)
 		{
-			System.out.println("Processing " + file + "...");
 			file = System.getProperty("user.dir") + separator + file;
-			single.update(file);
+			multiple.update(single.update(file));
 		}
 
 		single.close();
+		multiple.close();
 	}
 }
