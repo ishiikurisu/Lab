@@ -1,6 +1,6 @@
 # Dúvidas para Neurosoft
 
-Referenciarei-me ao software Neuron-spectrum como NE e à Neurosoft como NS.
+Referenciarei-me ao software Neuron-Spectrum como NE e à Neurosoft como NS.
 
 > Como exportar as marcações feitas na parte de baixo da tela para o arquivo EDF?
 
@@ -10,7 +10,7 @@ Usando o *High Resolution Pattern Adapter*, é possível mostrar uma sequência 
 
 > É possível usar um botão do teclado para começar um teste fora do neuron-spectrum e começar a gravação nele?
 
-> Como usar os dois botões no *patient button*?
+> Como usar os dois botões do *patient button*?
 
 Ambos botões fazem a mesma marca no NE. Como diferenciar estas marcas?
 
