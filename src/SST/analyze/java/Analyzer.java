@@ -19,7 +19,6 @@ public class Analyzer
 	throws IOException
 	{
 		String out = this.ssrtCalc.treatLine(inlet.readLine());
-		System.out.println(out);
 		inlet.readLine();
 		return out;
 	}
@@ -27,19 +26,15 @@ public class Analyzer
 	public void analyze()
 	throws IOException
 	{
-		BufferedReader in= new BufferedReader(new FileReader(this.inputFile));
+		FileReader fr = new FileReader(this.inputFile);
+		BufferedReader in = new BufferedReader(fr);
 		String line;
 
 		line = this.getLine(in); // file path
 		line = this.getLine(in); // columns
 		this.ssrtCalc.getColumns(line);
 
-		for (int i = 0; i < 8; ++i)
-		{
-			line = this.getLine(in);
-		}
-
-		while (line.length() > 0)
+		while (line.length() > 1)
 		{
 			this.ssrtCalc.extractData(line);
 			line = this.getLine(in);
@@ -47,6 +42,7 @@ public class Analyzer
 
 		this.data = this.ssrtCalc.analyzeData();
 		in.close();
+		fr.close();
 	}
 
 	public double[] getData()

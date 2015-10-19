@@ -34,6 +34,10 @@ public class SSRTCalculator
 		neededColumns.add("SoundStimulus.ACC");
 		neededColumns.add("VisualStimulus.Duration");
 		neededColumns.add("Procedure[Trial]");
+
+		times = new ArrayList<Integer>();
+		answers = new ArrayList<Boolean>();
+		procedures = new ArrayList<String>();
 	}
 
 	public void getColumns(String line)
@@ -44,6 +48,16 @@ public class SSRTCalculator
 		for (int i = 0; i < bits.length; ++i)
 			if (this.neededColumns.contains(bits[i]))
 				columns.put(bits[i], i);
+	}
+
+	public void showColumns()
+	{
+		System.out.println("needed columns: ");
+		for (String column: this.neededColumns)
+		{
+			System.out.printf("  %s: %d\n", column, this.columns.get(column));
+		}
+		System.out.println();
 	}
 
 	public String treatLine(String line)
