@@ -53,6 +53,7 @@ public class Single
 	private String extractName(String path)
 	{
 		String[] bits = path.split(".");
+		// System.out.println(path);
 		return bits[0];
 	}
 

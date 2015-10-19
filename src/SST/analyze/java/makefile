@@ -2,7 +2,7 @@ all: Main
 	java Main
 Main: Main.java Single
 	javac Main.java
-Single: Analyzer
+Single: Single.java Analyzer
 	javac Single.java
 Analyzer: SSRTCalculator Analyzer.java
 	javac Analyzer.java

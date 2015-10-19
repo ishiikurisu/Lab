@@ -113,7 +113,7 @@ public class SSRTCalculator
 
 	public double[] analyzeData()
 	{
-		double[] data = new double[4];
+		double[] data = new double[10];
 
 		this.rt = ((double) totalRT) / this.totalReactions;
 		this.ssd = ((double) totalSSD) / sucessfulStops;
