@@ -69,7 +69,6 @@ public class Multiple
 			          "+-" + stdDeviation(this.inhib));
 		this.println("<%AUS>: " + this.mean(this.aus) + 
 			          "+-" + stdDeviation(this.aus));
-
 	}
 
 	private double mean(List<Double> list)
