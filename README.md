@@ -18,6 +18,11 @@ Stop Signal Test
 
 The objective of this project is to implement a version of the Stop Signal test (SST). Initially implemented using the E-PRIME (c) software with art made using PROCESSING, I'm now working on a PROCESSING implemented version just for fun. It's composed of the [SST](https://github.com/ishiikurisu/EEG/tree/master/src/SST) folder.
 
+Raven's Progressive Matrices
+----------------------------
+
+We want to implement a version of the Raven's Progressive Matrices (RPM) test to apply on children; and generate not only _g_-factors but also electroencephalographic data from them, so we can analyze how children take decisions during these tests. It's currently implemented using E-prime, but there is no aplication to analyze its generated data. It's located in the [Raven](https://github.com/ishiikurisu/EEG/tree/master/src/raven) folder.
+
 Minor Projects
 --------------
 
