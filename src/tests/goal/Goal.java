@@ -20,9 +20,8 @@ public class Goal
 		BufferedReader inlet = new BufferedReader(
 			new InputStreamReader(System.in)
 		);
-		String line;
-
-		for (line = inlet.readLine(); 
+		
+		for (String line = inlet.readLine(); 
 			 line != null; 
 			 data += line + " ", line = inlet.readLine());
 
