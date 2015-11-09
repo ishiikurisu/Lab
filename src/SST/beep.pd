@@ -6,7 +6,7 @@
 -1;
 #X obj 148 49 delay;
 #X obj 175 29 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 250 256;
+10 -262144 -1 -1 50 256;
 #X obj 174 93 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 28 125 *~ 0.1;
@@ -20,7 +20,7 @@
 #X msg 191 167 stop;
 #X obj 233 132 delay 2;
 #X obj 124 110 delay 2;
-#X text 182 0 Standard values: 750Hz \, 250ms;
+#X text 182 0 Standard values: 750Hz \, 50ms;
 #X connect 0 0 9 0;
 #X connect 2 0 0 0;
 #X connect 2 0 3 0;
