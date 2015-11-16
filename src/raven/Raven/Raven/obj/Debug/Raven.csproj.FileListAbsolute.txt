@@ -7,3 +7,4 @@ C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.Propertie
 C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.csproj.GenerateResource.Cache
 C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.exe
 C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.pdb
+C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.Form2.resources
