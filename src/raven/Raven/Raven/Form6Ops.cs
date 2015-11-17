@@ -35,12 +35,26 @@ namespace Raven
 
         public void StartTest()
         {
+            for (int i = 0; i < this.App.Imagens.Length; i++)
+            {
+                /* Carregar tela */
+                DefinirTela(this.App.CarregarImagens(i));
 
+                /* Esperar resposta */
+            }
+        }
+
+        private void DefinirTela(string[] imagens)
+        {
+            foreach (string img in imagens)
+            {
+                Console.WriteLine(img);
+            }
         }
 
         private void picOp3_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

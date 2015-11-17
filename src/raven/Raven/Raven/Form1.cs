@@ -32,6 +32,7 @@ namespace Raven
         {
             Form6Ops f2 = new Form6Ops(DAL.Caminhos[comboOps.SelectedIndex]);
             f2.Show();
+            f2.StartTest();
             this.Hide();
         }
     }
