@@ -30,6 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboOps = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -44,19 +46,38 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(107, 140);
+            this.button1.Location = new System.Drawing.Point(117, 82);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 49);
+            this.button1.Size = new System.Drawing.Size(110, 27);
             this.button1.TabIndex = 1;
             this.button1.Text = "Começar o teste";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(25, 58);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Escolha o teste: ";
+            // 
+            // comboOps
+            // 
+            this.comboOps.FormattingEnabled = true;
+            this.comboOps.Location = new System.Drawing.Point(117, 55);
+            this.comboOps.Name = "comboOps";
+            this.comboOps.Size = new System.Drawing.Size(110, 21);
+            this.comboOps.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(337, 224);
+            this.ClientSize = new System.Drawing.Size(337, 137);
+            this.Controls.Add(this.comboOps);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
@@ -70,6 +91,8 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboOps;
     }
 }
 
