@@ -59,6 +59,7 @@
             this.picOp1.Size = new System.Drawing.Size(134, 103);
             this.picOp1.TabIndex = 1;
             this.picOp1.TabStop = false;
+            this.picOp1.Click += new System.EventHandler(this.picOp1_Click);
             // 
             // picOp2
             // 
@@ -67,6 +68,7 @@
             this.picOp2.Size = new System.Drawing.Size(134, 103);
             this.picOp2.TabIndex = 4;
             this.picOp2.TabStop = false;
+            this.picOp2.Click += new System.EventHandler(this.picOp2_Click);
             // 
             // picOp3
             // 
@@ -84,6 +86,7 @@
             this.picOp4.Size = new System.Drawing.Size(134, 103);
             this.picOp4.TabIndex = 7;
             this.picOp4.TabStop = false;
+            this.picOp4.Click += new System.EventHandler(this.picOp4_Click);
             // 
             // picOp5
             // 
@@ -92,6 +95,7 @@
             this.picOp5.Size = new System.Drawing.Size(134, 103);
             this.picOp5.TabIndex = 8;
             this.picOp5.TabStop = false;
+            this.picOp5.Click += new System.EventHandler(this.picOp5_Click);
             // 
             // picOp6
             // 
@@ -100,11 +104,13 @@
             this.picOp6.Size = new System.Drawing.Size(134, 103);
             this.picOp6.TabIndex = 9;
             this.picOp6.TabStop = false;
+            this.picOp6.Click += new System.EventHandler(this.picOp6_Click);
             // 
             // Form6Ops
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(444, 475);
             this.Controls.Add(this.picOp6);
             this.Controls.Add(this.picOp5);

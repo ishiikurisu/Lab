@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,6 +9,8 @@ namespace Raven
     {
         private Aplicador App { get; set; }
         private PictureBox[] Pics { get; set; }
+        private int NoRodada { get; set; }
+        private bool Respondeu { get; set; }
 
         public Form6Ops()
         {
@@ -33,28 +30,81 @@ namespace Raven
             this.App = new Aplicador(nomeTeste);
         }
 
-        public void StartTest()
+        public async void StartTest()
         {
-            for (int i = 0; i < this.App.Imagens.Length; i++)
+            this.App.PrepararTeste();
+            for (NoRodada = 0; NoRodada < this.App.Imagens.Length; NoRodada++)
             {
-                /* Carregar tela */
-                DefinirTela(this.App.CarregarImagens(i));
-
-                /* Esperar resposta */
+                DefinirTela(this.App.CarregarImagens(NoRodada));
+                await RecebeuResposta();
             }
+
+            Application.Exit();
         }
 
         private void DefinirTela(string[] imagens)
         {
-            foreach (string img in imagens)
+            Console.WriteLine(imagens[0]);
+            picMain.Image = Image.FromFile(imagens[0]);
+            for (int i = 1; i <= 6; ++i)
             {
-                Console.WriteLine(img);
+                Pics[i - 1].Image = Image.FromFile(imagens[i]);
             }
+
+            Show();
+        }
+
+        private void ReceberResposta(int resposta)
+        {
+            this.App.OuvirResposta(NoRodada, resposta);
+        }
+
+        private async Task<string> RecebeuResposta()
+        {
+            Respondeu = false;
+
+            while (!Respondeu)
+            {
+                await Task.Delay(10);
+            }
+
+            return "Respondido";
+        }
+
+        private void picOp1_Click(object sender, EventArgs e)
+        {
+            Respondeu = true;
+            App.OuvirResposta(NoRodada, 1);
+        }
+
+        private void picOp2_Click(object sender, EventArgs e)
+        {
+            Respondeu = true;
+            App.OuvirResposta(NoRodada, 2);
         }
 
         private void picOp3_Click(object sender, EventArgs e)
         {
-            
+            Respondeu = true;
+            App.OuvirResposta(NoRodada, 3);
+        }
+
+        private void picOp4_Click(object sender, EventArgs e)
+        {
+            Respondeu = true;
+            App.OuvirResposta(NoRodada, 4);
+        }
+
+        private void picOp5_Click(object sender, EventArgs e)
+        {
+            Respondeu = true;
+            App.OuvirResposta(NoRodada, 5);
+        }
+
+        private void picOp6_Click(object sender, EventArgs e)
+        {
+            Respondeu = true;
+            App.OuvirResposta(NoRodada, 6);
         }
     }
 }
