@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,11 +33,18 @@ namespace Raven
 
         public async void StartTest()
         {
+            Stopwatch clock = new Stopwatch();
+
             this.App.PrepararTeste();
             for (NoRodada = 0; NoRodada < this.App.Imagens.Length; NoRodada++)
             {
+                clock.Start();
                 DefinirTela(this.App.CarregarImagens(NoRodada));
                 await RecebeuResposta();
+                clock.Stop();
+
+                App.OuvirDuracao(NoRodada, clock.ElapsedMilliseconds);
+                clock.Reset();
             }
 
             Application.Exit();
@@ -44,7 +52,6 @@ namespace Raven
 
         private void DefinirTela(string[] imagens)
         {
-            Console.WriteLine(imagens[0]);
             picMain.Image = Image.FromFile(imagens[0]);
             for (int i = 1; i <= 6; ++i)
             {

@@ -35,8 +35,15 @@ namespace Raven
 
         public void OuvirResposta(int rodada, int resposta)
         {
-
+            if (DAL.Respostas[rodada] == resposta)
+            {
+                NoRespostasCorretas++;
+            }
         }
 
+        public void OuvirDuracao(int rodada, double tempo)
+        {
+            Console.WriteLine(tempo);
+        }
     }
 }
