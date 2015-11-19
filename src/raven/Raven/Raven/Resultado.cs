@@ -15,11 +15,6 @@ namespace Raven
             lblResultado.Text = noRespostas.ToString();
         }
 
-        private void Resultado_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnSair_Click(object sender, EventArgs e)
         {
             Application.Exit();
