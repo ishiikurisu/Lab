@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Raven
 {
@@ -8,6 +9,7 @@ namespace Raven
         public Preparador DAL { get; private set; }
         public string[] Imagens { get; private set; }
         public int NoRespostasCorretas { get; private set; }
+        private List<double> Tempos { get; set; }
 
         public Aplicador()
         {
@@ -31,6 +33,7 @@ namespace Raven
         public void PrepararTeste()
         {
             NoRespostasCorretas = 0;
+            Tempos = new List<double>();
         }
 
         public void OuvirResposta(int rodada, int resposta)
@@ -43,7 +46,7 @@ namespace Raven
 
         public void OuvirDuracao(int rodada, double tempo)
         {
-            Console.WriteLine(tempo);
+            Tempos.Add(tempo);
         }
     }
 }

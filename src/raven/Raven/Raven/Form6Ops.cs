@@ -47,7 +47,14 @@ namespace Raven
                 clock.Reset();
             }
 
-            Application.Exit();
+            MostrarResultado();
+        }
+
+        private void MostrarResultado()
+        {
+            Resultado R = new Resultado(App.NoRespostasCorretas);
+            R.Show();
+            Close();
         }
 
         private void DefinirTela(string[] imagens)
