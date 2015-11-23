@@ -17,6 +17,7 @@ namespace Raven
         {
             InitializeComponent();
             Pics = new PictureBox[6];
+            this.KeyUp += new KeyEventHandler(this.Form6Ops_KeyUp);
 
             Pics[0] = picOp1;
             Pics[1] = picOp2;
@@ -83,6 +84,40 @@ namespace Raven
             }
 
             return "Respondido";
+        }
+
+        private void Form6Ops_KeyUp(object sender, KeyEventArgs e)
+        {
+            int resposta = 0;
+
+            switch (e.KeyCode.ToString())
+            {
+                case "NumPad1":
+                    resposta = 1;
+                    break;
+                case "NumPad2":
+                    resposta = 2;
+                    break;
+                case "NumPad3":
+                    resposta = 3;
+                    break;
+                case "NumPad4":
+                    resposta = 4;
+                    break;
+                case "NumPad5":
+                    resposta = 5;
+                    break;
+                case "NumPad6":
+                    resposta = 6;
+                    break;
+            }
+
+            if (resposta > 0)
+            {
+                Respondeu = true;
+                App.OuvirResposta(NoRodada, resposta);
+            }
+                
         }
 
         private void picOp1_Click(object sender, EventArgs e)

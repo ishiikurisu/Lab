@@ -119,6 +119,7 @@
             this.Controls.Add(this.picOp2);
             this.Controls.Add(this.picOp1);
             this.Controls.Add(this.picMain);
+            this.KeyPreview = true;
             this.Name = "Form6Ops";
             this.Text = "RPM";
             ((System.ComponentModel.ISupportInitialize)(this.picMain)).EndInit();
