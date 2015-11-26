@@ -21,7 +21,7 @@ The objective of this project is to implement a version of the Stop Signal test 
 Raven's Progressive Matrices
 ----------------------------
 
-We want to implement a version of the Raven's Progressive Matrices (RPM) test to apply on children; and generate not only _g_-factors but also electroencephalographic data from them, so we can analyze how children take decisions during these tests. It's currently implemented using E-prime, but there is no aplication to analyze its generated data. Right now, we are implementing it using C#, so we can take care of both requirements seamlessly. It's located in the [Raven](https://github.com/ishiikurisu/EEG/tree/master/src/raven) folder.
+We want to implement a version of the Raven's Progressive Matrices (RPM) test to apply on children; and generate not only _g_-factors but also electroencephalographic data from them, so we can analyze how children take decisions during these tests. It's currently implemented on E-prime and (almost) on C#, but there is no aplication to analyze its generated data. It's located in the [Raven](https://github.com/ishiikurisu/EEG/tree/master/src/raven) folder.
 
 Minor Projects
 --------------
