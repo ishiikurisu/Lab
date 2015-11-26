@@ -15,7 +15,8 @@ namespace Raven
         public Preparador()
         {
             //CaminhoAtual = @"C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\";
-            CaminhoAtual = @"..\..\";
+            //CaminhoAtual = @"..\..\";
+            CaminhoAtual = @".\";
         }
 
         public void CarregarTeste()

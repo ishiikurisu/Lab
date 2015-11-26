@@ -23,7 +23,7 @@ namespace Raven
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form6Ops f2 = new Form6Ops(DAL.Caminhos[comboOps.SelectedIndex]);
+            FormOps f2 = new FormOps(DAL.Caminhos[comboOps.SelectedIndex]);
             f2.Show();
             f2.StartTest();
             this.Hide();

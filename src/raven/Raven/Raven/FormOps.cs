@@ -6,18 +6,18 @@ using System.Windows.Forms;
 
 namespace Raven
 {
-    public partial class Form6Ops : Form
+    public partial class FormOps : Form
     {
         private Aplicador App { get; set; }
         private PictureBox[] Pics { get; set; }
         private int NoRodada { get; set; }
         private bool Respondeu { get; set; }
 
-        public Form6Ops()
+        public FormOps()
         {
             InitializeComponent();
-            Pics = new PictureBox[6];
-            this.KeyUp += new KeyEventHandler(this.Form6Ops_KeyUp);
+            Pics = new PictureBox[8];
+            this.KeyUp += new KeyEventHandler(this.FormOps_KeyUp);
 
             Pics[0] = picOp1;
             Pics[1] = picOp2;
@@ -25,9 +25,11 @@ namespace Raven
             Pics[3] = picOp4;
             Pics[4] = picOp5;
             Pics[5] = picOp6;
+            Pics[6] = picOp7;
+            Pics[7] = picOp8;
         }
 
-        public Form6Ops(string nomeTeste) : this()
+        public FormOps(string nomeTeste) : this()
         {
             this.App = new Aplicador(nomeTeste);
         }
@@ -60,13 +62,43 @@ namespace Raven
 
         private void DefinirTela(string[] imagens)
         {
+            int no_ops = AjustarOpcoes(imagens.Length-1);
+
             picMain.Image = Image.FromFile(imagens[0]);
-            for (int i = 1; i <= 6; ++i)
+            for (int i = 1; i <= no_ops; ++i)
             {
                 Pics[i - 1].Image = Image.FromFile(imagens[i]);
             }
 
             Show();
+        }
+
+        private int AjustarOpcoes(int length)
+        {
+            int width = 0;
+            int left = 0;
+            bool enabled = true;
+
+            switch (length)
+            {
+                case 6:
+                    width = 463;
+                    left = 65;
+                    enabled = false;
+                    break;
+
+                case 8:
+                    width = 600;
+                    left = 131;
+                    enabled = true;
+                    break;
+            }
+
+            Width = width;
+            picMain.Location = new Point(left, 12);
+            picOp7.Enabled = picOp7.Visible = enabled;
+            picOp8.Enabled = picOp8.Visible = enabled;
+            return length;
         }
 
         private void ReceberResposta(int resposta)
@@ -86,7 +118,7 @@ namespace Raven
             return "Respondido";
         }
 
-        private void Form6Ops_KeyUp(object sender, KeyEventArgs e)
+        private void FormOps_KeyUp(object sender, KeyEventArgs e)
         {
             int resposta = 0;
 
@@ -109,6 +141,12 @@ namespace Raven
                     break;
                 case "NumPad6":
                     resposta = 6;
+                    break;
+                case "NumPad7":
+                    resposta = 7;
+                    break;
+                case "Numpad8":
+                    resposta = 8;
                     break;
             }
 
@@ -154,6 +192,18 @@ namespace Raven
         {
             Respondeu = true;
             App.OuvirResposta(NoRodada, 6);
+        }
+
+        private void picOp7_Click(object sender, EventArgs e)
+        {
+            Respondeu = true;
+            App.OuvirResposta(NoRodada, 7);
+        }
+
+        private void picOp8_Click(object sender, EventArgs e)
+        {
+            Respondeu = true;
+            App.OuvirResposta(NoRodada, 8);
         }
     }
 }
