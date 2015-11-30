@@ -1,6 +1,6 @@
 ﻿# Description
 
-This folder contains the code made by [me](https://github.com/ishiikurisu) while working as an intern for Neurosciences and behaviour laboratory at UnB.
+This folder contains the code made by [me](https://github.com/ishiikurisu) while working as an intern for Neurosciences and behavior laboratory at UnB.
 
 # Projects
 
@@ -21,7 +21,7 @@ The objective of this project is to implement a version of the Stop Signal test 
 Raven's Progressive Matrices
 ----------------------------
 
-We want to implement a version of the Raven's Progressive Matrices (RPM) test to apply on children; and generate not only _g_-factors but also electroencephalographic data from them, so we can analyze how children take decisions during these tests. It's currently implemented on E-prime and (almost) on C#, but there is no aplication to analyze its generated data. It's located in the [Raven](https://github.com/ishiikurisu/EEG/tree/master/src/raven) folder.
+We want to implement a version of the Raven's Progressive Matrices (RPM) test to apply on children; and generate not only _g_-factors but also electroencephalographic data from them, so we can analyze how children take decisions during these tests. It's currently implemented on E-prime and (almost) on C#, but there is no application to analyze its generated data. It's located in the [Raven](https://github.com/ishiikurisu/EEG/tree/master/src/raven) folder.
 
 Minor Projects
 --------------
