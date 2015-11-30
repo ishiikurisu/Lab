@@ -5,8 +5,8 @@
 #include <map>
 #include <vector>
 
+#include "edf_spec.hpp"
 #include "auxiliar.hpp"
-#include "edfP_spec.hpp"
 #include "record.hpp"
 #include "annotations.hpp"
 
@@ -58,8 +58,8 @@ void EDFP::read_header(FILE* inlet)
 	size_t aux_number;
 	size_t bytes;
 
-	it = EDFP_SPECS.begin();
-	while ((*it).compare("label") != 0)
+
+	for (it = EDFP_SPECS.begin(); (*it).compare("label") != 0; ++it)
 	{
 		bytes = EDFP_SPEC[*it];
 		data = read_to_string(inlet, bytes);
@@ -79,8 +79,6 @@ void EDFP::read_header(FILE* inlet)
 			sscanf(data.c_str(), "%d", &aux_number);
 			number_signals = (size_t) aux_number;
 		}
-
-		++it;
 	}
 
 	// allocate memory
@@ -90,7 +88,7 @@ void EDFP::read_header(FILE* inlet)
 		data_records.push_back(DATA_RECORD());
 	}
 
-	while (it != EDFP_SPECS.end())
+	for (; it != EDFP_SPECS.end(); ++it)
 	{
 		bytes = EDFP_SPEC[*it];
 		for (size_t i = 0; i < number_signals; ++i)
@@ -103,7 +101,6 @@ void EDFP::read_header(FILE* inlet)
 				data_records[i].number_samples = (size_t) aux_number;
 			}
 		}
-		++it;
 	}
 }
 

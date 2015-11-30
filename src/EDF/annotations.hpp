@@ -1,9 +1,8 @@
-#ifdef EDFH_P 
+#ifdef EDFH_P
 #ifndef ANNOTATION_H
 #define ANNOTATION_H 0
 #include <vector>
 #include <map>
-#include 
 
 class ANNOTATION
 {

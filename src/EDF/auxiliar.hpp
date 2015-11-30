@@ -17,11 +17,8 @@ std::string read_to_string(FILE* stream, size_t number_bytes)
 
 size_t write_from_string(FILE* stream, std::string outlet)
 {
-	const char* to_be_written = outlet.c_str();
 	size_t written_chars = outlet.length();
-
-	fwrite(to_be_written, sizeof(char),	outlet.length(), stream);
-
+	fwrite(outlet.c_str(), sizeof(char), written_chars, stream);
 	return written_chars;
 }
 
@@ -87,7 +84,7 @@ std::string read_line_from_file(FILE* stream)
 		just_read = fgetc(stream);
 		while (just_read != '\n' && !feof(stream))
 		{
-			outlet += just_read;		
+			outlet += just_read;
 			just_read = fgetc(stream);
 		}
 	}
