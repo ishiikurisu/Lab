@@ -1,4 +1,4 @@
-oapath = -I".."
+oapath = -I"../.."
 options = -lm -O2 -ansi -pipe -Wall
 
 some2ascii.exe: some2ascii.c some2ascii.h
