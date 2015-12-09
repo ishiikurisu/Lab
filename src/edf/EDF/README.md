@@ -9,7 +9,7 @@ From the `edf.hpp` file,
 ``` C++
 class EDF
 {
-	...
+	/*...*/
 public:
 	EDF(void) {};
 	~EDF(void) {};

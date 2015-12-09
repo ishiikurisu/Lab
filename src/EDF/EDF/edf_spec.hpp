@@ -5,6 +5,7 @@
 
 std::map<std::string, size_t> EDF_SPEC;
 std::vector<std::string> EDF_SPECS;
+std::string EDF_PLUS = "EDF+";
 
 void EDF_SETUP()
 {

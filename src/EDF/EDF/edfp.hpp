@@ -12,6 +12,8 @@
 
 class EDFP
 {
+	void read_header(FILE*);
+	void read_data_record(FILE*);
 	std::map<std::string, std::string> header;
 	std::vector<DATA_RECORD> data_records;
 	std::vector<std::string> labels;
@@ -19,8 +21,7 @@ class EDFP
 	size_t number_signals;
 	size_t number_data_records;
 	float duration;
-	void read_header(FILE*);
-	void read_data_record(FILE*);
+	bool isEDFP;
 
 public:
 	EDFP(void) {};
@@ -67,6 +68,10 @@ void EDFP::read_header(FILE* inlet)
 
 		if ((*it).compare("reserved") == 0) {
 			// analize if it is EDF+ or EDF
+			if (match(data.c_str(), EDF_PLUS.c_str()))
+				isEDFP = true;
+			else
+				isEDFP = false;
 		}
 		else if ((*it).compare("datarecords") == 0) {
 			sscanf(data.c_str(), "%d", &aux_number);

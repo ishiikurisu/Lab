@@ -91,3 +91,13 @@ std::string read_line_from_file(FILE* stream)
 
 	return outlet;
 }
+
+bool match(const char *s, const char *t)
+{
+	while (*s && *t)
+		if (*s != *t)
+			return false;
+		else
+			++s, ++t;
+	return true;
+}
