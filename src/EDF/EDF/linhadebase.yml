@@ -9,302 +9,302 @@ datarecords: 13
 duration: 1       
 numbersignals: 29  
 label:
-  1: EEG Fp1-A1      
-  2: EEG Fp2-A1      
-  3: EEG Fpz-A1      
-  4: EEG F3-A1       
-  5: EEG F4-A1       
-  6: EEG Fz-A1       
-  7: EEG C3-A1       
-  8: EEG C4-A1       
-  9: EEG Cz-A1       
-  10: EEG P3-A1       
-  11: EEG P4-A1       
-  12: EEG Pz-A1       
-  13: EEG O1-A1       
-  14: EEG O2-A1       
-  15: EEG Oz-A1       
-  16: EEG F7-A1       
-  17: EEG F8-A1       
-  18: EEG T3-A1       
-  19: EEG T4-A1       
-  20: EEG T5-A1       
-  21: EEG T6-A1       
-  22: EMG+            
-  23: EMG-            
-  24: RGP             
-  25: ECG             
-  26: DC              
-  27: EEG A2-A1       
-  28: EXT EXT         
-  29: EDF Annotations 
+- EEG Fp1-A1      
+- EEG Fp2-A1      
+- EEG Fpz-A1      
+- EEG F3-A1       
+- EEG F4-A1       
+- EEG Fz-A1       
+- EEG C3-A1       
+- EEG C4-A1       
+- EEG Cz-A1       
+- EEG P3-A1       
+- EEG P4-A1       
+- EEG Pz-A1       
+- EEG O1-A1       
+- EEG O2-A1       
+- EEG Oz-A1       
+- EEG F7-A1       
+- EEG F8-A1       
+- EEG T3-A1       
+- EEG T4-A1       
+- EEG T5-A1       
+- EEG T6-A1       
+- EMG+            
+- EMG-            
+- RGP             
+- ECG             
+- DC              
+- EEG A2-A1       
+- EXT EXT         
+- EDF Annotations 
 transducer:
-  1: AgAgCl                                                                          
-  2: AgAgCl                                                                          
-  3: AgAgCl                                                                          
-  4: AgAgCl                                                                          
-  5: AgAgCl                                                                          
-  6: AgAgCl                                                                          
-  7: AgAgCl                                                                          
-  8: AgAgCl                                                                          
-  9: AgAgCl                                                                          
-  10: AgAgCl                                                                          
-  11: AgAgCl                                                                          
-  12: AgAgCl                                                                          
-  13: AgAgCl                                                                          
-  14: AgAgCl                                                                          
-  15: AgAgCl                                                                          
-  16: AgAgCl                                                                          
-  17: AgAgCl                                                                          
-  18: AgAgCl                                                                          
-  19: AgAgCl                                                                          
-  20: AgAgCl                                                                          
-  21: AgAgCl                                                                          
-  22: AgAgCl                                                                          
-  23: AgAgCl                                                                          
-  24: AgAgCl                                                                          
-  25: AgAgCl                                                                          
-  26: AgAgCl                                                                          
-  27: AgAgCl                                                                          
-  28:                                                                                 
-  29:                                                                                 
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+-                                                                                 
+-                                                                                 
 physicaldimension:
-  1: uV      
-  2: uV      
-  3: uV      
-  4: uV      
-  5: uV      
-  6: uV      
-  7: uV      
-  8: uV      
-  9: uV      
-  10: uV      
-  11: uV      
-  12: uV      
-  13: uV      
-  14: uV      
-  15: uV      
-  16: uV      
-  17: uV      
-  18: uV      
-  19: uV      
-  20: uV      
-  21: uV      
-  22: uV      
-  23: uV      
-  24: uV      
-  25: uV      
-  26: uV      
-  27: uV      
-  28:         
-  29:         
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+-         
+-         
 physicalminimum:
-  1: -6580   
-  2: -6580   
-  3: -6580   
-  4: -6580   
-  5: -6580   
-  6: -6580   
-  7: -6580   
-  8: -6580   
-  9: -6580   
-  10: -6580   
-  11: -6580   
-  12: -6580   
-  13: -6580   
-  14: -6580   
-  15: -6580   
-  16: -6580   
-  17: -6580   
-  18: -6580   
-  19: -6580   
-  20: -6580   
-  21: -6580   
-  22: -8192   
-  23: -8192   
-  24: -6580   
-  25: -6580   
-  26: -32768  
-  27: -6580   
-  28: -10     
-  29: -1      
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -8192   
+- -8192   
+- -6580   
+- -6580   
+- -32768  
+- -6580   
+- -10     
+- -1      
 physicalmaximum:
-  1: 6580    
-  2: 6580    
-  3: 6580    
-  4: 6580    
-  5: 6580    
-  6: 6580    
-  7: 6580    
-  8: 6580    
-  9: 6580    
-  10: 6580    
-  11: 6580    
-  12: 6580    
-  13: 6580    
-  14: 6580    
-  15: 6580    
-  16: 6580    
-  17: 6580    
-  18: 6580    
-  19: 6580    
-  20: 6580    
-  21: 6580    
-  22: 8192    
-  23: 8192    
-  24: 6580    
-  25: 6580    
-  26: 32767   
-  27: 6580    
-  28: 10      
-  29: 1       
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 8192    
+- 8192    
+- 6580    
+- 6580    
+- 32767   
+- 6580    
+- 10      
+- 1       
 digitalminimum:
-  1: -32768  
-  2: -32768  
-  3: -32768  
-  4: -32768  
-  5: -32768  
-  6: -32768  
-  7: -32768  
-  8: -32768  
-  9: -32768  
-  10: -32768  
-  11: -32768  
-  12: -32768  
-  13: -32768  
-  14: -32768  
-  15: -32768  
-  16: -32768  
-  17: -32768  
-  18: -32768  
-  19: -32768  
-  20: -32768  
-  21: -32768  
-  22: -32768  
-  23: -32768  
-  24: -32768  
-  25: -32768  
-  26: -32768  
-  27: -32768  
-  28: -10     
-  29: -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -10     
+- -32768  
 digitalmaximum:
-  1: 32767   
-  2: 32767   
-  3: 32767   
-  4: 32767   
-  5: 32767   
-  6: 32767   
-  7: 32767   
-  8: 32767   
-  9: 32767   
-  10: 32767   
-  11: 32767   
-  12: 32767   
-  13: 32767   
-  14: 32767   
-  15: 32767   
-  16: 32767   
-  17: 32767   
-  18: 32767   
-  19: 32767   
-  20: 32767   
-  21: 32767   
-  22: 32767   
-  23: 32767   
-  24: 32767   
-  25: 32767   
-  26: 32767   
-  27: 32767   
-  28: 10      
-  29: 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 10      
+- 32767   
 prefiltering:
-  1: HP:0.50Hz LP:100Hz NF:On                                                        
-  2: HP:0Hz LP:0Hz NF:Off                                                            
-  3: HP:0Hz LP:0Hz NF:Off                                                            
-  4: HP:0Hz LP:0Hz NF:Off                                                            
-  5: HP:0Hz LP:0Hz NF:Off                                                            
-  6: HP:0Hz LP:0Hz NF:Off                                                            
-  7: HP:0Hz LP:0Hz NF:Off                                                            
-  8: HP:0Hz LP:0Hz NF:Off                                                            
-  9: HP:0Hz LP:0Hz NF:Off                                                            
-  10: HP:0Hz LP:0Hz NF:Off                                                            
-  11: HP:0Hz LP:0Hz NF:Off                                                            
-  12: HP:0Hz LP:0Hz NF:Off                                                            
-  13: HP:0Hz LP:0Hz NF:Off                                                            
-  14: HP:0Hz LP:0Hz NF:Off                                                            
-  15: HP:0Hz LP:0Hz NF:Off                                                            
-  16: HP:0Hz LP:0Hz NF:Off                                                            
-  17: HP:0Hz LP:0Hz NF:Off                                                            
-  18: HP:0Hz LP:0Hz NF:Off                                                            
-  19: HP:0Hz LP:0Hz NF:Off                                                            
-  20: HP:0Hz LP:0Hz NF:Off                                                            
-  21: HP:0Hz LP:0Hz NF:Off                                                            
-  22: HP:0Hz LP:0Hz NF:Off                                                            
-  23: HP:0Hz LP:0Hz NF:Off                                                            
-  24: HP:0Hz LP:0Hz NF:Off                                                            
-  25: HP:0Hz LP:0Hz NF:Off                                                            
-  26: HP:0Hz LP:0Hz NF:Off                                                            
-  27: HP:0Hz LP:0Hz NF:Off                                                            
-  28: HP:0Hz LP:0Hz NF:Off                                                            
-  29:                                                                                 
+- HP:0.50Hz LP:100Hz NF:On                                                        
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+-                                                                                 
 samplesrecord:
-  1: 200     
-  2: 200     
-  3: 200     
-  4: 200     
-  5: 200     
-  6: 200     
-  7: 200     
-  8: 200     
-  9: 200     
-  10: 200     
-  11: 200     
-  12: 200     
-  13: 200     
-  14: 200     
-  15: 200     
-  16: 200     
-  17: 200     
-  18: 200     
-  19: 200     
-  20: 200     
-  21: 200     
-  22: 200     
-  23: 200     
-  24: 200     
-  25: 200     
-  26: 200     
-  27: 200     
-  28: 200     
-  29: 120     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 120     
 chanreserved:
-  1:                                 
-  2:                                 
-  3:                                 
-  4:                                 
-  5:                                 
-  6:                                 
-  7:                                 
-  8:                                 
-  9:                                 
-  10:                                 
-  11:                                 
-  12:                                 
-  13:                                 
-  14:                                 
-  15:                                 
-  16:                                 
-  17:                                 
-  18:                                 
-  19:                                 
-  20:                                 
-  21:                                 
-  22:                                 
-  23:                                 
-  24:                                 
-  25:                                 
-  26:                                 
-  27:                                 
-  28:                                 
-  29:                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 

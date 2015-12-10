@@ -20,6 +20,7 @@ class EDFP
 	ANNOTATION annotations;
 	size_t number_signals;
 	size_t number_data_records;
+	size_t annotations_channel;
 	double duration;
 	bool isEDFP;
 
@@ -37,7 +38,7 @@ public:
 	8: startdate of recording (dd.mm.yy)
 	8: starttime of recording (hh.mm.ss)
 	8: number of bytes in header record
-	44: reserved (not present in EDF+)
+	44: reserved
 	8: number of data records
 	8: duration of a data record in seconds
 	4: ns = number of signals in data record
@@ -58,9 +59,9 @@ void EDFP::read_header(FILE* inlet)
 	std::string data;
 	size_t aux_number;
 	size_t bytes;
+	size_t x;
 
-
-	for (it = EDF_SPECS.begin(); (*it).compare("label") != 0; ++it)
+	for (it = EDF_SPECS.begin(), x = 0; (*it).compare("label") != 0; ++it, ++x)
 	{
 		bytes = EDF_SPEC[*it];
 		data = read_to_string(inlet, bytes);
@@ -71,6 +72,7 @@ void EDFP::read_header(FILE* inlet)
 		if ((*it).compare("reserved") == 0) {
 			// analize if it is EDF+ or EDF
 			isEDFP = (match(data.c_str(), EDF_PLUS.c_str()))? true : false;
+			annotations_channel = x;
 			printf("%s", (isEDFP)? "# EDF+" : "# EDF");
 		}
 		else if ((*it).compare("datarecords") == 0) {
@@ -78,7 +80,7 @@ void EDFP::read_header(FILE* inlet)
 			number_data_records = (size_t) aux_number;
 		}
 		else if ((*it).compare("duration") == 0) {
-			sscanf(data.c_str(), "%f", &duration);
+			sscanf(data.c_str(), "%lf", &duration);
 		}
 		else if ((*it).compare("numbersignals") == 0) {
 			sscanf(data.c_str(), "%d", &aux_number);
@@ -102,7 +104,7 @@ void EDFP::read_header(FILE* inlet)
 		{
 			data = read_to_string(inlet, bytes);
 			data_records[i].header[*it] = data;
-			printf("  %d: %s\n", i+1, data.c_str());
+			printf("- %s\n", data.c_str());
 
 			if ((*it).compare("samplesrecord") == 0) {
 				sscanf(data.c_str(), "%d", &aux_number);
@@ -121,7 +123,9 @@ void EDFP::read_data_record(FILE* inlet)
 {
 	for (size_t i = 0; i < number_signals; ++i)
 	{
-		/* add EDF+ annotations case */
+		// if (i == annotations_channel)
+		//   annotations.read_annotation(inlet);
+		// else
 		data_records[i].read_record(inlet, duration);
 	}
 }

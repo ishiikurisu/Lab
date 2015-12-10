@@ -32,7 +32,7 @@ void DATA_RECORD::read_record(FILE* inlet, size_t duration)
 
 void DATA_RECORD::write_record(FILE* outlet, size_t duration, size_t which)
 {
-	std::vector<short>::iterator it = record.begin();
+	std::vector<short>::iterator it;
 
 	for (it = record.begin(); it != record.end(); ++it)
 	{
