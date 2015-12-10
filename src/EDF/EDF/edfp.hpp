@@ -59,9 +59,8 @@ void EDFP::read_header(FILE* inlet)
 	std::string data;
 	size_t aux_number;
 	size_t bytes;
-	size_t x;
 
-	for (it = EDF_SPECS.begin(), x = 0; (*it).compare("label") != 0; ++it, ++x)
+	for (it = EDF_SPECS.begin(); (*it).compare("label") != 0; ++it)
 	{
 		bytes = EDF_SPEC[*it];
 		data = read_to_string(inlet, bytes);
@@ -72,7 +71,6 @@ void EDFP::read_header(FILE* inlet)
 		if ((*it).compare("reserved") == 0) {
 			// analize if it is EDF+ or EDF
 			isEDFP = (match(data.c_str(), EDF_PLUS.c_str()))? true : false;
-			annotations_channel = x;
 			printf("%s", (isEDFP)? "# EDF+" : "# EDF");
 		}
 		else if ((*it).compare("datarecords") == 0) {
@@ -110,6 +108,10 @@ void EDFP::read_header(FILE* inlet)
 				sscanf(data.c_str(), "%d", &aux_number);
 				data_records[i].number_samples = (size_t) aux_number;
 			}
+			else if (it->compare("label") == 0) {
+				if (match(data.c_str(), "EDF Annotations"))
+					annotations_channel = i;
+			}
 		}
 	}
 }
@@ -141,6 +143,7 @@ void EDFP::read_file(const char* input)
 
 	EDF_SETUP();
 	read_header(inlet);
+	printf("# annotations channel: %d\n", annotations_channel+1);
 	for (size_t k = 0; k < number_data_records; ++k)
 		read_data_record(inlet);
 
