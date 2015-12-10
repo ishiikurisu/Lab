@@ -49,23 +49,15 @@ void ANNOTATION::read_annotation(FILE* stream)
 	if (!is_annotation(stream))
 		return;
 
-	bit = fgetc(stream);
-	while (bit != 20)
-	{
+	for (bit = fgetc(stream); bit != 20; bit = fgetc(stream))
 		timestamp += bit;
-		bit = fgetc(stream);
-	}
 
-	bit = fgetc(stream);
-	while (bit != 0)
+	for (bit = fgetc(stream); bit != 0; bit = fgetc(stream))
 	{
-		bit = fgetc(stream);
-		while (bit != 20)
-			annotation += bit,
-			bit = fgetc(stream);
+		for (bit = fgetc(stream); bit != 20; bit = fgetc(stream))
+			annotation += bit;
 		annotations.push_back(build(timestamp, annotation));
 		annotation.clear();
-		bit = fgetc(stream);
 	}
 }
 

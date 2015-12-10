@@ -44,21 +44,16 @@ void DATA_RECORD::write_record(FILE* outlet, size_t duration, size_t which)
 std::vector<double> DATA_RECORD::get_translated_record()
 {
 	std::vector<double> result;
-	std::vector<short>::iterator it = record.begin();
+	std::vector<short>::iterator it;
 	long digitalmaximum = stol(header["digitalmaximum"]);
 	long digitalminimum = stol(header["digitalminimum"]);
 	long physicalmaximum = stol(header["physicalmaximum"]);
 	long physicalminimum = stol(header["physicalminimum"]);
-	double correct = (double)(digitalmaximum - digitalminimum) 
+	double correct = (double)(digitalmaximum - digitalminimum)
 		/ (double)(physicalmaximum - physicalminimum);
-	double to_append = -1.0;
-	
-	while (it != record.end())
-	{		
-		to_append = (*it) / correct;
-		result.push_back(to_append);
-		++it;
-	}
+
+	for (it = record.begin(); it != record.end(); ++it)
+		result.push_back((*it) / correct);
 
 	return result;
 }
