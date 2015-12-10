@@ -20,6 +20,7 @@ class EDFP
 	ANNOTATION annotations;
 	size_t number_signals;
 	size_t number_data_records;
+	size_t annotations_channel;
 	double duration;
 	bool isEDFP;
 
@@ -37,7 +38,7 @@ public:
 	8: startdate of recording (dd.mm.yy)
 	8: starttime of recording (hh.mm.ss)
 	8: number of bytes in header record
-	44: reserved (not present in EDF+)
+	44: reserved
 	8: number of data records
 	8: duration of a data record in seconds
 	4: ns = number of signals in data record
@@ -58,17 +59,21 @@ void EDFP::read_header(FILE* inlet)
 	std::string data;
 	size_t aux_number;
 	size_t bytes;
+	size_t x;
 
-
-	for (it = EDFP_SPECS.begin(); (*it).compare("label") != 0; ++it)
+	for (it = EDF_SPECS.begin(), x = 0; (*it).compare("label") != 0; ++it, ++x)
 	{
-		bytes = EDFP_SPEC[*it];
+		bytes = EDF_SPEC[*it];
 		data = read_to_string(inlet, bytes);
 		header[*it] = data;
+
+		printf("%s: %s", it->c_str(), data.c_str());
 
 		if ((*it).compare("reserved") == 0) {
 			// analize if it is EDF+ or EDF
 			isEDFP = (match(data.c_str(), EDF_PLUS.c_str()))? true : false;
+			annotations_channel = x;
+			printf("%s", (isEDFP)? "# EDF+" : "# EDF");
 		}
 		else if ((*it).compare("datarecords") == 0) {
 			sscanf(data.c_str(), "%d", &aux_number);
@@ -81,6 +86,7 @@ void EDFP::read_header(FILE* inlet)
 			sscanf(data.c_str(), "%d", &aux_number);
 			number_signals = (size_t) aux_number;
 		}
+		printf("\n");
 	}
 
 	// allocate memory
@@ -90,13 +96,15 @@ void EDFP::read_header(FILE* inlet)
 		data_records.push_back(DATA_RECORD());
 	}
 
-	for (; it != EDFP_SPECS.end(); ++it)
+	for (; it != EDF_SPECS.end(); ++it)
 	{
-		bytes = EDFP_SPEC[*it];
+		bytes = EDF_SPEC[*it];
+		printf("%s:\n", it->c_str());
 		for (size_t i = 0; i < number_signals; ++i)
 		{
 			data = read_to_string(inlet, bytes);
 			data_records[i].header[*it] = data;
+			printf("- %s\n", data.c_str());
 
 			if ((*it).compare("samplesrecord") == 0) {
 				sscanf(data.c_str(), "%d", &aux_number);
@@ -115,7 +123,9 @@ void EDFP::read_data_record(FILE* inlet)
 {
 	for (size_t i = 0; i < number_signals; ++i)
 	{
-		/* add EDF+ annotations case */
+		// if (i == annotations_channel)
+		//   annotations.read_annotation(inlet);
+		// else
 		data_records[i].read_record(inlet, duration);
 	}
 }
