@@ -144,7 +144,8 @@ void EDFP::read_file(const char* input)
 	for (size_t k = 0; k < number_data_records; ++k)
 		read_data_record(inlet);
 
-	fclose(inlet);
+	if (input == NULL)
+		fclose(inlet);
 }
 
 #endif
