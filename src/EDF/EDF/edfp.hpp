@@ -20,7 +20,7 @@ class EDFP
 	ANNOTATION annotations;
 	size_t number_signals;
 	size_t number_data_records;
-	float duration;
+	double duration;
 	bool isEDFP;
 
 public:
@@ -68,17 +68,14 @@ void EDFP::read_header(FILE* inlet)
 
 		if ((*it).compare("reserved") == 0) {
 			// analize if it is EDF+ or EDF
-			if (match(data.c_str(), EDF_PLUS.c_str()))
-				isEDFP = true;
-			else
-				isEDFP = false;
+			isEDFP = (match(data.c_str(), EDF_PLUS.c_str()))? true : false;
 		}
 		else if ((*it).compare("datarecords") == 0) {
 			sscanf(data.c_str(), "%d", &aux_number);
 			number_data_records = (size_t) aux_number;
 		}
 		else if ((*it).compare("duration") == 0) {
-			sscanf(data.c_str(), "%f", &duration);
+			sscanf(data.c_str(), "%lf", &duration);
 		}
 		else if ((*it).compare("numbersignals") == 0) {
 			sscanf(data.c_str(), "%d", &aux_number);
