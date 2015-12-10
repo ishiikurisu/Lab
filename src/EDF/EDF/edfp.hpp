@@ -60,7 +60,7 @@ void EDFP::read_header(FILE* inlet)
 	size_t aux_number;
 	size_t bytes;
 
-	for (it = EDF_SPECS.begin(); (*it).compare("label") != 0; ++it)
+	for (it = EDF_SPECS.begin(); it->compare("label") != 0; ++it)
 	{
 		bytes = EDF_SPEC[*it];
 		data = read_to_string(inlet, bytes);
@@ -68,19 +68,19 @@ void EDFP::read_header(FILE* inlet)
 
 		printf("%s: %s", it->c_str(), data.c_str());
 
-		if ((*it).compare("reserved") == 0) {
+		if (it->compare("reserved") == 0) {
 			// analize if it is EDF+ or EDF
 			isEDFP = (match(data.c_str(), EDF_PLUS.c_str()))? true : false;
 			printf("%s", (isEDFP)? "# EDF+" : "# EDF");
 		}
-		else if ((*it).compare("datarecords") == 0) {
+		else if (it->compare("datarecords") == 0) {
 			sscanf(data.c_str(), "%d", &aux_number);
 			number_data_records = (size_t) aux_number;
 		}
-		else if ((*it).compare("duration") == 0) {
+		else if (it->compare("duration") == 0) {
 			sscanf(data.c_str(), "%lf", &duration);
 		}
-		else if ((*it).compare("numbersignals") == 0) {
+		else if (it->compare("numbersignals") == 0) {
 			sscanf(data.c_str(), "%d", &aux_number);
 			number_signals = (size_t) aux_number;
 		}
@@ -104,11 +104,11 @@ void EDFP::read_header(FILE* inlet)
 			data_records[i].header[*it] = data;
 			printf("- %s\n", data.c_str());
 
-			if ((*it).compare("samplesrecord") == 0) {
+			if (it->compare("samplesrecord") == 0) {
 				sscanf(data.c_str(), "%d", &aux_number);
 				data_records[i].number_samples = (size_t) aux_number;
 			}
-			else if (it->compare("label") == 0) {
+			else if (it->compare("label") == 0 && isEDFP) {
 				if (match(data.c_str(), "EDF Annotations"))
 					annotations_channel = i;
 			}
@@ -125,27 +125,24 @@ void EDFP::read_data_record(FILE* inlet)
 {
 	for (size_t i = 0; i < number_signals; ++i)
 	{
-		// if (i == annotations_channel)
-		//   annotations.read_annotation(inlet);
-		// else
-		data_records[i].read_record(inlet, duration);
+		if (i == annotations_channel)
+		 	annotations.read_annotation(inlet);
+		else
+			data_records[i].read_record(inlet, duration);
 	}
 }
 
 void EDFP::read_file(const char* input)
 {
-	FILE* inlet = NULL;
-
-	if (input == NULL)
-		inlet = stdin;
-	else
-		inlet = fopen(input, "rb");
+	FILE* inlet = (input == NULL)? stdin : fopen(input, "rb");
 
 	EDF_SETUP();
 	read_header(inlet);
 	printf("# annotations channel: %d\n", annotations_channel+1);
 	for (size_t k = 0; k < number_data_records; ++k)
 		read_data_record(inlet);
+
+	printf("--- # Annotations\n%s\n...\n", annotations.get_annotations());
 
 	if (input == NULL)
 		fclose(inlet);
