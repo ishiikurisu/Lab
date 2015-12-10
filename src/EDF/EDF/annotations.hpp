@@ -1,4 +1,3 @@
-#ifdef EDFH_P
 #ifndef ANNOTATION_H
 #define ANNOTATION_H 0
 #include <vector>
@@ -11,10 +10,9 @@ class ANNOTATION
 	size_t size;
 
 public:
-	ANNOTATION();
-	~ANNOTATION();
-	void read_annotation();
+	ANNOTATION() { };
+	~ANNOTATION() { } ;
+	void read_annotation() { } ;
 };
 
-#endif
 #endif

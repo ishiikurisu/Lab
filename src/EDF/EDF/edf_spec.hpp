@@ -1,7 +1,7 @@
 #include <map>
 #include <vector>
 #include <string>
-#include "auxiliar.h"
+#include "auxiliar.hpp"
 
 std::map<std::string, size_t> EDF_SPEC;
 std::vector<std::string> EDF_SPECS;

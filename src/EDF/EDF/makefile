@@ -11,4 +11,7 @@ edf2yaml.exe: edf2yaml.cpp $(headers)
 edf2csv.exe: edf2csv.cpp $(headers)
 	g++ edf2csv.cpp -o edf2csv.exe $(options)
 
+edfp: edfp.hpp edfp.cpp
+	g++ edfp.cpp -o edfp.exe $(options)
+
 all: $(exec)

@@ -20,7 +20,7 @@ class EDFP
 	ANNOTATION annotations;
 	size_t number_signals;
 	size_t number_data_records;
-	float duration;
+	double duration;
 	bool isEDFP;
 
 public:
@@ -60,18 +60,18 @@ void EDFP::read_header(FILE* inlet)
 	size_t bytes;
 
 
-	for (it = EDFP_SPECS.begin(); (*it).compare("label") != 0; ++it)
+	for (it = EDF_SPECS.begin(); (*it).compare("label") != 0; ++it)
 	{
-		bytes = EDFP_SPEC[*it];
+		bytes = EDF_SPEC[*it];
 		data = read_to_string(inlet, bytes);
 		header[*it] = data;
 
+		printf("%s: %s", it->c_str(), data.c_str());
+
 		if ((*it).compare("reserved") == 0) {
 			// analize if it is EDF+ or EDF
-			if (match(data.c_str(), EDF_PLUS.c_str()))
-				isEDFP = true;
-			else
-				isEDFP = false;
+			isEDFP = (match(data.c_str(), EDF_PLUS.c_str()))? true : false;
+			printf("%s", (isEDFP)? "# EDF+" : "# EDF");
 		}
 		else if ((*it).compare("datarecords") == 0) {
 			sscanf(data.c_str(), "%d", &aux_number);
@@ -84,6 +84,7 @@ void EDFP::read_header(FILE* inlet)
 			sscanf(data.c_str(), "%d", &aux_number);
 			number_signals = (size_t) aux_number;
 		}
+		printf("\n");
 	}
 
 	// allocate memory
@@ -93,13 +94,15 @@ void EDFP::read_header(FILE* inlet)
 		data_records.push_back(DATA_RECORD());
 	}
 
-	for (; it != EDFP_SPECS.end(); ++it)
+	for (; it != EDF_SPECS.end(); ++it)
 	{
-		bytes = EDFP_SPEC[*it];
+		bytes = EDF_SPEC[*it];
+		printf("%s:\n", it->c_str());
 		for (size_t i = 0; i < number_signals; ++i)
 		{
 			data = read_to_string(inlet, bytes);
 			data_records[i].header[*it] = data;
+			printf("  %d: %s\n", i+1, data.c_str());
 
 			if ((*it).compare("samplesrecord") == 0) {
 				sscanf(data.c_str(), "%d", &aux_number);
