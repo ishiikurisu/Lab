@@ -60,7 +60,7 @@ namespace Raven
 
         private void MostrarResultado()
         {
-            Resultado R = new Resultado(App.CalcularResultado());
+            Resultado R = new Resultado(App.CalcularResultado(), App.NoRespostasCorretas);
             R.Show();
             Close();
         }

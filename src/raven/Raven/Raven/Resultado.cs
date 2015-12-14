@@ -20,6 +20,11 @@ namespace Raven
             lblResultado.Text = resultado;
         }
 
+        public Resultado(string resultado, int noRespostasCorretas) : this(resultado)
+        {
+            lblNoRespostasCorretas.Text = noRespostasCorretas.ToString();
+        }
+
         private void btnSair_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -30,6 +35,11 @@ namespace Raven
             Form1 f1 = new Form1();
             f1.Show();
             Close();
+        }
+
+        private void Resultado_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -119,6 +119,7 @@
             this.Controls.Add(this.lblTitulo);
             this.Name = "Resultado";
             this.Text = "Resultado";
+            this.Load += new System.EventHandler(this.Resultado_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -64,9 +64,8 @@ namespace Raven
                                        int idade)
         {
             string csvFileName = CaminhoAtual + nomeTeste + ".csv";
-
-
-            throw new NotImplementedException();
+            ExtratorCSV extrator = new ExtratorCSV(csvFileName);
+            return extrator.Relacionar(idade, noRespostasCorretas);
         }
 
         public string[] CarregarImagens(string test, string img, int noImgs)

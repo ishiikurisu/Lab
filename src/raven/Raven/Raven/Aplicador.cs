@@ -58,18 +58,7 @@ namespace Raven
 
         public string CalcularResultado()
         {
-            int resultado = NoRespostasCorretas;
-
-            try
-            {
-                resultado = DAL.CalcularResultado(NomeTeste, NoRespostasCorretas, Idade);
-            }
-            catch (Exception any)
-            {
-
-            }
-
-            return resultado.ToString();
+            return DAL.CalcularResultado(NomeTeste, NoRespostasCorretas, Idade).ToString();
         }
     }
 }
