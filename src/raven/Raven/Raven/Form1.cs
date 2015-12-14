@@ -23,7 +23,18 @@ namespace Raven
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FormOps f2 = new FormOps(DAL.Caminhos[comboOps.SelectedIndex]);
+            int idade;
+
+            try
+            {
+                idade = int.Parse(textIdade.Text);
+            }
+            catch (Exception any)
+            {
+                return;
+            }
+                
+            FormOps f2 = new FormOps(DAL.Caminhos[comboOps.SelectedIndex], idade);
             f2.Show();
             f2.StartTest();
             this.Hide();

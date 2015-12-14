@@ -10,9 +10,14 @@ namespace Raven
             InitializeComponent();
         }
 
-        public Resultado(int noRespostas) : this()
+        public Resultado(int resultado) : this()
         {
-            lblResultado.Text = noRespostas.ToString();
+            lblResultado.Text = resultado.ToString();
+        }
+
+        public Resultado(string resultado) : this()
+        {
+            lblResultado.Text = resultado;
         }
 
         private void btnSair_Click(object sender, EventArgs e)

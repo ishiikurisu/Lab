@@ -10,6 +10,7 @@ namespace Raven
         public string[] Imagens { get; private set; }
         public int NoRespostasCorretas { get; private set; }
         private List<double> Tempos { get; set; }
+        public int Idade { get; private set; }
 
         public Aplicador()
         {
@@ -21,6 +22,12 @@ namespace Raven
             this.NomeTeste = nomeTeste;
             DAL.CarregarOpcoes(nomeTeste);
             Imagens = DAL.ImagensPrincipais;
+            Idade = 25;
+        }
+
+        public Aplicador(string nomeTeste, int idade) : this(nomeTeste)
+        {
+            this.Idade = idade;
         }
 
         public string[] CarregarImagens(int rodada)
@@ -47,6 +54,22 @@ namespace Raven
         public void OuvirDuracao(int rodada, double tempo)
         {
             Tempos.Add(tempo);
+        }
+
+        public string CalcularResultado()
+        {
+            int resultado = NoRespostasCorretas;
+
+            try
+            {
+                resultado = DAL.CalcularResultado(NomeTeste, NoRespostasCorretas, Idade);
+            }
+            catch (Exception any)
+            {
+
+            }
+
+            return resultado.ToString();
         }
     }
 }

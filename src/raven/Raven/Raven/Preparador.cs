@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Raven
@@ -56,6 +57,16 @@ namespace Raven
             ImagensPrincipais = imgs.ToArray();
             Opcoes = ops.ToArray();
             Respostas = ans.ToArray();
+        }
+
+        internal int CalcularResultado(string nomeTeste, 
+                                       int noRespostasCorretas, 
+                                       int idade)
+        {
+            string csvFileName = CaminhoAtual + nomeTeste + ".csv";
+
+
+            throw new NotImplementedException();
         }
 
         public string[] CarregarImagens(string test, string img, int noImgs)

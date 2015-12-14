@@ -34,6 +34,11 @@ namespace Raven
             this.App = new Aplicador(nomeTeste);
         }
 
+        public FormOps(string nomeTeste, int idade) : this()
+        {
+            this.App = new Aplicador(nomeTeste, idade);
+        }
+
         public async void StartTest()
         {
             Stopwatch clock = new Stopwatch();
@@ -55,7 +60,7 @@ namespace Raven
 
         private void MostrarResultado()
         {
-            Resultado R = new Resultado(App.NoRespostasCorretas);
+            Resultado R = new Resultado(App.CalcularResultado());
             R.Show();
             Close();
         }
