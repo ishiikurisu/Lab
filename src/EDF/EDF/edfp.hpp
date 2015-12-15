@@ -151,8 +151,7 @@ void EDFP::read_file(const char* input)
 		read_data_record(inlet);
 
 	printf("--- # Annotations\n");
-	// printf("%s\n", annotations.get_annotations());
-	annotations.get_annotations();
+	printf("%s\n", annotations.get_annotations());
 	printf("...\n");
 
 	if (input == NULL) fclose(inlet);

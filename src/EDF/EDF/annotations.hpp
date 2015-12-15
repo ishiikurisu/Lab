@@ -10,9 +10,7 @@ class ANNOTATION
 {
 	std::map<std::string, std::string> header;
 	std::vector<std::string> annotations;
-	size_t size;
-	bool is_annotation(FILE*);
-	std::string build(std::string, std::string);
+	std::string parse(std::string);
 
 public:
 	ANNOTATION() { };
@@ -26,16 +24,26 @@ public:
 * PRIVATE METHODS *
 ******************/
 
-bool ANNOTATION::is_annotation(FILE *stream)
+std::string ANNOTATION::parse(std::string haystack)
 {
-	char preview = fgetc(stream);
-	ungetc(preview, stream);
-	return (preview == '+' || preview == '-')? true : false;
-}
+	std::string needles;
+	std::string needle;
+	std::string::iterator c;
 
-std::string ANNOTATION::build(std::string timestamp, std::string annotation)
-{
-	return timestamp + ": " + annotation;
+	for (c = haystack.begin(); c != haystack.end(); c++)
+	{
+		needle = std::string();
+		if ((*c) == '+' || (*c) == '-') {
+			while ( ((*c) != 0) && (c != haystack.end()) )
+			{
+				needle += *c;
+				c++;
+			}
+			needles += needle + "\n";
+		}
+	}
+
+	return needles;
 }
 
 /*****************
@@ -59,11 +67,9 @@ const char* ANNOTATION::get_annotations()
 
 	for (it = annotations.begin(); it != annotations.end(); ++it)
 	{
-		outlet = outlet + (*it);
-		// outlet += "\n";
+		outlet = outlet + parse(*it);
 	}
 
-	std::cout << outlet << std::endl;
 	return outlet.c_str();
 }
 
