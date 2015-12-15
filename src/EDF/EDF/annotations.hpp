@@ -1,5 +1,6 @@
 #ifndef ANNOTATION_H
 #define ANNOTATION_H 0
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
@@ -18,6 +19,7 @@ public:
 	~ANNOTATION() { } ;
 	void read_annotation(FILE*);
 	const char* get_annotations();
+	size_t number_samples;
 };
 
 /******************
@@ -42,23 +44,12 @@ std::string ANNOTATION::build(std::string timestamp, std::string annotation)
 
 void ANNOTATION::read_annotation(FILE* stream)
 {
-	char bit;
-	std::string timestamp;
 	std::string annotation;
 
-	if (!is_annotation(stream))
-		return;
-
-	for (bit = fgetc(stream); bit != 20; bit = fgetc(stream))
-		timestamp += bit;
-
-	for (bit = fgetc(stream); bit != 0; bit = fgetc(stream))
-	{
-		for (bit = fgetc(stream); bit != 20; bit = fgetc(stream))
-			annotation += bit;
-		annotations.push_back(build(timestamp, annotation));
-		annotation.clear();
-	}
+	for (size_t i = 0; i < 2*number_samples; ++i)
+		annotation += fgetc(stream);
+	
+	annotations.push_back(annotation);
 }
 
 const char* ANNOTATION::get_annotations()
@@ -72,6 +63,7 @@ const char* ANNOTATION::get_annotations()
 		outlet += "\n";
 	}
 
+	std::cout << outlet << std::endl;
 	return outlet.c_str();
 }
 

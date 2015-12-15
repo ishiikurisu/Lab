@@ -25,7 +25,7 @@ class EDFP
 	bool isEDFP;
 
 public:
-	EDFP(void) {};
+	EDFP(void);
 	~EDFP(void) {};
 	void read_file(const char*);
 	friend class DATA_RECORD;
@@ -53,6 +53,14 @@ public:
 	ns * 8: ns * # of samples in each data record
 	ns * 32: ns * reserved
 */
+
+
+EDFP::EDFP()
+{
+	annotations_channel = (size_t) -1;
+	isEDFP = false;
+}
+
 void EDFP::read_header(FILE* inlet)
 {
 	std::vector<std::string>::iterator it;
@@ -90,7 +98,6 @@ void EDFP::read_header(FILE* inlet)
 	// allocate memory
 	for (size_t r = 0; r < number_signals; ++r)
 	{
-		/* add EDF+ annotations case */
 		data_records.push_back(DATA_RECORD());
 	}
 
@@ -106,7 +113,9 @@ void EDFP::read_header(FILE* inlet)
 
 			if (it->compare("samplesrecord") == 0) {
 				sscanf(data.c_str(), "%d", &aux_number);
-				data_records[i].number_samples = (size_t) aux_number;
+				((i == annotations_channel)? \
+				annotations.number_samples : data_records[i].number_samples) \
+				= (size_t) aux_number;
 			}
 			else if (it->compare("label") == 0 && isEDFP) {
 				if (match(data.c_str(), "EDF Annotations"))
@@ -138,11 +147,13 @@ void EDFP::read_file(const char* input)
 
 	EDF_SETUP();
 	read_header(inlet);
-	printf("# annotations channel: %d\n", annotations_channel+1);
-	for (size_t k = 0; k < number_data_records; ++k)
+	for (size_t c = 0; c < number_data_records; c++)
 		read_data_record(inlet);
 
-	printf("--- # Annotations\n%s\n...\n", annotations.get_annotations());
+	printf("--- # Annotations\n");
+	// printf("%s\n", annotations.get_annotations());
+	annotations.get_annotations();
+	printf("...\n");
 
 	if (input == NULL) fclose(inlet);
 }
