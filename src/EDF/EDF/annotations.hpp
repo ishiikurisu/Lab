@@ -10,7 +10,9 @@ class ANNOTATION
 {
 	std::map<std::string, std::string> header;
 	std::vector<std::string> annotations;
+	std::string yaml(std::string);
 	std::string parse(std::string);
+	std::string format(std::string);
 
 public:
 	ANNOTATION() { };
@@ -23,6 +25,21 @@ public:
 /******************
 * PRIVATE METHODS *
 ******************/
+
+std::string ANNOTATION::yaml(std::string inlet)
+{
+	std::string outlet = "- ";
+	std::string timestamp = "";
+	std::string duration = "";
+	std::string notes;
+	std::string note = "";
+	std::string::iterator c;
+
+	for (c = inlet.begin(); c != inlet.end(); c++)
+		outlet.push_back(((*c) == 20 || (*c) == 21)? ' ' : *c);
+	
+	return outlet;
+}
 
 std::string ANNOTATION::parse(std::string haystack)
 {
@@ -46,6 +63,18 @@ std::string ANNOTATION::parse(std::string haystack)
 	return needles;
 }
 
+std::string ANNOTATION::format(std::string inlet)
+{
+	std::vector<std::string> each = split(inlet, '\n');
+	std::vector<std::string>::iterator it;
+	std::string outlet;
+
+	for (it = each.begin(); it != each.end(); ++it)
+		outlet += yaml(*it) + "\n";
+
+	return outlet;
+}
+
 /*****************
 * PUBLIC METHODS *
 *****************/
@@ -66,11 +95,9 @@ const char* ANNOTATION::get_annotations()
 	std::vector<std::string>::iterator it;
 
 	for (it = annotations.begin(); it != annotations.end(); ++it)
-	{
 		outlet = outlet + parse(*it);
-	}
 
-	return outlet.c_str();
+	return format(outlet).c_str();
 }
 
 #endif
