@@ -60,7 +60,7 @@ const char* ANNOTATION::get_annotations()
 	for (it = annotations.begin(); it != annotations.end(); ++it)
 	{
 		outlet = outlet + (*it);
-		outlet += "\n";
+		// outlet += "\n";
 	}
 
 	std::cout << outlet << std::endl;
