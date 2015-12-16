@@ -114,8 +114,8 @@ void EDFP::read_header(FILE* inlet)
 			if (it->compare("samplesrecord") == 0) {
 				sscanf(data.c_str(), "%d", &aux_number);
 				((i == annotations_channel)? \
-				annotations.number_samples : data_records[i].number_samples) \
-				= (size_t) aux_number;
+					annotations.number_samples : data_records[i].number_samples) \
+					= (size_t) aux_number;
 			}
 			else if (it->compare("label") == 0 && isEDFP) {
 				if (match(data.c_str(), "EDF Annotations"))
