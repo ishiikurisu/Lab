@@ -1,1 +1,5 @@
-- [ ] Discover how to set up the 'sampling' and the 'units' fields when writing the `*.csv` file.
+- [ ] Write documentation for this module.
+- [ ] Comment the code.
+- [ ] Blackbox and whitebox test the `edfp.hpp` header.
+- [ ] Create an independent version of the `edfp.hpp` header.
+- [ ] Bonus cookie: create an `edfp.dll`.
