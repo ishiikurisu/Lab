@@ -47,11 +47,8 @@ std::string ANNOTATION::parse(std::string haystack)
 	{
 		needle = std::string();
 		if ((*c) == '+' || (*c) == '-') {
-			while ( ((*c) != 0) && (c != haystack.end()) )
-			{
+			for ( ; ((*c) != 0) && (c != haystack.end()); c++)
 				needle += *c;
-				c++;
-			}
 			needles += needle + "\n";
 		}
 	}
@@ -75,6 +72,10 @@ std::string ANNOTATION::format(std::string inlet)
 * PUBLIC METHODS *
 *****************/
 
+/**
+ * This method reads a whole EDF annotations chunk from the
+ * file and append it to a vector that contains every chunk
+ */
 void ANNOTATION::read_annotation(FILE* stream)
 {
 	std::string annotation;
