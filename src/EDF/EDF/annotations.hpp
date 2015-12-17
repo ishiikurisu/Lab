@@ -29,15 +29,11 @@ public:
 std::string ANNOTATION::yaml(std::string inlet)
 {
 	std::string outlet = "- ";
-	std::string timestamp = "";
-	std::string duration = "";
-	std::string notes;
-	std::string note = "";
 	std::string::iterator c;
 
 	for (c = inlet.begin(); c != inlet.end(); c++)
 		outlet.push_back(((*c) == 20 || (*c) == 21)? ' ' : *c);
-	
+
 	return outlet;
 }
 
@@ -85,7 +81,7 @@ void ANNOTATION::read_annotation(FILE* stream)
 
 	for (size_t i = 0; i < 2*number_samples; ++i)
 		annotation += fgetc(stream);
-	
+
 	annotations.push_back(annotation);
 }
 
