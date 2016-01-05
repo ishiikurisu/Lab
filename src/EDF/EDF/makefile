@@ -14,4 +14,7 @@ edf2csv.exe: edf2csv.cpp $(headers)
 edfp: edfp.hpp edfp.cpp
 	g++ edfp.cpp -o edfp.exe $(options)
 
+edfp2csv.exe: edfp.hpp
+	g++ edfp2csv.cpp -o edfp2csv.exe $(options)
+
 all: $(exec)

@@ -28,6 +28,7 @@ public:
 	EDFP(void);
 	~EDFP(void) {};
 	void read_file(const char*);
+	void csv(const char*);
 	friend class DATA_RECORD;
 };
 
@@ -155,6 +156,52 @@ void EDFP::read_file(const char* input)
 	printf("...\n");
 
 	if (input == NULL) fclose(inlet);
+}
+
+void EDFP::csv(const char *output = NULL)
+{
+	FILE *outlet = stdout;
+	std::vector< std::vector<double> > records;
+	std::vector<double> record;
+	unsigned long limit = -1;
+	size_t i, j;
+	double data;
+
+	if (output != NULL)
+		outlet = fopen(output, "wb");
+
+	// write header
+	fprintf(outlet, "title:%s,", header["recording"].c_str());
+	fprintf(outlet, "recorded:%s %s,",
+		header["startdate"].c_str(), header["starttime"].c_str());
+	fprintf(outlet, "sampling:128,"); // TODO: discover sampling
+	fprintf(outlet, "subject:%s,", header["patient"].c_str());
+	fprintf(outlet, "labels:");
+	for (i = 0; i < number_signals; ++i)
+		fprintf(outlet, "%s ", data_records[i].header["label"].c_str());
+	fprintf(outlet, ",");
+	fprintf(outlet, "chan:%d,", number_signals);
+	fprintf(outlet, "units:emotiv\n"); // TODO: discover units
+
+	// write data records
+	for (i = 0; i < number_signals; ++i)
+		records.push_back(data_records[i].get_translated_record());
+	limit = records.at(0).size();
+	for (j = 0; j < limit; ++j)
+	{
+		for (i = 0; i < number_signals; ++i)
+		{
+			record = records.at(i);
+			data = record.at(j);
+			if (i == 0) fprintf(outlet, "%lf", data);
+			else fprintf(outlet, ", %lf", data);
+		}
+		fprintf(outlet, "\n");
+	}
+	records.clear();
+
+	if (output != NULL)
+		fclose(outlet);
 }
 
 #endif
