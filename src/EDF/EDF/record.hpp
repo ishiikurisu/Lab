@@ -13,7 +13,7 @@ class DATA_RECORD
 public:
 	void read_record(FILE*, size_t);
 	void write_record(FILE*, size_t, size_t);
-	std::vector<double> get_translated_record();
+	std::vector<float> get_translated_record();
 	std::vector<short> get_record();
 	friend class EDF;
 	friend class EDFP;
@@ -41,16 +41,16 @@ void DATA_RECORD::write_record(FILE* outlet, size_t duration, size_t which)
 	}
 }
 
-std::vector<double> DATA_RECORD::get_translated_record()
+std::vector<float> DATA_RECORD::get_translated_record()
 {
-	std::vector<double> result;
+	std::vector<float> result;
 	std::vector<short>::iterator it;
 	long digitalmaximum = stol(header["digitalmaximum"]);
 	long digitalminimum = stol(header["digitalminimum"]);
 	long physicalmaximum = stol(header["physicalmaximum"]);
 	long physicalminimum = stol(header["physicalminimum"]);
-	double correct = (double)(digitalmaximum - digitalminimum)
-		/ (double)(physicalmaximum - physicalminimum);
+	float correct = (float)(digitalmaximum - digitalminimum)
+		/ (float)(physicalmaximum - physicalminimum);
 
 	for (it = record.begin(); it != record.end(); ++it)
 		result.push_back((*it) / correct);

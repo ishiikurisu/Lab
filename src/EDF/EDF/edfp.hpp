@@ -12,8 +12,8 @@
 
 class EDFP
 {
-	void read_header(FILE*);
-	void read_data_record(FILE*);
+	void read_header(FILE*, bool);
+	void read_data_record(FILE*, bool);
 	std::map<std::string, std::string> header;
 	std::vector<DATA_RECORD> data_records;
 	std::vector<std::string> labels;
@@ -21,13 +21,13 @@ class EDFP
 	size_t number_signals;
 	size_t number_data_records;
 	size_t annotations_channel;
-	double duration;
+	float duration;
 	bool isEDFP;
 
 public:
 	EDFP(void);
 	~EDFP(void) {};
-	void read_file(const char*);
+	void read_file(const char*, bool);
 	void csv(const char*);
 	friend class DATA_RECORD;
 };
@@ -62,7 +62,7 @@ EDFP::EDFP()
 	isEDFP = false;
 }
 
-void EDFP::read_header(FILE* inlet)
+void EDFP::read_header(FILE* inlet, bool debug = false)
 {
 	std::vector<std::string>::iterator it;
 	std::string data;
@@ -75,25 +75,25 @@ void EDFP::read_header(FILE* inlet)
 		data = read_to_string(inlet, bytes);
 		header[*it] = data;
 
-		printf("%s: %s", it->c_str(), data.c_str());
+		if (debug) printf("%s: %s", it->c_str(), data.c_str());
 
 		if (it->compare("reserved") == 0) {
 			// analize if it is EDF+ or EDF
 			isEDFP = (match(data.c_str(), EDF_PLUS.c_str()))? true : false;
-			printf("%s", (isEDFP)? "# EDF+" : "# EDF");
+			if (debug) printf("%s", (isEDFP)? "# EDF+" : "# EDF");
 		}
 		else if (it->compare("datarecords") == 0) {
 			sscanf(data.c_str(), "%d", &aux_number);
 			number_data_records = (size_t) aux_number;
 		}
 		else if (it->compare("duration") == 0) {
-			sscanf(data.c_str(), "%lf", &duration);
+			sscanf(data.c_str(), "%f", &duration);
 		}
 		else if (it->compare("numbersignals") == 0) {
 			sscanf(data.c_str(), "%d", &aux_number);
 			number_signals = (size_t) aux_number;
 		}
-		printf("\n");
+		if (debug) printf("\n");
 	}
 
 	// allocate memory
@@ -105,12 +105,12 @@ void EDFP::read_header(FILE* inlet)
 	for (; it != EDF_SPECS.end(); ++it)
 	{
 		bytes = EDF_SPEC[*it];
-		printf("%s:\n", it->c_str());
+		if (debug) printf("%s:\n", it->c_str());
 		for (size_t i = 0; i < number_signals; ++i)
 		{
 			data = read_to_string(inlet, bytes);
 			data_records[i].header[*it] = data;
-			printf("- %s\n", data.c_str());
+			if (debug) printf("- %s\n", data.c_str());
 
 			if (it->compare("samplesrecord") == 0) {
 				sscanf(data.c_str(), "%d", &aux_number);
@@ -131,7 +131,7 @@ void EDFP::read_header(FILE* inlet)
 # samples * integer: second signal
 ... ns times
 */
-void EDFP::read_data_record(FILE* inlet)
+void EDFP::read_data_record(FILE* inlet, bool debug = false)
 {
 	for (size_t i = 0; i < number_signals; ++i)
 	{
@@ -142,18 +142,19 @@ void EDFP::read_data_record(FILE* inlet)
 	}
 }
 
-void EDFP::read_file(const char* input)
+void EDFP::read_file(const char* input, bool debug = false)
 {
 	FILE* inlet = (input == NULL)? stdin : fopen(input, "rb");
 
 	EDF_SETUP();
-	read_header(inlet);
+	read_header(inlet, debug);
 	for (size_t c = 0; c < number_data_records; c++)
-		read_data_record(inlet);
+		read_data_record(inlet, debug);
 
-	printf("Annotations:\n");
-	printf("%s\n", annotations.get_annotations());
-	printf("...\n");
+	if (debug)
+		printf("Annotations:\n"),
+		printf("%s\n", annotations.get_annotations()),
+		printf("...\n");
 
 	if (input == NULL) fclose(inlet);
 }
@@ -161,11 +162,11 @@ void EDFP::read_file(const char* input)
 void EDFP::csv(const char *output = NULL)
 {
 	FILE *outlet = stdout;
-	std::vector< std::vector<double> > records;
-	std::vector<double> record;
+	std::vector< std::vector<float> > records;
+	std::vector<float> record;
 	unsigned long limit = -1;
 	size_t i, j;
-	double data;
+	float data;
 
 	if (output != NULL)
 		outlet = fopen(output, "wb");
@@ -174,27 +175,30 @@ void EDFP::csv(const char *output = NULL)
 	fprintf(outlet, "title:%s,", header["recording"].c_str());
 	fprintf(outlet, "recorded:%s %s,",
 		header["startdate"].c_str(), header["starttime"].c_str());
-	fprintf(outlet, "sampling:128,"); // TODO: discover sampling
+	fprintf(outlet, "sampling:200,"); // TODO: discover sampling
 	fprintf(outlet, "subject:%s,", header["patient"].c_str());
 	fprintf(outlet, "labels:");
 	for (i = 0; i < number_signals; ++i)
-		fprintf(outlet, "%s ", data_records[i].header["label"].c_str());
+		if (i != annotations_channel)
+			fprintf(outlet, "%s ", data_records[i].header["label"].c_str());
 	fprintf(outlet, ",");
-	fprintf(outlet, "chan:%d,", number_signals);
-	fprintf(outlet, "units:emotiv\n"); // TODO: discover units
+	fprintf(outlet, "chan:%d,", number_signals - ((isEDFP)? 1 : 0));
+	fprintf(outlet, "units:uV\n"); // TODO: discover units
 
 	// write data records
 	for (i = 0; i < number_signals; ++i)
-		records.push_back(data_records[i].get_translated_record());
+		if (i != annotations_channel)
+			records.push_back(data_records[i].get_translated_record());
 	limit = records.at(0).size();
 	for (j = 0; j < limit; ++j)
 	{
 		for (i = 0; i < number_signals; ++i)
 		{
+			if (i == annotations_channel) continue;
 			record = records.at(i);
 			data = record.at(j);
-			if (i == 0) fprintf(outlet, "%lf", data);
-			else fprintf(outlet, ", %lf", data);
+			if (i == 0) fprintf(outlet, "%f", data);
+			else fprintf(outlet, ", %f", data);
 		}
 		fprintf(outlet, "\n");
 	}
