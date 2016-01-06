@@ -1,5 +1,6 @@
 #ifndef EDFP_H
 #define EDFP_H 0
+#define USING_EDFP 0
 
 #include <cstdio>
 #include <map>

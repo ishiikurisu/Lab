@@ -82,7 +82,7 @@ void polish_data(char *raw_line, CHANNEL **channels)
     }
 
     list_free(line);
-    if (first == 0)++first;
+    if (first == 0) ++first;
     ++buffer;
     if (buffer == 256) {
         for (i = 0; i < NCH; ++i)

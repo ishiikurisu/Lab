@@ -15,8 +15,13 @@ public:
 	void write_record(FILE*, size_t, size_t);
 	std::vector<float> get_translated_record();
 	std::vector<short> get_record();
+#ifdef USING_EDF
 	friend class EDF;
+#else
+#ifdef USING_EDFP
 	friend class EDFP;
+#endif
+#endif
 };
 
 void DATA_RECORD::read_record(FILE* inlet, size_t duration)

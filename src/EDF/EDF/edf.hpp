@@ -1,5 +1,6 @@
 #ifndef EDFP_H
 #define EDFP_H 0
+#define USING_EDF
 
 #include <cstdio>
 #include <map>
@@ -179,7 +180,7 @@ void EDF::yaml(const char *output)
 
 	if (output != NULL)
 		outlet = fopen(output, "wb");
-		
+
 
 	// write header's header
 	it = EDF_SPECS.begin();
@@ -241,7 +242,7 @@ void EDF::csv(const char *output = NULL)
 	fprintf(outlet, "subject:%s,", header["patient"].c_str());
 	fprintf(outlet, "labels:");
 	for (i = 0; i < number_signals; ++i)
-		fprintf(outlet, "%s ", data_records[i].header["label"].c_str()); 
+		fprintf(outlet, "%s ", data_records[i].header["label"].c_str());
 	fprintf(outlet, ",");
 	fprintf(outlet, "chan:%d,", number_signals);
 	fprintf(outlet, "units:emotiv\n");
