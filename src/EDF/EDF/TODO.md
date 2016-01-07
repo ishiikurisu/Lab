@@ -1,5 +1,5 @@
 - [ ] Write documentation for this module.
 - [ ] Comment the code.
-- [ ] Blackbox and whitebox test the `edfp.hpp` header.
+- [x] Blackbox and whitebox test the `edfp.hpp` header.
 - [ ] Create an independent version of the `edfp.hpp` header.
 - [ ] Bonus cookie: create an `edfp.dll`.
