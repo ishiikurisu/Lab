@@ -4,3 +4,4 @@
 *.db
 *.o
 *.class
+*.syso
