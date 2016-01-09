@@ -1,9 +1,5 @@
 package edinburgh
 
-type Hand struct {
-    Preference string
-}
-
 func GetOptions() []string {
     options := make([]string, 10)
 
@@ -14,7 +10,7 @@ func GetOptions() []string {
     options[4] = "Using a toothbrush"
     options[5] = "Using a knife (without a fork)"
     options[6] = "Using a spoon"
-    options[7] = "Using a boom (upper hand)"
+    options[7] = "Using a broom (upper hand)"
     options[8] = "Striking a match"
     options[9] = "Opening a box"
 

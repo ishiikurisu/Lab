@@ -2,59 +2,31 @@ package main
 
 import (
     "fmt"
-    // "github.com/lxn/walk"
     . "github.com/lxn/walk/declarative"
     "./edinburgh"
 )
 
-func getLeftScore(answers ...Property) int {
+func GetScore(answers []int) string {
     score := 0
 
     for _, answer := range answers {
-        fmt.Print(answer)
-        text := "yep"
-
-        if answer == true {
-            text = "yep"
-        } else {
-            text = "nope"
-        }
-
-        fmt.Printf(": %s\n", text)
+        score += answer
     }
 
-    return score
-}
-
-func getRightScore(answers ...Property) int {
-    return 0
-}
-
-func getScore(left int, right int) {
-    fmt.Printf("%s\n", edinburgh.Score(right-left))
+    return edinburgh.Score(score)
 }
 
 func main() {
     options := edinburgh.GetOptions()
-    hand := &edinburgh.Hand{"left"}
-    l := "Left"
-    r := "Right"
-    score := 0
+    answers := make([]int, 10)
 
     MainWindow{
         Title: "Edinburgh Inventory",
         MinSize: Size{400, 400},
         Layout:  VBox{},
-        DataBinder: DataBinder{
-            DataSource: hand,
-            AutoSubmit: true,
-            OnSubmitted: func() {
-                fmt.Println(hand)
-            },
-        },
         Children: []Widget{
             Label{
-                Text: "Edinburgh Handness Inventory",
+                Text: "Edinburgh Handedness Inventory",
             },
             HSplitter{
                 Children:
@@ -65,7 +37,6 @@ func main() {
                             Label{Text: options[0]},
                             Label{Text: options[1]},
                             Label{Text: options[2]},
-                            /*
                             Label{Text: options[3]},
                             Label{Text: options[4]},
                             Label{Text: options[5]},
@@ -73,7 +44,6 @@ func main() {
                             Label{Text: options[7]},
                             Label{Text: options[8]},
                             Label{Text: options[9]},
-                            */
                         },
                     },
 
@@ -82,76 +52,74 @@ func main() {
                         Children: []Widget{
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{Name: "o0L", OnClicked: func() {score -= 1;} },
-                                    RadioButton{Name: "o0X"},
-                                    RadioButton{Name: "o0R", Value: r},
+                                    RadioButton{OnClicked: func() {answers[0] = -1}, Text: "Left" },
+                                    RadioButton{OnClicked: func() {answers[0] = 0}, Text: "No pref" },
+                                    RadioButton{OnClicked: func() {answers[0] = 1}, Text: "Right" },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{Name: "o1L", Value: l},
-                                    RadioButton{Name: "o1X"},
-                                    RadioButton{Name: "o1R"},
+                                    RadioButton{OnClicked: func() {answers[1] = -1} },
+                                    RadioButton{OnClicked: func() {answers[1] = 0} },
+                                    RadioButton{OnClicked: func() {answers[1] = 1} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{Name: "o2L", Value: l},
-                                    RadioButton{Name: "o2X"},
-                                    RadioButton{Name: "o2R"},
-                                },
-                            },
-                            /*
-                            HSplitter{
-                                Children: []Widget{
-                                    RadioButton{Name: "o3L", Value: l},
-                                    RadioButton{Name: "o3X"},
-                                    RadioButton{Name: "o3R"},
+                                    RadioButton{OnClicked: func() {answers[2] = -1} },
+                                    RadioButton{OnClicked: func() {answers[2] = 0} },
+                                    RadioButton{OnClicked: func() {answers[2] = 1} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{Name: "o4L", Value: l},
-                                    RadioButton{Name: "o4X"},
-                                    RadioButton{Name: "o4R"},
+                                    RadioButton{OnClicked: func() {answers[3] = -1} },
+                                    RadioButton{OnClicked: func() {answers[3] = 0} },
+                                    RadioButton{OnClicked: func() {answers[3] = 1} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{Name: "o5L", Value: l},
-                                    RadioButton{Name: "o5X"},
-                                    RadioButton{Name: "o5R"},
+                                    RadioButton{OnClicked: func() {answers[4] = -1} },
+                                    RadioButton{OnClicked: func() {answers[4] = 0} },
+                                    RadioButton{OnClicked: func() {answers[4] = 1} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{Name: "o6L", Value: l},
-                                    RadioButton{Name: "o6X"},
-                                    RadioButton{Name: "o6R"},
+                                    RadioButton{OnClicked: func() {answers[5] = -1} },
+                                    RadioButton{OnClicked: func() {answers[5] = 0} },
+                                    RadioButton{OnClicked: func() {answers[5] = 1} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{Name: "o7L", Value: l},
-                                    RadioButton{Name: "o7X"},
-                                    RadioButton{Name: "o7R"},
+                                    RadioButton{OnClicked: func() {answers[6] = -1} },
+                                    RadioButton{OnClicked: func() {answers[6] = 0} },
+                                    RadioButton{OnClicked: func() {answers[6] = 1} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{Name: "o8L", Value: l},
-                                    RadioButton{Name: "o8X"},
-                                    RadioButton{Name: "o8R"},
+                                    RadioButton{OnClicked: func() {answers[7] = -1} },
+                                    RadioButton{OnClicked: func() {answers[7] = 0} },
+                                    RadioButton{OnClicked: func() {answers[7] = 1} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{Name: "o9L", Value: l},
-                                    RadioButton{Name: "o9X"},
-                                    RadioButton{Name: "o9R"},
+                                    RadioButton{OnClicked: func() {answers[8] = -1} },
+                                    RadioButton{OnClicked: func() {answers[8] = 0} },
+                                    RadioButton{OnClicked: func() {answers[8] = 1} },
                                 },
                             },
-                            */
+                            HSplitter{
+                                Children: []Widget{
+                                    RadioButton{OnClicked: func() {answers[9] = -1} },
+                                    RadioButton{OnClicked: func() {answers[9] = 0} },
+                                    RadioButton{OnClicked: func() {answers[9] = 1} },
+                                },
+                            },
                         },
                     },
                 },
@@ -159,29 +127,33 @@ func main() {
             PushButton{
                 Text: "Score me!",
                 OnClicked: func() {
-                    fmt.Println(score)
-                    getScore(getLeftScore(Bind("o0L.Value"),
-                                          Bind("o1L.Checked"),
-                                          Bind("o2L.Checked"),
-                                          /*
-                                          Bind("o3L.Checked"),
-                                          Bind("o4L.Checked"),
-                                          Bind("o5L.Checked"),
-                                          Bind("o6L.Checked"),
-                                          Bind("o7L.Checked"),
-                                          Bind("o8L.Checked"),
-                                          Bind("o9L.Checked")*/),
-                             getRightScore(Bind("o0R.Checked"),
-                                           Bind("o1R.Checked"),
-                                           Bind("o2R.Checked"),/*
-                                           Bind("o3R.Checked"),
-                                           Bind("o4R.Checked"),
-                                           Bind("o5R.Checked"),
-                                           Bind("o6R.Checked"),
-                                           Bind("o7R.Checked"),
-                                           Bind("o8R.Checked"),
-                                           Bind("o9R.Checked")*/))
+                    DisplayResult(GetScore(answers))
+                    fmt.Printf("%s\n", GetScore(answers))
                 },
+            },
+        },
+    }.Run()
+}
+
+func DisplayResult(result string) {
+    comment := "You are ambidextrous"
+
+    switch result {
+    case "left":
+        comment = "You are left handed"
+        break
+    case "right":
+        comment = "You are right handed"
+        break
+    }
+
+    MainWindow{
+        Title: "Inventory Result",
+        MinSize: Size{200, 100},
+        Layout:  VBox{},
+        Children: []Widget{
+            Label{
+                Text: comment,
             },
         },
     }.Run()
