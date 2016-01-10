@@ -162,7 +162,7 @@ func main() {
                         DisplayResult(GetScore(answers))
                         fmt.Printf("%s\n", GetScore(answers))
                     } else {
-                        NotDisplayResult()
+                        DisplayResult("nope")
                     }
                 },
             },
@@ -180,6 +180,9 @@ func DisplayResult(result string) {
     case "right":
         comment = "You are right handed"
         break
+    case "nope":
+        comment = "Answer all questions!"
+        break
     }
 
     MainWindow{
@@ -189,19 +192,6 @@ func DisplayResult(result string) {
         Children: []Widget{
             Label{
                 Text: comment,
-            },
-        },
-    }.Run()
-}
-
-func NotDisplayResult() {
-    MainWindow{
-        Title: "Inventory Result",
-        MinSize: Size{200, 100},
-        Layout:  VBox{},
-        Children: []Widget{
-            Label{
-                Text: "Answer all questions!",
             },
         },
     }.Run()

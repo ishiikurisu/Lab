@@ -17,13 +17,15 @@ Laterality Index
 To calculate the result, the program will calculate the subject's Laterality Index using the equation:
 
 ```
-/* insert equation here */
+LI := 2*sum("always right") + sum("usually right") - sum("usually left") - 2*sum("always left")
 ```
 
-After calculating the index, it will relate this number to this table
+After calculating the index, it will relate this number to this table:
 
 ```
-/* insert table here */
+if LI > 2: right handed
+if LI < 2: left handed
+else: ambidextrous
 ```
 
 And give the final result.
