@@ -4,7 +4,7 @@ This folder contains the code made by [me](https://github.com/ishiikurisu) while
 
 # Projects
 
-My projects can be accessed in the [`src`](https://github.com/ishiikurisu/EEG/tree/master/src) folder.
+My projects can be accessed in the [`src`](https://github.com/ishiikurisu/EEG/tree/master/src) folder. Every code here is intended to be run on Windows.
 
 EDF
 ---
@@ -16,7 +16,7 @@ Currently, my executables can read `*.edf` and translate them into YAML, CSV and
 Stop Signal Test
 ----------------
 
-The objective of this project is to implement a version of the Stop Signal test (SST). Initially implemented using the E-PRIME (c) software with art made using PROCESSING, I'm now working on a PROCESSING implemented version just for fun. It's composed of the [SST](https://github.com/ishiikurisu/EEG/tree/master/src/SST) folder.
+The objective of this project is to implement a version of the Stop Signal test (SST). Initially implemented using the E-PRIME (c) software with art made using PROCESSING. It's composed of the [SST](https://github.com/ishiikurisu/EEG/tree/master/src/SST) folder.
 
 Raven's Progressive Matrices
 ----------------------------

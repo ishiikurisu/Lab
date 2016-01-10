@@ -11,6 +11,9 @@
 #include "record.hpp"
 #include "annotations.hpp"
 
+/**
+ * Class to represent the data in an EDF/EDF+ file
+ */
 class EDFP
 {
 	void read_header(FILE*, bool);
@@ -143,6 +146,12 @@ void EDFP::read_data_record(FILE* inlet, bool debug = false)
 	}
 }
 
+/**
+ * Reads an EDF file and store it in an instance of the EDFP class
+ * @param input the name of the file
+ * @param debug false by default, determines if it should or not write stuff on terminal
+ * @author Cris Silva Jr. <cristianoalvesjr@gmail.com>
+ */
 void EDFP::read_file(const char* input, bool debug = false)
 {
 	FILE* inlet = (input == NULL)? stdin : fopen(input, "rb");
@@ -160,6 +169,12 @@ void EDFP::read_file(const char* input, bool debug = false)
 	if (input == NULL) fclose(inlet);
 }
 
+/**
+ * Converts the EDF+ file to a CSV one
+ * @param output <p>the name of output file. If there is no output,
+ * the program will write it in terminal.</p>
+ * @author Cris Silva Jr. <cristianoalvesjr@gmail.com>
+ */
 void EDFP::csv(const char *output = NULL)
 {
 	FILE *outlet = stdout;

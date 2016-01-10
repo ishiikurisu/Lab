@@ -20,9 +20,9 @@ func GetOptions() []string {
 func Score(score int) string {
     result := "ambi"
 
-    if score < -1 {
+    if score < -2 {
         result = "left"
-    } else if score > 1 {
+    } else if score > 2 {
         result = "right"
     }
 

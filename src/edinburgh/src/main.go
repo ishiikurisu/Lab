@@ -6,6 +6,16 @@ import (
     "./edinburgh"
 )
 
+func answerAll(answered []bool) bool {
+    result := true
+
+    for _, answer := range answered {
+        result = result && answer
+    }
+
+    return result
+}
+
 func GetScore(answers []int) string {
     score := 0
 
@@ -19,10 +29,11 @@ func GetScore(answers []int) string {
 func main() {
     options := edinburgh.GetOptions()
     answers := make([]int, 10)
+    answered := make([]bool, 10)
 
     MainWindow{
         Title: "Edinburgh Inventory",
-        MinSize: Size{400, 400},
+        MinSize: Size{600, 400},
         Layout:  VBox{},
         Children: []Widget{
             Label{
@@ -52,72 +63,92 @@ func main() {
                         Children: []Widget{
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{OnClicked: func() {answers[0] = -1}, Text: "Left" },
-                                    RadioButton{OnClicked: func() {answers[0] = 0}, Text: "No pref" },
-                                    RadioButton{OnClicked: func() {answers[0] = 1}, Text: "Right" },
+                                    RadioButton{OnClicked: func() {answers[0] = -2; answered[0] = true;}, Text: "Always left" },
+                                    RadioButton{OnClicked: func() {answers[0] = -1; answered[0] = true;}, Text: "Usually left" },
+                                    RadioButton{OnClicked: func() {answers[0] = 0; answered[0] = true;}, Text: "No preference" },
+                                    RadioButton{OnClicked: func() {answers[0] = 1; answered[0] = true;}, Text: "Usually right" },
+                                    RadioButton{OnClicked: func() {answers[0] = 2; answered[0] = true;}, Text: "Alway right" },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{OnClicked: func() {answers[1] = -1} },
-                                    RadioButton{OnClicked: func() {answers[1] = 0} },
-                                    RadioButton{OnClicked: func() {answers[1] = 1} },
+                                    RadioButton{OnClicked: func() {answers[1] = -2; answered[1] = true;} },
+                                    RadioButton{OnClicked: func() {answers[1] = -1; answered[1] = true;} },
+                                    RadioButton{OnClicked: func() {answers[1] = 0; answered[1] = true;} },
+                                    RadioButton{OnClicked: func() {answers[1] = 1; answered[1] = true;} },
+                                    RadioButton{OnClicked: func() {answers[1] = 2; answered[1] = true;} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{OnClicked: func() {answers[2] = -1} },
-                                    RadioButton{OnClicked: func() {answers[2] = 0} },
-                                    RadioButton{OnClicked: func() {answers[2] = 1} },
+                                    RadioButton{OnClicked: func() {answers[2] = -2; answered[2] = true;} },
+                                    RadioButton{OnClicked: func() {answers[2] = -1; answered[2] = true;} },
+                                    RadioButton{OnClicked: func() {answers[2] = 0; answered[2] = true;} },
+                                    RadioButton{OnClicked: func() {answers[2] = 1; answered[2] = true;} },
+                                    RadioButton{OnClicked: func() {answers[2] = 2; answered[2] = true;} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{OnClicked: func() {answers[3] = -1} },
-                                    RadioButton{OnClicked: func() {answers[3] = 0} },
-                                    RadioButton{OnClicked: func() {answers[3] = 1} },
+                                    RadioButton{OnClicked: func() {answers[3] = -2; answered[3] = true;} },
+                                    RadioButton{OnClicked: func() {answers[3] = -1; answered[3] = true;} },
+                                    RadioButton{OnClicked: func() {answers[3] = 0; answered[3] = true;} },
+                                    RadioButton{OnClicked: func() {answers[3] = 1; answered[3] = true;} },
+                                    RadioButton{OnClicked: func() {answers[3] = 2; answered[3] = true;} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{OnClicked: func() {answers[4] = -1} },
-                                    RadioButton{OnClicked: func() {answers[4] = 0} },
-                                    RadioButton{OnClicked: func() {answers[4] = 1} },
+                                    RadioButton{OnClicked: func() {answers[4] = -2; answered[4] = true;} },
+                                    RadioButton{OnClicked: func() {answers[4] = -1; answered[4] = true;} },
+                                    RadioButton{OnClicked: func() {answers[4] = 0; answered[4] = true;} },
+                                    RadioButton{OnClicked: func() {answers[4] = 1; answered[4] = true;} },
+                                    RadioButton{OnClicked: func() {answers[4] = 2; answered[4] = true;} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{OnClicked: func() {answers[5] = -1} },
-                                    RadioButton{OnClicked: func() {answers[5] = 0} },
-                                    RadioButton{OnClicked: func() {answers[5] = 1} },
+                                    RadioButton{OnClicked: func() {answers[5] = -2; answered[5] = true;} },
+                                    RadioButton{OnClicked: func() {answers[5] = -1; answered[5] = true;} },
+                                    RadioButton{OnClicked: func() {answers[5] = 0; answered[5] = true;} },
+                                    RadioButton{OnClicked: func() {answers[5] = 1; answered[5] = true;} },
+                                    RadioButton{OnClicked: func() {answers[5] = 2; answered[5] = true;} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{OnClicked: func() {answers[6] = -1} },
-                                    RadioButton{OnClicked: func() {answers[6] = 0} },
-                                    RadioButton{OnClicked: func() {answers[6] = 1} },
+                                    RadioButton{OnClicked: func() {answers[6] = -2; answered[6] = true;} },
+                                    RadioButton{OnClicked: func() {answers[6] = -1; answered[6] = true;} },
+                                    RadioButton{OnClicked: func() {answers[6] = 0; answered[6] = true;} },
+                                    RadioButton{OnClicked: func() {answers[6] = 1; answered[6] = true;} },
+                                    RadioButton{OnClicked: func() {answers[6] = 2; answered[6] = true;} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{OnClicked: func() {answers[7] = -1} },
-                                    RadioButton{OnClicked: func() {answers[7] = 0} },
-                                    RadioButton{OnClicked: func() {answers[7] = 1} },
+                                    RadioButton{OnClicked: func() {answers[7] = -2; answered[7] = true;} },
+                                    RadioButton{OnClicked: func() {answers[7] = -1; answered[7] = true;} },
+                                    RadioButton{OnClicked: func() {answers[7] = 0; answered[7] = true;} },
+                                    RadioButton{OnClicked: func() {answers[7] = 1; answered[7] = true;} },
+                                    RadioButton{OnClicked: func() {answers[7] = 2; answered[7] = true;} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{OnClicked: func() {answers[8] = -1} },
-                                    RadioButton{OnClicked: func() {answers[8] = 0} },
-                                    RadioButton{OnClicked: func() {answers[8] = 1} },
+                                    RadioButton{OnClicked: func() {answers[8] = -2; answered[8] = true;} },
+                                    RadioButton{OnClicked: func() {answers[8] = -1; answered[8] = true;} },
+                                    RadioButton{OnClicked: func() {answers[8] = 0; answered[8] = true;} },
+                                    RadioButton{OnClicked: func() {answers[8] = 1; answered[8] = true;} },
+                                    RadioButton{OnClicked: func() {answers[8] = 2; answered[8] = true;} },
                                 },
                             },
                             HSplitter{
                                 Children: []Widget{
-                                    RadioButton{OnClicked: func() {answers[9] = -1} },
-                                    RadioButton{OnClicked: func() {answers[9] = 0} },
-                                    RadioButton{OnClicked: func() {answers[9] = 1} },
+                                    RadioButton{OnClicked: func() {answers[9] = -2; answered[9] = true;} },
+                                    RadioButton{OnClicked: func() {answers[9] = -1; answered[9] = true;} },
+                                    RadioButton{OnClicked: func() {answers[9] = 0; answered[9] = true;} },
+                                    RadioButton{OnClicked: func() {answers[9] = 1; answered[9] = true;} },
+                                    RadioButton{OnClicked: func() {answers[9] = 2; answered[9] = true;} },
                                 },
                             },
                         },
@@ -127,8 +158,12 @@ func main() {
             PushButton{
                 Text: "Score me!",
                 OnClicked: func() {
-                    DisplayResult(GetScore(answers))
-                    fmt.Printf("%s\n", GetScore(answers))
+                    if (answerAll(answered)) {
+                        DisplayResult(GetScore(answers))
+                        fmt.Printf("%s\n", GetScore(answers))
+                    } else {
+                        NotDisplayResult()
+                    }
                 },
             },
         },
@@ -154,6 +189,19 @@ func DisplayResult(result string) {
         Children: []Widget{
             Label{
                 Text: comment,
+            },
+        },
+    }.Run()
+}
+
+func NotDisplayResult() {
+    MainWindow{
+        Title: "Inventory Result",
+        MinSize: Size{200, 100},
+        Layout:  VBox{},
+        Children: []Widget{
+            Label{
+                Text: "Answer all questions!",
             },
         },
     }.Run()
