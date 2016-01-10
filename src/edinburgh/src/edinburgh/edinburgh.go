@@ -28,3 +28,11 @@ func Score(score int) string {
 
     return result
 }
+
+func GetConstants() map[string]string {
+    var constants map[string]string
+
+    constants["TITLE"] = "Edinburgh Handedness Inventory"
+
+    return constants
+}

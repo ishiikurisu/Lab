@@ -28,6 +28,7 @@ func GetScore(answers []int) string {
 
 func main() {
     options := edinburgh.GetOptions()
+    // constants := edinburgh.GetConstants()
     answers := make([]int, 10)
     answered := make([]bool, 10)
 
@@ -44,6 +45,7 @@ func main() {
                     []Widget{
                     /* options */
                     VSplitter{
+                        StretchFactor: 1,
                         Children: []Widget{
                             Label{Text: options[0]},
                             Label{Text: options[1]},
@@ -60,14 +62,15 @@ func main() {
 
                     /* answers */
                     VSplitter{
+                        StretchFactor: 2,
                         Children: []Widget{
                             HSplitter{
                                 Children: []Widget{
                                     RadioButton{OnClicked: func() {answers[0] = -2; answered[0] = true;}, Text: "Always left" },
-                                    RadioButton{OnClicked: func() {answers[0] = -1; answered[0] = true;}, Text: "Usually left" },
-                                    RadioButton{OnClicked: func() {answers[0] = 0; answered[0] = true;}, Text: "No preference" },
-                                    RadioButton{OnClicked: func() {answers[0] = 1; answered[0] = true;}, Text: "Usually right" },
-                                    RadioButton{OnClicked: func() {answers[0] = 2; answered[0] = true;}, Text: "Alway right" },
+                                    RadioButton{OnClicked: func() {answers[0] = -1; answered[0] = true;}, Text: "Mostly left" },
+                                    RadioButton{OnClicked: func() {answers[0] = 0; answered[0] = true;}, Text: "No pref" },
+                                    RadioButton{OnClicked: func() {answers[0] = 1; answered[0] = true;}, Text: "Mostly right" },
+                                    RadioButton{OnClicked: func() {answers[0] = 2; answered[0] = true;}, Text: "Always right" },
                                 },
                             },
                             HSplitter{
