@@ -30,7 +30,7 @@ func Score(score int) string {
 }
 
 func GetConstants() map[string]string {
-    var constants map[string]string
+    constants := make(map[string]string)
 
     constants["TITLE"] = "Edinburgh Handedness Inventory"
 
