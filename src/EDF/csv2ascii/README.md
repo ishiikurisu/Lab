@@ -25,3 +25,7 @@ csv2fullascii.exe input.csv # will output an input.ascii file.
 ### some2ascii and MATLAB scripts ###  
 
 These scripts were the first attempt on this problem. They wanted to extracted specific channels from the `*.CSV` file. They might be improved in future so we can create `*.ASCII` files as specified by the user.
+
+### csv2all ###
+
+TODO: Let's write an app that, given an input file input.csv, it returns both csv2ascii and csv2fullascii operations.
