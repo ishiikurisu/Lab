@@ -6,4 +6,4 @@
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [seesaw "1.4.5"]]
   :aot :all
-  :main hello-seesaw.core)
+  :main byebye-seesaw.core)
