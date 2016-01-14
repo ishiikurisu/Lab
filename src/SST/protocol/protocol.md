@@ -3,11 +3,16 @@ Implementação do SST
 
 <!-- Assumindo uma explicação do teste, das medições realizadas e do porque realizá-las. -->
 
+Notação
+-------
+
+Vamos denotar `<M>` como a média aritmética da medida `M`.
+
 Concepção
 ---------
 
 <!-- introdução -->
-Para podermos implementar o SST, inicialmente fizemos um algoritmo do teste nos baseando nas descrições do teste encontradas na literatura.<!-- Citar descrições? --> A dizer, o teste consiste em um laço de repetição: por um número fixo de vezes, deve ser apresentado ao sujeito dois estímulos visuais diferentes. Quando lhe aparecer estas imagens, o sujeito pode ou não ser estimulado com um sinal sonoro. Se o sinal sonoro aparecer, o sujeito não deve reagir. Caso contrário, ele deve responder como for especificado. Os estímulos visuais devem ser apresentados em igual proporção e até que (1) o usuário responda (2) passe do tempo máximo permitido, enquanto que o sinal sonoro deve ser apresentado em uma parcela menor de vezes. No nosso caso, decidimos que
+Para podermos implementar o SST, inicialmente fizemos um algoritmo do teste nos baseando em suas descrições encontradas na literatura.<!-- Citar descrições? --> A dizer, ele consiste em um laço de repetição: por um número fixo de vezes, deve ser apresentado ao sujeito dois estímulos visuais diferentes. Quando lhe aparecer estas imagens, o sujeito pode ou não ser estimulado com um sinal sonoro. Se o sinal sonoro aparecer, o sujeito não deve reagir. Caso contrário, ele deve responder como lhe for especificado. Os estímulos visuais devem ser apresentados em igual proporção e até que (1) o usuário responda; ou que (2) passe do tempo máximo permitido. Já o sinal sonoro deve ser apresentado em uma parcela menor de vezes. No nosso caso, decidimos que
 
 + os estímulos visuais seriam setas apontando para a direita e para a esquerda, para que o sujeito pudesse responder usando as teclas do teclado de um computador em no máximo 1000ms.
 + som seria apresentado em somente 25% das vezes<!-- Citar porque 25%? -->.
@@ -15,59 +20,88 @@ Para podermos implementar o SST, inicialmente fizemos um algoritmo do teste nos 
 <!-- lidando com tempo -->
 Como o intuito do teste é medir o tempo de demora para que uma pessoa iniba uma ação já iniciada, o sinal sonoro deve ser apresentado depois das setas. Definiremos o tempo entre a apresentação das setas e a do som como `SSD`. A fim de estimar o tempo limítrofe entre o sujeito conseguir inibir ou não, o teste varia o `SSD` de acordo com o desempenho do sujeito: em caso de acerto, isto é, caso ele consiga inibir sua resposta, tornaremos o teste mais difícil aumentando o `SSD` em um valor fixo, que chamaremos de _passo_. Senão, subtraímos um passo do `SSD`, fazendo com que o sinal sonoro seja apresentado mais perto do sinal visual. Com esta perspectiva, devemos definir:
 
-+ SSD inicial
-+ SSD mínimo
-+ SSD máximo
-+ Passo
++ SSD inicial;
++ SSD mínimo;
++ SSD máximo;
++ Passo.
 
 <!-- equação do ssrt, # de vezes -->
 A partir da equação do `SSRT`, vamos abrir mão da estatística para podermos definir, por amostragem, qual o `SSRT` do sujeito. Assumindo<!-- citar porque podemos assumir isso --> que o `SSRT` obedece a uma distribuição normal em torno de um valor médio, que é o que queremos medir, temos que os parâmetros que tangem o SSD e o passo devem ser ajustados para podermos amostrar bem a faixa em torno do valor desejado. Da literatura, observamos que o laço principal do teste deve se repetir por cerca de 128 vezes, resultando em uma duração confortável para o sujeito e em um número de respostas grande o suficiente para podermos aferir o SSD médio. Assim, optamos pelos seguintes parâmetros de tempo para o teste:
 
-+ SSD inicial: 250ms, no nosso caso.
-+ SSD mínimo: 0ms, ou seja, o sinal pode aparecer junto com as setas, se for necessário.
-+ SSD máximo: 750ms, por ser 75% do tempo máximo.
-+ Passo: 50ms
++ SSD inicial: 250ms, no nosso caso;
++ SSD mínimo: 0ms, ou seja, o sinal pode aparecer junto com as setas, se for necessário;
++ SSD máximo: 750ms, por ser 75% do tempo máximo;
++ Passo: 50ms.
 
 <!-- considerações com o sujeito -->
-Para que o sujeito pudesse realizar o teste com sucesso, adicionamos uma parte instrução
+Para que o sujeito pudesse realizar o teste com sucesso, adicionamos ao começo do teste uma parte de instrução e outra de treino. Originalmente, concebemos as instruções como um breve texto explicativo, indicando o que o sujeito deveria fazer. A etapa de treinos, por sua vez, foi planejada para ser uma versão menor do teste, em que o `SSD` não se altera e em que há menos repetições, cerca de 25% do teste original.
+
+Além disso, adicionamos à cada iteração do laço principal uma resposta do programa ao sujeito: caso ele acerte, o programa indica uma resposta correta; caso ele erre, uma resposta negativa; caso ele se ausente, uma mensagem indicando que ele deve tentar responder mais rápido.
 
 <!-- conclusão para implementação -->
 A partir deste entendimento, podemos escrever um pseudo-código para explicar a nossa implementação do SST:
 
-```
-instruções
-para n = 1 até número_de_vezes
-    qual_seta <- aleatório
-    deve_apertar? <- aleatório
-    há_resposta <- não
+    instruções
+    para n = 1 até número_de_vezes
+        qual_seta <- aleatório
+        deve_apertar? <- aleatório
+        há_resposta <- não
 
-    mostrar intervalo
-    mostrar qual_seta
+        mostrar intervalo
+        mostrar qual_seta
 
-    enquanto (não há_resposta) ou (dentro do limite de tempo)
-        se não deve_apertar?
-            mostrar som quando for o tempo do SSD
+        enquanto (não há_resposta) ou (dentro do limite de tempo)
+            se não deve_apertar?
+                mostrar som quando for o tempo do SSD
+            fim se
+            há_resposta <- checar por resposta
+        fim enquanto
+
+        se (houve resposta) e (não deve_apertar?)
+            SSD <- SSD - passo
+        senão
+            SSD <- SSD + passo
         fim se
-        há_resposta <- checar por resposta
-    fim enquanto
 
-    se (houve resposta) e (não deve_apertar?)
-        SSD <- SSD - passo
-    senão
-        SSD <- SSD + passo
-    fim se
-fim para
-```
+        mostrar resposta do programa
+    fim para
 
 <!-- conclusão para o processamento -->
-Após cada aplicação do teste, aplicamos um processamento individual nas medidas geradas usando a equação do SST: <!-- como aplicar  a equação-->. Com um número suficientemente grande de sujeitos colaborando com o teste, podemos um estimar um `SSRT` coletivo.
+Após cada aplicação do teste, processamos as medidas geradas pelo indivíduo usando a equação do SST `SSRT = RT - SSD`. As medidas de interesse foram o tempo de reação médio `<RT>`; o _delay_ médio `<SSD>` do estímulo sonoro; a porcentagem de inibição `<%I>`; e a porcentagem de ausências `<%A>`. Calculamos `<RT>` como sendo a soma de todos os `RT` dividida pelo número de total de reações, ou seja, não levamos as ausências em conta. `<SSD>` foi calculado como sendo o valor médio de todos os `SSD` apresentados ao longo do teste. `<%I>` é obtido como sendo o número de vezes que o sujeito conseguiu inibir a ação divido pelo número total de apresentações do estímulo para inibição. `<%A>` foi calculado como sendo o número de vezes que o sujeito deixou de responder quando ele deveria dividido pelo número total de apresentações sem o sinal de parada.
 
-Com isso, podemos finalmente começar a implemetar o SST. A ferramenta de escolha foi o software E-prime, por já ser utilizado em testes psicológicos. As imagens foram geradas usando o software Processing; o som, usando o software Pure Data. Os dados foram processados usando programas próprios do laboratório escritos. Todo o código-fonte pode ser acessado no site [](https://github.com/ishiikurisu/EEG/SST).
+Com um número suficientemente grande de sujeitos colaborando com o teste, podemos um estimar um `SSRT` coletivo, calculando a diferença entre a média de todos os `<RT>` e a média de todos os `<SSD>`.
+
+<!-- finalmente... -->
+Desta forma, podemos finalmente começar a implemetar o SST. A ferramenta de escolha foi o software E-prime, por já ser utilizado em testes psicológicos. As imagens foram geradas usando o software Processing; o som, usando o software Pure Data. Os dados foram processados usando programas próprios do laboratório. Todo o código-fonte pode ser acessado no endereço web [](https://github.com/ishiikurisu/EEG/SST).
 
 Implementação
 -------------
 
-aprendendo basic no e-prime. concepção da arte. concepção do som. processamento dos dados.
+<!-- aprendendo basic no e-prime. concepção da arte. concepção do som. processamento dos dados. -->
+O pacote de programas _E-prime_ nos permite criar experimentos psicológicos com imagens; sons; e vídeos, com facilidades para medidas nos tempos de reação e exposição. O software _E-Studio_ possibilita ao usuário o uso destas ferramentas para a confecção do teste, que, quando compilado, gera um _script_ em _Basic_, que será interpretado pelo _E-run_. Após a execução do teste, o programa gera um arquivo, que pode ser traduzido para o formato `csv`, o qual usamos para poder analisar os dados por meio de programas escritos em C++ e em Java.
+
+Para podermos organizar melhor o nosso código-fonte, divimos o _loop_ principal do programa em dois procedimentos: o `PressProc`, que contém uma iteração em que o sujeito deve responder a um estímulo; e o `NotPressProc`, que consiste de uma repetição em que há um sinal de parada indicando que o sujeito não deve apertar nenhum botão. Além disso, definimos uma variável global para indicar qual a duração do `SSD` em uma dada iteração. Essa variável sempre começa o programa com o valor de 250ms.
+
+O `PressProc` é executado em três passos:
+
++ mostrar uma tela vazia por 1000ms;
++ mostrar a seta enquanto o usuário não responde ou enquanto não se passar do tempo máximo;
++ mostrar o resultado da iteração para o sujeito por 1000ms.
+
+Definimos como parâmetros do procedimento o caminho para a seta escolhida; e qual a tecla que corresponde à resposta correta. Caso o usuário responda corretamente, é lhe mostrado um símbolo de correto; em caso negativo, é lhe mostrado um `X` vermelho; caso ele se ausente, aparece uma mensagem na tela. Após cada iteração, o _script_ atualiza o arquivo de dados que contém as medidas realizadas pelo programa. Neste caso, optamos por verificar se houve ou não uma ausência por parte o sujeito; e, caso ele tenha respondido, medimos o seu tempo de reação.
+
+Embora similar, o `NotPressProc` possui um passo a mais, e sua lógica muda um pouco na hora de mostrar o resultado para o sujeito:
+
++ mostrar uma tela vazia por 1000ms;
++ mostrar a seta enquanto o usuário não responde ou enquanto não se passar do tempo máximo;
++ mostrar o sinal sonoro após um tempo correspondente ao `SSD` atual;
++ mostrar o resultado da iteração ao sujeito por 1000ms.
+
+O único parâmetro deste procedimento é o caminho para a imagem da seta escolhida, já que é esperado que o sujeito iniba a ação independe da direção da seta. Se ele responder, o teste devolve uma correção negativa; caso contrário, o ele mostra o símbolo de correto designado. O procedimento, por fim, atualiza o valor do `SSD` para a próxima iteração em que for necessário inibir; adiciona ao arquivo com os resultados se houve inibição ou não, e qual a duração do `SSD` naquela repetição.
+
+Estes procedimentos foram colocados em outros dois procedimentos maiores: a prática e o experimento em si. Ambos são listas que contém 32 e 128 itens, respectivamente, populadadas com 3/4 de seus itens com `PressProc` e 1/4 de `NotPressProc`. Metade deles possuem setas para a esquerda; e a outra metade, para a direita. O _E-run_ então gera, para cada execução do teste, uma permutação destas listas para que todos as aplicação sigam uma ordem própria, e com as proporções que desejamos.
+
+Finalmente, adicionamos as intruções ao começo do teste e uma mensagem de agradecimento ao fim dele.
 
 Adaptação do teste para idosos
 ------------------------------
