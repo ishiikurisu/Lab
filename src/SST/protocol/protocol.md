@@ -28,16 +28,33 @@ A partir da equação do `SSRT`, vamos abrir mão da estatística para podermos defi
 + SSD máximo: 750ms, por ser 75% do tempo máximo.
 + Passo: 50ms
 
+<!-- considerações com o sujeito -->
+Para que o sujeito pudesse realizar o teste com sucesso, adicionamos uma parte instrução
+
 <!-- conclusão para implementação -->
 A partir deste entendimento, podemos escrever um pseudo-código para explicar a nossa implementação do SST:
 
-``` html
+```
 instruções
-para n = 1 até 128
+para n = 1 até número_de_vezes
+    qual_seta <- aleatório
+    deve_apertar? <- aleatório
+    há_resposta <- não
+
     mostrar intervalo
-    mostrar seta
-    se tem estímulo sonoro
-    se não
+    mostrar qual_seta
+
+    enquanto (não há_resposta) ou (dentro do limite de tempo)
+        se não deve_apertar?
+            mostrar som quando for o tempo do SSD
+        fim se
+        há_resposta <- checar por resposta
+    fim enquanto
+
+    se (houve resposta) e (não deve_apertar?)
+        SSD <- SSD - passo
+    senão
+        SSD <- SSD + passo
     fim se
 fim para
 ```
