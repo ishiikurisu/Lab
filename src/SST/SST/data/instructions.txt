@@ -1,8 +1,0 @@
-Aparecerá uma seta na tela. Esta seta apontará para a direita ou para a esquerda.
-
-Se não houver nenhum som, então aperte a tecla que aponta para a mesma direção da seta.
-
-Caso contrário, não aperte nenhuma tecla.
-
-
-Aperte qualquer botão para começar.
