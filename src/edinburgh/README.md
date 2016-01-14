@@ -1,7 +1,7 @@
 Edinburgh Handedness Inventory
 ==============================
 
-This is an implementation of the Edinburgh Handedness Inventory. In this app, there will be a window with 10 questions. For each question, there are 5 possible answers:
+This is an implementation of the Edinburgh Handedness Inventory for Windows in [Go](https://golang.org) using [Walk](https://github.com/lxn/walk). In this app, there will be a window with 10 questions. For each question, there are 5 possible answers:
 
 + Always left
 + Usually left
@@ -29,3 +29,13 @@ else: ambidextrous
 ```
 
 And give the final result.
+
+Building
+--------
+
+To build this, you will need 
+
++ [Go](https://golang.org)
++ [Walk](https://github.com/lxn/walk)
+
+The `make.bat` script will automatically build this if you have the requirements installed on your machine.
