@@ -161,6 +161,17 @@ bool whitespace(char c)
         return false;
     }
 }
+
+bool match(const char *s, const char *t)
+{
+    while (*s && *t)
+        if (*s != *t)
+            return false;
+        else
+            ++s, ++t;
+    return true;
+}
+
 char* tidy_string(char *str)
 {
     int beg = 0;

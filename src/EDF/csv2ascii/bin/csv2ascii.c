@@ -1,15 +1,17 @@
 #include <stdlib.h>
-#include <src/flags.h>
-#include <src/csv2ascii.h>
+#include <flags.h>
+#include <csv2ascii.h>
 
 int main(int argc, char *argv[])
 {
     OPTIONS *options = parse_flags(argc, argv);
 
+    printf("%s to %s\n", options->input_file, 
+                         get_output(options->input_file));
     if (options->single)
-    	csv2single(options->input, get_output(options->input));
-    else
-    	csv2multiple(options->input);
+      csv2single(options->input_file, get_output(options->input_file));
+    /*else
+      csv2multiple(options->input_file);*/
 
     free(options);
     return 0;
