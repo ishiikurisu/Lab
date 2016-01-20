@@ -22,6 +22,11 @@ enum FLAG which_flag(char *arg)
 
     if (compare(arg, "-m") == EQUAL || compare(arg, "--multiple") == EQUAL)
         flag = MULTIPLE;
+    else if (compare(arg, "-s") == EQUAL || compare(arg, "--single") == EQUAL)
+        flag = SINGLE;
+    else
+        printf("Invalid flag\n"),
+        raise(SIGILL);
 
     return flag;
 }
@@ -49,18 +54,12 @@ OPTIONS* parse_flags(int argc, char **argv)
             if (options->input_file == NULL)
                 options->input_file = argv[i];
             else
+                printf("Select only one file\n"),
                 raise(SIGILL);
         }
     }
 
     return options;
-}
-
-char* get_output(char *input)
-{
-	char *output = substring(input, 0, strlen(input)-4);
-    cat(output, ".ascii");
-	return output;
 }
 
 #endif

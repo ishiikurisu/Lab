@@ -12,10 +12,27 @@
 + LIST* parse_line(char *line);
 */
 
+char* get_output(char *input)
+{
+    char *output = substring(input, 0, strlen(input)-4);
+    cat(output, ".ascii");
+    return output;
+}
+
 char* are_these_labels(char *field)
 {
     char *clean = tidy_string(field);
-    return (match("labels", clean))? substring(clean, 7, strlen(clean)) : NULL;
+    char *temp = NULL;
+
+    if (match("labels", clean))
+        temp = substring(clean, 7, strlen(clean)),
+        free(clean),
+        clean = temp;
+    else
+        free(clean),
+        clean = NULL;
+
+    return clean;
 }
 
 /**
@@ -45,9 +62,12 @@ LIST *parse_line(char *line)
 {
     LIST *values = list_strsplit(line, ',');
     LIST *value = NULL;
+    char *temp = NULL;
 
     for (value = values->next; value != NULL; inc(value))
-        value->value = tidy_string(value->value);
+        temp = tidy_string(value->value),
+        free(value->value),
+        value->value = temp;
 
     return values;
 }
@@ -55,8 +75,8 @@ LIST *parse_line(char *line)
 /*
 # Main functions
 
-+ void csv2single(const char *input, const char *output);
-+ void csv2multiple(const char *input);
++ void csv2single(char *input);
++ void csv2multiple(char *input);
 */
 
 /**
@@ -64,12 +84,13 @@ LIST *parse_line(char *line)
  * @param input  csv file name
  * @param output ascii file name
  */
-void csv2single(char *input, char *output) 
+void csv2single(char *input) 
 {
     BUFFER *inlet = buffer_new(input, "r", 256);
-    BUFFER *outlet = buffer_new(output, "w", 256);
+    BUFFER *outlet = buffer_new(get_output(input), "w", 256);
     LIST *line = parse_header(buffer_readline(inlet));
 
+    /* TODO: implement operations */
     for (line = line->next; line != NULL; inc(line))
         printf("%s\n", line->value);
 
@@ -77,7 +98,7 @@ void csv2single(char *input, char *output)
     buffer_close(outlet);
 }
 
-void csv2multiple(const char *input)
+void csv2multiple(char *input)
 {
     return;
 }
