@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include <buffer.h>
 
-/* 
+/*
 # Common functions
 
 + LIST* parse_header(char *line);
@@ -50,7 +50,7 @@ LIST* parse_header(char *line)
 /**
  * Separates the values in a CSV line
  * @param  line   a CSV file line in c_str format
- * @return values a joe_string containing each value in 
+ * @return values a joe_string containing each value in
  */
 LIST *parse_line(char *line)
 {
@@ -98,7 +98,7 @@ void write_line(BUFFER *outlet, LIST *stuff)
  * @param output ascii file name
  */
 #include "csv2ascii/single.h"
-void csv2single(char *input) 
+void csv2single(char *input)
 {
     BUFFER *inlet = buffer_new(input, "r", 256);
     BUFFER *outlet = buffer_new(single_get_output(input), "w", 256);
