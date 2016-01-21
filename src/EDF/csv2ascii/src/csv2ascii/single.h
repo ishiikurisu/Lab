@@ -1,7 +1,6 @@
+#ifdef CSV_TO_ASCII
 #ifndef SINGLE_H
 #define SINGLE_H 0
-#include <buffer.h>
-#include <oa.h>
 
 char* single_get_output(char *input)
 {
@@ -10,4 +9,5 @@ char* single_get_output(char *input)
     return output;
 }
 
+#endif
 #endif

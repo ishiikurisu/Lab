@@ -1,9 +1,9 @@
 #ifndef CSV_TO_ASCII
 #define CSV_TO_ASCII
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <buffer.h>
+#include "stdio.h"
+#include "stdlib.h"
+#include "stdbool.h"
+#include "buffer.h"
 
 /*
 # Common functions
@@ -104,9 +104,9 @@ void csv2single(char *input)
     BUFFER *outlet = buffer_new(single_get_output(input), "w", 256);
     LIST *line = parse_header(buffer_readline(inlet));
 
-    /*write_line(outlet, line);*/
     while ((line = parse_line(buffer_readline(inlet))) != NULL)
-        write_line(outlet, line);
+        write_line(outlet, line),
+        list_free(line);
 
     buffer_close(inlet);
     buffer_close(outlet);
