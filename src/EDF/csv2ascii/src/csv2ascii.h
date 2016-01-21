@@ -10,14 +10,8 @@
 
 + LIST* parse_header(char *line);
 + LIST* parse_line(char *line);
++ void write_line(BUFFER *outlet, LIST *line)
 */
-
-char* get_output(char *input)
-{
-    char *output = substring(input, 0, strlen(input)-4);
-    cat(output, ".ascii");
-    return output;
-}
 
 char* are_these_labels(char *field)
 {
@@ -60,16 +54,35 @@ LIST* parse_header(char *line)
  */
 LIST *parse_line(char *line)
 {
-    LIST *values = list_strsplit(line, ',');
+    LIST *values = NULL;
     LIST *value = NULL;
     char *temp = NULL;
 
+    if (line == NULL)
+        return NULL;
+
+    values = list_strsplit(line, ',');
     for (value = values->next; value != NULL; inc(value))
         temp = tidy_string(value->value),
         free(value->value),
         value->value = temp;
 
     return values;
+}
+
+/**
+ * writes a new ASCII line in the selected buffer
+ * @param outlet joe_buffer for the output file
+ * @param stuff  joe_list containing the CSV columns
+ */
+void write_line(BUFFER *outlet, LIST *stuff)
+{
+    LIST *item = stuff->next;
+
+    buffer_write(outlet, item->value);
+    for (inc(item); item != NULL; inc(item))
+        buffer_write(outlet, concat(ctos(' '), item->value));
+    buffer_write(outlet, "\n");
 }
 
 /*
@@ -84,20 +97,22 @@ LIST *parse_line(char *line)
  * @param input  csv file name
  * @param output ascii file name
  */
+#include "csv2ascii/single.h"
 void csv2single(char *input) 
 {
     BUFFER *inlet = buffer_new(input, "r", 256);
-    BUFFER *outlet = buffer_new(get_output(input), "w", 256);
+    BUFFER *outlet = buffer_new(single_get_output(input), "w", 256);
     LIST *line = parse_header(buffer_readline(inlet));
 
-    /* TODO: implement operations */
-    for (line = line->next; line != NULL; inc(line))
-        printf("%s\n", line->value);
+    /*write_line(outlet, line);*/
+    while ((line = parse_line(buffer_readline(inlet))) != NULL)
+        write_line(outlet, line);
 
     buffer_close(inlet);
     buffer_close(outlet);
 }
 
+#include "csv2ascii/multiple.h"
 void csv2multiple(char *input)
 {
     return;

@@ -1,3 +1,3 @@
-gcc csv_to_ascii.c -o csv.exe -lm -O2 -ansi
-csv.exe ../data/ana_data.CSV
-del csv.exe
+mingw32-make all
+target\csv2ascii data\teste.CSV
+del target\*.exe
