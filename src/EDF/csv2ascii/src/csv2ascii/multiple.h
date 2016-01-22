@@ -11,7 +11,7 @@ char* _multiple_get_surname(char* input)
 
 	cat(output, bit->value);
 	for (inc(bit); bit->next != NULL; inc(bit))
-		cat(output, "."),
+		cat(output, ctos('.')),
 		cat(output, bit->value);
 
 	free(bits);
