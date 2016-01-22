@@ -93,7 +93,7 @@ void write_line(BUFFER *outlet, LIST *stuff)
 */
 
 /**
- * Translates a `csv` file
+ * Translates a `csv` file to the ascii format
  * @param input  csv file name
  * @param output ascii file name
  */
@@ -112,10 +112,24 @@ void csv2single(char *input)
     buffer_close(outlet);
 }
 
+/**
+ * separates a `csv` file into many `ascii` files, one for each signal.
+ * WARNING: this function is currently crashing.
+ * @param input a c_string naming the `csv` file
+ */
 #include "csv2ascii/multiple.h"
 void csv2multiple(char *input)
 {
-    return;
+    BUFFER *inlet = buffer_new(input, "r", 256);
+    LIST *line = parse_header(buffer_readline(inlet));
+    BUFFER **outlets = multiple_buffers_new(input, line);
+
+    while ((line = parse_line(buffer_readline(inlet))) != NULL)
+        multiple_write_lines(outlets, line),
+        list_free(line);
+
+    buffer_close(inlet);
+    multiple_buffers_close(outlets);
 }
 
 #endif
