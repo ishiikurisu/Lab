@@ -3,7 +3,9 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "stdbool.h"
+#ifndef BUFFER_H
 #include "buffer.h"
+#endif
 
 /*
 # Common functions
