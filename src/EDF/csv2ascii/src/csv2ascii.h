@@ -126,7 +126,7 @@ void csv2multiple(char *input)
     LIST *line = parse_header(buffer_readline(inlet));
     BUFFER **outlets = multiple_buffers_new(input, line);
 
-    
+    /* TODO: add case where there more channel names than expected */
     for (line = parse_line(buffer_readline(inlet));
          line != NULL;
          line = parse_line(buffer_readline(inlet)))
