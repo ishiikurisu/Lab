@@ -414,6 +414,18 @@ void list_free(LIST* head)
     free(list);
 }
 
+LIST* list_filter(LIST *list, bool (*func)(char*))
+{
+    LIST *filtered = list_new();
+    LIST *it = NULL;
+
+    for (it = list->next; it != NULL; ++it)
+        if ((*func)(it->value) == true)
+            push(filtered, it->value);
+
+    return filtered;
+}
+
 LIST* list_strsplit(char* string, char to_divide)
 {
     LIST* result  = new_list();

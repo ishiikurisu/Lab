@@ -31,6 +31,25 @@ char* are_these_labels(char *field)
     return clean;
 }
 
+bool is_label_valid(char *label)
+{
+    static bool ext = false;
+
+    if (compare(label, "EEG"))
+        return false;
+    if (compare(label, "EXT")) {
+        if (ext == false) {
+            ext = true;
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    return true;
+}
+
 /**
  * Extract the 'labels' field as a list from the CSV header
  * @param  line   a c_string containing the file's header
@@ -127,7 +146,7 @@ void csv2multiple(char *input)
     LIST *line = parse_header(buffer_readline(inlet));
     BUFFER **outlets = multiple_buffers_new(input, line);
 
-    /* TODO: add case where there more channel names than expected */
+    /* TODO: add case where there are more channel names than expected */
     for (line = parse_line(buffer_readline(inlet));
          line != NULL;
          line = parse_line(buffer_readline(inlet)))
