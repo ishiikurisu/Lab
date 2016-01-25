@@ -126,11 +126,12 @@ void csv2multiple(char *input)
     LIST *line = parse_header(buffer_readline(inlet));
     BUFFER **outlets = multiple_buffers_new(input, line);
 
-    line = parse_line(buffer_readline(inlet));
-    while (line != NULL)
+    
+    for (line = parse_line(buffer_readline(inlet));
+         line != NULL;
+         line = parse_line(buffer_readline(inlet)))
         multiple_write_lines(outlets, line),
-        list_free(line),
-        line = parse_line(buffer_readline(inlet));
+        list_free(line);
 
     buffer_close(inlet);
     multiple_buffers_close(outlets);
