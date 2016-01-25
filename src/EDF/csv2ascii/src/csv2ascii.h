@@ -36,10 +36,12 @@ char* are_these_labels(char *field)
  */
 LIST* parse_header(char *line)
 {
-    LIST *fields = list_strsplit(line, ',');
+    LIST *fields = NULL;
     LIST *field = NULL;
     char *labels = NULL;
 
+    if (strlen(line) <= 1) return NULL;
+    fields = list_strsplit(line, ',');
     for (field = fields->next; field != NULL && labels == NULL; inc(field))
         labels = are_these_labels(field->value);
 
@@ -58,7 +60,7 @@ LIST *parse_line(char *line)
     LIST *value = NULL;
     char *temp = NULL;
 
-    if (line == NULL)
+    if (line == NULL || strlen(line) <= 1)
         return NULL;
 
     values = list_strsplit(line, ',');
@@ -124,9 +126,11 @@ void csv2multiple(char *input)
     LIST *line = parse_header(buffer_readline(inlet));
     BUFFER **outlets = multiple_buffers_new(input, line);
 
-    while ((line = parse_line(buffer_readline(inlet))) != NULL)
+    line = parse_line(buffer_readline(inlet));
+    while (line != NULL)
         multiple_write_lines(outlets, line),
-        list_free(line);
+        list_free(line),
+        line = parse_line(buffer_readline(inlet));
 
     buffer_close(inlet);
     multiple_buffers_close(outlets);
