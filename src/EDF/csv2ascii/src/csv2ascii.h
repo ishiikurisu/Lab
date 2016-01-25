@@ -118,7 +118,6 @@ void csv2single(char *input)
 
 /**
  * separates a `csv` file into many `ascii` files, one for each signal.
- * WARNING: this function is currently crashing.
  * @param input a c_string naming the `csv` file
  */
 #include "csv2ascii/multiple.h"
