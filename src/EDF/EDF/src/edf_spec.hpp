@@ -9,7 +9,7 @@ std::string EDF_PLUS = "EDF+";
 
 void EDF_SETUP()
 {
-	FILE* specs = fopen("edf_specs.txt", "r");
+	FILE* specs = fopen("assets/edf_specs.txt", "r");
 	std::vector<std::string> pair;
 	std::string key;
 	int temp;

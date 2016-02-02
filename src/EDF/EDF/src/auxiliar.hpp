@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <vector>
+#include <map>
 
 std::string read_to_string(FILE* stream, size_t number_bytes)
 {

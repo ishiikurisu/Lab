@@ -36,36 +36,17 @@ public:
 	friend class DATA_RECORD;
 };
 
-/* HEADER SPEC
-	8: version
-	80: local patient identification
-	80: local recording identification
-	8: startdate of recording (dd.mm.yy)
-	8: starttime of recording (hh.mm.ss)
-	8: number of bytes in header record
-	44: reserved
-	8: number of data records
-	8: duration of a data record in seconds
-	4: ns = number of signals in data record
-	ns * 16: ns * label
-	ns * 80: ns * transducer type
-	ns * 8: physical dimension
-	ns * 8: physical minimum
-	ns * 8: physical maximum
-	ns * 8: digital minimum
-	ns * 8: digital maximum
-	ns * 80: ns * prefiltering
-	ns * 8: ns * # of samples in each data record
-	ns * 32: ns * reserved
-*/
-
-
 EDFP::EDFP()
 {
 	annotations_channel = (size_t) -1;
 	isEDFP = false;
 }
 
+/**
+ * Reads the EDF header to the EDFP object and its annotations' and record's simblings
+ * @param inlet a pointer to the file
+ * @param debug false by default, it prints header info on screen using the YAML format.
+ */
 void EDFP::read_header(FILE* inlet, bool debug = false)
 {
 	std::vector<std::string>::iterator it;
@@ -73,6 +54,7 @@ void EDFP::read_header(FILE* inlet, bool debug = false)
 	size_t aux_number;
 	size_t bytes;
 
+	// reading header
 	for (it = EDF_SPECS.begin(); it->compare("label") != 0; ++it)
 	{
 		bytes = EDF_SPEC[*it];
@@ -100,12 +82,13 @@ void EDFP::read_header(FILE* inlet, bool debug = false)
 		if (debug) printf("\n");
 	}
 
-	// allocate memory
+	// allocating memory
 	for (size_t r = 0; r < number_signals; ++r)
 	{
 		data_records.push_back(DATA_RECORD());
 	}
 
+	// reading data records' and annotations' headers
 	for (; it != EDF_SPECS.end(); ++it)
 	{
 		bytes = EDF_SPEC[*it];
@@ -130,11 +113,11 @@ void EDFP::read_header(FILE* inlet, bool debug = false)
 	}
 }
 
-/*
-# samples * integer: first signal in data record
-# samples * integer: second signal
-... ns times
-*/
+/**
+ * Reads a data record to the respective annotation or data record it belongs to.
+ * @param inlet the pointer to the file the app is reading from.
+ * @param debug false by default, it enables debugging on terminal screen.
+ */
 void EDFP::read_data_record(FILE* inlet, bool debug = false)
 {
 	for (size_t i = 0; i < number_signals; ++i)
@@ -147,9 +130,9 @@ void EDFP::read_data_record(FILE* inlet, bool debug = false)
 }
 
 /**
- * Reads an EDF file and store it in an instance of the EDFP class
- * @param input the name of the file
- * @param debug false by default, determines if it should or not write stuff on terminal
+ * Reads an EDF file and store it in an instance of the EDFP class.
+ * @param input the name of the file.
+ * @param debug false by default, determines if it should or not write stuff on terminal.
  * @author Cris Silva Jr. <cristianoalvesjr@gmail.com>
  */
 void EDFP::read_file(const char* input, bool debug = false)
@@ -169,6 +152,49 @@ void EDFP::read_file(const char* input, bool debug = false)
 	if (input == NULL) fclose(inlet);
 }
 
+/*
+ ------------------------------------------------------------------------
+*/
+
+/* Auxiliary functions to EDFP::csv(char*) */
+long _discover_sampling(std::vector<DATA_RECORD> records)
+{
+	const std::string key = "samplesrecord";
+	std::vector<DATA_RECORD>::iterator record;
+	std::vector<std::string>::iterator sampling;
+	std::map<std::string, long> counter;
+	std::vector<std::string> samplings;
+	long biggest = -1;
+	std::string value;
+
+	for (record = records.begin(); record != records.end(); record++)
+	{
+		value = record->get_from_header(key);
+		if (counter.count(value))
+			counter[value]++;
+		else
+			counter[value] = 1,
+			samplings.push_back(value);
+	}
+
+	for (sampling = samplings.begin(); sampling != samplings.end(); sampling++)
+	{
+		long current = counter[(*sampling)];
+		if (current > biggest)
+			biggest = current,
+			value = (*sampling);
+	}
+
+	return stol(value);
+}
+
+std::string _csvfy(std::string inlet)
+{
+	std::string outlet;
+	return inlet;
+}
+
+
 /**
  * Converts the EDF+ file to a CSV one
  * @param output <p>the name of output file. If there is no output,
@@ -187,11 +213,11 @@ void EDFP::csv(const char *output = NULL)
 	if (output != NULL)
 		outlet = fopen(output, "wb");
 
-	// write header
+	// writing header
 	fprintf(outlet, "title:%s,", header["recording"].c_str());
 	fprintf(outlet, "recorded:%s %s,",
 		header["startdate"].c_str(), header["starttime"].c_str());
-	fprintf(outlet, "sampling:200,"); // TODO: discover sampling
+	fprintf(outlet, "sampling:%ld,", _discover_sampling(data_records));
 	fprintf(outlet, "subject:%s,", header["patient"].c_str());
 	fprintf(outlet, "labels:");
 	for (i = 0; i < number_signals; ++i)
@@ -201,7 +227,7 @@ void EDFP::csv(const char *output = NULL)
 	fprintf(outlet, "chan:%d,", number_signals - ((isEDFP)? 1 : 0));
 	fprintf(outlet, "units:uV\n"); // TODO: discover units
 
-	// write data records
+	// writing data records
 	for (i = 0; i < number_signals; ++i)
 		if (i != annotations_channel)
 			records.push_back(data_records[i].get_translated_record());

@@ -15,6 +15,7 @@ public:
 	void write_record(FILE*, size_t, size_t);
 	std::vector<float> get_translated_record();
 	std::vector<short> get_record();
+	std::string get_from_header(std::string);
 #ifdef USING_EDF
 	friend class EDF;
 #else
@@ -66,6 +67,11 @@ std::vector<float> DATA_RECORD::get_translated_record()
 std::vector<short> DATA_RECORD::get_record()
 {
 	return record;
+}
+
+std::string DATA_RECORD::get_from_header(std::string key)
+{
+	return header[key];
 }
 
 #endif

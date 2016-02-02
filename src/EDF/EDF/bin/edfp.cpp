@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
 {
 	EDFP edf;
 
-	edf.read_file(get_input(argc, argv));
+	edf.read_file(get_input(argc, argv), true);
 
 	return 0;
 }
