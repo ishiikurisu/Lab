@@ -93,6 +93,28 @@ std::string read_line_from_file(FILE* stream)
 	return outlet;
 }
 
+inline bool whitespace(char c)
+{
+	return (c == ' ' || c == '\n' || c == '\t')? true : false;
+}
+
+std::string chomp(std::string inlet)
+{
+	std::string outlet;
+	int start = 0;
+	int finish = inlet.length()-1;
+
+	while (whitespace(inlet[start]))
+		start++;
+	while (whitespace(inlet[finish]))
+		finish--;
+
+	for (int i = start; i < finish; ++i)
+		outlet += inlet[i];
+
+	return outlet;
+}
+
 bool match(const char *s, const char *t)
 {
 	while (*s && *t)

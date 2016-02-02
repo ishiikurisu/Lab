@@ -157,9 +157,8 @@ void EDFP::read_file(const char* input, bool debug = false)
 */
 
 /* Auxiliary functions to EDFP::csv(char*) */
-long _discover_sampling(std::vector<DATA_RECORD> records)
+std::string _more_common(std::vector<DATA_RECORD> records, std::string property)
 {
-	const std::string key = "samplesrecord";
 	std::vector<DATA_RECORD>::iterator record;
 	std::vector<std::string>::iterator sampling;
 	std::map<std::string, long> counter;
@@ -169,7 +168,7 @@ long _discover_sampling(std::vector<DATA_RECORD> records)
 
 	for (record = records.begin(); record != records.end(); record++)
 	{
-		value = record->get_from_header(key);
+		value = record->get_from_header(property);
 		if (counter.count(value))
 			counter[value]++;
 		else
@@ -185,13 +184,18 @@ long _discover_sampling(std::vector<DATA_RECORD> records)
 			value = (*sampling);
 	}
 
-	return stol(value);
+	return value;
 }
 
 std::string _csvfy(std::string inlet)
 {
-	std::string outlet;
-	return inlet;
+	std::string outlet = chomp(inlet);
+
+	for (size_t i = 0; i < outlet.length(); ++i)
+		if (whitespace(outlet[i]))
+			outlet[i] = '_';
+
+	return outlet;
 }
 
 
@@ -217,15 +221,18 @@ void EDFP::csv(const char *output = NULL)
 	fprintf(outlet, "title:%s,", header["recording"].c_str());
 	fprintf(outlet, "recorded:%s %s,",
 		header["startdate"].c_str(), header["starttime"].c_str());
-	fprintf(outlet, "sampling:%ld,", _discover_sampling(data_records));
+	fprintf(outlet, "sampling:%ld,", 
+		stol(_more_common(data_records, "samplesrecord")));
 	fprintf(outlet, "subject:%s,", header["patient"].c_str());
 	fprintf(outlet, "labels:");
 	for (i = 0; i < number_signals; ++i)
 		if (i != annotations_channel)
-			fprintf(outlet, "%s ", data_records[i].header["label"].c_str());
+			fprintf(outlet, "%s ", 
+				_csvfy(data_records[i].header["label"]).c_str());
 	fprintf(outlet, ",");
 	fprintf(outlet, "chan:%d,", number_signals - ((isEDFP)? 1 : 0));
-	fprintf(outlet, "units:uV\n"); // TODO: discover units
+	fprintf(outlet, "units:%s\n",
+		_more_common(data_records, "physicaldimension").c_str());
 
 	// writing data records
 	for (i = 0; i < number_signals; ++i)
