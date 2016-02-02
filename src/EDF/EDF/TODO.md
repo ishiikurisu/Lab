@@ -1,5 +1,7 @@
 - [ ] Write documentation for this module.
-- [ ] Comment the code.
+- [x] Comment the code.
 - [x] Blackbox and whitebox test the `edfp.hpp` header.
 - [ ] Create an independent version of the `edfp.hpp` header.
+- [ ] Add support for Go includes.
+- [ ] Write the annotations on a separate file.
 - [ ] Bonus cookie: create an `edfp.dll`.
