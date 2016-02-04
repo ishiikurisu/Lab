@@ -1,4 +1,4 @@
-options = -lm -O2 -pipe -ansi -Wall -I"src"
+options = -lm -O2 -pipe -ansi -Wall -Wextra -I"src" -ffast-math
 headers = src/edf_spec.hpp src/edf.hpp src/record.hpp src/auxiliar.hpp
 exec = emo.exe edf2yaml.exe edf2csv.exe
 
