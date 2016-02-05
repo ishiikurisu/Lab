@@ -1,0 +1,319 @@
+version: 0       
+patient: XXX F 19-MAY-1996 Perguntas                                                     
+recording: Neuron-Spectrum, Copyright Neurosoft                                            
+startdate: 30.11.15
+starttime: 11.04.05
+bytesheader: 7680    
+reserved: EDF+C                                       # EDF+
+datarecords: 13      
+duration: 1       
+numbersignals: 29  
+label:
+- EEG Fp1-A1      
+- EEG Fp2-A1      
+- EEG Fpz-A1      
+- EEG F3-A1       
+- EEG F4-A1       
+- EEG Fz-A1       
+- EEG C3-A1       
+- EEG C4-A1       
+- EEG Cz-A1       
+- EEG P3-A1       
+- EEG P4-A1       
+- EEG Pz-A1       
+- EEG O1-A1       
+- EEG O2-A1       
+- EEG Oz-A1       
+- EEG F7-A1       
+- EEG F8-A1       
+- EEG T3-A1       
+- EEG T4-A1       
+- EEG T5-A1       
+- EEG T6-A1       
+- EMG+            
+- EMG-            
+- RGP             
+- ECG             
+- DC              
+- EEG A2-A1       
+- EXT EXT         
+- EDF Annotations 
+transducer:
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+- AgAgCl                                                                          
+-                                                                                 
+-                                                                                 
+physicaldimension:
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+- uV      
+-         
+-         
+physicalminimum:
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -6580   
+- -8192   
+- -8192   
+- -6580   
+- -6580   
+- -32768  
+- -6580   
+- -10     
+- -1      
+physicalmaximum:
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 6580    
+- 8192    
+- 8192    
+- 6580    
+- 6580    
+- 32767   
+- 6580    
+- 10      
+- 1       
+digitalminimum:
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -32768  
+- -10     
+- -32768  
+digitalmaximum:
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 32767   
+- 10      
+- 32767   
+prefiltering:
+- HP:0.50Hz LP:100Hz NF:On                                                        
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+- HP:0Hz LP:0Hz NF:Off                                                            
+-                                                                                 
+samplesrecord:
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 200     
+- 120     
+chanreserved:
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+-                                 
+Annotations:
+- +0   
+- +0   
+- +0  BACKGROUND TEST 
+- +4.42000007629395  Linha de base 
+- +7.05000019073486  Linha de base 
+- +9.39000034332275  Linha de base 
+
+...

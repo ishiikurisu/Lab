@@ -1,0 +1,12 @@
+C:\Users\cris\Documents\Visual Studio 2015\Projects\AutoKeyPress\AutoKeyPress\bin\Debug\AutoKeyPress.exe.config
+C:\Users\cris\Documents\Visual Studio 2015\Projects\AutoKeyPress\AutoKeyPress\bin\Debug\AutoKeyPress.exe
+C:\Users\cris\Documents\Visual Studio 2015\Projects\AutoKeyPress\AutoKeyPress\bin\Debug\AutoKeyPress.pdb
+C:\Users\cris\Documents\Visual Studio 2015\Projects\AutoKeyPress\AutoKeyPress\obj\Debug\AutoKeyPress.csprojResolveAssemblyReference.cache
+C:\Users\cris\Documents\Visual Studio 2015\Projects\AutoKeyPress\AutoKeyPress\obj\Debug\AutoKeyPress.Form1.resources
+C:\Users\cris\Documents\Visual Studio 2015\Projects\AutoKeyPress\AutoKeyPress\obj\Debug\AutoKeyPress.Properties.Resources.resources
+C:\Users\cris\Documents\Visual Studio 2015\Projects\AutoKeyPress\AutoKeyPress\obj\Debug\AutoKeyPress.csproj.GenerateResource.Cache
+C:\Users\cris\Documents\Visual Studio 2015\Projects\AutoKeyPress\AutoKeyPress\obj\Debug\AutoKeyPress.exe
+C:\Users\cris\Documents\Visual Studio 2015\Projects\AutoKeyPress\AutoKeyPress\obj\Debug\AutoKeyPress.pdb
+C:\Users\cris\Documents\work\EEG\src\AutoKeyPress\AutoKeyPress\bin\Debug\AutoKeyPress.exe.config
+C:\Users\cris\Documents\work\EEG\src\AutoKeyPress\AutoKeyPress\obj\Debug\AutoKeyPress.exe
+C:\Users\cris\Documents\work\EEG\src\AutoKeyPress\AutoKeyPress\obj\Debug\AutoKeyPress.pdb

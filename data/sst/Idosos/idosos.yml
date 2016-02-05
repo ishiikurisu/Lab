@@ -1,0 +1,50 @@
+---
+Notas: >
+	Esses resultados foram obtidos 
+	usando a equação `SSRT = <RT> - <SSD>`
+	onde `<RT>` é média de todos os Go RT;
+	e `<SSD>` é a média de todos os SSDs corretos
+
+--- # Coletivo
+<RT>: 384.116+-142.708
+<SSD>: 300.949+-142.877
+<SSRT>: 83.168+-272.725
+<\%I>: 52.604+-24.568
+
+--- # Individual
+18-1:
+	RT: 205.167
+	SSD: 479.630
+	SSRT: -274.463
+	%I: 84.375
+
+19-1:
+	RT: 516.792
+	SSD: 120.833
+	SSRT: 395.958
+	%I: 37.500
+
+20-1:
+	RT: 501.396
+	SSD: 344.444
+	SSRT: 156.951
+	%I: 56.250
+
+21-1:
+	RT: 555.396
+	SSD: 116.667
+	SSRT: 438.729
+	%I: 9.375
+
+22-1:
+	RT: 270.896
+	SSD: 294.118
+	SSRT: -23.222
+	%I: 53.125
+
+23-1:
+	RT: 255.052
+	SSD: 450.000
+	SSRT: -194.948
+	%I: 75.000
+...

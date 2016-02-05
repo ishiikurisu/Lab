@@ -1,0 +1,6 @@
+PressStimulus.RT
+PressStimulus.ACC
+SoundStimulus.RT
+SoundStimulus.ACC
+VisualStimulus.Duration
+Procedure[Trial]
