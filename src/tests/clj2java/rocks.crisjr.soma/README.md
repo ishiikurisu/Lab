@@ -1,36 +1,28 @@
 # rocks.crisjr.soma
 
-FIXME: description
+A stupid app to sum numbers from a YAML list.
 
 ## Installation
 
-Download from http://example.com/FIXME.
+Download from nowhere. Really.
 
 ## Usage
 
-FIXME: explanation
+Give the YAML file name and our app will do the work for you.
 
-    $ java -jar rocks.crisjr.soma-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+    $ java -jar rocks.crisjr.soma-0.1.0-standalone.jar file.yml
 
 ## License
 
-Copyright © 2016 FIXME
+Beerware
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+```
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <phk@FreeBSD.ORG> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Poul-Henning Kamp
+ * ----------------------------------------------------------------------------
+ */
+```
