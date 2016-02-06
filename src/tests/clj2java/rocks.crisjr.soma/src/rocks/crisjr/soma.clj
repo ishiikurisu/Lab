@@ -25,8 +25,7 @@
 ; main functions
 (defn setup
   []
-  (setup-loop (read-line) [])
-)
+  (setup-loop (read-line) []))
 
 (defn draw
   [inlet]

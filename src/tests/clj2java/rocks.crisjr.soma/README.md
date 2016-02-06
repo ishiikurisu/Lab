@@ -8,13 +8,13 @@ Download from nowhere. Really.
 
 ## Usage
 
-Give the YAML file name and our app will do the work for you.
+Pipe the YAML file into our app and it will do the work for you.
 
-    $ java -jar rocks.crisjr.soma-0.1.0-standalone.jar file.yml
+    $ more file.yml | java -jar rocks.crisjr.soma-0.1.0-standalone.jar
 
 ## License
 
-Beerware
+Beerware 42
 
 ```
 /*
