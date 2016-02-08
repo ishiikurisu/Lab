@@ -4,7 +4,7 @@
   [n limit arr]
   (if (< n limit)
     (do
-      (println n ": " (nth arr n) (class (nth arr n)))
+      (println (nth arr n))
       (write-array (inc n) limit arr))))
 
 (defn for-arg-loop
