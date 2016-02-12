@@ -1,8 +1,7 @@
 package edfp
 
-// #include <stdlib.h>
-import "C"
 import "os"
+import "fmt"
 
 func ReadFile(input string) map[string]string {
     inlet, _ := os.Open(input)
@@ -17,9 +16,11 @@ func ReadFile(input string) map[string]string {
 
 func ReadHeader(inlet *os.File, specsList []string, specslength map[string]int) map[string]string {
     header := make(map[string]string)
+    numberSignals := 0
+    index := 0
 
-    for i := 0; i < len(specsList); i++ {
-        spec := specsList[i]
+    for index < len(specsList) {
+        spec := specsList[index]
 
         if spec == "label" {
             break
@@ -28,11 +29,16 @@ func ReadHeader(inlet *os.File, specsList []string, specslength map[string]int) 
             n, _ := inlet.Read(data)
             header[spec] = string(data[:n])
         }
+
+        index++
     }
 
-    for ; i < len(specsList) ; i++ {
-        spec = specs[List]
-        data := make([]byte, specslength[spec]) // GO ON DOING THIS LATER
+    fmt.Sscanf(header["numbersignals"], "%d", &numberSignals)
+    for index = index; index < len(specsList) ; index++ {
+        spec := specsList[index]
+        data := make([]byte, specslength[spec] * numberSignals)
+        n, _ := inlet.Read(data)
+        header[spec] = string(data[:n])
     }
 
     return header
