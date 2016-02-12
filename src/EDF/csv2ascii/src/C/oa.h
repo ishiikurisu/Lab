@@ -1,7 +1,6 @@
 #pragma once
 #include <stdlib.h>
 #include <stdio.h>
-#include <math.h>
 #include <iso646.h>
 #include "oa/string.h"
 #include "oa/list.h"

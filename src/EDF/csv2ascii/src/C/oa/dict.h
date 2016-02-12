@@ -42,7 +42,6 @@ DICT* put_in_map(DICT* map, char* key, char* value)
 }
 DICT* map_put(DICT* m, char* k, char* v){ return put_in_map(m, k, v); }
 DICT* map_add(DICT* m, char* k, char* v){ return put_in_map(m, k, v); }
-#define mput(M,K,V) ((M)=map_put((M),(K),(V)))
 
 char* get_from_map(DICT* map, char* key)
 {
@@ -50,7 +49,6 @@ char* get_from_map(DICT* map, char* key)
     return pair_find(map->data[get_address(map, key)], key);
 }
 char* map_get(DICT* m, char* k) { return get_from_map(m, k); }
-#define mget(M,K) (map_get((M),(K)))
 
 int map_contains_key(DICT* map, char* key)
 {
