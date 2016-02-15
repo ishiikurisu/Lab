@@ -6,6 +6,7 @@
 
 class DATA_RECORD
 {
+	short change_endian(short);
 	std::map<std::string, std::string> header;
 	std::vector<short> record;
 	size_t number_samples;
@@ -24,6 +25,11 @@ public:
 #endif
 #endif
 };
+
+short DATA_RECORD::change_endian(short in)
+{
+	return ((in >> 8) & 0x00ff) | ((in & 0x00ff) << 8);
+}
 
 void DATA_RECORD::read_record(FILE* inlet, size_t duration)
 {
@@ -59,7 +65,7 @@ std::vector<float> DATA_RECORD::get_translated_record()
 		/ (float)(physicalmaximum - physicalminimum);
 
 	for (it = record.begin(); it != record.end(); ++it)
-		result.push_back((*it) / correct);
+		result.push_back(change_endian(*it) / correct);
 
 	return result;
 }
