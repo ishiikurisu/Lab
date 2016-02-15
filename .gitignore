@@ -1,7 +1,15 @@
 *.log
+
 *.exe
+
 *.bin
+
 *.db
+
 *.o
+
 *.class
+
 *.syso
+
+*.suo

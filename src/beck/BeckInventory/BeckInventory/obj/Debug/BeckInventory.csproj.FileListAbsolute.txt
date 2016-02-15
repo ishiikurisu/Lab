@@ -1,0 +1,11 @@
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\bin\Debug\BeckInventory.exe.config
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\bin\Debug\BeckInventory.exe
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\bin\Debug\BeckInventory.pdb
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Debug\BeckInventory.csprojResolveAssemblyReference.cache
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Debug\BeckInventory.Form1.resources
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Debug\BeckInventory.Properties.Resources.resources
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Debug\BeckInventory.csproj.GenerateResource.Cache
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Debug\BeckInventory.exe
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Debug\BeckInventory.pdb
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Debug\BeckInventory.FormInventory.resources
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Debug\BeckInventory.FormResult.resources
