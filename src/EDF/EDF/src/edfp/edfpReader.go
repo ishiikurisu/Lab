@@ -2,8 +2,42 @@ package edfp
 
 import "os"
 import "fmt"
-// import "bytes"
-// import "encoding/binary"
+import "bytes"
+import "encoding/binary"
+
+/* --- UTILITY FUNCTIONS --- */
+func append(original, to_append []int16) []int16 {
+    lo := len(original)
+    lt := len(to_append)
+    outlet := make([]int16, lo + lt)
+
+    for o := 0; o < lo; o++ {
+        outlet[o] = original[o]
+    }
+    for t := 0; t < lt; t++ {
+        outlet[lo+t] = to_append[t]
+    }
+
+    return outlet
+}
+
+func translate(inlet []byte) []int16 {
+    var joe int16
+    limit := len(inlet)/2
+    outlet := make([]int16, limit)
+
+    for i := 0; i < limit; i++ {
+        buffer := bytes.newReader(inlet[(2*i):(2*i+1)])
+        shit := binary.Read(buffer, binary.LittleEndian, &joe)
+        if shit == nil {
+            outlet[i] = joe
+        } else {
+            panic()
+        }
+    }
+
+    return outlet
+}
 
 /* --- AUXILIAR FUNCTIONS --- */
 func str2int(str string) int {
@@ -12,8 +46,27 @@ func str2int(str string) int {
     return ns
 }
 
+func str2float(str string) float32 {
+    var ns float32 = 0
+    fmt.Sscanf(str, "%f", &ns)
+    return ns
+}
+
 func getNumberSignals(header map[string]string) int {
     return str2int(header["numbersignals"])
+}
+
+func getNumberSamples(header map[string]string) []int {
+    numberSignals := getNumberSignals(header)
+    numberSamples := make([]int, numberSignals)
+    samples := header["samplesrecord"]
+    sampleSize := len(samples) / numberSignals
+
+    for i := 0; i < numberSignals; i++ {
+        numberSamples[i] = str2int(samples[sampleSize*i:sampleSize*i+sampleSize-1])
+    }
+
+    return numberSamples
 }
 
 /* --- MAIN FUNCTIONS --- */
@@ -79,17 +132,23 @@ func ReadHeader(inlet *os.File, specsList []string, specsLength map[string]int) 
  */
 func readRecords(inlet *os.File, header map[string]string) [][]int16 {
     numberSignals := getNumberSignals(header)
+    numberSamples := getNumberSamples(header)
     records := make([][]int16, numberSignals)
+    duration := str2int(header["duration"])
+    dataRecords := str2int(header["datarecords"])
 
+    // setup records
     for i := 0; i < numberSignals; i++ {
-        dataRecords := str2int(header["datarecords"])
-        records[i] = make([]short, dataRecords)
-        // b := []byte{0x18, 0x2d, 0x44, 0x54, 0xfb, 0x21, 0x09, 0x40}
-    	// buf := bytes.NewReader(b)
-    	// err := binary.Read(buf, binary.LittleEndian, &pi)
-    	// if err != nil {
-    	// 	fmt.Println("binary.Read failed:", err)
-    	// }
+        records[i] = make([]int16, int), duration * numberSamples[i])
+    }
+
+    // translate data
+    for d := 0; d < dataRecords; d++ {
+        for i := 0; i < numberSignals; i++ {
+            data := make([]byte, 2*(duration * numberSamples[i]))
+            n, _ := inlet.Read(data)
+            records[i] = append(records[i], translate(data))
+        }
     }
 
     return records
