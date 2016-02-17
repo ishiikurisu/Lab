@@ -74,7 +74,7 @@ func WriteCSV(header map[string]string, records [][]int16) {
 	// writing header...
 	fmt.Printf("title:%s,", header["recording"])
 	fmt.Printf("recorded:%s %s,", header["startdate"], header["starttime"])
-	fmt.Printf("sampling:200,")
+	fmt.Printf("sampling:128,")
 	fmt.Printf("subject:%s,", header["patient"])
 	fmt.Printf("labels:%v,", getLabels(header))
 	fmt.Printf("chan:%s,", header["numbersignals"])

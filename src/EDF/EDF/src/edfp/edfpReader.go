@@ -28,8 +28,8 @@ func translate(inlet []byte) []int16 {
 
     buffer := bytes.NewReader(inlet)
     for i := 0; i < limit; i++ {
-        // shit := binary.Read(buffer, binary.LittleEndian, &joe)
-        shit := binary.Read(buffer, binary.bigEndian, &joe)
+        shit := binary.Read(buffer, binary.LittleEndian, &joe)
+        // shit := binary.Read(buffer, binary.BigEndian, &joe)
         if shit == nil {
             outlet[i] = joe
         }
