@@ -1,4 +1,4 @@
-Borderline clinical depression.
-Moderate depression.
-Severe depression.
-Extreme depression.
+Depressão clínica borderline
+Depressão moderada.
+Depressão severa.
+Depressão extrema.
