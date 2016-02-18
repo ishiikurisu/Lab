@@ -70,8 +70,9 @@ namespace BeckInventory
             // 
             // radio1
             // 
+            this.radio1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radio1.AutoSize = true;
-            this.radio1.Location = new System.Drawing.Point(3, 3);
+            this.radio1.Location = new System.Drawing.Point(9, 15);
             this.radio1.Name = "radio1";
             this.radio1.Size = new System.Drawing.Size(14, 13);
             this.radio1.TabIndex = 0;
@@ -80,8 +81,9 @@ namespace BeckInventory
             // 
             // radio2
             // 
+            this.radio2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radio2.AutoSize = true;
-            this.radio2.Location = new System.Drawing.Point(3, 47);
+            this.radio2.Location = new System.Drawing.Point(9, 59);
             this.radio2.Name = "radio2";
             this.radio2.Size = new System.Drawing.Size(14, 13);
             this.radio2.TabIndex = 1;
@@ -90,8 +92,9 @@ namespace BeckInventory
             // 
             // radio3
             // 
+            this.radio3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radio3.AutoSize = true;
-            this.radio3.Location = new System.Drawing.Point(3, 91);
+            this.radio3.Location = new System.Drawing.Point(9, 103);
             this.radio3.Name = "radio3";
             this.radio3.Size = new System.Drawing.Size(14, 13);
             this.radio3.TabIndex = 2;
@@ -100,8 +103,9 @@ namespace BeckInventory
             // 
             // radio4
             // 
+            this.radio4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radio4.AutoSize = true;
-            this.radio4.Location = new System.Drawing.Point(3, 135);
+            this.radio4.Location = new System.Drawing.Point(9, 148);
             this.radio4.Name = "radio4";
             this.radio4.Size = new System.Drawing.Size(14, 13);
             this.radio4.TabIndex = 3;
@@ -110,8 +114,9 @@ namespace BeckInventory
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 0);
+            this.label1.Location = new System.Drawing.Point(36, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 4;
@@ -119,8 +124,9 @@ namespace BeckInventory
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 44);
+            this.label2.Location = new System.Drawing.Point(36, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 5;
@@ -128,8 +134,9 @@ namespace BeckInventory
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(36, 88);
+            this.label3.Location = new System.Drawing.Point(36, 103);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 6;
@@ -137,8 +144,9 @@ namespace BeckInventory
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(36, 132);
+            this.label4.Location = new System.Drawing.Point(36, 148);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 7;
@@ -159,7 +167,7 @@ namespace BeckInventory
             this.buttonContinue.Name = "buttonContinue";
             this.buttonContinue.Size = new System.Drawing.Size(75, 23);
             this.buttonContinue.TabIndex = 1;
-            this.buttonContinue.Text = "Continue";
+            this.buttonContinue.Text = "Continuar";
             this.buttonContinue.UseVisualStyleBackColor = true;
             this.buttonContinue.Click += new System.EventHandler(this.buttonContinue_Click);
             // 
@@ -170,7 +178,7 @@ namespace BeckInventory
             this.ClientSize = new System.Drawing.Size(365, 238);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "FormInventory";
-            this.Text = "Beck\'s Inventory";
+            this.Text = "Inventário de Beck";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);

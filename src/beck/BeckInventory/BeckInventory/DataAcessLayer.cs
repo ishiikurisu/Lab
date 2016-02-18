@@ -1,31 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BeckInventory
 {
     class DataAcessLayer
     {
-        public string Path { get; private set; }
-
         public DataAcessLayer()
         {
 
         }
 
-        public DataAcessLayer(string path)
-        {
-            Path = path;
-        }
-
-        public string[] Load()
+        public string[] Load(string path)
         {
             List<string> data = new List<string>();
 
-            using (var serial = new StreamReader(Path))
+            using (var serial = new StreamReader(path))
             {
                 for (var line = serial.ReadLine(); line != null; line = serial.ReadLine())
                 {
@@ -34,6 +24,16 @@ namespace BeckInventory
             }
 
             return data.ToArray<string>();
+        }
+
+        public string GetInventoryPath(string test)
+        {
+            return string.Format("assets\\{0}\\inventory.txt", test);
+        }
+
+        public string GetResultsPath(string test)
+        {
+            return string.Format("assets\\{0}\\results.txt", test);
         }
     }
 }

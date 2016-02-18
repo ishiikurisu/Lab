@@ -70,7 +70,7 @@
             this.buttonFinish.Name = "buttonFinish";
             this.buttonFinish.Size = new System.Drawing.Size(75, 23);
             this.buttonFinish.TabIndex = 2;
-            this.buttonFinish.Text = "Finish";
+            this.buttonFinish.Text = "Finalizar";
             this.buttonFinish.UseVisualStyleBackColor = true;
             this.buttonFinish.Click += new System.EventHandler(this.buttonFinish_Click);
             // 
@@ -81,7 +81,7 @@
             this.ClientSize = new System.Drawing.Size(284, 120);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "FormResult";
-            this.Text = "Result";
+            this.Text = "Resultado";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BeckInventory
@@ -13,28 +6,34 @@ namespace BeckInventory
     public partial class FormInventory : Form
     {
         private DataAcessLayer DAL { get; set; }
-        private Form Parent { get; set; }
+        private Form Mother { get; set; }
+        private string Test { get; set; }
         private string[] Questions { get; set; }
         private int Index;
         private int Score;
 
         public FormInventory()
         {
-            this.DAL = new DataAcessLayer(@"assets\inventory.txt");
+            this.DAL = new DataAcessLayer();
             InitializeComponent();
         }
 
-        public void SetParent(Form parent)
+        public void SetMother(Form mother)
         {
-            Parent = parent;
+            Mother = mother;
+        }
+
+        public void SetTest(string test)
+        {
+            Test = test;
         }
 
         public void Start()
         {
-            Questions = DAL.Load();
+            Questions = DAL.Load(DAL.GetInventoryPath(Test));
             Index = Score = 0;
             SetQuestions();
-            Parent.Hide();
+            Mother.Hide();
         }
 
         private void SetQuestions()
@@ -72,8 +71,9 @@ namespace BeckInventory
         private void ShowResults()
         {
             FormResult form = new FormResult();
+            form.SetMother(this.Mother);
+            form.SetTest(this.Test);
             form.SetScore(Score);
-            form.SetParent(Parent);
             form.Show();
             this.Close();
         }
