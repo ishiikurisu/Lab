@@ -1,12 +1,10 @@
 package main
 
-// #include "edfp.hpp"
-import "C"
+import "./edfp"
 import "os"
 
 func main() {
-	var edfp C.edfp
-
-	edfp.read_file(C.CString(os.Args[1]))
-	edfp.csv()
+    input := os.Args[1]
+    header, records := edfp.ReadFile(input)
+    edfp.WriteCSV(header, records)
 }

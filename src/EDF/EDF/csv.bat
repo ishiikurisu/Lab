@@ -1,7 +1,6 @@
-SET CSV=edf2csv.exe
-SET INP=teste.edf
-SET OUT=joe.csv
-make %CSV%
-%CSV% %INP% > %OUT%
-del %CSV%
-more %OUT%
+cd src
+mingw32-make all
+move *.exe ..
+cd..
+edfp2csv data\teste.edf > data\teste.csv
+REM del *.exe
