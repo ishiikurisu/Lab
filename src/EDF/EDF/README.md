@@ -1,7 +1,7 @@
 Go support for EDF+
 ===================
 
-This branch aims to create a Go version for the edfp2csv application, originally written in C++.
+This module provides a Go implementation of the edf2csv application we use here in the lab. The `csv.bat` script will compile it.
 
 Usage:
 
