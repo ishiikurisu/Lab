@@ -1,1 +1,0 @@
-dir /B *.csv *.txt | multiple.exe
