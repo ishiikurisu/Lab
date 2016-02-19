@@ -25,7 +25,7 @@ public class Single
 			data = analyzer.getData();
 			this.write(data);
 		}
-		catch (Exception any) { 
+		catch (Exception any) {
 			any.printStackTrace();
 		}
 

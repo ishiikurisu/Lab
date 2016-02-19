@@ -30,6 +30,10 @@ Minor Projects
 
 An implementation of the Edinburgh Handedness Inventory in Go using [walk](https://github.com/lxn/walk) by @lxn. It is located in the [edinburgh](https://github.com/ishiikurisu/EEG/tree/master/src/edinburgh) folder.
 
+### Beck's Inventories ###
+
+An implementation of the Beck's Depression and anxiety inventories in C#. It's located in the [beck](https://github.com/ishiikurisu/EEG/tree/master/src/beck) folder, and it is meant to be translatable to any language.
+
 ### OA folder ###
 
 This is the code I made during the "Organização de Arquivos" course here at University of Brasília. I use it in the EDF project.

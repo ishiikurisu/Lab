@@ -18,9 +18,15 @@ public class Analyzer
 	private String getLine(BufferedReader inlet)
 	throws IOException
 	{
-		String out = this.ssrtCalc.treatLine(inlet.readLine());
-		inlet.readLine();
-		return out;
+		String out = inlet.readLine();
+
+		while (out.length() < 10)
+		{
+			out = inlet.readLine();
+		}
+
+		// System.out.println(out);
+		return this.ssrtCalc.treatLine(out);
 	}
 
 	public void analyze()
