@@ -1,4 +1,4 @@
-package edfp
+package edf
 
 func GetSpecsLength() map[string]int {
     spec := make(map[string]int)

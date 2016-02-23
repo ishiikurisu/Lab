@@ -1,6 +1,6 @@
-edfppack = edfp/spec.go 
+edfpack = edf/spec.go edf/edfReader.go edf/edfWrite.go
 
-edfp2csv: edfp2csv.go $(edfppack)
-	go build edfp2csv.go
+edf2csv: edf2csv.go $(edfpack)
+	go build edf2csv.go
 
-all: edfp2csv
+all: edf2csv

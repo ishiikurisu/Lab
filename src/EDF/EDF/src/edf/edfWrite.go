@@ -1,4 +1,4 @@
-package edfp
+package edf
 
 import "fmt"
 
@@ -63,7 +63,7 @@ func WriteGo(header map[string]string, records [][]int16) {
 }
 
 /**
- * Translates the data to the *.csv format.
+ * Translates the data to the *.csv format into the standard output.
  * @param header a map containg the EDF header data as strings.
  * @param records the data records as 16bit integers.
  */

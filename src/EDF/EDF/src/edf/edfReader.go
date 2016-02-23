@@ -1,4 +1,4 @@
-package edfp
+package edf
 
 import "os"
 import "fmt"
@@ -22,16 +22,16 @@ func append(original, to_append []int16) []int16 {
 }
 
 func translate(inlet []byte) []int16 {
-    var joe int16
+    var data int16
     limit := len(inlet)/2
     outlet := make([]int16, limit)
     buffer := bytes.NewReader(inlet)
 
     for i := 0; i < limit; i++ {
-        // shit := binary.Read(buffer, binary.BigEndian, &joe)
-        shit := binary.Read(buffer, binary.LittleEndian, &joe)
+        shit := binary.Read(buffer, binary.BigEndian, &data)
+        // shit := binary.Read(buffer, binary.LittleEndian, &data)
         if shit == nil {
-            outlet[i] = joe
+            outlet[i] = data
         }
     }
 
@@ -39,16 +39,10 @@ func translate(inlet []byte) []int16 {
 }
 
 /* --- AUXILIAR FUNCTIONS --- */
-func str2int(str string) int {
-    ns := 0
-    fmt.Sscanf(str, "%d", &ns)
-    return ns
-}
-
-func str2float(str string) float32 {
-    var ns float32 = 0
-    fmt.Sscanf(str, "%f", &ns)
-    return ns
+func str2int(inlet string) int {
+    var outlet int = 0
+    fmt.Sscanf(inlet, "%d", &outlet)
+    return outlet
 }
 
 func getNumberSignals(header map[string]string) int {
@@ -133,18 +127,20 @@ func ReadRecords(inlet *os.File, header map[string]string) [][]int16 {
     numberSignals := getNumberSignals(header)
     numberSamples := getNumberSamples(header)
     records := make([][]int16, numberSignals)
+    sampling := make([]int, numberSignals)
     duration := str2int(header["duration"])
     dataRecords := str2int(header["datarecords"])
 
     // setup records
     for i := 0; i < numberSignals; i++ {
-        records[i] = make([]int16, duration * numberSamples[i])
+        sampling[i] = duration * numberSamples[i]
+        records[i] = make([]int16, sampling[i])
     }
 
     // translate data
     for d := 0; d < dataRecords; d++ {
         for i := 0; i < numberSignals; i++ {
-            data := make([]byte, 2*(duration * numberSamples[i]))
+            data := make([]byte, 2*sampling[i])
             inlet.Read(data)
             records[i] = append(records[i], translate(data))
         }
