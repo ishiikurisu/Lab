@@ -22,7 +22,9 @@ func setConvertionFactor(header map[string]string) []float32 {
 		dmin := str2int64(dmins[i])
 		pmax := str2int64(pmaxs[i])
 		pmin := str2int64(pmins[i])
-		factors[i] = float32(dmax-dmin)/float32(pmax-pmin);
+		dig := float32(dmax-dmin)
+		phi := float32(pmax-pmin)
+		factors[i] = dig/phi;
 	}
 
 	return factors

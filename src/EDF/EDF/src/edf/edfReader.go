@@ -28,8 +28,8 @@ func translate(inlet []byte) []int16 {
     buffer := bytes.NewReader(inlet)
 
     for i := 0; i < limit; i++ {
-        shit := binary.Read(buffer, binary.BigEndian, &data)
-        // shit := binary.Read(buffer, binary.LittleEndian, &data)
+        // shit := binary.Read(buffer, binary.BigEndian, &data)
+        shit := binary.Read(buffer, binary.LittleEndian, &data)
         if shit == nil {
             outlet[i] = data
         }
@@ -139,7 +139,7 @@ func ReadRecords(inlet *os.File, header map[string]string) [][]int16 {
 
     // translate data
     for d := 0; d < dataRecords; d++ {
-        for i := 0; i < numberSignals; i++ {
+        for i := 0; i < numberSignals; i++ {    
             data := make([]byte, 2*sampling[i])
             inlet.Read(data)
             records[i] = append(records[i], translate(data))
