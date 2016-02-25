@@ -1,1 +1,11 @@
 C:\Users\cris\Documents\work\EEG\src\stroop\Stroop\Stroop\bin\Debug\Stroop.exe.config
+C:\Users\cris\Documents\work\EEG\src\stroop\Stroop\Stroop\bin\Debug\Stroop.exe
+C:\Users\cris\Documents\work\EEG\src\stroop\Stroop\Stroop\bin\Debug\Stroop.pdb
+C:\Users\cris\Documents\work\EEG\src\stroop\Stroop\Stroop\obj\Debug\Stroop.csprojResolveAssemblyReference.cache
+C:\Users\cris\Documents\work\EEG\src\stroop\Stroop\Stroop\obj\Debug\Stroop.Form1.resources
+C:\Users\cris\Documents\work\EEG\src\stroop\Stroop\Stroop\obj\Debug\Stroop.Properties.Resources.resources
+C:\Users\cris\Documents\work\EEG\src\stroop\Stroop\Stroop\obj\Debug\Stroop.csproj.GenerateResource.Cache
+C:\Users\cris\Documents\work\EEG\src\stroop\Stroop\Stroop\obj\Debug\Stroop.exe
+C:\Users\cris\Documents\work\EEG\src\stroop\Stroop\Stroop\obj\Debug\Stroop.pdb
+C:\Users\cris\Documents\work\EEG\src\stroop\Stroop\Stroop\obj\Debug\Stroop.FormStroop.resources
+C:\Users\cris\Documents\work\EEG\src\stroop\Stroop\Stroop\obj\Debug\Stroop.FormSubject.resources
