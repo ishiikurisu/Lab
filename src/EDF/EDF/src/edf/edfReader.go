@@ -21,6 +21,30 @@ func append(original, to_append []int16) []int16 {
     return outlet
 }
 
+func max(inlet []int16) int16 {
+    var outlet int16 = inlet[0]
+
+    for i := 1; i < len(inlet); i++ {
+        if inlet[i] > outlet {
+            outlet = inlet[i]
+        }
+    }
+
+    return outlet
+}
+
+func min(inlet []int16) int16 {
+    var outlet int16 = inlet[0]
+
+    for i := 1; i < len(inlet); i++ {
+        if inlet[i] < outlet {
+            outlet = inlet[i]
+        }
+    }
+
+    return outlet
+}
+
 func translate(inlet []byte) []int16 {
     var data int16
     limit := len(inlet)/2
@@ -32,6 +56,61 @@ func translate(inlet []byte) []int16 {
         shit := binary.Read(buffer, binary.LittleEndian, &data)
         if shit == nil {
             outlet[i] = data
+        }
+    }
+
+    return outlet
+}
+
+func rearrange(inlet []int16) []int16 {
+    last := inlet[0]
+    limit := len(inlet)
+    midlet := make([]int, limit)
+    outlet := make([]int16, limit)
+    upperbound := max(inlet)
+    lowerbound := min(inlet)
+    margin := (upperbound - lowerbound)/10
+    factor := 0
+    situation := 0
+    flag := false
+
+    for i := 0; i < limit; i++ {
+        it := inlet[i]
+
+        switch situation {
+            case 1: { // overflow
+                if last < (it - margin) {
+                    situation = 0
+                    factor = 0
+                }
+            }
+            case -1: { // underflow
+                if last > (it + margin) {
+                    situation = 0
+                    factor = 0
+                }
+            }
+            default: { // otherwise
+                if last > (it + margin) { // overflows
+                    situation = 1
+                    factor = 8162
+                    flag = true
+                } else if last < (it - margin) { // underflows
+                    situation = -1
+                    factor = -8162
+                    flag = true
+                }
+            }
+        }
+
+        midlet[i] = int(it) + factor
+        last = it
+    }
+
+    // reorganize signal
+    if flag {
+        for i := 0; i < limit; i++ {
+            outlet[i] = int16(midlet[i]/2)
         }
     }
 
@@ -145,6 +224,11 @@ func ReadRecords(inlet *os.File, header map[string]string) [][]int16 {
             records[i] = append(records[i], translate(data))
         }
     }
+
+    // // what does despair do?
+    // for i := 0; i < numberSignals; i++ {
+    //     records[i] = rearrange(records[i])
+    // }
 
     return records
 }

@@ -62,6 +62,7 @@ func getLabels(header map[string]string) string {
 func WriteGo(header map[string]string, records [][]int16) {
 	fmt.Printf("header: %#v\n\n", header)
 	fmt.Printf("records: %#v\n", records)
+		
 }
 
 /**

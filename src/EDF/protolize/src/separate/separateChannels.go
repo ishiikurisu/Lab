@@ -1,7 +1,10 @@
 package main
 
 import "fmt"
+import "os"
+import "./edf"
 
 func main() {
-	fmt.Println("Let's write some stuff")
+	header, _ := edf.ReadFile(os.Args[1])
+	fmt.Println("%#v", header)
 }
