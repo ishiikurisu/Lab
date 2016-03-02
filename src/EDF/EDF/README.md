@@ -6,5 +6,5 @@ This module provides a Go implementation of the edf2csv application we use here 
 Usage:
 
 ``` sh
-edfp2csv input_file.edf > output_file.csv
+edf2csv input_file.edf > output_file.csv
 ```
