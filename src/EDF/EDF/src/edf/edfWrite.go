@@ -9,9 +9,9 @@ func str2int64(str string) int64 {
 	return x
 }
 
-func setConvertionFactor(header map[string]string) []float32 {
+func setConvertionFactor(header map[string]string) []float64 {
 	ns := getNumberSignals(header)
-	factors := make([]float32, ns)
+	factors := make([]float64, ns)
 	dmaxs := separateString(header["digitalmaximum"], ns)
 	dmins := separateString(header["digitalminimum"], ns)
 	pmaxs := separateString(header["physicalmaximum"], ns)
@@ -22,8 +22,8 @@ func setConvertionFactor(header map[string]string) []float32 {
 		dmin := str2int64(dmins[i])
 		pmax := str2int64(pmaxs[i])
 		pmin := str2int64(pmins[i])
-		dig := float32(dmax-dmin)
-		phi := float32(pmax-pmin)
+		dig := float64(dmax-dmin)
+		phi := float64(pmax-pmin)
 		factors[i] = dig/phi;
 	}
 
@@ -86,7 +86,7 @@ func WriteCSV(header map[string]string, records [][]int16) {
 	limit := len(records[0])
 	for j := 0; j < limit; j++ {
 		for i := 0; i < numberSignals; i++ {
-			data := float32(records[i][j]) * convertionFactor[i]
+			data := float64(records[i][j]) * convertionFactor[i]
 
 			if i == 0 {
 				fmt.Printf("%f", data)
@@ -111,7 +111,7 @@ func WriteASCII(header map[string]string, records [][]int16) {
     // writing data records...
 	for j := 0; j < limit; j++ {
 		for i := 0; i < numberSignals; i++ {
-			fmt.Printf("%f ", float32(records[i][j]) * convertionFactor[i])
+			fmt.Printf("%f ", float64(records[i][j]) * convertionFactor[i])
 		}
 		fmt.Printf("\n")
 	}

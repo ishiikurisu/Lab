@@ -56,7 +56,7 @@ func convert(midlet []int) []int16 {
 	outlet := make([]int16, limit)	
 
 	for i := 0; i < limit; i++ {
-		outlet[i] = int16(midlet[i]/8.0)
+		outlet[i] = int16(midlet[i]/2.0)
 	}
 
 	return outlet

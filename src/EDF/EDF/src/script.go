@@ -1,13 +1,8 @@
 package main
 
 import "fmt"
+import "math"
 
 func main() {
-	joe := make([][]int, 3)
-
-	for i := 0; i < 3; i++ {
-		joe[i] = make([]int, 5+i)
-	}
-
-	fmt.Printf("%#v", joe)
+	fmt.Printf("%#v\n", int(math.Pow(2, 15)) - 1)
 }
