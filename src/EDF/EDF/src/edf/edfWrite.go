@@ -36,7 +36,7 @@ func separateString(stuff string, howMany int) []string {
     outlet := make([]string, howMany)
 
     for i := 0; i < howMany; i++ {
-    	outlet[i] = stuff[bit*i:bit*i+bit]
+    	outlet[i] = stuff[bit*i:bit*(i+1)]
     }
 
     return outlet
@@ -62,7 +62,6 @@ func getLabels(header map[string]string) string {
 func WriteGo(header map[string]string, records [][]int16) {
 	fmt.Printf("header: %#v\n\n", header)
 	fmt.Printf("records: %#v\n", records)
-		
 }
 
 /**
@@ -94,6 +93,25 @@ func WriteCSV(header map[string]string, records [][]int16) {
 			} else {
 				fmt.Printf(", %f", data)
 			}
+		}
+		fmt.Printf("\n")
+	}
+}
+
+/**
+ * Translates the data to the *.ascii format into the standard output.
+ * @param header a map containg the EDF header data as strings.
+ * @param records the data records as 16bit integers.
+ */
+func WriteASCII(header map[string]string, records [][]int16) {
+	numberSignals := getNumberSignals(header)
+	convertionFactor := setConvertionFactor(header)
+	limit := len(records[0])
+
+    // writing data records...
+	for j := 0; j < limit; j++ {
+		for i := 0; i < numberSignals; i++ {
+			fmt.Printf("%f ", float32(records[i][j]) * convertionFactor[i])
 		}
 		fmt.Printf("\n")
 	}
