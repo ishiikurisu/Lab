@@ -76,10 +76,11 @@ func getNumberSignals(header map[string]string) int {
 func getNumberSamples(header map[string]string) []int {
     numberSignals := getNumberSignals(header)
     numberSamples := make([]int, numberSignals)
-    samples := separateString(header["samplesrecord"], numberSignals)
+    samples := header["samplesrecord"]
+    sampleSize := len(samples) / numberSignals
 
     for i := 0; i < numberSignals; i++ {
-        numberSamples[i] = str2int(samples[i])
+        numberSamples[i] = str2int(samples[sampleSize*i:sampleSize*i+sampleSize-1])
     }
 
     return numberSamples
@@ -111,9 +112,7 @@ func ReadFile(input string) (map[string]string, [][]int16) {
  * @param specsLength a map containing how many bytes each field occupy
  * @return header a map containing each field
  */
-func ReadHeader(inlet *os.File, 
-                specsList []string, 
-                specsLength map[string]int) map[string]string {
+func ReadHeader(inlet *os.File, specsList []string, specsLength map[string]int) map[string]string {
     header := make(map[string]string)
     index := 0
 
@@ -171,10 +170,11 @@ func ReadRecords(inlet *os.File, header map[string]string) [][]int16 {
         }
     }
 
-    // // what does despair do?
-    // for i := 0; i < numberSignals; i++ {
-    //     records[i] = rearrange(records[i])
-    // }
+    // what does despair do?
+    for i := 0; i < numberSignals; i++ {
+        // records[i] = identifyOverflow(records[i])
+        records[i] = rearrange(records[i])
+    }
 
     return records
 }
