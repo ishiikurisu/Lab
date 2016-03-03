@@ -108,7 +108,6 @@ func WriteASCII(header map[string]string, records [][]int16) {
 	convertionFactor := setConvertionFactor(header)
 	limit := len(records[0])
 
-    // writing data records...
 	for j := 0; j < limit; j++ {
 		for i := 0; i < numberSignals; i++ {
 			fmt.Printf("%f ", float64(records[i][j]) * convertionFactor[i])
