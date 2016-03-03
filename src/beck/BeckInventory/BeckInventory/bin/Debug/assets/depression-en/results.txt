@@ -1,4 +1,5 @@
-Borderline clinical depression.
-Moderate depression.
-Severe depression.
-Extreme depression.
+0 17 These lows and highs are normal.
+17 21 Borderline clinical depression.
+21 30 Moderate depression.
+30 40 Severe depression.
+40 100 Extreme depression.

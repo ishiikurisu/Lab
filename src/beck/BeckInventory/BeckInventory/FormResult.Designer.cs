@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormResult));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelScore = new System.Windows.Forms.Label();
             this.labelResult = new System.Windows.Forms.Label();
@@ -80,6 +81,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 120);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormResult";
             this.Text = "Resultado";
             this.flowLayoutPanel1.ResumeLayout(false);

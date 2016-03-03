@@ -17,11 +17,10 @@ namespace BeckInventory
         {
             FormInventory form = new FormInventory();
             form.SetMother(this);
-            form.SetTest(GetTest());
+            form.SetTest(Tests[listKind.SelectedIndex]);
             form.Show();
             form.Start();
         }
-
 
         private void SetTests()
         {
@@ -38,11 +37,6 @@ namespace BeckInventory
             }
 
             listKind.SetSelected(0, true);
-        }
-
-        private string GetTest()
-        {
-            return Tests[listKind.SelectedIndex];
         }
     }
 }

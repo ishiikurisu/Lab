@@ -30,6 +30,7 @@ namespace BeckInventory
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInventory));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radio1 = new System.Windows.Forms.RadioButton();
             this.radio2 = new System.Windows.Forms.RadioButton();
@@ -177,6 +178,7 @@ namespace BeckInventory
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 238);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormInventory";
             this.Text = "Inventário de Beck";
             this.tableLayoutPanel1.ResumeLayout(false);

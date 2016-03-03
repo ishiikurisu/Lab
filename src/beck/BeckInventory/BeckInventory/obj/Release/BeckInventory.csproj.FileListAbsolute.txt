@@ -1,0 +1,10 @@
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\bin\Release\BeckInventory.exe.config
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\bin\Release\BeckInventory.exe
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\bin\Release\BeckInventory.pdb
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Release\BeckInventory.Form1.resources
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Release\BeckInventory.FormInventory.resources
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Release\BeckInventory.FormResult.resources
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Release\BeckInventory.Properties.Resources.resources
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Release\BeckInventory.csproj.GenerateResource.Cache
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Release\BeckInventory.exe
+C:\Users\cris\Documents\work\EEG\src\beck\BeckInventory\BeckInventory\obj\Release\BeckInventory.pdb

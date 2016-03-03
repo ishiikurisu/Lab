@@ -70,7 +70,7 @@ namespace BeckInventory
 
         private void ShowResults()
         {
-            FormResult form = new FormResult();
+            var form = new FormResult();
             form.SetMother(this.Mother);
             form.SetTest(this.Test);
             form.SetScore(Score);

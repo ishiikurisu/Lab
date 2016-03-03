@@ -27,23 +27,24 @@ namespace BeckInventory
         public void SetScore(int score)
         {
             DataAcessLayer DAL = new DataAcessLayer();
+            DataParser DP;
             string[] results = DAL.Load(DAL.GetResultsPath(Test));
-            string result = "Estes altos e baixos são considerados normais.";
+            string result = "";
             labelScore.Text = string.Format("Você marcou {0} ponto(s).", score);
 
-            if (score >= 11 && score < 17)
-                result = "Variação emocional media.";
-            else if (score >= 17 && score < 21)
-                result = results[0];
-            else if (score >= 21 && score < 31)
-                result = results[1];
-            else if (score >= 31 && score <= 40)
-                result = results[2];
-            else if (score > 40)
-                result = results[3];
+            foreach (var line in results)
+            {
+                DP = new DataParser(line);
+                int lowerbound = DP.Lowerbound;
+                int upperbound = DP.Upperbound;
+                string message = DP.Message;
 
-            if (score >= 17)
-                result += "\n" + Recomendation;
+                if (score >= lowerbound && score < upperbound)
+                {
+                    result = message;
+                    break;
+                }
+            }
 
             labelResult.Text = result;
         }
