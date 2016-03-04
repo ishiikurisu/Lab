@@ -2,13 +2,7 @@ package edf
 
 import "fmt"
 
-/* --- UTILITY FUNCTIONS --- */
-func str2int64(str string) int64 {
-	var x int64
-	fmt.Sscanf(str, "%d", &x)
-	return x
-}
-
+/* --- AUXILIAR FUNCTIONS --- */
 func setConvertionFactor(header map[string]string) []float64 {
 	ns := getNumberSignals(header)
 	factors := make([]float64, ns)
@@ -30,18 +24,6 @@ func setConvertionFactor(header map[string]string) []float64 {
 	return factors
 }
 
-/* --- AUXILIAR FUNCTIONS --- */
-func separateString(stuff string, howMany int) []string {
-	bit := len(stuff) / howMany
-    outlet := make([]string, howMany)
-
-    for i := 0; i < howMany; i++ {
-    	outlet[i] = stuff[bit*i:bit*(i+1)]
-    }
-
-    return outlet
-}
-
 func getLabels(header map[string]string) string {
 	numberSignals := getNumberSignals(header)
 	labels := separateString(header["label"], numberSignals)
@@ -54,6 +36,7 @@ func getLabels(header map[string]string) string {
     return outlet
 }
 
+/* --- MAIN FUNCTIONS --- */
 /**
  * Just writes the read data as Go vars.
  * @param header a map containg the EDF header data as strings.

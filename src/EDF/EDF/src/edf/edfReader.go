@@ -1,50 +1,10 @@
 package edf
 
 import "os"
-import "fmt"
 import "bytes"
 import "encoding/binary"
 
-/* --- UTILITY FUNCTIONS --- */
-func append(original, to_append []int16) []int16 {
-    lo := len(original)
-    lt := len(to_append)
-    outlet := make([]int16, lo + lt)
-
-    for o := 0; o < lo; o++ {
-        outlet[o] = original[o]
-    }
-    for t := 0; t < lt; t++ {
-        outlet[lo+t] = to_append[t]
-    }
-
-    return outlet
-}
-
-func max(inlet []int16) int16 {
-    var outlet int16 = inlet[0]
-
-    for i := 1; i < len(inlet); i++ {
-        if inlet[i] > outlet {
-            outlet = inlet[i]
-        }
-    }
-
-    return outlet
-}
-
-func min(inlet []int16) int16 {
-    var outlet int16 = inlet[0]
-
-    for i := 1; i < len(inlet); i++ {
-        if inlet[i] < outlet {
-            outlet = inlet[i]
-        }
-    }
-
-    return outlet
-}
-
+/* --- AUXILIAR FUNCTIONS --- */
 func translate(inlet []byte) []int16 {
     var data int16
     limit := len(inlet)/2
@@ -59,13 +19,6 @@ func translate(inlet []byte) []int16 {
         }
     }
 
-    return outlet
-}
-
-/* --- AUXILIAR FUNCTIONS --- */
-func str2int(inlet string) int {
-    var outlet int = 0
-    fmt.Sscanf(inlet, "%d", &outlet)
     return outlet
 }
 
