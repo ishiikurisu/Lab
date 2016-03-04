@@ -112,7 +112,9 @@ func ReadFile(input string) (map[string]string, [][]int16) {
  * @param specsLength a map containing how many bytes each field occupy
  * @return header a map containing each field
  */
-func ReadHeader(inlet *os.File, specsList []string, specsLength map[string]int) map[string]string {
+func ReadHeader(inlet *os.File,
+                specsList []string,
+                specsLength map[string]int) map[string]string {
     header := make(map[string]string)
     index := 0
 
@@ -163,18 +165,18 @@ func ReadRecords(inlet *os.File, header map[string]string) [][]int16 {
 
     // translate data
     for d := 0; d < dataRecords; d++ {
-        for i := 0; i < numberSignals; i++ {    
+        for i := 0; i < numberSignals; i++ {
             data := make([]byte, 2*sampling[i])
             inlet.Read(data)
             records[i] = append(records[i], translate(data))
         }
     }
 
-    // what does despair do?
-    for i := 0; i < numberSignals; i++ {
-        // records[i] = identifyOverflow(records[i])
-        records[i] = rearrange(records[i])
-    }
+    // // what does despair do?
+    // for i := 0; i < numberSignals; i++ {
+    //     // records[i] = identifyOverflow(records[i])
+    //     records[i] = rearrange(records[i])
+    // }
 
     return records
 }
