@@ -9,9 +9,7 @@ My projects can be accessed in the [`src`](https://github.com/ishiikurisu/EEG/tr
 EDF
 ---
 
-The objective of this project is to read files in EDF format, specially from EMOTIV devices so they can be treated using the EEGLAB software. It's composed of the [`edf`](https://github.com/ishiikurisu/EEG/tree/master/src/EDF) folder.
-
-Currently, my executables can read `*.edf` and translate them into YAML, CSV and ASCII formats; but not in a way EEGLAB can understand, given EMOTIV's TESTBENCH (c) and EEGLAB don't yield the same data on screen. Therefore, my current challenge is to make EEGLAB read these EDF files the same way TESTBENCH (c) does. Currently, we are almost being able of managing EDF+ files, and they are expected to be used as part of PROTOLIZE!2.
+The objective of this project is to read files in EDF format so they can be treated by many different software. It's composed of the [`edf`](https://github.com/ishiikurisu/EEG/tree/master/src/EDF) folder. Currently, we can manage EDF+ files, and they are expected to be used as part of [PROTOLIZE!2](https://github.com/ishiikurisu/P2).
 
 Stop Signal Test
 ----------------
