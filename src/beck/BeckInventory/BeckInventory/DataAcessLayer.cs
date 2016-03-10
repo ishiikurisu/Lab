@@ -26,6 +26,11 @@ namespace BeckInventory
             return data.ToArray<string>();
         }
 
+        public void Save(string where, string what)
+        {
+            File.WriteAllText(where, what);
+        }
+
         public string GetInventoryPath(string test)
         {
             return string.Format("assets\\{0}\\inventory.txt", test);
@@ -34,6 +39,12 @@ namespace BeckInventory
         public string GetResultsPath(string test)
         {
             return string.Format("assets\\{0}\\results.txt", test);
+        }
+
+        public string GenerateResultsPath(string inlet)
+        {
+            return string.Format("results\\{0}.txt", inlet.Split(' ')
+                                                          .Aggregate((acc, x) => acc + x));
         }
     }
 }

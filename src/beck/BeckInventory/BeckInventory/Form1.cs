@@ -5,7 +5,7 @@ namespace BeckInventory
 {
     public partial class Form1 : Form
     {
-        private string[] Tests { get; set; }
+        public string[] Tests { get; private set; }
 
         public Form1()
         {
@@ -17,6 +17,7 @@ namespace BeckInventory
         {
             FormInventory form = new FormInventory();
             form.SetMother(this);
+            form.SetPatient(textPatient.Text);
             form.SetTest(Tests[listKind.SelectedIndex]);
             form.Show();
             form.Start();

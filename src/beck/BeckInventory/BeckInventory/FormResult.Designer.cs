@@ -1,4 +1,6 @@
-﻿namespace BeckInventory
+﻿using System;
+
+namespace BeckInventory
 {
     partial class FormResult
     {
@@ -31,7 +33,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormResult));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelScore = new System.Windows.Forms.Label();
-            this.labelResult = new System.Windows.Forms.Label();
             this.buttonFinish = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -39,7 +40,6 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.labelScore);
-            this.flowLayoutPanel1.Controls.Add(this.labelResult);
             this.flowLayoutPanel1.Controls.Add(this.buttonFinish);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 12);
@@ -49,25 +49,19 @@
             // 
             // labelScore
             // 
+            this.labelScore.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelScore.AutoSize = true;
             this.labelScore.Location = new System.Drawing.Point(3, 0);
             this.labelScore.Name = "labelScore";
-            this.labelScore.Size = new System.Drawing.Size(71, 13);
+            this.labelScore.Size = new System.Drawing.Size(161, 13);
             this.labelScore.TabIndex = 0;
-            this.labelScore.Text = "You scored X";
-            // 
-            // labelResult
-            // 
-            this.labelResult.AutoSize = true;
-            this.labelResult.Location = new System.Drawing.Point(3, 13);
-            this.labelResult.Name = "labelResult";
-            this.labelResult.Size = new System.Drawing.Size(54, 13);
-            this.labelResult.TabIndex = 1;
-            this.labelResult.Text = "You are Y";
+            this.labelScore.Text = "Resultados salvos com sucesso!";
+            this.labelScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonFinish
             // 
-            this.buttonFinish.Location = new System.Drawing.Point(3, 29);
+            this.buttonFinish.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonFinish.Location = new System.Drawing.Point(46, 16);
             this.buttonFinish.Name = "buttonFinish";
             this.buttonFinish.Size = new System.Drawing.Size(75, 23);
             this.buttonFinish.TabIndex = 2;
@@ -93,8 +87,7 @@
         #endregion
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label labelScore;
-        private System.Windows.Forms.Label labelResult;
         private System.Windows.Forms.Button buttonFinish;
+        private System.Windows.Forms.Label labelScore;
     }
 }

@@ -33,6 +33,7 @@
             this.listKind = new System.Windows.Forms.ListBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.textPatient = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,15 +54,15 @@
             // 
             this.listKind.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listKind.FormattingEnabled = true;
-            this.listKind.Location = new System.Drawing.Point(70, 23);
+            this.listKind.Location = new System.Drawing.Point(70, 49);
             this.listKind.Name = "listKind";
-            this.listKind.Size = new System.Drawing.Size(120, 43);
+            this.listKind.Size = new System.Drawing.Size(120, 56);
             this.listKind.TabIndex = 2;
             // 
             // buttonStart
             // 
             this.buttonStart.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonStart.Location = new System.Drawing.Point(78, 81);
+            this.buttonStart.Location = new System.Drawing.Point(78, 123);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(103, 23);
             this.buttonStart.TabIndex = 1;
@@ -74,23 +75,35 @@
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.buttonStart, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.labelTitle, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.listKind, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.buttonStart, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.listKind, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.textPatient, 0, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(260, 117);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(260, 162);
             this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // textPatient
+            // 
+            this.textPatient.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textPatient.Location = new System.Drawing.Point(70, 23);
+            this.textPatient.Name = "textPatient";
+            this.textPatient.Size = new System.Drawing.Size(120, 20);
+            this.textPatient.TabIndex = 3;
+            this.textPatient.Text = "Paciente";
+            this.textPatient.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 141);
+            this.ClientSize = new System.Drawing.Size(284, 186);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -106,6 +119,7 @@
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.ListBox listKind;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TextBox textPatient;
     }
 }
 
