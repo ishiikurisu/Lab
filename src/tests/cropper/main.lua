@@ -1,4 +1,11 @@
 local cropper = require "crop"
-cropper.magic("raven002")
-cropper.magic("raven003")
-cropper.magic("raven004")
+
+while true do
+    line = io.read("*line")
+
+    if #line >= 1 then
+        cropper.magic(line:sub(1, #line-4))
+    else
+        break
+    end
+end
