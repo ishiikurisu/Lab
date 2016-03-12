@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace BeckInventory
 {
@@ -8,6 +9,8 @@ namespace BeckInventory
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private RadioButton[] Radios { get; set; }
+        private Label[] Labels { get; set; }
 
         /// <summary>
         /// Clean up any resources being used.
@@ -32,17 +35,8 @@ namespace BeckInventory
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInventory));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.radio1 = new System.Windows.Forms.RadioButton();
-            this.radio2 = new System.Windows.Forms.RadioButton();
-            this.radio3 = new System.Windows.Forms.RadioButton();
-            this.radio4 = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonContinue = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,107 +45,11 @@ namespace BeckInventory
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tableLayoutPanel1.Controls.Add(this.radio1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.radio2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.radio3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.radio4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 1, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.Size = new System.Drawing.Size(338, 177);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // radio1
-            // 
-            this.radio1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.radio1.AutoSize = true;
-            this.radio1.Location = new System.Drawing.Point(9, 15);
-            this.radio1.Name = "radio1";
-            this.radio1.Size = new System.Drawing.Size(14, 13);
-            this.radio1.TabIndex = 0;
-            this.radio1.TabStop = true;
-            this.radio1.UseVisualStyleBackColor = true;
-            // 
-            // radio2
-            // 
-            this.radio2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.radio2.AutoSize = true;
-            this.radio2.Location = new System.Drawing.Point(9, 59);
-            this.radio2.Name = "radio2";
-            this.radio2.Size = new System.Drawing.Size(14, 13);
-            this.radio2.TabIndex = 1;
-            this.radio2.TabStop = true;
-            this.radio2.UseVisualStyleBackColor = true;
-            // 
-            // radio3
-            // 
-            this.radio3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.radio3.AutoSize = true;
-            this.radio3.Location = new System.Drawing.Point(9, 103);
-            this.radio3.Name = "radio3";
-            this.radio3.Size = new System.Drawing.Size(14, 13);
-            this.radio3.TabIndex = 2;
-            this.radio3.TabStop = true;
-            this.radio3.UseVisualStyleBackColor = true;
-            // 
-            // radio4
-            // 
-            this.radio4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.radio4.AutoSize = true;
-            this.radio4.Location = new System.Drawing.Point(9, 148);
-            this.radio4.Name = "radio4";
-            this.radio4.Size = new System.Drawing.Size(14, 13);
-            this.radio4.TabIndex = 3;
-            this.radio4.TabStop = true;
-            this.radio4.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 59);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "label2";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(36, 103);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "label3";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(36, 148);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "label4";
             // 
             // flowLayoutPanel1
             // 
@@ -181,8 +79,6 @@ namespace BeckInventory
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormInventory";
             this.Text = "Inventário de Beck";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -190,15 +86,45 @@ namespace BeckInventory
 
         #endregion
 
+        private string[] Rest(string[] array)
+        {
+            int limit = array.Length - 1;
+            string[] outlet = new string[limit];
+
+            for (int i = 1; i < array.Length; i++)
+            {
+                outlet[i - 1] = array[i];
+            }
+
+            return outlet;
+        }
+
+        private void CreateRows()
+        {
+            tableLayoutPanel1.RowCount = NoQuestions;
+            Radios = new RadioButton[NoQuestions];
+            Labels = new Label[NoQuestions];
+
+            for (int i = 0; i < NoQuestions; i++)
+            {
+                RadioButton radio = new RadioButton();
+                Label label = new Label();
+
+                radio.Anchor = AnchorStyles.None;
+                radio.AutoSize = true;
+                radio.UseVisualStyleBackColor = true;
+                label.Anchor = AnchorStyles.Left;
+                label.AutoSize = true;
+
+                Radios[i] = radio;
+                Labels[i] = label;
+                tableLayoutPanel1.Controls.Add(Radios[i], 0, i);
+                tableLayoutPanel1.Controls.Add(Labels[i], 1, i);
+                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F / NoQuestions));
+            }
+        }
+
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.RadioButton radio1;
-        private System.Windows.Forms.RadioButton radio2;
-        private System.Windows.Forms.RadioButton radio3;
-        private System.Windows.Forms.RadioButton radio4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button buttonContinue;
     }

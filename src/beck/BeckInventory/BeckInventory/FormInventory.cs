@@ -9,6 +9,7 @@ namespace BeckInventory
         private Form Mother { get; set; }
         private string Test { get; set; }
         private string Patient { get; set; }
+        private int NoQuestions { get; set; }
         private string[] Questions { get; set; }
         private int[] Answers { get; set; }
         private int Index;
@@ -37,19 +38,22 @@ namespace BeckInventory
 
         public void Start()
         {
-            Questions = DAL.Load(DAL.GetInventoryPath(Test));
-            Answers = new int[Questions.Length/4];
+            string[] raw = DAL.Load(DAL.GetInventoryPath(Test));
+            NoQuestions = int.Parse(raw[0]);
+            Questions = Rest(raw);
+            Answers = new int[Questions.Length/NoQuestions];
             Index = Score = 0;
+            CreateRows();
             SetQuestions();
             Mother.Hide();
         }
 
         private void SetQuestions()
         {
-            label1.Text = Questions[Index++];
-            label2.Text = Questions[Index++];
-            label3.Text = Questions[Index++];
-            label4.Text = Questions[Index++];
+            foreach (var label in Labels)
+            {
+                label.Text = Questions[Index++];
+            }
         }
 
         private void buttonContinue_Click(object sender, EventArgs e)
@@ -66,14 +70,15 @@ namespace BeckInventory
         {
             int result = 0;
 
-            if (radio2.Checked)
-                result = 1;
-            else if (radio3.Checked)
-                result = 2;
-            else if (radio4.Checked)
-                result = 3;
+            foreach (var radio in Radios)
+            {
+                if (radio.Checked)
+                    break;
+                else
+                    result++;
+            }
 
-            Answers[(Index-1) / 4] = result;
+            Answers[(Index-1) / NoQuestions] = result;
             return result;
         }
 
