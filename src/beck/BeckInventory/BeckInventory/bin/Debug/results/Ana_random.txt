@@ -1,0 +1,9 @@
+Teste: random
+Paciente: Ana
+Pontuação: 3 ponto(s)
+Resultado: Estes altos e baixos são considerados normais.
+Respostas:
+  1. 1
+  2. 1
+  3. 1
+

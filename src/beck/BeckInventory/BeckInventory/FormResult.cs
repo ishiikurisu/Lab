@@ -69,8 +69,9 @@ namespace BeckInventory
                 Answers.Aggregate("Respostas:\r\n", 
                                   (acc, x) => string.Format("{0}  {1}. {2}\r\n", acc, index++, x))
             };
-            DAL.Save(DAL.GenerateResultsPath(Patient), 
+            DAL.Save(DAL.GenerateResultsPath(Patient, Test),
                      parts.Aggregate("", (acc, x) => string.Format("{0}{1}\r\n", acc, x)));
+
         }
 
         private void buttonFinish_Click(object sender, EventArgs e)

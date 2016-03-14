@@ -41,10 +41,11 @@ namespace BeckInventory
             return string.Format("assets\\{0}\\results.txt", test);
         }
 
-        public string GenerateResultsPath(string inlet)
+        public string GenerateResultsPath(string patient, string test)
         {
-            return string.Format("results\\{0}.txt", inlet.Split(' ')
-                                                          .Aggregate((acc, x) => acc + x));
+            return string.Format("results\\{0}_{1}.txt", patient.Split(' ')
+                                                                .Aggregate((acc, x) => acc + x),
+                                                         test);
         }
     }
 }
