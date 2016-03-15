@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 class Query extends Thread {
+	private final String warning = "/!\\ SOME SHIT HAPPENNED";
 	private String inlet;
 
 	public Query(String inlet) {
@@ -23,10 +24,10 @@ class Query extends Thread {
 			}
 		} 
 		catch (IOException ioe) {
-			System.out.println("/!\\ SOME SHIT HAPPENNED");
+			System.out.println(this.warning);
 		}
 		catch (InterruptedException ioe) {
-			System.out.println("/!\\ SOME SHIT HAPPENNED");
+			System.out.println(this.warning);
 		}
 	}
 
