@@ -1,4 +1,4 @@
 ﻿depression Depressão
 depression-en Depression
 anxiety-en Anxiety
-random Debugging
+random Debugging Test

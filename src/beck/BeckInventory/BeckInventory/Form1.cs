@@ -33,8 +33,13 @@ namespace BeckInventory
             foreach (var line in lines)
             {
                 var stuff = line.Split(' ');
+                var name = stuff[1];
+
+                for (int j = 2; j < stuff.Length; ++j)
+                    name = name + " " + stuff[j];
+
                 Tests[i++] = stuff[0];
-                listKind.Items.Add(stuff[1]);
+                listKind.Items.Add(name);
             }
 
             listKind.SetSelected(0, true);

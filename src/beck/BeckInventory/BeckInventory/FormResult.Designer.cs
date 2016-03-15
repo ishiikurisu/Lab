@@ -31,27 +31,17 @@ namespace BeckInventory
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormResult));
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelScore = new System.Windows.Forms.Label();
             this.buttonFinish = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.labelScore);
-            this.flowLayoutPanel1.Controls.Add(this.buttonFinish);
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 12);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(260, 96);
-            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // labelScore
             // 
             this.labelScore.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelScore.AutoSize = true;
-            this.labelScore.Location = new System.Drawing.Point(3, 0);
+            this.labelScore.Location = new System.Drawing.Point(49, 17);
             this.labelScore.Name = "labelScore";
             this.labelScore.Size = new System.Drawing.Size(161, 13);
             this.labelScore.TabIndex = 0;
@@ -61,7 +51,7 @@ namespace BeckInventory
             // buttonFinish
             // 
             this.buttonFinish.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonFinish.Location = new System.Drawing.Point(46, 16);
+            this.buttonFinish.Location = new System.Drawing.Point(92, 60);
             this.buttonFinish.Name = "buttonFinish";
             this.buttonFinish.Size = new System.Drawing.Size(75, 23);
             this.buttonFinish.TabIndex = 2;
@@ -69,25 +59,39 @@ namespace BeckInventory
             this.buttonFinish.UseVisualStyleBackColor = true;
             this.buttonFinish.Click += new System.EventHandler(this.buttonFinish_Click);
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.labelScore, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.buttonFinish, 0, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(260, 96);
+            this.tableLayoutPanel1.TabIndex = 3;
+            // 
             // FormResult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 120);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormResult";
             this.Text = "Resultado";
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button buttonFinish;
         private System.Windows.Forms.Label labelScore;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

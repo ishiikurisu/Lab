@@ -43,7 +43,7 @@ namespace BeckInventory
 
         public string GenerateResultsPath(string patient, string test)
         {
-            return string.Format("results\\{0}_{1}.txt", patient.Split(' ')
+            return string.Format("results\\{0}_{1}.csv", patient.Split(' ')
                                                                 .Aggregate((acc, x) => acc + x),
                                                          test);
         }
