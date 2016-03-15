@@ -43,11 +43,11 @@
             this.labelTitle.AutoSize = true;
             this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTitle.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelTitle.Location = new System.Drawing.Point(59, 0);
+            this.labelTitle.Location = new System.Drawing.Point(97, 0);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(141, 20);
+            this.labelTitle.Size = new System.Drawing.Size(65, 20);
             this.labelTitle.TabIndex = 0;
-            this.labelTitle.Text = "Inventário de Beck";
+            this.labelTitle.Text = "Escalas";
             this.labelTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // listKind
@@ -107,7 +107,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Inventário de Beck";
+            this.Text = "Escalas";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

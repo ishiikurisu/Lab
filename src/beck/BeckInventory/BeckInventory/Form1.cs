@@ -10,21 +10,8 @@ namespace BeckInventory
         public Form1()
         {
             InitializeComponent();
-            SetTests();
-        }
 
-        private void buttonStart_Click(object sender, EventArgs e)
-        {
-            FormInventory form = new FormInventory();
-            form.SetMother(this);
-            form.SetPatient(textPatient.Text);
-            form.SetTest(Tests[listKind.SelectedIndex]);
-            form.Show();
-            form.Start();
-        }
-
-        private void SetTests()
-        {
+            /// SET TESTS
             DataAcessLayer DAL = new DataAcessLayer();
             var lines = DAL.Load(@"assets\kinds.txt");
             Tests = new string[lines.Length];
@@ -43,6 +30,16 @@ namespace BeckInventory
             }
 
             listKind.SetSelected(0, true);
+        }
+
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            FormInventory form = new FormInventory();
+            form.SetMother(this);
+            form.SetPatient(textPatient.Text);
+            form.SetTest(Tests[listKind.SelectedIndex]);
+            form.Show();
+            form.Start();
         }
     }
 }

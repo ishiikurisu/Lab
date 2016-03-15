@@ -1,85 +1,106 @@
 4
-Numbness or tingling - Not at all
-Numbness or tingling - Mildly
-Numbness or tingling - Moderately
-Numbness or tingling - Severely
-Feeling hot - Not at all
-Feeling hot - Mildly
-Feeling hot - Moderately
-Feeling hot - Severely
-Wobbliness in legs - Not at all
-Wobbliness in legs - Mildly
-Wobbliness in legs - Moderately
-Wobbliness in legs - Severely
-Unable to relax - Not at all
-Unable to relax - Mildly
-Unable to relax - Moderately
-Unable to relax - Severely
-Fear of worst happening - Not at all
-Fear of worst happening - Mildly
-Fear of worst happening - Moderately
-Fear of worst happening - Severely
-Dizzy or lightheaded - Not at all
-Dizzy or lightheaded - Mildly
-Dizzy or lightheaded - Moderately
-Dizzy or lightheaded - Severely
-Heart racing - Not at all
-Heart racing - Mildly
-Heart racing - Moderately
-Heart racing - Severely
-Unsteady - Not at all
-Unsteady - Mildly
-Unsteady - Moderately
-Unsteady - Severely
-Terrified or afraid - Not at all
-Terrified or afraid - Mildly
-Terrified or afraid - Moderately
-Terrified or afraid - Severely
-Nervous - Not at all
-Nervous - Mildly
-Nervous - Moderately
-Nervous - Severely
-Feeling of choking - Not at all
-Feeling of choking - Mildly
-Feeling of choking - Moderately
-Feeling of choking - Severely
-Hands trembling - Not at all
-Hands trembling - Mildly
-Hands trembling - Moderately
-Hands trembling - Severely
-Shaky - Not at all
-Shaky - Mildly
-Shaky - Moderately
-Shaky - Severely
-Fear of losing control - Not at all
-Fear of losing control - Mildly
-Fear of losing control - Moderately
-Fear of losing control - Severely
-Difficulty in breathing - Not at all
-Difficulty in breathing - Mildly
-Difficulty in breathing - Moderately
-Difficulty in breathing - Severely
-Fear of dying - Not at all
-Fear of dying - Mildly
-Fear of dying - Moderately
-Fear of dying - Severely
-Scared - Not at all
-Scared - Mildly
-Scared - Moderately
-Scared - Severely
-Indigestion - Not at all
-Indigestion - Mildly
-Indigestion - Moderately
-Indigestion - Severely
-Faint - Not at all
-Faint - Mildly
-Faint - Moderately
-Faint - Severely
-Face flushed - Not at all
-Face flushed - Mildly
-Face flushed - Moderately
-Face flushed - Severely
-Hot/cold sweats - Not at all
-Hot/cold sweats - Mildly
-Hot/cold sweats - Moderately
-Hot/cold sweats - Severely
+Numbness or tingling
+Not at all
+Mildly
+Moderately
+Severely
+Feeling hot
+Not at all
+Mildly
+Moderately
+Severely
+Wobbliness in legs
+Not at all
+Mildly
+Moderately
+Severely
+Unable to relax
+Not at all
+Mildly
+Moderately
+Severely
+Fear of worst happening
+Not at all
+Mildly
+Moderately
+Severely
+Dizzy or lightheaded
+Not at all
+Mildly
+Moderately
+Severely
+Heart racing
+Not at all
+Mildly
+Moderately
+Severely
+Unsteady
+Not at all
+Mildly
+Moderately
+Severely
+Terrified or afraid
+Not at all
+Mildly
+Moderately
+Severely
+Nervous
+Not at all
+Mildly
+Moderately
+Severely
+Feeling of choking
+Not at all
+Mildly
+Moderately
+Severely
+Hands trembling
+Not at all
+Mildly
+Moderately
+Severely
+Shaky
+Not at all
+Mildly
+Moderately
+Severely
+Fear of losing control
+Not at all
+Mildly
+Moderately
+Severely
+Difficulty in breathing
+Not at all
+Mildly
+Moderately
+Severely
+Fear of dying
+Not at all
+Mildly
+Moderately
+Severely
+Scared
+Not at all
+Mildly
+Moderately
+Severely
+Indigestion
+Not at all
+Mildly
+Moderately
+Severely
+Faint
+Not at all
+Mildly
+Moderately
+Severely
+Face flushed
+Not at all
+Mildly
+Moderately
+Severely
+Hot/cold sweats
+Not at all
+Mildly
+Moderately
+Severely

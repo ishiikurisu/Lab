@@ -1,23 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BeckInventory
 {
     public partial class FormInventory : Form
     {
-        private DataAcessLayer DAL { get; set; }
         private Form Mother { get; set; }
         private string Test { get; set; }
         private string Patient { get; set; }
         private int NoQuestions { get; set; }
-        private string[] Questions { get; set; }
+        private int CurrentQuestion { get; set; }
+        private Queue<string> Questions { get; set; }
         private int[] Answers { get; set; }
-        private int Index;
-        private int Score;
+        private int Score { get; set; }
 
         public FormInventory()
         {
-            this.DAL = new DataAcessLayer();
             InitializeComponent();
         }
 
@@ -38,11 +37,13 @@ namespace BeckInventory
 
         public void Start()
         {
+            DataAcessLayer DAL = new DataAcessLayer();
             string[] raw = DAL.Load(DAL.GetInventoryPath(Test));
             NoQuestions = int.Parse(raw[0]);
-            Questions = Rest(raw);
-            Answers = new int[Questions.Length/NoQuestions];
-            Index = Score = 0;
+            Questions = new Queue<string>(Rest(raw));
+            Answers = new int[Questions.Count/(NoQuestions+1)];
+            Score = CurrentQuestion = 0;
+
             CreateRows();
             SetQuestions();
             Mother.Hide();
@@ -50,9 +51,10 @@ namespace BeckInventory
 
         private void SetQuestions()
         {
+            labelQuestion.Text = Questions.Dequeue();
             foreach (var label in Labels)
             {
-                label.Text = Questions[Index++];
+                label.Text = Questions.Dequeue();
             }
         }
 
@@ -60,7 +62,7 @@ namespace BeckInventory
         {
             Score += ExtractScore();
 
-            if (Index >= Questions.Length)
+            if (Questions.Count == 0)
                 ShowResults();
             else
                 SetQuestions();
@@ -78,7 +80,7 @@ namespace BeckInventory
                     result++;
             }
 
-            Answers[(Index-1) / NoQuestions] = result;
+            Answers[CurrentQuestion++] = result;
             return result;
         }
 
