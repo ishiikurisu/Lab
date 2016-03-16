@@ -1,18 +1,19 @@
 package sst
 
 import "os"
+// import "fmt"
 
 /**
  * Reads the choosen file and translates it into a collection of arrays
  * @param input the name of the input file
- * @return a map relating the specied information and the 
+ * @return a map relating the needed information and the chosen fields
  */
-func Read(input string) map[string]int {
+func Read(input string) map[string][]string {
 	inlet, _ := os.Open(input)
 	header := ReadHeader(inlet)
-
+	outlet := ReadRecords(inlet, header)
 	defer inlet.Close()
-	return header
+	return outlet
 }
 
 /**
@@ -22,16 +23,37 @@ func Read(input string) map[string]int {
  */
 func ReadHeader(inlet *os.File) map[string]int {
 	ReadLine(inlet)
-	rawData := ReadLine(inlet)
 	header := make(map[string]int)
-	stuff := Split(rawData, '\t')
+	stuff := Split(ReadLine(inlet), '\t')
 	needed := GetNeededVariables()
 
-	header["raw"] = len(rawData)
-	header["stuff"] = len(stuff)
-	for i, it := range needed {
-		fmt.Printf("%d. %v\n", i, it)
+	for i, it := range stuff {
+		if Contains(needed, it) {
+			header[it] = i
+		}
 	}
 
 	return header
+}
+
+/**
+ * Read the records into arrays of contigous information
+ * @param inlet the pointer to the file we're reading
+ * @param header a map relating the indexes to the needed fields
+ * @return a map relating the needed fields and the arrays of contained information
+ */
+func ReadRecords(inlet *os.File, header map[string]int) map[string][]string {
+	outlet := make(map[string][]string)
+
+	for line := ReadLine(inlet); len(line) > 2; line = ReadLine(inlet) {
+		stuff := Split(line, '\t')
+		for key, value := range header {
+			item := stuff[value]
+			if len(item) > 0 {
+				outlet[key] = append(outlet[key], item)
+			}
+		}
+	}
+
+	return outlet
 }

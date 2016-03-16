@@ -14,8 +14,13 @@ func ReadLine(inlet *os.File) string {
 
 func ReadChar(inlet *os.File) byte {
 	data := make([]byte, 2)
-	inlet.Read(data)
-	return data[0]
+	_, shit := inlet.Read(data)
+
+	if shit != nil {
+		return '\n'
+	} else {
+		return data[0]
+	}
 }
 
 func Split(inlet string, separator byte) []string {
@@ -32,4 +37,14 @@ func Split(inlet string, separator byte) []string {
 	}
 
 	return outlet
+}
+
+func Contains(haystack []string, needle string) bool {
+	for _, hay := range haystack {
+		if hay == needle {
+			return true
+		}
+	}
+
+	return false
 }

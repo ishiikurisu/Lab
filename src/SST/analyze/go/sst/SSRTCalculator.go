@@ -1,12 +1,12 @@
 package sst
 
-func GetNeedVariables() []string {
-	return {
+func GetNeededVariables() []string {
+	return []string{
 		"PressStimulus.RT",
 		"PressStimulus.ACC",
 		"SoundStimulus.RT",
 		"SoundStimulus.ACC",
 		"VisualStimulus.Duration",
-		"Procedure[Trial]"	
+		"Procedure[Trial]",
 	}
 }
