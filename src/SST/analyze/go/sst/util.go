@@ -8,7 +8,7 @@ func ReadLine(inlet *os.File) string {
 	for data := ReadChar(inlet); data != '\n'; data = ReadChar(inlet) {
 		stuff += string(data)
 	}
-	
+
 	return stuff
 }
 
