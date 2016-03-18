@@ -1,5 +1,8 @@
 package sst
 
+/**
+ * Creates a slice containing the needed variables for analysis
+ */
 func GetNeededVariables() []string {
 	return []string{
 		"PressStimulus.RT",
@@ -12,19 +15,32 @@ func GetNeededVariables() []string {
 }
 
 /**
- * Performs a study process on one SST data set
- * @param data a map relating the needed fields to arrays of the collected data
- * @return a map relating the desided measures with their respective calculations
+ * Creates a map to be used on single and multiple file analysis
  */
-func AnalyzeSingle(data map[string][]string) map[string]float64 {
+func CreateAnalysisMap() map[string]float64 {
 	result := make(map[string]float64)
-	limit := len(data["Procedure[Trial]"])
+
 	result["RT"] = 0
 	result["SSD"] = 0
 	result["correctGo"] = 0
 	result["totalGo"] = 0
 	result["correctStop"] = 0
 	result["totalStop"] = 0
+	result["SSRT"] = 0
+	result["%INHIB"] = 0
+	result["%AUS"] = 0
+
+	return result
+}
+
+/**
+ * Performs a study process on one SST data set
+ * @param data a map relating the needed fields to arrays of the collected data
+ * @return a map relating the desided measures with their respective calculations
+ */
+func AnalyzeSingle(data map[string][]string) map[string]float64 {
+	result := CreateAnalysisMap()
+	limit := len(data["Procedure[Trial]"])
 
 	for i := 0; i < limit; i++ {
 		switch data["Procedure[Trial]"][i] {

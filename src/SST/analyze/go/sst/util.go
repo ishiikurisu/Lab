@@ -1,6 +1,7 @@
 package sst
 
 import "os"
+import "fmt"
 import "strconv"
 
 func ReadLine(inlet *os.File) string {
@@ -57,4 +58,8 @@ func ParseFloat64(inlet string) float64 {
 	} else {
 		return 0
 	}
+}
+
+func Debug(x interface{}) {
+	fmt.Println(x)
 }

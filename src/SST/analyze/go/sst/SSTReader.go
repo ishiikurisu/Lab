@@ -48,8 +48,7 @@ func ReadRecords(inlet *os.File, header map[string]int) map[string][]string {
 	for line := ReadLine(inlet); len(line) > 2; line = ReadLine(inlet) {
 		stuff := Split(line, '\t')
 		for key, value := range header {
-			item := stuff[value]
-			outlet[key] = append(outlet[key], item)
+			outlet[key] = append(outlet[key], stuff[value])
 		}
 	}
 
