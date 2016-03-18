@@ -1,6 +1,7 @@
 package sst
 
 import "os"
+import "strconv"
 
 func ReadLine(inlet *os.File) string {
 	stuff := ""
@@ -47,4 +48,13 @@ func Contains(haystack []string, needle string) bool {
 	}
 
 	return false
+}
+
+func ParseFloat64(inlet string) float64 {
+	outlet, shit := strconv.ParseFloat(inlet, 64)
+	if shit == nil {
+		return outlet
+	} else {
+		return 0
+	}
 }
