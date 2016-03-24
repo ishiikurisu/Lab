@@ -2,6 +2,7 @@ package sst
 
 import "os"
 import "fmt"
+import "math"
 import "strconv"
 
 func min(a, b int) int {
@@ -88,4 +89,35 @@ func ValidFile(inlet string) bool {
 	}
 
 	return isTxt || isCsv
+}
+
+/////////////////
+// MATHEMATICS //
+/////////////////
+
+func Sigma(inlet []float64) float64 {
+	var outlet float64 = 0.0
+	for _, it := range inlet {
+		outlet += it
+	}
+	return outlet
+}
+
+func Mean(inlet []float64) float64 {
+	return Sigma(inlet) / float64(len(inlet))
+}
+
+func Variance(inlet []float64) float64 {
+	var mean float64 = Mean(inlet)
+	var outlet float64 = 0.0
+
+	for _, it := range inlet {
+		outlet += math.Pow(it - mean, 2)
+	}
+
+	return outlet / float64(len(inlet))
+}
+
+func StdDev(inlet []float64) float64 {
+	return math.Sqrt(Variance(inlet))
 }
