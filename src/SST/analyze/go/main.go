@@ -1,7 +1,7 @@
 package main
 
-import "os"
 import "fmt"
+import "os"
 import "./sst"
 import "io/ioutil"
 
@@ -19,12 +19,14 @@ func main() {
 	}
 
 	for _, file := range stuff {
+		analysis := sst.BeginAnalysis()
 		if sst.ValidFile(file.Name()) {
-			path := source + file.Name()
-			raw := sst.Read(path)
-			data := sst.AnalyzeSingle(raw)
-			sst.WriteSingle(data)
+			data := sst.AnalyzeSingle(sst.Read(source + file.Name()))
+			analysis = sst.UpdateAnalysis(data, analysis)
+			sst.WriteSingle(nil, fmt.Sprintf("# %s\n%s\n", file.Name(),
+				                                           sst.FormatOutput(data)))
 		}
+		sst.WriteSingle(nil, sst.FormatOutput(sst.EndAnalysis(analysis)))
 	}
 	
 }

@@ -78,7 +78,7 @@ func ValidFile(inlet string) bool {
 	txt := ".txt"
 	csv := ".csv"
 
-	for i := 1; i <= 4; i++ {
+	for i := 1; i <= 4 && (isTxt || isCsv); i++ {
 		if inlet[len(inlet)-i] != txt[len(txt)-i] {
 			isTxt = false
 		}

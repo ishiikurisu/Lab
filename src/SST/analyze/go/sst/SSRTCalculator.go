@@ -4,7 +4,7 @@ package sst
  * Creates a slice containing the needed variables for analysis
  */
 func GetNeededVariables() []string {
-	return []string{
+	return []string {
 		"PressStimulus.RT",
 		"PressStimulus.ACC",
 		"SoundStimulus.RT",
