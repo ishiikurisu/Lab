@@ -95,27 +95,25 @@ func ValidFile(inlet string) bool {
 // MATHEMATICS //
 /////////////////
 
-func Sigma(inlet []float64) float64 {
+func Sigma(inlet []float64, op func(float64)float64) float64 {
 	var outlet float64 = 0.0
 	for _, it := range inlet {
-		outlet += it
+		outlet += op(it)
 	}
 	return outlet
 }
 
 func Mean(inlet []float64) float64 {
-	return Sigma(inlet) / float64(len(inlet))
+	return Sigma(inlet, func(it float64) float64 {
+		return it
+	}) / float64(len(inlet))
 }
 
 func Variance(inlet []float64) float64 {
-	var mean float64 = Mean(inlet)
-	var outlet float64 = 0.0
-
-	for _, it := range inlet {
-		outlet += math.Pow(it - mean, 2)
-	}
-
-	return outlet / float64(len(inlet))
+	mean := Mean(inlet)
+	return Sigma(inlet, func(it float64) float64 {
+		return math.Pow(it - mean, 2)
+	}) / float64(len(inlet))
 }
 
 func StdDev(inlet []float64) float64 {
