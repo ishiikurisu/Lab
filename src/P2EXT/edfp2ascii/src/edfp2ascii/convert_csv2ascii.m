@@ -1,6 +1,7 @@
 %% convert_csv2ascii: converts an EDF+ file to ASCII files
 function [status, cmdout] = convert_csv2ascii(inlet, how)
-[status, cmdout] = system(sprintf('edfp2ascii\\%s %s', get_operation(how), generate_name(inlet)))
+fprintf('csv to ascii\n');
+[status, cmdout] = system(sprintf('"%s\edfp2ascii\\%s" "%s"', cd, get_operation(how), generate_name(inlet)))
 
 function [outlet] = get_operation(inlet)
 if isequal(inlet, true)
