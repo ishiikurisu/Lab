@@ -16,19 +16,25 @@ const char* generate_output(const char *input, const char *extension)
 	return outlet.c_str();
 }
 
+void write_annotations(EDFP edfp, const char *input)
+{
+	const char *output = generate_output(input, ".txt");
+	FILE *outlet = fopen(output, "w");
+
+	if (outlet == NULL) outlet = stdout;
+	fprintf(outlet, "--- # Annotations\n%s\n...\n", edfp.get_annotations());
+
+	fclose(outlet);
+}
+
 int main(int argc, char const *argv[])
 {
 	const char *input = argv[1];
 	EDFP edfp;
 
-	printf("%s\n", input); fflush(stdout);
-	edfp.read_file(input, true);
+	edfp.read_file(input);
 	edfp.csv(generate_output(input, ".csv"));
-	fprintf(fopen(generate_output(input, 
-		                          ".txt"), 
-	              "w"), 
-		    "--- # Annotations\n%s\n...\n", 
-		    edfp.get_annotations());
+	write_annotations(edfp, input);
 
 	return 0;
 }

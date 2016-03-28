@@ -10,12 +10,12 @@ else
 end
 
 function [outlet] = generate_name(inlet)
-outlet = [inlet(1:get_offset(inlet)-1) '.csv']
+outlet = [inlet(1:get_offset(inlet)) '.csv'];
 function [offset] = get_offset(inlet)
 offset = get_offset_loop(inlet, length(inlet));
 function [offset] = get_offset_loop(inlet, where)
 if isequal(inlet(where), '.')
-	offset = where
+	offset = where-1;
 else
 	offset = get_offset_loop(inlet, where-1);
 end

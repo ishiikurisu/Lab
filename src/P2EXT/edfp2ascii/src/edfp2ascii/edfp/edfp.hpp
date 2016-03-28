@@ -217,7 +217,7 @@ std::string _csvfy(std::string inlet)
 /**
  * Converts the EDF+ file to a CSV one
  * @param output <p>the name of output file. If there is no output,
- * the program will write it in terminal.</p>
+ *               the program will write it in terminal.</p>
  * @author Cris Silva Jr. <cristianoalvesjr@gmail.com>
  */
 void EDFP::csv(const char *output = NULL)
