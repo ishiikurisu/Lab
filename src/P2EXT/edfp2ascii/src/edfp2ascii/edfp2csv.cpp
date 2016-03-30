@@ -6,7 +6,7 @@ int main(int argc, char const *argv[])
 
 	edfp.read_file(argv[1]);
 	edfp.csv();
-	printf("--- # Annotations\n%s\n...\n", 
+	printf("\n--- # Annotations\n%s\n...\n", 
 		   edfp.get_annotations());
 
 	return 0;

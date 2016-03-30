@@ -44,11 +44,11 @@ end
 %% separate_csv_from_notes: it does what it promises.
 function [csv, notes] = separate_csv_from_notes(inlet)
 fprintf('separating stuff...\n');
-lines = split_string(inlet, '\n');
+lines = split_string(inlet, sprintf('\n'));
 index = 1;
 
 csv = '';
-while ~starts_with(lines{index}, '---')
+while and(~starts_with(lines{index}, '---'), index < length(lines))
 	csv = [csv lines{index} '\n'];
 	index = index+1;
 end
