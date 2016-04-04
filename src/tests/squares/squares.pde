@@ -1,8 +1,8 @@
 final float MOO = 0.1;
 final int WIDTH = 600;
 final int HEIGHT = 600;
-final color PANTONE_4545CP = #E1D7AE;
-final color BLACK = #000000;
+final color PANTONE_4545CP = #E1D7AE; // kinda brownish
+final color PANTONE_2479CP = #2F241D; // black
 int NO_SQUARES = 1;
 
 void setup() {
@@ -17,7 +17,7 @@ void draw() {
   float x = WIDTH * MOO / 2.0;
 
   background(PANTONE_4545CP);
-  fill(BLACK);
+  fill(PANTONE_2479CP);
   for (int i = 0; i < NO_SQUARES; ++i) {
     rect(x, // x coordinate
          HEIGHT*MOO/2 + i*(h+g), // y coordinate
