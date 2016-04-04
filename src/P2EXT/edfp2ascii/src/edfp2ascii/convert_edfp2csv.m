@@ -49,7 +49,7 @@ index = 1;
 
 csv = '';
 while and(~starts_with(lines{index}, '---'), index < length(lines))
-	csv = [csv lines{index} '\n'];
+	csv = strcat(csv, lines{index}, '\n');
 	index = index+1;
 end
 
