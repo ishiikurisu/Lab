@@ -28,5 +28,4 @@ func main() {
 		}
 	}
 	sst.Write(nil, sst.FormatMultiple(sst.EndAnalysis(analysis)))
-	
 }

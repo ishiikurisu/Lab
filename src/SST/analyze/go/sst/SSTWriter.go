@@ -24,18 +24,18 @@ func GetResultParameters() []string {
 		"SSRT",
 		"%INHIB",
 		"%AUS",
-	}	
+	}
 }
 
 /**
  * <p> Generates an analysis structure. Consists of a map relating a parameter
- *     to an array of numbers. The needed parameters can be obtained through the 
+ *     to an array of numbers. The needed parameters can be obtained through the
  *     "GetAnalysisParameters() string" function.
  * </p>
  * @return the analysis structure
  */
 func BeginAnalysis() map[string][]float64 {
-	data := make(map[string][]float64) 
+	data := make(map[string][]float64)
 
 	for _, param := range GetAnalysisParameters() {
 		data[param] = make([]float64, 0)
@@ -50,7 +50,7 @@ func BeginAnalysis() map[string][]float64 {
  * @param outlet the structure that will be incremented
  * @return outlet with the appropriate changes
  */
-func UpdateAnalysis(inlet map[string]float64, 
+func UpdateAnalysis(inlet map[string]float64,
 	                outlet map[string][]float64) map[string][]float64 {
 	for _, param := range GetAnalysisParameters() {
 		outlet[param] = append(outlet[param], inlet[param])
@@ -86,7 +86,7 @@ func FormatSingle(data map[string]float64) (box string) {
 	for _, param := range GetAnalysisParameters() {
 		box += fmt.Sprintf("%s: %3f\n", param, data[param])
 	}
-	return 
+	return
 }
 
 /**
