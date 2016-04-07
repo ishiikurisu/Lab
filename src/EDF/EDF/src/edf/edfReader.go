@@ -124,11 +124,5 @@ func ReadRecords(inlet *os.File, header map[string]string) [][]int16 {
         }
     }
 
-    // // what does despair do?
-    // for i := 0; i < numberSignals; i++ {
-    //     // records[i] = identifyOverflow(records[i])
-    //     records[i] = rearrange(records[i])
-    // }
-
     return records
 }
