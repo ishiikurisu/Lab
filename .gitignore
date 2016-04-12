@@ -13,3 +13,5 @@
 *.syso
 
 *.suo
+
+*.dll
