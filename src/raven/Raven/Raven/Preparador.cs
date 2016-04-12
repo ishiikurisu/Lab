@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Infra;
 
 namespace Raven
 {
@@ -22,7 +23,8 @@ namespace Raven
 
         public void CarregarTeste()
         {
-            StreamReader file = new StreamReader(this.CaminhoAtual + "config\\versions.txt");
+            var input = this.CaminhoAtual + "config\\versions.txt";
+            StreamReader file = new StreamReader(input);
             List<string> paths = new List<string>();
             List<string> tests = new List<string>();
 
