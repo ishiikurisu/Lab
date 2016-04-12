@@ -17,12 +17,12 @@ namespace Raven
         {
             //CaminhoAtual = @"C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\";
             //CaminhoAtual = @"..\..\";
-            CaminhoAtual = @".\";
+            CaminhoAtual = @".\assets\";
         }
 
         public void CarregarTeste()
         {
-            StreamReader file = new StreamReader(this.CaminhoAtual + "versions.txt");
+            StreamReader file = new StreamReader(this.CaminhoAtual + "config\\versions.txt");
             List<string> paths = new List<string>();
             List<string> tests = new List<string>();
 
@@ -39,7 +39,7 @@ namespace Raven
 
         public void CarregarOpcoes(string teste)
         {
-            string config = CaminhoAtual + teste + ".txt";
+            string config = CaminhoAtual + @"config\" + teste + ".txt";
             string caminhoDados = CaminhoAtual + teste + @"\";
             List<string> imgs = new List<string>();
             List<int> ops = new List<int>();
@@ -72,7 +72,11 @@ namespace Raven
         {
             string[] imgs = new string[noImgs+1];
 
-            for (int i = 0; i <= noImgs; ++i)
+            if (img.Length <= 2)
+            {
+                return null;
+            }
+            else for (int i = 0; i <= noImgs; ++i)
             {
                 imgs[i] = CaminhoAtual + test + @"\" + img + "." + i + ".png";
             }

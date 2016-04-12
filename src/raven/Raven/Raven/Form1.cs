@@ -36,7 +36,7 @@ namespace Raven
                 
             FormOps f2 = new FormOps(DAL.Caminhos[comboOps.SelectedIndex], idade);
             f2.Show();
-            f2.StartTest();
+            f2.Test();
             this.Hide();
         }
     }

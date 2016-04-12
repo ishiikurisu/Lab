@@ -7,5 +7,5 @@ C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.csproj.Ge
 C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.exe
 C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.pdb
 C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.csprojResolveAssemblyReference.cache
-C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.Resultado.resources
 C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.FormOps.resources
+C:\Users\cris\Documents\work\EEG\src\raven\Raven\Raven\obj\Debug\Raven.FormResultado.resources

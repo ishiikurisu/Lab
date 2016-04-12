@@ -22,7 +22,7 @@ namespace Raven
             this.NomeTeste = nomeTeste;
             DAL.CarregarOpcoes(nomeTeste);
             Imagens = DAL.ImagensPrincipais;
-            Idade = 25;
+            Idade = 21;
         }
 
         public Aplicador(string nomeTeste, int idade) : this(nomeTeste)

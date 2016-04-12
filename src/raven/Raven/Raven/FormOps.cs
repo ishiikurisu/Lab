@@ -39,15 +39,15 @@ namespace Raven
             this.App = new Aplicador(nomeTeste, idade);
         }
 
-        public async void StartTest()
+        public async void Test()
         {
             Stopwatch clock = new Stopwatch();
 
             this.App.PrepararTeste();
             for (NoRodada = 0; NoRodada < this.App.Imagens.Length; NoRodada++)
             {
-                clock.Start();
                 DefinirTela(this.App.CarregarImagens(NoRodada));
+                clock.Start();
                 await RecebeuResposta();
                 clock.Stop();
 
@@ -55,12 +55,8 @@ namespace Raven
                 clock.Reset();
             }
 
-            MostrarResultado();
-        }
-
-        private void MostrarResultado()
-        {
-            Resultado R = new Resultado(App.CalcularResultado(), App.NoRespostasCorretas);
+            FormResultado R = new FormResultado(App.CalcularResultado(), 
+                                                App.NoRespostasCorretas);
             R.Show();
             Close();
         }
@@ -123,6 +119,7 @@ namespace Raven
             return "Respondido";
         }
 
+        #region Description of user input
         private void FormOps_KeyUp(object sender, KeyEventArgs e)
         {
             int resposta = 0;
@@ -160,7 +157,7 @@ namespace Raven
                 Respondeu = true;
                 App.OuvirResposta(NoRodada, resposta);
             }
-                
+
         }
 
         private void picOp1_Click(object sender, EventArgs e)
@@ -210,5 +207,6 @@ namespace Raven
             Respondeu = true;
             App.OuvirResposta(NoRodada, 8);
         }
+        #endregion
     }
 }
