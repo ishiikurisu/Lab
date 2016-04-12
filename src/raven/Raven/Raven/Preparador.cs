@@ -33,6 +33,7 @@ namespace Raven
                 tests.Add(data[1]);
             }
 
+            file.Close();
             this.Caminhos = paths.ToArray();
             this.Testes = tests.ToArray();
         }
