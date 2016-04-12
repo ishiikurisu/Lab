@@ -23,25 +23,16 @@ We want to implement a version of the Raven's Progressive Matrices (RPM) test to
 
 Minor Projects
 --------------
-
-### Edinburgh Handedness Inventory ###
-
-An implementation of the Edinburgh Handedness Inventory in Go using [walk](https://github.com/lxn/walk) by @lxn. It is located in the [edinburgh](https://github.com/ishiikurisu/EEG/tree/master/src/edinburgh) folder.
-
 ### Beck's Inventories ###
 
 An implementation of the Beck's Depression and anxiety inventories in C#. It's located in the [beck](https://github.com/ishiikurisu/EEG/tree/master/src/beck) folder, and it is meant to be translatable to any language.
 
 It is currently being worked on the [scalemate](https://github.com/ishiikurisu/Scalemate) repository, due to its success. It has been renamed and it is fully growing as its own unique project now.
 
-### OA folder ###
+### Edinburgh Handedness Inventory ###
 
-This is the code I made during the "Organização de Arquivos" course here at University of Brasília. I use it in the EDF project.
+An implementation of the Edinburgh Handedness Inventory in Go using [walk](https://github.com/lxn/walk) by @lxn. It is located in the [edinburgh](https://github.com/ishiikurisu/EEG/tree/master/src/edinburgh) folder.
 
 ### Benchmarking ###
 
 A small application to clock another app's performance. Nothing fancy.
-
-### Buffering ###
-
-A buffering header to make access to large files faster. Works well now but needs a whole lot more improvements, specially writing data types that aren't `char*`.
