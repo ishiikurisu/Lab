@@ -93,8 +93,18 @@ func WriteASCII(header map[string]string, records [][]int16) {
 
 	for j := 0; j < limit; j++ {
 		for i := 0; i < numberSignals; i++ {
+			// TODO ignore annotations channel in this loop
 			fmt.Printf("%f ", float64(records[i][j]) * convertionFactor[i])
 		}
 		fmt.Printf("\n")
 	}
 }
+
+/**
+ * Extracts the annoatations channel from the EDF file, if it exists
+ * @param header a map containg the EDF header data as strings.
+ * @param records the data records as 16bit integers.
+ */
+// func WriteNotes(header map[string]string, records [][]int16) {
+	
+// }
