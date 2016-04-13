@@ -138,9 +138,7 @@ func BeginCSV() string {
  * @param data the analysis structure
  * @return the formatted string
  */
-func FormatSingleCSV(data map[string]float64) string {
-	box := ""
-
+func FormatSingleCSV(data map[string]float64) (box string) {
 	for _, param := range GetAnalysisParameters() {
 		box += fmt.Sprintf(", %3f", data[param])
 	}
