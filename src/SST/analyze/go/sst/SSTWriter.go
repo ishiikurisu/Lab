@@ -114,3 +114,53 @@ func Write(outlet *os.File, data string) {
 		fmt.Fprintf(outlet, "%s", data)
 	}
 }
+
+/* ------------------------------------------------------------ */
+
+/**
+ * Generates a header for a CSV output
+ * @return a string containing the header of the CSV file
+ */
+func BeginCSV() string {
+	box := "File name"
+
+	for _, it := range GetAnalysisParameters() {
+		box += fmt.Sprintf(", %s", it)
+	}
+
+	return box + "\n"
+}	
+
+/**
+ * <p>Formats the output of an analysis structure to the CSV format.
+ *    It assumes there is a file name so this string can be
+ *    be concatenated to its end. </p>
+ * @param data the analysis structure
+ * @return the formatted string
+ */
+func FormatSingleCSV(data map[string]float64) string {
+	box := ""
+
+	for _, param := range GetAnalysisParameters() {
+		box += fmt.Sprintf(", %3f", data[param])
+	}
+	return
+}
+
+/**
+ * Calls the calculations functions upon the analysis structure
+ * @param analysis <p> the arrays containing the results of the
+ *                     individual analysis </p>
+ * @return a string containing the formatted output
+ */
+func FormatMultipleCSV(analysis map[string][]float64) string {
+	outlet := "result"
+
+	for _, param := range GetAnalysisParameters() {
+		mean := Mean(analysis[param])
+		dev := StdDev(analysis[param])
+		outlet += fmt.Sprintf(", %3f +- %3f", mean, dev)
+	}
+
+	return fmt.Sprintf("%s\n", outlet)
+}
