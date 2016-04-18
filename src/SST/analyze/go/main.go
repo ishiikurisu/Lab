@@ -19,13 +19,14 @@ func main() {
 	}
 
 	analysis := sst.BeginAnalysis()
+	sst.Write(nil, sst.BeginCSV())
 	for _, file := range stuff {
 		if sst.ValidFile(file.Name()) {
 			data := sst.AnalyzeSingle(sst.Read(source + file.Name()))
 			analysis = sst.UpdateAnalysis(data, analysis)
-			sst.Write(nil, fmt.Sprintf("# %s\n%s\n", file.Name(),
-				                                     sst.FormatSingle(data)))
+			sst.Write(nil, fmt.Sprintf("%s%s\n", file.Name(),
+				                                   sst.FormatSingleCSV(data)))
 		}
 	}
-	sst.Write(nil, sst.FormatMultiple(sst.EndAnalysis(analysis)))
+	sst.Write(nil, sst.FormatMultipleCSV(analysis))
 }
