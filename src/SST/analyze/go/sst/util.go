@@ -75,7 +75,7 @@ func Debug(x interface{}) {
 
 func ValidFile(inlet string) bool {
 	isTxt := true
-	isCsv := true
+	isCsv := false
 	txt := ".txt"
 	csv := ".csv"
 

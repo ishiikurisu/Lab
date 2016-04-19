@@ -111,7 +111,7 @@ func Write(outlet *os.File, data string) {
 	if outlet == nil {
 		fmt.Printf("%s", data)
 	} else {
-		fmt.Fprintf(outlet, "%s", data)
+		outlet.WriteString(data)
 	}
 }
 
@@ -125,7 +125,7 @@ func BeginCSV() string {
 	box := "File name"
 
 	for _, it := range GetAnalysisParameters() {
-		box += fmt.Sprintf(", %s", it)
+		box += fmt.Sprintf("\t%s", it)
 	}
 
 	return box + "\n"
