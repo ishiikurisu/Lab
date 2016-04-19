@@ -83,7 +83,7 @@ func WriteNotes(header map[string]string, records [][]int16) {
 
 	if which > 0 && which < len(records) {
 		annotations := convertInt16ToByte(records[which])
-		fmt.Printf("%#v\n", annotations)
+		fmt.Printf("%s\n", formatAnnotations(annotations))
 	}
 }
 
@@ -148,3 +148,35 @@ func writeASCIIChannel(record []int16, convertionFactor float64, j int) int {
 	return flag
 }
 
+/* format annotations to human-readable text */
+func formatAnnotations(raw []byte) string {
+	return formatAnnotationsFeedback(0, raw, false, "")
+}
+func formatAnnotationsFeedback(index int, 
+	                           raw []byte, 
+	                           inside bool, 
+	                           box string) string {
+	if index == len(raw) { 
+		return box
+	} else if inside {
+		if raw[index] == 0 {
+			return formatAnnotationsFeedback(index + 1, 
+				                             raw, 
+				                             false, 
+				                             box + fmt.Sprintf("\n"))
+		} else {
+			if raw[index] == 20 || raw[index] == 21 { raw[index] = ' ' }
+			return formatAnnotationsFeedback(index + 1, 
+				                             raw, 
+				                             inside, 
+				                             box + fmt.Sprintf("%c", raw[index]))
+		}
+	} else if raw[index] == '+' || raw[index] == '-' {
+		return formatAnnotationsFeedback(index + 1, 
+				                         raw, 
+				                         true, 
+				                         box + string(raw[index]))
+	} else {
+		return formatAnnotationsFeedback(index+1, raw, inside, box)
+	}
+}
