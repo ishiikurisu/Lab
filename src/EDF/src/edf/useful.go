@@ -1,6 +1,7 @@
 package edf
 
 import "fmt"
+import "math"
 
 func separateString(stuff string, howMany int) []string {
 	bit := len(stuff) / howMany
@@ -72,4 +73,42 @@ func smallest(array []int) int {
     }
 
     return r
+}
+
+func convertInt16ToByte(inlet []int16) []byte {
+    var outlet []byte = make([]byte, 2*len(inlet))
+    var this byte = 0
+    var i uint = 0
+    var j int = 0
+
+    for _, that := range inlet {
+        bits := extractBits(that)
+
+        this = 0
+        for i = 0; i < 8; i++ {
+            this += bits[i] * byte(math.Pow(2, float64(i)))
+        }
+        outlet[j] = this
+        j++
+
+        this = 0
+        for i = 8; i < 16; i++ {
+            this += bits[i] * byte(math.Pow(2, float64(i-8)))
+        }
+        outlet[j] = this
+        j++
+    }
+
+    return outlet
+}
+
+func extractBits(inlet int16) []byte {
+    outlet := make([]byte, 16)
+    var i uint
+
+    for i = 0; i < 16; i++ {
+        outlet[i] = byte(inlet >> i) & 0x1
+    }
+
+    return outlet
 }

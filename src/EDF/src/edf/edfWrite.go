@@ -78,10 +78,14 @@ func WriteASCII(header map[string]string, records [][]int16) {
  * @param header a map containg the EDF header data as strings.
  * @param records the data records as 16bit integers.
  */
-// func WriteNotes(header map[string]string, records [][]int16) {
-// 	annotations := records[getAnnotationsChannel(header)
+func WriteNotes(header map[string]string, records [][]int16) {
+	which := getAnnotationsChannel(header)
 
-// }
+	if which > 0 && which < len(records) {
+		annotations := convertInt16ToByte(records[which])
+		fmt.Printf("%#v\n", annotations)
+	}
+}
 
 /* --- AUXILIAR FUNCTIONS --- */
 func setConvertionFactor(header map[string]string) []float64 {
@@ -122,7 +126,7 @@ func getAnnotationsChannel(header map[string]string) int {
 	labels := separateString(header["label"], getNumberSignals(header))
 
 	for i, label := range labels {
-		if match(label, "EDF annotations") {
+		if match(label, "EDF Annotations") {
 			result = i
 		}
 	}
