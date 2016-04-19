@@ -38,3 +38,38 @@ func str2int64(str string) int64 {
 	fmt.Sscanf(str, "%d", &x)
 	return x
 }
+
+func min(u, v int) int {
+    if u < v {
+        return u
+    } else {
+        return v
+    }
+}
+
+func match(p, q string) bool {
+    r := true
+    l := min(len(p), len(q))
+
+    for i := 0; i < l && r; i++ {
+        if p[i] != q[i] {
+            r = false
+        }
+    }
+
+    return r
+}
+
+func smallest(array []int) int {
+    s := array[0]
+    r := 0
+
+    for i, it := range array {
+        if it < s {
+            s = it
+            r = i
+        }
+    }
+
+    return r
+}

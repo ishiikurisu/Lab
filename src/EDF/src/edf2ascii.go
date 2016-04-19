@@ -1,6 +1,7 @@
 package main
 
 import "os"
+// import "fmt"
 import "./edf"
 
 func main() {

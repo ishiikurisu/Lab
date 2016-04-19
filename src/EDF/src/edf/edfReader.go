@@ -4,40 +4,6 @@ import "os"
 import "bytes"
 import "encoding/binary"
 
-/* --- AUXILIAR FUNCTIONS --- */
-func translate(inlet []byte) []int16 {
-    var data int16
-    limit := len(inlet)/2
-    outlet := make([]int16, limit)
-    buffer := bytes.NewReader(inlet)
-
-    for i := 0; i < limit; i++ {
-        // shit := binary.Read(buffer, binary.BigEndian, &data)
-        shit := binary.Read(buffer, binary.LittleEndian, &data)
-        if shit == nil {
-            outlet[i] = data
-        }
-    }
-
-    return outlet
-}
-
-func getNumberSignals(header map[string]string) int {
-    return str2int(header["numbersignals"])
-}
-
-func getNumberSamples(header map[string]string) []int {
-    numberSignals := getNumberSignals(header)
-    numberSamples := make([]int, numberSignals)
-    samples := separateString(header["samplesrecord"], numberSignals)
-
-    for i := 0; i < numberSignals; i++ {
-        numberSamples[i] = str2int(samples[i])
-    }
-
-    return numberSamples
-}
-
 /* --- MAIN FUNCTIONS --- */
 /**
  * Reads an EDF file
@@ -126,3 +92,39 @@ func ReadRecords(inlet *os.File, header map[string]string) [][]int16 {
 
     return records
 }
+
+
+/* --- AUXILIAR FUNCTIONS --- */
+func translate(inlet []byte) []int16 {
+    var data int16
+    limit := len(inlet)/2
+    outlet := make([]int16, limit)
+    buffer := bytes.NewReader(inlet)
+
+    for i := 0; i < limit; i++ {
+        // shit := binary.Read(buffer, binary.BigEndian, &data)
+        shit := binary.Read(buffer, binary.LittleEndian, &data)
+        if shit == nil {
+            outlet[i] = data
+        }
+    }
+
+    return outlet
+}
+
+func getNumberSignals(header map[string]string) int {
+    return str2int(header["numbersignals"])
+}
+
+func getNumberSamples(header map[string]string) []int {
+    numberSignals := getNumberSignals(header)
+    numberSamples := make([]int, numberSignals)
+    samples := separateString(header["samplesrecord"], numberSignals)
+
+    for i := 0; i < numberSignals; i++ {
+        numberSamples[i] = str2int(samples[i])
+    }
+
+    return numberSamples
+}
+
