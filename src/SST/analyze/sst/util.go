@@ -13,6 +13,20 @@ func min(a, b int) int {
 	}
 }
 
+func replaceInString(inlet string, old, now rune) string  {
+	outlet := ""
+
+	for _, letter := range inlet {
+		if letter == old {
+			outlet += string(now)
+		} else {
+			outlet += string(letter)
+		}
+	}
+
+	return outlet
+}
+
 func ReadLine(inlet *os.File) string {
 	stuff := ""
 
