@@ -117,9 +117,10 @@ function buttonTranslate_Callback(hObject, eventdata, handles)
 % hObject    handle to buttonTranslate (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-ok = delegate(get(handles.editInput, 'String'), ...
-              ~get(handles.checkMultiple, 'Value'));
-
+set(hObject, 'String', 'Translating...');
+ok = translate_edf2ascii(get(handles.editInput, 'String'), ...
+                         ~get(handles.checkMultiple, 'Value'));
+set(hObject, 'String', 'Translate');
 if isequal(ok, 0)
     msgbox('Translation done! :)');
 else
