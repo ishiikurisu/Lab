@@ -7,16 +7,13 @@ import "io/ioutil"
 
 func main() {
 	source := "."
-
 	if len(os.Args) > 1 {
 		source = os.Args[1]
 	}
 	source += "/"
-
 	files, _ := ioutil.ReadDir(source)
 	outlet, _ := os.Create(source + "sst.csv")
 	defer outlet.Close()
-
 
 	analysis := sst.BeginAnalysis()
 	sst.Write(outlet, sst.BeginCSV())
