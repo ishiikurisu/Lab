@@ -69,6 +69,7 @@ namespace Raven
             for (int i = 1; i <= no_ops; ++i)
             {
                 Pics[i - 1].Image = Image.FromFile(imagens[i]);
+                Pics[i - 1].Size = new Size(130, 100);
             }
 
             Show();
