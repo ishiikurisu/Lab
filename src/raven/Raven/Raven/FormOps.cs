@@ -69,7 +69,14 @@ namespace Raven
             for (int i = 1; i <= no_ops; ++i)
             {
                 Pics[i - 1].Image = Image.FromFile(imagens[i]);
-                Pics[i - 1].Size = new Size(130, 100);
+                using (Graphics graphics = Graphics.FromImage(Image.FromFile(imagens[i])))
+                {
+                    graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                    graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
+                    graphics.DrawImage(Pics[i - 1].Image, 
+                                       Pics[i - 1].Location.X, Pics[i - 1].Location.Y,
+                                       Pics[i - 1].Width, Pics[i - 1].Height);
+                }
             }
 
             Show();
