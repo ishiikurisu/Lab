@@ -10,18 +10,9 @@ namespace Raven
             InitializeComponent();
         }
 
-        public FormResultado(int resultado) : this()
-        {
-            lblResultado.Text = resultado.ToString();
-        }
-
-        public FormResultado(string resultado) : this()
+        public FormResultado(string resultado, int noRespostasCorretas) : this()
         {
             lblResultado.Text = resultado;
-        }
-
-        public FormResultado(string resultado, int noRespostasCorretas) : this(resultado)
-        {
             lblNoRespostasCorretas.Text = noRespostasCorretas.ToString();
         }
 
