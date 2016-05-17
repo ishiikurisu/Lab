@@ -1,0 +1,21 @@
+\documentclass[12pt]{article}
+
+\begin{document}
+
+The Hilbert transform $H$ of a signal $u$ is defined as
+$$H(u)(t):= (u(s) \star \frac{1}{\pi s})(t)$$
+$$= p.v. \int_{-\infty}^{\infty} u(s) h(t-s) ds$$
+$$= \frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u(s)}{t-s} ds$$
+Property:
+$$H(H(u))(t) = -u(t)$$
+Relationship to the Fourier transform:
+$$F(H(u))(w)=(-\jmath \cdot sgn(w)) F(u)(w)$$
+where
+$$F(u)(w):=\frac{1}{2\pi} \int_{-\infty}^{+\infty} u(t)e^{-\jmath w t} dt$$
+is the Fourier transform of the signal $u$ and
+$$sgn(w):=\frac{w}{\Arrowvert w \Arrowvert}$$
+is the signal of $w \in \Im$. Therefore, my conclusion is
+
+$$H(u)(t) = F^{-1}(w \mapsto -\jmath \cdot sgn(w) \cdot F(u)(w))(t)$$
+
+\end{document}
