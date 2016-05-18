@@ -1,0 +1,80 @@
+\documentclass[12pt, a4paper, twoside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[cm]{fullpage}
+\usepackage[inner=2.6cm,outer=1.3cm]{geometry}
+\usepackage{fancyhdr}
+
+\begin{document}
+
+\title{Stop Signal Test}
+\author{Cristiano Silva Júnior}
+\maketitle
+
+\begin{abstract}
+Descrevemos o teste SST e as medidas que se esperamos coletar dele. Contamos como está implementado o teste em si e a sua unidade de análise de dados.
+
+\end{abstract}
+
+\section{Introdução}
+
+O $SST$ é um teste para controle inibitório que se baseia no modelo de corrida de cavalos para a inibição humana. Basicamente, ele diz que a inibição é a "competição" entre dois processos: um que diz para responder ao estímulo, e outro para inibir o estímulo. Dado que uma pessoa foi pedida para responder a um estímulo, ela tem um tempo para decidir se ela deve ou não responde-lo, e se alguma outra informação for adicionada no meio do processo, ela deve ser apresentada a tempo que o sujeito seja capaz de mudar de ideia. o teste $SST$ procura, então, fornecer que medida é esta tal que o sujeito seja capaz de inibir um estímulo já iniciado.
+
+Matematicamente, podemos modelar este processo como uma distribuição normal ao redor do tempo em que a pessoa demorar responder a um estímulo de ida. Isto é, dado que houve um estímulo de ida no momento 0, existe uma probabilidade de que a pessoa responda a este estímulo, e ela gira em torno do tempo médio de resposta. Um estímulo inibitório tem mais chance de suceder caso ele esteja mais próximo do estímulo de ida, mas o quão mais próximo ele deve estar? 
+
+Para medir isto, o teste SST foi concebido. Em nossa versão, em um momento do teste, será apresentada uma seta apontando à esquerda ou à direita ao sujeito. Pode ser ou não que um estímulo sonoro seja apresentado ligeiramente após a apresentação da seta. Caso este não apareça, ele deve responder o teste, indicando para qual direção a seta aponta. Caso contrário, ele deve inibir sua resposta, esperando que a próxima rodada comece.
+
+\subsection{Equações}
+
+Aqui, denotaremos $\langle M \rangle$ como a média da medida $\langle M \rangle$. Com os conceitos do $SST$ em mente, temos então 5 variáveis para calcular: o $RT$; o $SSD$; o $SSRT$; a taxa de inibição ($\%INHIB$) e a porcentagem de ausências ($\%AUS$).
+
+O $\langle RT \rangle$ é o tempo médio de reação do sujeito, e é calculado como sendo a soma dos tempos de reação dividida pelo número total de estímulos de ida. 
+
+O $\langle SSD \rangle$ é o tempo médio de inibição do sujeito, e é calculado como a soma dos tempos de \textit{delay} do sujeito dividido pelo número de vezes que ele conseguiu inibir o sinal com sucesso.
+
+O $SSRT$ é a medida crítica do teste, e é a diferença entre o $\langle RT \rangle$ e o $\langle SSD \rangle$. No nosso entendimento, um $SSRT$ negativo implica que o sujeito falhou o teste.
+
+O $\%INHIB$ é uma medida auxiliar, e indica a porcentagem de sucessos de inibição. No nosso caso, cabe dizer que, como o número de vezes que o sujeito deve inibir sua reação é pequeno, esta medida é bastante sensível.
+
+O $\%AUS$ é uma medida definida aqui no laboratório, e é um indicativo do quão bem o sujeito realizou o teste. É calculada como a porcentagem de vezes que o sujeito deixou de responder a um estímulo de ida.
+
+Assim,
+
+$$\langle RT \rangle = \frac{\sum RT}{totalGo}$$
+$$\langle SSD \rangle = \frac{\sum SSD}{correctStop}$$
+$$SSRT = \langle RT \rangle - \langle SSD \rangle$$
+$$\%INHIB = \frac{correctStop}{totalStop} $$
+$$\%AUS = \frac{totalGo-correctGo}{totalGo} $$
+
+\section{Teste}
+
+O teste em si foi implementado em E-PRIME.
+
+\section{Analizador}
+
+O programa analizador dos dados pelo E-PRIME foi escrito em Go. Ele consiste de um único arquivo executável, que processa todos os arquivos $.txt$ do diretório especificado. Caso nenhum diretório seja fornecido, o programa usa o diretório atual. Para arquivo $.txt$ do diretório, o executável calcula as equações para cada variável do teste e popula uma tabela. Após ler todos os arquivos, o programa calcula a média e o desvio-padrão. de cada uma dessas variáveis
+
+A saber, a média $\langle x \rangle$ de um conjunto de medidas $\{x_i\}_{i=1}^{n}$ é 
+$$\langle x \rangle = \frac{\sum\limits_{i=1}^{n} x_i}{n} $$
+E o desvio padrão $S$ deste mesmo conjunto de medidas é definido como
+$$S = \sqrt{\frac{\sum\limits_{i=1}^{n} (\langle x \rangle - x_i)^2}{n}} $$
+
+\subsection{Arquivo de dados gerado}
+
+O arquivo de dados gerado é uma tabela no formato TSV, relacionando cada arquivo estudado; os dados coletados e analisados de cada um deles; e uma análise geral daquele conjunto de dados em questão. Ele possui algumas colunas:
+
+\begin{enumerate}
+	\item Nome do arquivo
+	\item totalGo (número total de estímulos de ida)
+	\item correctGo (número correto de estímulos de ida)
+	\item totalStop (número total de estímulos de parada)
+	\item correctStop (número correto de estímulos de parada)
+	\item $\%INHIB$
+	\item $\%AUS $
+	\item $\langle SSD \rangle$
+	\item $\langle RT \rangle$
+	\item $SSRT$
+\end{enumerate}
+
+Ao final do processamento, esta tabela contém ainda a média e o desvio-padrão de cada uma das medidas listadas em suas respectivas colunas.
+
+\end{document}
