@@ -1,0 +1,46 @@
+[1] S. W. Smith, (1998). The Scientist and Engineer's Guide to Digital Signal Processing.
+www.DSPguide.com. April 23, 2007.
+
+[2] T. Miyashita, K. Ogawa, H. Itoh, Y. Arai, M. Ashidagawa, M. Uchiyama, Y. Koide,
+T. Andoh, Y. Yamada, (2003). Spectral analyses of electroencephalography and
+heart rate variability during sleep in normal subjects. Autonomic Neuroscience:
+Basic and Clinical, 103(1-2), 114-120.
+
+[3] M. Pedemonte, A. Rodriguez-Alvez, R.A. Velluti,  (2005). "Electroencephalographic
+frequencies associated with heart changes in RR interval variability during
+paradoxical sleep." Autonomic Neuroscience: Basic and Clinical, 123(1-2), 82-
+86.
+
+[4] N. V. Lutsyuk, E. V. Éismont, and V. B. Pavlenko, (2006). "Correlation of the Characteristics of EEG Potentials with the Indices of Attention in 12- to 13-Year-Old Children." Neurophysiology, 38(3), 209-216.
+
+[5] L. V. Marcuse, M. Schneider, K. A. Mortati, K. M. Donnelly, V. Arnedo, and A. C. Grant, (2008). Quantitative analysis of the EEG posterior-dominant rhythm in healthy adolescents. Clinical Neurophysiology, 119(8), 1778-1781.
+
+[6]  K. M. Spencer, J. Polich, (1999). Poststimulus EEG spectral analysis and P300: Attention, task, and probability. Psychophysiology, 36(2), 220-232.
+
+[7] P. J. Durka,  J. Zygierewics, H. Klekowicz, J. Ginter, K.J. Blinowska, (2004). On the statistical significance of event-related EEG desynchronization and synchronization in the time-frequency plane. Biomedical Engineering, IEEE Transactions, 51(7), 1167 - 1175.
+
+[8] C. H. Yang,, Chi-Wan Lai, Hsien Yong Lai, T.B.J. Kuo, (2002). Relationship between electroencephalogram slow-wave magnitude and heart rate variability during sleep in humans. Neuroscience Letters, 329(2), 213-216.
+
+[9] Q. R. Quiroga, O.A Rosso, and Basar, E. . (1999). Wavelets entropy: a measure of order in evoked potentials. Functional Neuroscience: Evoked Potentials and Magnetic Fields, 49, 299-303.
+
+[10] Q. R. Quiroga, O.W. Sakowitz, E. Basar, and M. Schurmann, (2001 ). Wavelet Transform in the analysis of the frequency composition of evoked potentials. Brain Research Protocols, 8(1), 16-24.
+
+[11] A. P. Bradley, and W. J. Wilson, (2004). On wavelet analysis of auditory evoked potentials. Clinical Neurophysiology, 115(5), 1114-1128.
+
+
+[12] A. Subasi, (2005). Automatic recognition of alertness level from EEG by using neural network and wavelet coefficients. Expert Systems with Applications, 28(4), 701-711.
+
+[13] D. Cvetkovic, E. D. Übeyli, and I. Cosic, (2008). Wavelet transform feature extraction from human PPG, ECG, and EEG signal responses to ELF PEMF exposures: A pilot study. Digital Signal Processing, 18(5), 861-874.
+
+[14] S. G. Mallat, (1989). A Theory for Multiresolution Signal Decomposition: The Wavelet Representation. IEEE Transactions on Pattern Analysis and Machine Intelligence, 11(7), 674-693 
+
+[15] F. W. Ganong, Alert Behavior, Sleep & the Electrical Activity of the Brain. In: Medical Physiology, 2005. MacGraw-Hill, 22th Edition, Chapter 11, 192-201
+
+[16] D. V. Moretti, F. Babiloni, F. Carducci, F. Cincotti, E. Remondini, P. M. Rossini, S. Salinari, and C. Babiloni, (2003). Computerized processing of EEG-EOG-EMG artifacts for multi-centric studies in EEG oscillations and event-related potentials. International journal of psychophysiology 47(3), 199–216.
+
+[17] A. Gutiérrez, M. Lara, and P. R. Hernández, (2005). Evaluación de un Detector de Complejo QRS Basado en la Wavelet de Haar, usando las Bases de Datos MIT-BIH de Arritmias y Europea del Segmento ST y de la Onda T. Computación y Sistemas, 8(4), 293-302
+
+[18] T. Masters, Neural, Novel & Hybrid Algorithms for Time Series Prediction, John 
+Wiley & Sons, Inc., USA,1995.
+
+[19] M. A. Guevara, J. Ramos, M. Hernandez-Gonzalez, and M. Corsi-Cabrera, (2005). FILDIG: A program to filter brain electrical signals in the frequency domain. Computer Methods and Programs in Biomedicine, 80, 165-172
