@@ -15,12 +15,14 @@ hs = hilbert_transform(s);
 hq = hilbert_transform(q);
 
 disp('Reading sound waves');
+tic;
 [recording, samplerate, nbits] = wavread('voicerecognition.wav');
 steps = 1:length(recording);
-
+disp('Calculating threshold')
+idea_of_threshold = mean(recording) + std(recording);
 disp('Applying algorithm');
-idea_of_threshold = mean(recording) + std(recording)
 recognition = recognize_voice(recording, idea_of_threshold);
+toc
 
 disp('Displaying results');
 figure;
