@@ -1,5 +1,5 @@
 %% hilbert_test: testing our implementation of the hilbert transform
-function hilbert_test()
+function hilbert_test(testcase)
 
 % disp('Testing the Hilbert transform');
 % % defining domain
@@ -15,7 +15,7 @@ function hilbert_test()
 
 disp('Reading sound waves');
 tic;
-[recording, samplerate, nbits] = wavread('actualcase.wav');
+[recording, samplerate, nbits] = wavread(testcase);
 steps = 1:length(recording);
 disp('Calculating threshold')
 idea_of_threshold = mean(recording) + std(recording);

@@ -1,12 +1,38 @@
-function [outlet] = recognize_voice(data, threshold)
-inlet = imag(hilbert(data));
-limit = length(inlet);
-outlet = zeros(limit);
+function [result] = recognize_voice(data, threshold)
+input_file = export_data(imag(hilbert(data)));
+output_file = 'output.yml';
+inlet = fopen(input_file, 'r');
+outlet = fopen(output_file, 'wt');
 
-for n = 1:limit
-    if abs(inlet(n)) > threshold
-        outlet(n) = 1;
+before = fgetl(inlet);
+while ischar(before)
+    if abs(str2num(before)) > threshold
+        after = 1;
     else
-        outlet(n) = 0;
+        after = 0;
     end
+    fprintf(outlet, '%f\n', after);
+    before = fgetl(inlet);
 end
+
+fclose(inlet);
+fclose(outlet);
+result = import_data(output_file);
+delete(input_file);
+delete(output_file);
+
+function [where] = export_data(data)
+where = 'input.yml';
+fp = fopen(where, 'wt');
+fprintf(fp, '%f\n', data);
+fclose(fp);
+
+function [data] = import_data(where)
+data = [];
+inlet = fopen(where);
+it = fgetl(inlet);
+while ischar(it)
+	data(length(data)+1) = str2num(it);
+	it = fgetl(inlet);
+end
+fclose(inlet);
