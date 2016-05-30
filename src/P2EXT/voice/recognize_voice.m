@@ -1,8 +1,9 @@
 function [outlet] = recognize_voice(data, threshold)
 inlet = imag(hilbert(data));
-outlet = [];
+limit = length(inlet);
+outlet = zeros(limit);
 
-for n = 1:length(inlet)
+for n = 1:limit
     if abs(inlet(n)) > threshold
         outlet(n) = 1;
     else
