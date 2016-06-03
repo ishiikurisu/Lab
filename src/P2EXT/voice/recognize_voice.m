@@ -1,6 +1,6 @@
 function [output_file] = recognize_voice(data, threshold)
 input_file = export_data(imag(hilbert(data)));
-output_file = 'threshold.yml';
+output_file = 'threshold.ascii';
 inlet = fopen(input_file, 'r');
 outlet = fopen(output_file, 'wt');
 apply_threshold(inlet, outlet, threshold);

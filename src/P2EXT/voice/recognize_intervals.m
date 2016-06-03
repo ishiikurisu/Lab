@@ -1,7 +1,7 @@
 %% recognize_intervals: Recognize where the voice spots begin
 function [output_file] = recognize_intervals(input_file)
 % Recognize where the voice spots begin
-output_file = 'intervals.yml';
+output_file = 'intervals.ascii';
 room = recognize_room(input_file);
 inlet = fopen(input_file);
 outlet = fopen(output_file, 'wt');
