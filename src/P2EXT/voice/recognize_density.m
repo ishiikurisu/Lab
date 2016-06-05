@@ -1,26 +1,54 @@
-%% calculate_dot_density: Get the dot density a bitset
+%% calculate_dot_density: Get the dot density of a bitset
 function [output_file] = recognize_density(input_file)
-% Get the dot density a bitset
+% Get the dot density of a bitset
+global windowsize
+windowsize = 256;
+hole = floor(sqrt(windowsize));
 output_file = 'density.ascii';
-density = (1 + sqrt(5)) / 2;
+density = 2 / (1 + sqrt(5));
 inlet = fopen(input_file);
 outlet = fopen(output_file, 'wt');
-
+last = 0;
 linenumber = 1;
-queue = update_queue(inlet);
+queue = make_queue(inlet);
 while length(queue) > 0
-    if calculate_dot_density(queue) >= density
+    current = calculate_dot_density(queue) >= density;
+    if current > last % is rising?
         fprintf(outlet, '%f\n', linenumber);
     end
-    linenumber = linenumber+1;
+    last = current;
+    linenumber = linenumber + hole;
     queue = update_queue(inlet, queue);
 end
-
 fclose(inlet);
 fclose(outlet);
 
-function [queue] = update_queue(inlet)
+function [queue] = make_queue(inlet)
+global windowsize
 queue = [];
+for n = 1:windowsize
+    queue(length(queue)+1) = str2num(fgetl(inlet));
+end
 
 function [density] = calculate_dot_density(queue)
 density = 0;
+for item = queue
+    density = density + item;
+end
+density = density / length(queue);
+
+function [queue] = update_queue(inlet, queue)
+global windowsize
+limit = floor(sqrt(windowsize));
+data = fgetl(inlet);
+n = 1;
+if ischar(data)
+    queue = queue(limit:length(queue));
+    while and(n <= limit, ischar(data))
+        queue(length(queue)+1) = str2num(data);
+        data = fgetl(inlet);
+        n = n+1;
+    end
+else
+    queue = [];
+end

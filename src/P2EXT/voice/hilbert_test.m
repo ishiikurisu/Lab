@@ -5,7 +5,7 @@ limit = length(recording);
 idea_of_threshold = mean(recording) + std(recording);
 tic;
 voice_file = recognize_voice(recording, idea_of_threshold);
-intervals_file = recognize_intervals(voice_file);
+intervals_file = recognize_density(voice_file);
 recognition = load_intervals(intervals_file, limit);
 toc
 steps = 1:limit;
