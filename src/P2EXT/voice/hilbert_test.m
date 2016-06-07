@@ -14,3 +14,19 @@ delete(intervals_file);
 figure;
 plot(steps, recording, 'b', ...
      steps, recognition, 'r');
+% checking densities for curiosity
+densities_file = 'fx.ascii';
+figure;
+densities = more_curiousity(densities_file);
+plot(1:length(densities), densities);
+delete(densities_file)
+
+function [output] = more_curiousity(input_file)
+output = [];
+inlet = fopen(input_file);
+data = fgetl(inlet);
+while ischar(data)
+	output(length(output)+1) = str2num(data);
+	data = fgetl(inlet);
+end
+fclose(inlet);

@@ -21,7 +21,7 @@ while ischar(before)
 end
 
 function [where] = export_data(data)
-where = 'export.yml';
+where = 'export.ascii';
 fp = fopen(where, 'wt');
 fprintf(fp, '%f\n', data);
 fclose(fp);

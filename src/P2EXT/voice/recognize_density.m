@@ -5,14 +5,18 @@ global windowsize
 windowsize = 256;
 hole = floor(sqrt(windowsize));
 output_file = 'density.ascii';
-density = 2 / (1 + sqrt(5));
+sideeffect_file = 'fx.ascii';
+density = 0.35;
 inlet = fopen(input_file);
+fxlet = fopen(sideeffect_file, 'wt');
 outlet = fopen(output_file, 'wt');
 last = 0;
 linenumber = 1;
 queue = make_queue(inlet);
 while length(queue) > 0
-    current = calculate_dot_density(queue) >= density;
+    dot_density = calculate_dot_density(queue);
+    fprintf(fxlet, '%f\n', dot_density);
+    current = dot_density >= density;
     if current > last % is rising?
         fprintf(outlet, '%f\n', linenumber);
     end
@@ -21,6 +25,7 @@ while length(queue) > 0
     queue = update_queue(inlet, queue);
 end
 fclose(inlet);
+fclose(fxlet);
 fclose(outlet);
 
 function [queue] = make_queue(inlet)
