@@ -24,7 +24,8 @@ namespace PACI
         private void buttonStart_Click(object sender, EventArgs e)
         {
             Instructions = new FormText();
-            Instructions.Text = DataAccessLayer.LoadText(InstructionSource);
+            Instructions.Text = DataAccessLayer.LoadText(DataAccessLayer.AssetsPath + 
+                                                         InstructionSource);
             Instructions.HowToProceed(this.StartTest);
             Instructions.Show();
             this.Hide();

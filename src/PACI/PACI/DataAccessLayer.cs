@@ -7,16 +7,22 @@ namespace PACI
 {
     class DataAccessLayer
     {
-        static private string Path = @".\Assets\";
+        static public string AssetsPath = @".\Assets\";
+        static public string ResultsPath = @".\Results\";
 
         static public string LoadText(string source)
         {
-            return File.ReadAllText(Path + source);
+            return File.ReadAllText(source);
         }
 
         static public string[] LoadLines(string source)
         {
-            return File.ReadAllLines(Path + source);
+            return File.ReadAllLines(source);
+        }
+
+        static public void SaveLines(string output, string[] lines)
+        {
+            File.WriteAllLines(output, lines);
         }
     }
 }

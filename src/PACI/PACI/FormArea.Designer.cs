@@ -211,5 +211,6 @@
         private System.Windows.Forms.TextBox textRank2;
         private System.Windows.Forms.Label labelGoal;
         private System.Windows.Forms.Label labelRank;
+        
     }
 }
