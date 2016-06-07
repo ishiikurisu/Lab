@@ -35,7 +35,7 @@ namespace PACI
         {
             FormArea form = new FormArea();
             Instructions.Close();
-            form.Parent = this;
+            form.Mother = this;
             form.Show();
         }
     }

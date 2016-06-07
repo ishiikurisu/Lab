@@ -12,7 +12,7 @@ namespace PACI
 {
     public partial class FormArea : Form
     {
-        public Form Parent { get; set; }
+        public Form Mother { get; set; }
         private Queue<string> Areas { get; set; }
         private Queue<string> Goals { get; set; }
 
@@ -53,9 +53,10 @@ namespace PACI
 
         private void Finish()
         {
-            DataAccessLayer.SaveLines(DataAccessLayer.ResultsPath + "temp.txt",
-                                      Goals.ToArray<string>());
-            Parent.Show();
+            FormGoal form = new FormGoal();
+            form.Mother = Mother;
+            form.Goals = Goals.ToArray<string>();
+            form.Instruct();
             Close();
         }
     }

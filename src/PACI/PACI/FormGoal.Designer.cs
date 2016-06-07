@@ -98,6 +98,7 @@
             this.buttonContinue.TabIndex = 2;
             this.buttonContinue.Text = "Continuar";
             this.buttonContinue.UseVisualStyleBackColor = true;
+            this.buttonContinue.Click += new System.EventHandler(this.buttonContinue_Click);
             // 
             // tableLayoutPanel2
             // 

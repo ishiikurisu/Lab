@@ -21,7 +21,7 @@ namespace PACI
         public FormText()
         {
             InitializeComponent();
-
+            WindowState = FormWindowState.Maximized;
         }
 
         public void HowToProceed(System.EventHandler procedure)
