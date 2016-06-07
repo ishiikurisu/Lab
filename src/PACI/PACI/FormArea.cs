@@ -19,6 +19,7 @@ namespace PACI
         public FormArea()
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
             Areas = new Queue<string>(DataAccessLayer.LoadLines(DataAccessLayer.AssetsPath + 
                                                                 "Matters.txt"));
             Goals = new Queue<string>();

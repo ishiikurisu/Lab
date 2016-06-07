@@ -15,6 +15,7 @@ namespace PACI
         public FormGoal()
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
         }
     }
 }
