@@ -7,3 +7,5 @@ C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.Properties.Resourc
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.csproj.GenerateResource.Cache
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.exe
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.pdb
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.FormText.resources
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.FormArea.resources

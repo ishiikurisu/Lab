@@ -12,14 +12,30 @@ namespace PACI
 {
     public partial class Form1 : Form
     {
+        private string InstructionSource { get; set; }
+        private FormText Instructions { get; set; }
+
         public Form1()
         {
             InitializeComponent();
+            this.InstructionSource = "Instructions.txt";
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            Close();
+            Instructions = new FormText();
+            Instructions.Text = DataAccessLayer.LoadText(InstructionSource);
+            Instructions.HowToProceed(this.StartTest);
+            Instructions.Show();
+            this.Hide();
+        }
+
+        private void StartTest(object sender, EventArgs e)
+        {
+            FormArea form = new FormArea();
+            Instructions.Close();
+            form.Parent = this;
+            form.Show();
         }
     }
 }
