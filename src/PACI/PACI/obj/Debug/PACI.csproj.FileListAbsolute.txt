@@ -1,0 +1,9 @@
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\bin\Debug\PACI.exe.config
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\bin\Debug\PACI.exe
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\bin\Debug\PACI.pdb
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.csprojResolveAssemblyReference.cache
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.Form1.resources
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.Properties.Resources.resources
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.csproj.GenerateResource.Cache
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.exe
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.pdb
