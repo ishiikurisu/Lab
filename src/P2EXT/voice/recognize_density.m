@@ -2,11 +2,11 @@
 function [output_file] = recognize_density(input_file)
 % Get the dot density of a bitset
 global windowsize
-windowsize = 256;
+windowsize = 128;
 hole = floor(sqrt(windowsize));
 output_file = 'density.ascii';
 sideeffect_file = 'fx.ascii';
-density = 0.35;
+density = 0.2;
 inlet = fopen(input_file);
 fxlet = fopen(sideeffect_file, 'wt');
 outlet = fopen(output_file, 'wt');
@@ -14,7 +14,7 @@ last = 0;
 linenumber = 1;
 queue = make_queue(inlet);
 while length(queue) > 0
-    dot_density = calculate_dot_density(queue);
+    dot_density = sigmoid(calculate_dot_density(queue));
     fprintf(fxlet, '%f\n', dot_density);
     current = dot_density >= density;
     if current > last % is rising?
