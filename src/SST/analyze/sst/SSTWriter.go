@@ -11,6 +11,7 @@ func GetAnalysisParameters() []string {
 		"correctStop",
 		"%INHIB",
 		"%AUS",
+		"GENERAL",
 		"SSD",
 		"RT",
 		"SSRT",
@@ -24,6 +25,7 @@ func GetResultParameters() []string {
 		"SSRT",
 		"%INHIB",
 		"%AUS",
+		"GENERAL",
 	}
 }
 

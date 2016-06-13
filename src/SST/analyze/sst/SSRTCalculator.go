@@ -29,6 +29,7 @@ func CreateAnalysisMap() map[string]float64 {
 	result["SSRT"] = 0
 	result["%INHIB"] = 0
 	result["%AUS"] = 0
+	result["GENERAL"] = 0
 
 	return result
 }
@@ -56,6 +57,7 @@ func AnalyzeSingle(data map[string][]string) map[string]float64 {
 	result["SSRT"] = result["RT"] - result["SSD"]
 	result["%INHIB"] = 100*(result["correctStop"] / result["totalStop"])
 	result["%AUS"] = 100*(result["totalGo"]-result["correctGo"])/result["totalGo"]
+	result["GENERAL"] = 100*(result["correctGo"]+result["correctStop"])/(result["totalGo"]+result["totalStop"])
 
 	return result
 }
