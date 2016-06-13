@@ -1,19 +1,21 @@
 function varargout = VoiceRecognition(varargin)
 % VOICERECOGNITION M-file for VoiceRecognition.fig
-%      VOICERECOGNITION, by itself, creates a new VOICERECOGNITION or raises the existing
-%      singleton*.
+%      VOICERECOGNITION, by itself, creates a new VOICERECOGNITION 
+%      or raises the existing singleton*.
 %
-%      H = VOICERECOGNITION returns the handle to a new VOICERECOGNITION or the handle to
-%      the existing singleton*.
+%      H = VOICERECOGNITION returns the handle to a new VOICERECOGNITION 
+%      or the handle to the existing singleton*.
 %
 %      VOICERECOGNITION('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in VOICERECOGNITION.M with the given input arguments.
+%      function named CALLBACK in VOICERECOGNITION.M with the given input 
+%      arguments.
 %
-%      VOICERECOGNITION('Property','Value',...) creates a new VOICERECOGNITION or raises the
-%      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before VoiceRecognition_OpeningFunction gets called.  An
-%      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to VoiceRecognition_OpeningFcn via varargin.
+%      VOICERECOGNITION('Property','Value',...) creates a new VOICERECOGNITION 
+%      or raises the existing singleton*.  Starting from the left, property value 
+%      pairs are applied to the GUI before VoiceRecognition_OpeningFunction gets 
+%      called.  An unrecognized property name or invalid value makes property 
+%      application stop.  All inputs are passed to VoiceRecognition_OpeningFcn 
+%      via varargin.
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
@@ -24,7 +26,7 @@ function varargout = VoiceRecognition(varargin)
 
 % Edit the above textFiles to modify the response to help VoiceRecognition
 
-% Last Modified by GUIDE v2.5 13-Jun-2016 08:42:33
+% Last Modified by GUIDE v2.5 13-Jun-2016 08:46:56
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -82,7 +84,8 @@ function editFiles_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hints: get(hObject,'String') returns contents of editFiles as textFiles
-%        str2double(get(hObject,'String')) returns contents of editFiles as a double
+%        str2double(get(hObject,'String')) returns contents of 
+%        editFiles as a double
 
 
 % --- Executes during object creation, after setting all properties.
@@ -94,9 +97,14 @@ function editFiles_CreateFcn(hObject, eventdata, handles)
 % Hint: edit controls usually have a white background on Windows.
 %       See ISPC and COMPUTER.
 if ispc
-    set(hObject,'BackgroundColor','white');
+    set(hObject, ...
+        'BackgroundColor', ...
+        'white');
 else
-    set(hObject,'BackgroundColor',get(0,'defaultUicontrolBackgroundColor'));
+    set(hObject, ...
+        'BackgroundColor', ...
+        get(0, ...
+            'defaultUicontrolBackgroundColor'));
 end
 
 
@@ -105,7 +113,37 @@ function pushbuttonSearch_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbuttonSearch (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+[filename, pathname, filterindex] = uigetfile('*.wav', ...
+                                              'Select sound files', ...
+                                              'MultiSelect', 'on');
+if ischar(filename)
+    outlet = strcat(pathname, filename);
+elseif iscell(filename)
+    outlet = reduce_for_buttonSearch(filename, pathname)
+end
+set(handles.editFiles, 'String', outlet);
 
+function [outlet] = reduce_for_buttonSearch(filename, pathname)
+outlet = strcat(strcat(pathname, filename{1}), ...
+                reduce_loop_for_buttonSearch(2, filename, pathname));
+
+function [outlet] = reduce_loop_for_buttonSearch(where, stuff, acc)
+if where <= length(stuff)
+    outlet = strcat(';', ...
+                    strcat(acc, stuff{where}), ...
+                    reduce_loop_for_buttonSearch(where+1, stuff, acc));
+else
+    outlet = '';
+end
+
+function [outlet] = split_string(inlet, delim)
+outlet = tokenizeString(inlet, delim);
+
+function [tokens] = tokenizeString(string,delimeter)
+tokens = {};
+while not(isempty(string))
+    [tokens{end+1},string] = strtok(string,delimeter);
+end
 
 
 function editThreshold_Callback(hObject, eventdata, handles)
@@ -114,8 +152,9 @@ function editThreshold_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hints: get(hObject,'String') returns contents of editThreshold as textFiles
-%        str2double(get(hObject,'String')) returns contents of editThreshold as a double
-
+%        str2double(get(hObject,'String')) returns contents of editThreshold 
+%        as a double
+set(handles.sliderThreshold, 'Value', str2num(get(hObject, 'String')));
 
 % --- Executes during object creation, after setting all properties.
 function editThreshold_CreateFcn(hObject, eventdata, handles)
@@ -126,25 +165,30 @@ function editThreshold_CreateFcn(hObject, eventdata, handles)
 % Hint: edit controls usually have a white background on Windows.
 %       See ISPC and COMPUTER.
 if ispc
-    set(hObject,'BackgroundColor','white');
+    set(hObject, ...
+        'BackgroundColor', ...
+        'white');
 else
-    set(hObject,'BackgroundColor',get(0,'defaultUicontrolBackgroundColor'));
+    set(hObject, ...
+        'BackgroundColor', ...
+        get(0, ...
+            'defaultUicontrolBackgroundColor'));
 end
 
 
 % --- Executes on slider movement.
-function slider2_Callback(hObject, eventdata, handles)
-% hObject    handle to slider2 (see GCBO)
+function sliderThreshold_Callback(hObject, eventdata, handles)
+% hObject    handle to sliderThreshold (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-
+set(handles.editThreshold, 'String', num2str(get(hObject, 'Value')));
 
 % --- Executes during object creation, after setting all properties.
-function slider2_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider2 (see GCBO)
+function sliderThreshold_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to sliderThreshold (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -152,9 +196,14 @@ function slider2_CreateFcn(hObject, eventdata, handles)
 %       'usewhitebg' to 0 to use default.  See ISPC and COMPUTER.
 usewhitebg = 1;
 if usewhitebg
-    set(hObject,'BackgroundColor',[.9 .9 .9]);
+    set(hObject, ...
+        'BackgroundColor', ...
+        [.9 .9 .9]);
 else
-    set(hObject,'BackgroundColor',get(0,'defaultUicontrolBackgroundColor'));
+    set(hObject, ...
+        'BackgroundColor', ...
+        get(0, ...
+            'defaultUicontrolBackgroundColor'));
 end
 
 
@@ -163,5 +212,3 @@ function pushbuttonRun_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbuttonRun (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-
