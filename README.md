@@ -9,12 +9,17 @@ My projects can be accessed in the [`src`](https://github.com/ishiikurisu/EEG/tr
 EDF
 ---
 
-The objective of this project is to read files in EDF format so they can be treated by many different software. It's composed of the [`edf`](https://github.com/ishiikurisu/EEG/tree/master/src/EDF) folder. Currently, we can manage EDF+ files, and they are expected to be used as part of [PROTOLIZE!2](https://github.com/ishiikurisu/P2).
+The objective of this project is to read files in EDF format using [Go](https://golang.org) so they can be treated by many different software. It's composed of the [`edf`](https://github.com/ishiikurisu/EEG/tree/master/src/EDF) folder. Currently, we can manage EDF+ files, and they are expected to be used as part of [PROTOLIZE!2](https://github.com/ishiikurisu/P2).
 
 Stop Signal Test
 ----------------
 
 The objective of this project is to implement a version of the Stop Signal test (SST). Initially implemented using the E-PRIME (c) software with art made using PROCESSING. It's composed of the [SST](https://github.com/ishiikurisu/EEG/tree/master/src/SST) folder.
+
+PACI
+----
+
+A psychological test for assessing the life goals of a subject. It is being written in C# and is available on the `PACI` folder.
 
 Raven's Progressive Matrices
 ----------------------------

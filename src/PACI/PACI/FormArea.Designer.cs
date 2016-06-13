@@ -35,11 +35,7 @@
             this.textGoal0 = new System.Windows.Forms.TextBox();
             this.textGoal1 = new System.Windows.Forms.TextBox();
             this.textGoal2 = new System.Windows.Forms.TextBox();
-            this.textRank0 = new System.Windows.Forms.TextBox();
-            this.textRank1 = new System.Windows.Forms.TextBox();
-            this.textRank2 = new System.Windows.Forms.TextBox();
             this.labelGoal = new System.Windows.Forms.Label();
-            this.labelRank = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -90,17 +86,13 @@
             // 
             this.tableLayoutPanel2.AutoSize = true;
             this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.textGoal0, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.textGoal1, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.textGoal2, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.textRank0, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.textRank1, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.textRank2, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.labelGoal, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.labelRank, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 55);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -117,7 +109,7 @@
             this.textGoal0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textGoal0.Location = new System.Drawing.Point(3, 45);
             this.textGoal0.Name = "textGoal0";
-            this.textGoal0.Size = new System.Drawing.Size(188, 20);
+            this.textGoal0.Size = new System.Drawing.Size(272, 20);
             this.textGoal0.TabIndex = 0;
             // 
             // textGoal1
@@ -125,7 +117,7 @@
             this.textGoal1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textGoal1.Location = new System.Drawing.Point(3, 82);
             this.textGoal1.Name = "textGoal1";
-            this.textGoal1.Size = new System.Drawing.Size(188, 20);
+            this.textGoal1.Size = new System.Drawing.Size(272, 20);
             this.textGoal1.TabIndex = 1;
             // 
             // textGoal2
@@ -133,52 +125,18 @@
             this.textGoal2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textGoal2.Location = new System.Drawing.Point(3, 120);
             this.textGoal2.Name = "textGoal2";
-            this.textGoal2.Size = new System.Drawing.Size(188, 20);
+            this.textGoal2.Size = new System.Drawing.Size(272, 20);
             this.textGoal2.TabIndex = 2;
-            // 
-            // textRank0
-            // 
-            this.textRank0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textRank0.Location = new System.Drawing.Point(197, 45);
-            this.textRank0.Name = "textRank0";
-            this.textRank0.Size = new System.Drawing.Size(78, 20);
-            this.textRank0.TabIndex = 3;
-            // 
-            // textRank1
-            // 
-            this.textRank1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textRank1.Location = new System.Drawing.Point(197, 82);
-            this.textRank1.Name = "textRank1";
-            this.textRank1.Size = new System.Drawing.Size(78, 20);
-            this.textRank1.TabIndex = 4;
-            // 
-            // textRank2
-            // 
-            this.textRank2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textRank2.Location = new System.Drawing.Point(197, 120);
-            this.textRank2.Name = "textRank2";
-            this.textRank2.Size = new System.Drawing.Size(78, 20);
-            this.textRank2.TabIndex = 5;
             // 
             // labelGoal
             // 
             this.labelGoal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelGoal.AutoSize = true;
-            this.labelGoal.Location = new System.Drawing.Point(71, 12);
+            this.labelGoal.Location = new System.Drawing.Point(113, 12);
             this.labelGoal.Name = "labelGoal";
             this.labelGoal.Size = new System.Drawing.Size(51, 13);
             this.labelGoal.TabIndex = 6;
             this.labelGoal.Text = "Objetivos";
-            // 
-            // labelRank
-            // 
-            this.labelRank.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelRank.AutoSize = true;
-            this.labelRank.Location = new System.Drawing.Point(219, 12);
-            this.labelRank.Name = "labelRank";
-            this.labelRank.Size = new System.Drawing.Size(33, 13);
-            this.labelRank.TabIndex = 7;
-            this.labelRank.Text = "Rank";
             // 
             // FormArea
             // 
@@ -205,11 +163,7 @@
         private System.Windows.Forms.TextBox textGoal0;
         private System.Windows.Forms.TextBox textGoal1;
         private System.Windows.Forms.TextBox textGoal2;
-        private System.Windows.Forms.TextBox textRank0;
-        private System.Windows.Forms.TextBox textRank1;
-        private System.Windows.Forms.TextBox textRank2;
         private System.Windows.Forms.Label labelGoal;
-        private System.Windows.Forms.Label labelRank;
         
     }
 }

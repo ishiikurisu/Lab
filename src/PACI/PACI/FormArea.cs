@@ -37,7 +37,6 @@ namespace PACI
         
         private void CollectData()
         {
-            // TODO: Use correct ranking algorithm
             TextBox[] goals = { textGoal0, textGoal1, textGoal2 };
             foreach (var goal in goals)
             {
@@ -53,10 +52,10 @@ namespace PACI
 
         private void Finish()
         {
-            FormGoal form = new FormGoal();
+            FormRank form = new FormRank();
             form.Mother = Mother;
-            form.Goals = Goals.ToArray<string>();
-            form.Instruct();
+            form.SetGoals(Goals.ToArray<string>());
+            form.Show();
             Close();
         }
     }

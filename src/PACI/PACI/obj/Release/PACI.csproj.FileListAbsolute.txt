@@ -1,0 +1,12 @@
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\bin\Release\PACI.exe.config
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\bin\Release\PACI.exe
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\bin\Release\PACI.pdb
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.Form1.resources
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.FormArea.resources
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.FormGoal.resources
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.FormRank.resources
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.FormText.resources
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.Properties.Resources.resources
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.csproj.GenerateResource.Cache
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.exe
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.pdb

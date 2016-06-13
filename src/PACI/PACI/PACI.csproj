@@ -65,6 +65,12 @@
     <Compile Include="FormGoal.Designer.cs">
       <DependentUpon>FormGoal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRank.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRank.Designer.cs">
+      <DependentUpon>FormRank.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormText.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGoal.resx">
       <DependentUpon>FormGoal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRank.resx">
+      <DependentUpon>FormRank.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormText.resx">
       <DependentUpon>FormText.cs</DependentUpon>
