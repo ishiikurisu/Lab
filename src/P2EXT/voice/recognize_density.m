@@ -1,12 +1,11 @@
 %% calculate_dot_density: Get the dot density of a bitset
-function [output_file] = recognize_density(input_file)
+function [output_file] = recognize_density(input_file, density)
 % Get the dot density of a bitset
 global windowsize
 windowsize = 128;
 hole = floor(sqrt(windowsize));
 output_file = 'density.ascii';
 sideeffect_file = 'fx.ascii';
-density = 0.2;
 inlet = fopen(input_file);
 fxlet = fopen(sideeffect_file, 'wt');
 outlet = fopen(output_file, 'wt');

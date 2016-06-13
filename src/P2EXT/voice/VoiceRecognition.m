@@ -212,3 +212,10 @@ function pushbuttonRun_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbuttonRun (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+set(hObject, 'String', 'Running...');
+testcases = split_string(get(handles.editFiles, 'String'), ';');
+threshold = str2num(get(handles.editThreshold, 'String'));
+for n = 1:length(testcases)
+    RecognizeVoice(testcases{n}, threshold);
+end
+set(hObject, 'String', 'Run');
