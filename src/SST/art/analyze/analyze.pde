@@ -3,14 +3,14 @@ final color yellow = color(252, 232, 131); // CRAYOLA Yellow
 
 void setup() {
   size(500, 500);
-  noLoop();
+  // noLoop();
 }
 
 void draw() {
   background(blue);
   fill(yellow);
-  textSize(height/2);
+  textSize(min(height, width)/2);
   textAlign(CENTER, CENTER);
-  text("SST", 0, 0, width, height);
+  text("SST", width/2, height/2);
   save("icon.png");
 }
