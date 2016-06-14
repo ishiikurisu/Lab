@@ -26,7 +26,7 @@ function varargout = VoiceRecognition(varargin)
 
 % Edit the above textFiles to modify the response to help VoiceRecognition
 
-% Last Modified by GUIDE v2.5 13-Jun-2016 08:46:56
+% Last Modified by GUIDE v2.5 14-Jun-2016 15:02:42
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -207,6 +207,59 @@ else
 end
 
 
+function editWindow_Callback(hObject, eventdata, handles)
+% hObject    handle to editWindow (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.sliderWindow, 'Value', str2num(get(hObject, 'String')));
+
+% --- Executes during object creation, after setting all properties.
+function editWindow_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editWindow (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc
+    set(hObject, ...
+        'BackgroundColor', ...
+        'white');
+else
+    set(hObject, ...
+        'BackgroundColor', ...
+        get(0, ...
+            'defaultUicontrolBackgroundColor'));
+end
+
+
+% --- Executes on slider movement.
+function sliderWindow_Callback(hObject, eventdata, handles)
+% hObject    handle to sliderWindow (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.editWindow, 'String', num2str(get(hObject, 'Value')));
+
+% --- Executes during object creation, after setting all properties.
+function sliderWindow_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to sliderWindow (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background, change
+%       'usewhitebg' to 0 to use default.  See ISPC and COMPUTER.
+usewhitebg = 1;
+if usewhitebg
+    set(hObject, ...
+        'BackgroundColor', ...
+        [.9 .9 .9]);
+else
+    set(hObject, ...
+        'BackgroundColor', ...
+        get(0, ...
+            'defaultUicontrolBackgroundColor'));
+end
+
 % --- Executes on button press in pushbuttonRun.
 function pushbuttonRun_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbuttonRun (see GCBO)
@@ -215,7 +268,11 @@ function pushbuttonRun_Callback(hObject, eventdata, handles)
 set(hObject, 'String', 'Running...');
 testcases = split_string(get(handles.editFiles, 'String'), ';');
 threshold = str2num(get(handles.editThreshold, 'String'));
+windowsize = str2num(get(handles.editWindow, 'String'));
 for n = 1:length(testcases)
-    RecognizeVoice(testcases{n}, threshold);
+    RecognizeVoice(testcases{n}, threshold, windowsize);
 end
 set(hObject, 'String', 'Run');
+
+
+
