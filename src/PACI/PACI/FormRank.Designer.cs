@@ -123,11 +123,25 @@
             for (int i = 0; i < limit; i++)
             {
                 Lines[i] = new TableLine(i, Goals[i]);
-                Lines[i].SetCallback(new System.EventHandler(UpdateList));
+                Lines[i].SetCallback(new System.EventHandler<TableEventArgs>(UpdateList));
                 tableRankings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
                 tableRankings.Controls.Add(Lines[i]);
             }
 
+        }
+
+        public void UpdateList(object sender, TableEventArgs e)
+        {
+            int ranking = e.Ranking;
+            int step = e.Step;
+            int limit = Lines.Length;
+
+            if (!((ranking == 0 && step < 0) || (ranking == limit-1 && step > 0)))
+            {
+                string temp = Lines[ranking + step].GetGoal();
+                Lines[ranking + step].SetGoal(Lines[ranking].GetGoal());
+                Lines[ranking].SetGoal(temp);
+            }
         }
 
         #endregion
@@ -138,13 +152,25 @@
         private System.Windows.Forms.Button buttonContinue;
     }
 
+    public class TableEventArgs : System.EventArgs
+    {
+        public int Ranking;
+        public int Step;
+
+        public TableEventArgs(int ranking, int step)
+        {
+            Ranking = ranking;
+            Step = step;
+        }
+    }
+
     class TableLine : System.Windows.Forms.TableLayoutPanel
     {
         private System.Windows.Forms.Label Goal;
         private System.Windows.Forms.Button Down;
-        private System.Windows.Forms.Label Ranking;
         private System.Windows.Forms.Button Up;
-        private System.EventHandler UpdateList;
+        public int Ranking;
+        private System.EventHandler<TableEventArgs> UpdateList;
 
         public TableLine() : base()
         {
@@ -152,37 +178,42 @@
             this.Goal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Goal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Down = new System.Windows.Forms.Button();
-            this.Down.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Down.Text = "-";
+            this.Down.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Down.Text = "v";
             this.Down.Click += DownButtonCallback;
-            this.Ranking = new System.Windows.Forms.Label();
-            this.Ranking.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Ranking.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Up = new System.Windows.Forms.Button();
-            this.Up.Text = "+";
-            this.Up.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Up.Text = "^";
+            this.Up.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Up.Click += this.UpButtonCallback;
             this.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RowCount = 1;
             this.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ColumnCount = 4;
-            this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.ColumnCount = 3;
+            this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.Controls.Add(Goal, 0, 0);
-            this.Controls.Add(Down, 1, 0);
-            this.Controls.Add(Ranking, 2, 0);
-            this.Controls.Add(Up, 3, 0);
+            this.Controls.Add(Up, 1, 0);
+            this.Controls.Add(Down, 2, 0);
         }
 
         public TableLine(int ranking, string goal) : this()
         {
-            this.Ranking.Text = string.Format("{0}", ranking+1);
+            this.Ranking = ranking;
             this.Goal.Text = goal;
         }
 
-        public void SetCallback(System.EventHandler handler)
+        public string GetGoal()
+        {
+            return Goal.Text;
+        }
+
+        public void SetGoal(string it)
+        {
+            Goal.Text = it;
+        }
+
+        public void SetCallback(System.EventHandler<TableEventArgs> handler)
         {
             UpdateList = handler;
         }
@@ -190,14 +221,12 @@
 
         private void DownButtonCallback(object sender, System.EventArgs e)
         {
-            this.Ranking.Text = string.Format("{0}", int.Parse(this.Ranking.Text) - 1);
-            UpdateList(this, null);
+            UpdateList(this, new TableEventArgs(this.Ranking, 1));
         }
 
         private void UpButtonCallback(object sender, System.EventArgs e)
         {
-            this.Ranking.Text = string.Format("{0}", int.Parse(this.Ranking.Text) + 1);
-            UpdateList(this, null);
+            UpdateList(this, new TableEventArgs(this.Ranking, -1));
         }
     }
 }

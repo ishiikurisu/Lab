@@ -29,12 +29,15 @@ namespace PACI
 
         private string[] CollectGoals()
         {
-            return Goals.ToArray<string>();
-        }
+            int limit = Lines.Length;
+            string[] goals = new string[limit];
 
-        public void UpdateList(object sender, EventArgs e)
-        {
-            // TODO: Add update list algorithm
+            for (int i = 0; i < limit; ++i)
+            {
+                goals[i] = Lines[i].GetGoal();
+            }
+
+            return goals;
         }
 
         private void buttonContinue_Click(object sender, EventArgs e)

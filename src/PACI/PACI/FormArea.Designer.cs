@@ -111,6 +111,7 @@
             this.textGoal0.Name = "textGoal0";
             this.textGoal0.Size = new System.Drawing.Size(272, 20);
             this.textGoal0.TabIndex = 0;
+            this.textGoal0.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textGoal1
             // 
@@ -119,6 +120,7 @@
             this.textGoal1.Name = "textGoal1";
             this.textGoal1.Size = new System.Drawing.Size(272, 20);
             this.textGoal1.TabIndex = 1;
+            this.textGoal1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textGoal2
             // 
@@ -127,6 +129,7 @@
             this.textGoal2.Name = "textGoal2";
             this.textGoal2.Size = new System.Drawing.Size(272, 20);
             this.textGoal2.TabIndex = 2;
+            this.textGoal2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // labelGoal
             // 
