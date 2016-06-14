@@ -19,7 +19,7 @@ The objective of this project is to implement a version of the Stop Signal test 
 PACI
 ----
 
-A psychological test for assessing the life goals of a subject. It is being written in C# and is available on the `PACI` folder.
+An implementation of the Personal Aspirations and Concerns Inventory written in C# and is available on the [PACI](https://github.com/ishiikurisu/EEG/tree/master/src/PACI) folder.
 
 Raven's Progressive Matrices
 ----------------------------
