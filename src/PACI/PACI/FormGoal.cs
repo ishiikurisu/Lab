@@ -13,9 +13,10 @@ namespace PACI
     public partial class FormGoal : Form
     {
         public string[] Goals { get; set; }
+        private bool Ended { get; set; }
         private string[] Questions { get; set; }
         private Queue<int> Answers { get; set; }
-        public Form Mother { get; set; }
+        public Form1 Mother { get; set; }
         private FormText Instructions { get; set; }
         private int CurrentGoal { get; set; }
         private int CurrentQuestion { get; set; }
@@ -23,8 +24,10 @@ namespace PACI
         public FormGoal()
         {
             InitializeComponent();
+            Ended = false;
             WindowState = FormWindowState.Maximized;
             CurrentGoal = CurrentQuestion = 0;
+            Answers = new Queue<int>();
             Questions = DataAccessLayer.LoadLines(DataAccessLayer.AssetsPath + 
                                                   "AnswerSheetQuestions.txt");
         }
@@ -48,7 +51,6 @@ namespace PACI
         private void buttonContinue_Click(object sender, EventArgs e)
         {
             CollectData();
-            ResetQuestion();
             if (CurrentQuestion % Questions.Length == 0)
                 CurrentGoal++;
             NextStep();
@@ -58,8 +60,18 @@ namespace PACI
         {
             if (CurrentGoal == Goals.Length)
             {
+                Ended = true;
+
+                // Save data
+                DataAccessLayer.SaveLines(string.Format("{0}{1}.txt", 
+                                                        DataAccessLayer.ResultsPath,
+                                                        Mother.Subject), 
+                                          this.FormatData());
+
                 // Finish test
-                Mother.Show();
+                FormThanks form = new FormThanks();
+                form.Mother = Mother;
+                form.Show();
                 Close();
             }
             else
@@ -71,14 +83,27 @@ namespace PACI
 
         }
 
-        private void ResetQuestion()
-        {
-            // TODO: Reset question
-        }
-
         private void CollectData()
         {
-            // TODO: Collect answer
+            Answers.Enqueue(GetAnswer());
+        }
+
+        private string[] FormatData()
+        {
+            List<string> outlet = new List<string>();
+            int dutyCycle = Answers.Count / Goals.Length;
+
+            foreach (var goal in Goals)
+            {
+                outlet.Add(goal);
+                for (int i = 0; i < dutyCycle; i++)
+                {
+                    outlet.Add(Questions[i]);
+                    outlet.Add(Answers.Dequeue().ToString());
+                }
+            }
+
+            return outlet.ToArray<string>();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace PACI
+﻿using System.Windows.Forms;
+
+namespace PACI
 {
     partial class FormGoal
     {
@@ -18,6 +20,8 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+
+            if (!Ended) Mother.Show();
         }
 
         #region Windows Form Designer generated code
@@ -191,6 +195,7 @@
             this.radioButton5.TabStop = true;
             this.radioButton5.Text = "5";
             this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton5.Checked = true;
             // 
             // radioButton6
             // 
@@ -265,6 +270,34 @@
             this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
+        }
+
+        #endregion
+
+        #region My own code
+
+        private int GetAnswer()
+        {
+            if (radioButton1.Checked)
+                return 1;
+            else if (radioButton2.Checked)
+                return 2;
+            else if (radioButton3.Checked)
+                return 3;
+            else if (radioButton4.Checked)
+                return 4;
+            else if (radioButton5.Checked)
+                return 5;
+            else if (radioButton6.Checked)
+                return 6;
+            else if (radioButton7.Checked)
+                return 7;
+            else if (radioButton8.Checked)
+                return 8;
+            else if (radioButton9.Checked)
+                return 9;
+            else
+                return 10;
         }
 
         #endregion

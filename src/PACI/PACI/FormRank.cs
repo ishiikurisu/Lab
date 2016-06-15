@@ -12,13 +12,15 @@ namespace PACI
 {
     public partial class FormRank : Form
     {
-        public Form Mother { get; set; }
+        public Form1 Mother { get; set; }
+        private bool Ended { get; set; }
         public List<string> Goals { get; set; }
 
         public FormRank()
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
+            Ended = false;
         }
 
         public void SetGoals(string[] goals)
@@ -46,6 +48,7 @@ namespace PACI
             form.Mother = Mother;
             form.Goals = CollectGoals();
             form.Instruct();
+            Ended = true;
             Close();
         }
     }

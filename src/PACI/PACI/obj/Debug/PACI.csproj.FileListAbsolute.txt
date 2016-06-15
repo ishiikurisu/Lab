@@ -11,3 +11,4 @@ C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.FormText.resources
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.FormArea.resources
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.FormGoal.resources
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.FormRank.resources
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.FormThanks.resources

@@ -1,6 +1,6 @@
 ﻿namespace PACI
 {
-    partial class Form1
+    partial class FormThanks
     {
         /// <summary>
         /// Required designer variable.
@@ -18,6 +18,7 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+            Mother.Show();
         }
 
         #region Windows Form Designer generated code
@@ -29,19 +30,18 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonStart = new System.Windows.Forms.Button();
-            this.textName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonContinue = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.buttonStart, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textName, 0, 0);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.buttonContinue, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -51,47 +51,44 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(284, 261);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // buttonStart
+            // label1
             // 
-            this.buttonStart.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonStart.Location = new System.Drawing.Point(104, 184);
-            this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(75, 23);
-            this.buttonStart.TabIndex = 0;
-            this.buttonStart.Text = "Começar";
-            this.buttonStart.UseVisualStyleBackColor = true;
-            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(278, 130);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Obrigado por participar!";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textName
+            // buttonContinue
             // 
-            this.textName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textName.Location = new System.Drawing.Point(92, 55);
-            this.textName.Name = "textName";
-            this.textName.Size = new System.Drawing.Size(100, 20);
-            this.textName.TabIndex = 1;
-            this.textName.Text = "Nome";
-            this.textName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.buttonContinue.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonContinue.Location = new System.Drawing.Point(104, 184);
+            this.buttonContinue.Name = "buttonContinue";
+            this.buttonContinue.Size = new System.Drawing.Size(75, 23);
+            this.buttonContinue.TabIndex = 1;
+            this.buttonContinue.Text = "Continuar";
+            this.buttonContinue.UseVisualStyleBackColor = true;
+            this.buttonContinue.Click += new System.EventHandler(this.buttonContinue_Click);
             // 
-            // Form1
+            // FormThanks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Form1";
-            this.Text = "PACI";
+            this.Name = "FormThanks";
+            this.Text = "FormThanks";
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button buttonStart;
-        private System.Windows.Forms.TextBox textName;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonContinue;
     }
 }
-

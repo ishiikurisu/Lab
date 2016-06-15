@@ -12,7 +12,8 @@ namespace PACI
 {
     public partial class FormArea : Form
     {
-        public Form Mother { get; set; }
+        public Form1 Mother { get; set; }
+        private bool Ended { get; set; }
         private Queue<string> Areas { get; set; }
         private Queue<string> Goals { get; set; }
 
@@ -23,6 +24,7 @@ namespace PACI
             Areas = new Queue<string>(DataAccessLayer.LoadLines(DataAccessLayer.AssetsPath + 
                                                                 "Matters.txt"));
             Goals = new Queue<string>();
+            Ended = false;
             NextArea();
         }
 
@@ -56,6 +58,7 @@ namespace PACI
             form.Mother = Mother;
             form.SetGoals(Goals.ToArray<string>());
             form.Show();
+            Ended = true;
             Close();
         }
     }

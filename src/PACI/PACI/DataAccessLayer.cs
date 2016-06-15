@@ -24,5 +24,10 @@ namespace PACI
         {
             File.WriteAllLines(output, lines);
         }
+
+        static public void DeleteFile(string fileName)
+        {
+            File.Delete(fileName);
+        }
     }
 }

@@ -18,6 +18,8 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+
+            if (!Ended) Mother.Show();
         }
 
         #region Windows Form Designer generated code

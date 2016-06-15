@@ -12,20 +12,20 @@ namespace PACI
 {
     public partial class Form1 : Form
     {
-        private string InstructionSource { get; set; }
         private FormText Instructions { get; set; }
+        public string Subject { get; private set; }
 
         public Form1()
         {
             InitializeComponent();
-            this.InstructionSource = "Instructions.txt";
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
+            Subject = textName.Text;
             Instructions = new FormText();
-            Instructions.Text = DataAccessLayer.LoadText(DataAccessLayer.AssetsPath + 
-                                                         InstructionSource);
+            Instructions.Text = DataAccessLayer.LoadText(DataAccessLayer.AssetsPath +
+                                                         "Instructions.txt");
             Instructions.HowToProceed(this.StartTest);
             Instructions.Show();
             this.Hide();
