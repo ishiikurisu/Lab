@@ -56,6 +56,7 @@
             // 
             this.labelText.AutoSize = true;
             this.labelText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelText.Location = new System.Drawing.Point(3, 0);
             this.labelText.Name = "labelText";
             this.labelText.Size = new System.Drawing.Size(278, 182);
@@ -66,9 +67,10 @@
             // buttonContinue
             // 
             this.buttonContinue.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonContinue.Location = new System.Drawing.Point(104, 210);
+            this.buttonContinue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonContinue.Location = new System.Drawing.Point(98, 208);
             this.buttonContinue.Name = "buttonContinue";
-            this.buttonContinue.Size = new System.Drawing.Size(75, 23);
+            this.buttonContinue.Size = new System.Drawing.Size(88, 26);
             this.buttonContinue.TabIndex = 1;
             this.buttonContinue.Text = "Continuar";
             this.buttonContinue.UseVisualStyleBackColor = true;

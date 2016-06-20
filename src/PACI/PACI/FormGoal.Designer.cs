@@ -60,6 +60,7 @@ namespace PACI
             this.tableLayoutPanel1.Controls.Add(this.buttonContinue, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
@@ -74,7 +75,7 @@ namespace PACI
             // 
             this.labelGoal.AutoSize = true;
             this.labelGoal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelGoal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGoal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelGoal.Location = new System.Drawing.Point(3, 0);
             this.labelGoal.Name = "labelGoal";
             this.labelGoal.Size = new System.Drawing.Size(567, 86);
@@ -86,6 +87,7 @@ namespace PACI
             // 
             this.labelQuestion.AutoSize = true;
             this.labelQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelQuestion.Location = new System.Drawing.Point(3, 86);
             this.labelQuestion.Name = "labelQuestion";
             this.labelQuestion.Size = new System.Drawing.Size(567, 129);
@@ -96,9 +98,10 @@ namespace PACI
             // buttonContinue
             // 
             this.buttonContinue.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonContinue.Location = new System.Drawing.Point(249, 376);
+            this.buttonContinue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonContinue.Location = new System.Drawing.Point(243, 374);
             this.buttonContinue.Name = "buttonContinue";
-            this.buttonContinue.Size = new System.Drawing.Size(75, 23);
+            this.buttonContinue.Size = new System.Drawing.Size(87, 27);
             this.buttonContinue.TabIndex = 2;
             this.buttonContinue.Text = "Continuar";
             this.buttonContinue.UseVisualStyleBackColor = true;
@@ -128,11 +131,12 @@ namespace PACI
             this.tableLayoutPanel2.Controls.Add(this.radioButton9, 8, 0);
             this.tableLayoutPanel2.Controls.Add(this.radioButton10, 9, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 218);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 123F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(567, 123);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
@@ -140,6 +144,7 @@ namespace PACI
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton1.Location = new System.Drawing.Point(3, 3);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(50, 117);
@@ -152,6 +157,7 @@ namespace PACI
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton2.Location = new System.Drawing.Point(59, 3);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(50, 117);
@@ -164,6 +170,7 @@ namespace PACI
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton3.Location = new System.Drawing.Point(115, 3);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(50, 117);
@@ -176,6 +183,7 @@ namespace PACI
             // 
             this.radioButton4.AutoSize = true;
             this.radioButton4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton4.Location = new System.Drawing.Point(171, 3);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(50, 117);
@@ -187,7 +195,9 @@ namespace PACI
             // radioButton5
             // 
             this.radioButton5.AutoSize = true;
+            this.radioButton5.Checked = true;
             this.radioButton5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton5.Location = new System.Drawing.Point(227, 3);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(50, 117);
@@ -195,12 +205,12 @@ namespace PACI
             this.radioButton5.TabStop = true;
             this.radioButton5.Text = "5";
             this.radioButton5.UseVisualStyleBackColor = true;
-            this.radioButton5.Checked = true;
             // 
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
             this.radioButton6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton6.Location = new System.Drawing.Point(283, 3);
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(50, 117);
@@ -213,6 +223,7 @@ namespace PACI
             // 
             this.radioButton7.AutoSize = true;
             this.radioButton7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton7.Location = new System.Drawing.Point(339, 3);
             this.radioButton7.Name = "radioButton7";
             this.radioButton7.Size = new System.Drawing.Size(50, 117);
@@ -225,6 +236,7 @@ namespace PACI
             // 
             this.radioButton8.AutoSize = true;
             this.radioButton8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton8.Location = new System.Drawing.Point(395, 3);
             this.radioButton8.Name = "radioButton8";
             this.radioButton8.Size = new System.Drawing.Size(50, 117);
@@ -237,6 +249,7 @@ namespace PACI
             // 
             this.radioButton9.AutoSize = true;
             this.radioButton9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton9.Location = new System.Drawing.Point(451, 3);
             this.radioButton9.Name = "radioButton9";
             this.radioButton9.Size = new System.Drawing.Size(50, 117);
@@ -249,6 +262,7 @@ namespace PACI
             // 
             this.radioButton10.AutoSize = true;
             this.radioButton10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton10.Location = new System.Drawing.Point(507, 3);
             this.radioButton10.Name = "radioButton10";
             this.radioButton10.Size = new System.Drawing.Size(57, 117);

@@ -54,9 +54,10 @@
             // buttonStart
             // 
             this.buttonStart.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonStart.Location = new System.Drawing.Point(104, 184);
+            this.buttonStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonStart.Location = new System.Drawing.Point(95, 175);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(75, 23);
+            this.buttonStart.Size = new System.Drawing.Size(94, 41);
             this.buttonStart.TabIndex = 0;
             this.buttonStart.Text = "Começar";
             this.buttonStart.UseVisualStyleBackColor = true;
@@ -65,9 +66,10 @@
             // textName
             // 
             this.textName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textName.Location = new System.Drawing.Point(92, 55);
+            this.textName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textName.Location = new System.Drawing.Point(92, 52);
             this.textName.Name = "textName";
-            this.textName.Size = new System.Drawing.Size(100, 20);
+            this.textName.Size = new System.Drawing.Size(100, 26);
             this.textName.TabIndex = 1;
             this.textName.Text = "Nome";
             this.textName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;

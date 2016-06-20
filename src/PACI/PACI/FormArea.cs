@@ -30,20 +30,44 @@ namespace PACI
 
         private void buttonContinue_Click(object sender, EventArgs e)
         {
-            CollectData();
+            try
+            {
+                CollectData();
+            }
+            catch (Exception any)
+            {
+                AskForAtLeastOne();
+                return;
+            }
+
             if (Areas.Count > 0)
                 NextArea();
             else
                 Finish();
         }
+
+        private void AskForAtLeastOne()
+        {
+            MessageBox.Show("Adicione pelo menos um objetivo.", "Aviso!");
+        }
         
         private void CollectData()
         {
             TextBox[] goals = { textGoal0, textGoal1, textGoal2 };
-            foreach (var goal in goals)
+            Queue<string> answers = new Queue<string>();
+
+            goals.Where(goal => goal.Text.Length > 0).ToList()
+                 .Select(goal => goal.Text).ToList()
+                 .ForEach(answer => answers.Enqueue(answer));
+
+            if (answers.Count > 0)
             {
-                Goals.Enqueue(goal.Text);
-                goal.Text = "";
+                answers.ToList().ForEach(answer => Goals.Enqueue(answer));
+                goals.ToList().ForEach(goal => goal.Text = "");
+            }
+            else
+            {
+                throw new Exception();
             }
         }
 

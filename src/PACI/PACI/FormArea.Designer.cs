@@ -63,9 +63,10 @@
             // buttonContinue
             // 
             this.buttonContinue.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonContinue.Location = new System.Drawing.Point(104, 223);
+            this.buttonContinue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonContinue.Location = new System.Drawing.Point(95, 221);
             this.buttonContinue.Name = "buttonContinue";
-            this.buttonContinue.Size = new System.Drawing.Size(75, 23);
+            this.buttonContinue.Size = new System.Drawing.Size(93, 26);
             this.buttonContinue.TabIndex = 0;
             this.buttonContinue.Text = "Continuar";
             this.buttonContinue.UseVisualStyleBackColor = true;
@@ -75,10 +76,10 @@
             // 
             this.labelArea.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelArea.AutoSize = true;
-            this.labelArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelArea.Location = new System.Drawing.Point(68, 15);
+            this.labelArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelArea.Location = new System.Drawing.Point(67, 14);
             this.labelArea.Name = "labelArea";
-            this.labelArea.Size = new System.Drawing.Size(147, 22);
+            this.labelArea.Size = new System.Drawing.Size(149, 24);
             this.labelArea.TabIndex = 1;
             this.labelArea.Text = "This is a life area";
             this.labelArea.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -108,27 +109,30 @@
             // textGoal0
             // 
             this.textGoal0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textGoal0.Location = new System.Drawing.Point(3, 45);
+            this.textGoal0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textGoal0.Location = new System.Drawing.Point(3, 42);
             this.textGoal0.Name = "textGoal0";
-            this.textGoal0.Size = new System.Drawing.Size(272, 20);
+            this.textGoal0.Size = new System.Drawing.Size(272, 26);
             this.textGoal0.TabIndex = 0;
             this.textGoal0.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textGoal1
             // 
             this.textGoal1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textGoal1.Location = new System.Drawing.Point(3, 82);
+            this.textGoal1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textGoal1.Location = new System.Drawing.Point(3, 79);
             this.textGoal1.Name = "textGoal1";
-            this.textGoal1.Size = new System.Drawing.Size(272, 20);
+            this.textGoal1.Size = new System.Drawing.Size(272, 26);
             this.textGoal1.TabIndex = 1;
             this.textGoal1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textGoal2
             // 
             this.textGoal2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textGoal2.Location = new System.Drawing.Point(3, 120);
+            this.textGoal2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textGoal2.Location = new System.Drawing.Point(3, 117);
             this.textGoal2.Name = "textGoal2";
-            this.textGoal2.Size = new System.Drawing.Size(272, 20);
+            this.textGoal2.Size = new System.Drawing.Size(272, 26);
             this.textGoal2.TabIndex = 2;
             this.textGoal2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -136,9 +140,10 @@
             // 
             this.labelGoal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelGoal.AutoSize = true;
-            this.labelGoal.Location = new System.Drawing.Point(113, 12);
+            this.labelGoal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGoal.Location = new System.Drawing.Point(102, 8);
             this.labelGoal.Name = "labelGoal";
-            this.labelGoal.Size = new System.Drawing.Size(51, 13);
+            this.labelGoal.Size = new System.Drawing.Size(74, 20);
             this.labelGoal.TabIndex = 6;
             this.labelGoal.Text = "Objetivos";
             // 
