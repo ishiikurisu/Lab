@@ -10,3 +10,4 @@ C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.Properties.Resou
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.csproj.GenerateResource.Cache
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.exe
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.pdb
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.FormThanks.resources

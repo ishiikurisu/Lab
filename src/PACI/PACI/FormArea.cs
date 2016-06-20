@@ -56,8 +56,8 @@ namespace PACI
             TextBox[] goals = { textGoal0, textGoal1, textGoal2 };
             Queue<string> answers = new Queue<string>();
 
-            goals.Where(goal => goal.Text.Length > 0).ToList()
-                 .Select(goal => goal.Text).ToList()
+            goals.Select(goal => goal.Text).ToList()
+                 .Where(goal => goal.Length > 0).ToList()
                  .ForEach(answer => answers.Enqueue(answer));
 
             if (answers.Count > 0)
