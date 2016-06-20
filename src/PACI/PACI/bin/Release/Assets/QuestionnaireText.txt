@@ -5,6 +5,6 @@ primeiro objetivo que você listou como mais importante. A segunda página é de
 para o segundo objetivo mais importante e assim por diante para as demais páginas.
 
 Para cada questão, você deve preencher em um dos círculos (de 0 a 10) aquele que
-melhor descreve como você vê o seu objetivo. O número “0” (zero) é utilizado
-para a menor quantidade e o “10” (dez) para a maior quantidade. Por favor, responda a
-todas as questões e preencha apenas um círculo para cada questão.
+melhor descreve como você vê o seu objetivo. Considere "0" (zero) para nenhuma
+intensidade e "10" (dez) para maior intensidade. Por favor, responda a todas as questões e
+preencha apenas um círculo para cada questão.
