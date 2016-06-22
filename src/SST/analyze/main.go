@@ -11,11 +11,16 @@ func main() {
 		source = os.Args[1]
 	}
 	source += "/"
+	calculateData(source)
+	getIntervals(source)
+}
+
+func calculateData(source string) {
 	files, _ := ioutil.ReadDir(source)
 	outlet, _ := os.Create(source + "sst.csv")
+	analysis := sst.BeginAnalysis()
 	defer outlet.Close()
 
-	analysis := sst.BeginAnalysis()
 	sst.Write(outlet, sst.BeginCSV())
 	for _, file := range files {
 		if sst.ValidFile(file.Name()) {
@@ -26,4 +31,19 @@ func main() {
 		}
 	}
 	sst.Write(outlet, sst.FormatMultipleCSV(analysis))
+}
+
+func getIntervals(source string) {
+	files, _ := ioutil.ReadDir(source)
+	outlet, _ := os.Create(source + "intervals.csv")
+	analysis := sst.BeginClock()
+	defer outlet.Close()
+
+	for _, file := range files {
+		if sst.ValidFile(file.Name()) {
+			analysis = sst.UpdateClock(sst.ExtractIntervals(source + file.Name()),
+		                               file.Name(), analysis)
+		}
+	}
+	sst.Write(outlet, sst.FormatClock(analysis))
 }

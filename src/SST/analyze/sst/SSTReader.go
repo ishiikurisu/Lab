@@ -10,9 +10,9 @@ import "os"
  */
 func Read(input string) map[string][]string {
 	inlet, _ := os.Open(input)
-	header := ReadHeader(inlet)
+    defer inlet.Close()
+	header := ReadHeader(inlet, GetNeededVariables())
 	outlet := ReadRecords(inlet, header)
-	defer inlet.Close()
 	return outlet
 }
 
@@ -21,11 +21,10 @@ func Read(input string) map[string][]string {
  * @param inlet the pointer to the specified file
  * @return a map relating the indexes and the fields
  */
-func ReadHeader(inlet *os.File) map[string]int {
+func ReadHeader(inlet *os.File, needed []string) map[string]int {
 	ReadLine(inlet)
 	header := make(map[string]int)
 	stuff := Split(ReadLine(inlet), '\t')
-	needed := GetNeededVariables()
 
 	for i, it := range stuff {
 		if Contains(needed, it) {
