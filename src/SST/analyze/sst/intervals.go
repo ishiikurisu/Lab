@@ -8,10 +8,19 @@ import "sort"
 * MAIN FUNCTIONS *
 ******************/
 
+/**
+ *  Creates an analysis structure for extracting intervals
+ * @return a map relating the file name and the intervals in seconds
+*/
 func BeginClock() map[string][]float64 {
     return make(map[string][]float64)
 }
 
+/**
+ * Reads every line in a file and extract
+ * @param input the file name as a string
+ * @return the intervals in the file, sorted
+ */
 func ExtractIntervals(input string) []float64 {
     inlet, _ := os.Open(input)
     outlet := make([]float64, 0)
@@ -35,6 +44,13 @@ func ExtractIntervals(input string) []float64 {
     return outlet
 }
 
+/**
+ * Updates the analysis structure by relating the file name to its intervals
+ * @param data the array of intervals
+ * @param tag the file name
+ * @param analysis the analysis structure, as given by BeginClock()
+ * @return the updated analysis structure
+ */
 func UpdateClock(data []float64,
                  tag string,
                  analysis map[string][]float64) map[string][]float64 {
@@ -42,6 +58,11 @@ func UpdateClock(data []float64,
     return analysis
 }
 
+/**
+ * Turn the analysis structure into a CSV table
+ * @param analysis the structure, as given by UpdateClock()
+ * @return a string containing the CSV table ready to be written in a file
+ */
 func FormatClock(analysis map[string][]float64) string {
     outlet := ""
     howManyFiles := len(analysis)
