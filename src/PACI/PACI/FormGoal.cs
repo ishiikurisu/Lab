@@ -69,7 +69,7 @@ namespace PACI
                                           this.FormatData());
 
                 // Finish test
-                FormThanks form = new FormThanks();
+                var form = new FormThanks();
                 form.Mother = Mother;
                 form.Show();
                 Close();
@@ -77,7 +77,7 @@ namespace PACI
             else
             {
                 // Setup next question
-                labelGoal.Text = Goals[CurrentGoal];
+                labelGoal.Text = string.Format("Objetivo: {0}", Goals[CurrentGoal]);
                 labelQuestion.Text = Questions[(CurrentQuestion++) % Questions.Length];
             }
 

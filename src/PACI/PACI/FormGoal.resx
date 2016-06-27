@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Mantendo este objetivo em mente, responda cada questão abaixo preenchendo o círculo de 1 a 10 que melhor descreve sua visão para aquele objetivo. Considere 0 para nenhuma intensidade e 10 para maior intensidade.</value>
+  </data>
 </root>
