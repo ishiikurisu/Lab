@@ -73,7 +73,7 @@ namespace PACI
 
         private void NextArea()
         {
-            this.labelArea.Text = Areas.Dequeue();
+            this.labelArea.Text = string.Format("Área da vida: {0}", Areas.Dequeue());
         }
 
         private void Finish()
@@ -84,6 +84,11 @@ namespace PACI
             form.Show();
             Ended = true;
             Close();
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

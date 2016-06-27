@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Nomeie ou liste os seus objetivos importantes, se você tiver algum, após cada área da vida listada a seguir. Se você quiser manter privados os seus objetivos, não será necessário revelar o conteúdo completo deles. Nesse caso, você deve simplesmente escreer poucas palavras como "dicas" para você mesmo no sentido de completar uma outra parte do exercício.</value>
+  </data>
 </root>

@@ -11,3 +11,4 @@ C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.csproj.GenerateR
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.exe
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.pdb
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.FormThanks.resources
+C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Release\PACI.csprojResolveAssemblyReference.cache
