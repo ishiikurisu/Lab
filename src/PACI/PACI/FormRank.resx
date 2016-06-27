@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Recomendamos que você enumere seus objetivos por ordem de importância (colune "Ordem de importância"). A ordenação dos seus objetivos é opcional; se você escolher fazer isso, escreva 1 para o objetivo mais importante, 2 para o segundo objetivo mais importante e assim sucessivamente.</value>
+  </data>
 </root>
