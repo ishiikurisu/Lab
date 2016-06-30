@@ -1,4 +1,7 @@
-﻿namespace PACI
+﻿using System;
+using System.Linq;
+
+namespace PACI
 {
     partial class FormRank
     {
@@ -140,11 +143,9 @@
             for (int i = 0; i < limit; i++)
             {
                 Lines[i] = new TableLine(i, Goals[i]);
-                Lines[i].SetCallback(new System.EventHandler<TableEventArgs>(UpdateList));
                 tableRankings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
                 tableRankings.Controls.Add(Lines[i]);
             }
-
         }
 
         public void UpdateList(object sender, TableEventArgs e)
@@ -160,6 +161,35 @@
                 Lines[ranking].SetGoal(temp);
             }
         }
+
+        public bool AreAllEmpty()
+        {
+            var allEmpty = true;
+            Lines.ToList().Select((line) => line.GetRank())
+                 .ToList().ForEach((rank) => allEmpty &= (rank.Length == 0));
+            return allEmpty;
+        }
+
+        public bool AreAllFilledWithNumbers()
+        {
+            var allFilled = true;
+
+            foreach (var rank in Lines.ToList().Select((line) => line.GetRank()).ToList())
+            {
+                try
+                {
+                    var trans = int.Parse(rank);
+                    allFilled &= (trans > 0);
+                }
+                catch (Exception any)
+                {
+                    allFilled = false;
+                }
+            }
+
+            return allFilled;
+        }
+
 
         #endregion
 
@@ -185,37 +215,29 @@
     class TableLine : System.Windows.Forms.TableLayoutPanel
     {
         private System.Windows.Forms.Label Goal;
-        private System.Windows.Forms.Button Down;
-        private System.Windows.Forms.Button Up;
+        private System.Windows.Forms.TextBox Rank;
         public int Ranking;
-        private System.EventHandler<TableEventArgs> UpdateList;
 
         public TableLine() : base()
         {
             this.Goal = new System.Windows.Forms.Label();
+            this.Goal.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Goal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Goal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Goal.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.Goal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Down = new System.Windows.Forms.Button();
-            this.Down.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Down.Text = "۷";
-            this.Down.Click += DownButtonCallback;
-            this.Down.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Up = new System.Windows.Forms.Button();
-            this.Up.Text = "۸";
-            this.Up.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Up.Click += this.UpButtonCallback;
-            this.Up.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rank = new System.Windows.Forms.TextBox();
+            this.Rank.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Rank.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Rank.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Rank.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RowCount = 1;
             this.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ColumnCount = 3;
-            this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.ColumnCount = 2;
+            this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.Controls.Add(Goal, 0, 0);
-            this.Controls.Add(Up, 1, 0);
-            this.Controls.Add(Down, 2, 0);
+            this.Controls.Add(Rank, 1, 0);
         }
 
         public TableLine(int ranking, string goal) : this()
@@ -234,20 +256,9 @@
             Goal.Text = it;
         }
 
-        public void SetCallback(System.EventHandler<TableEventArgs> handler)
+        public string GetRank()
         {
-            UpdateList = handler;
-        }
-
-
-        private void DownButtonCallback(object sender, System.EventArgs e)
-        {
-            UpdateList(this, new TableEventArgs(this.Ranking, 1));
-        }
-
-        private void UpButtonCallback(object sender, System.EventArgs e)
-        {
-            UpdateList(this, new TableEventArgs(this.Ranking, -1));
+            return this.Rank.Text;
         }
     }
 }
