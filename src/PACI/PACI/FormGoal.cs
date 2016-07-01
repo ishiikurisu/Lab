@@ -85,6 +85,7 @@ namespace PACI
 
         private void CollectData()
         {
+            // Add life are to answer
             Answers.Enqueue(GetAnswer());
         }
 

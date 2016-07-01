@@ -62,7 +62,9 @@ namespace PACI
 
             if (answers.Count > 0)
             {
-                answers.ToList().ForEach(answer => Goals.Enqueue(answer));
+                var area = labelArea.Text.Substring("Área da vida: ".Length);
+                answers.ToList()
+                       .ForEach(answer => Goals.Enqueue(string.Format("{0}: {1}", area, answer)));
                 goals.ToList().ForEach(goal => goal.Text = "");
             }
             else
@@ -84,11 +86,6 @@ namespace PACI
             form.Show();
             Ended = true;
             Close();
-        }
-
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
