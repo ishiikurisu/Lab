@@ -17,9 +17,12 @@ namespace Drawing
 {
     public partial class MainWindow : Window
     {
+        private double Dimension { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            Dimension = 12;
         }
         
         private void canvasDrawHere_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -28,10 +31,9 @@ namespace Drawing
             var where = e.GetPosition(canvas);
             var ball = new Ellipse();
 
-            ball.Height = 50;
-            ball.Width = 50;
-            ball.Margin = new Thickness(where.Y, where.X, 0, 0);
-            ball.Fill = new Brush
+            ball.Height = ball.Width = Dimension;
+            ball.Margin = new Thickness(where.X - Dimension/2, where.Y - Dimension/2, 0, 0);
+            ball.Fill = new SolidColorBrush(Color.FromRgb(120, 20, 20));
             canvas.Children.Add(ball);
         }
     }

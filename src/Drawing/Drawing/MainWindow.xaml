@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Drawing"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
-    <Grid x:Name="gridEverything" >
+    <Grid x:Name="gridEverything"
+          Background="Black" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="500"/>
@@ -16,6 +17,7 @@
                 x:Name="canvasDrawHere"
                 HorizontalAlignment="Left" 
                 Height="600" Width="500"
+                Background="White"
                 Margin="0,0,0,0" 
                 VerticalAlignment="Top"
                 MouseLeftButtonUp="canvasDrawHere_MouseLeftButtonUp" >
