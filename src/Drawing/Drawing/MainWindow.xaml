@@ -13,6 +13,16 @@
             <ColumnDefinition Width="500"/>
         </Grid.ColumnDefinitions>
 
+        <Canvas Grid.Column="0"
+                x:Name="canvasLineHere" 
+                MouseLeftButtonUp="canvasLineHere_MouseLeftButtonUp" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Height="600" Width="300"
+                Background="Gray">
+            
+        </Canvas>
+
         <Canvas Grid.Column="1" 
                 x:Name="canvasDrawHere"
                 HorizontalAlignment="Left" 
@@ -20,7 +30,8 @@
                 Background="White"
                 Margin="0,0,0,0" 
                 VerticalAlignment="Top"
-                MouseLeftButtonUp="canvasDrawHere_MouseLeftButtonUp" >
+                MouseLeftButtonUp="canvasDrawHere_MouseLeftButtonUp"
+                MouseRightButtonDown="canvasDrawHere_MouseRightButtonDown" >
 
         </Canvas>
 
