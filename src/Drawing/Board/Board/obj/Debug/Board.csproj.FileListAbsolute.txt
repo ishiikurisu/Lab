@@ -1,1 +1,14 @@
 C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\bin\Debug\Board.exe.config
+C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\bin\Debug\Board.exe
+C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\bin\Debug\Board.pdb
+C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\Board.csprojResolveAssemblyReference.cache
+C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\MainWindow.g.cs
+C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\App.g.cs
+C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\Board_MarkupCompile.cache
+C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\Board_MarkupCompile.lref
+C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\MainWindow.baml
+C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\Board.g.resources
+C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\Board.Properties.Resources.resources
+C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\Board.csproj.GenerateResource.Cache
+C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\Board.exe
+C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\Board.pdb

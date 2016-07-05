@@ -27,11 +27,11 @@
                      Width="50" Height="50" 
                      Margin="10, 10, 10, 10"
                      MouseLeftButtonDown="buttonRed_MouseLeftButtonDown"/>
-            <Ellipse x:Name="button"
+            <Ellipse x:Name="buttonBlue"
                      Fill="Blue"
                      Width="50" Height="50" 
                      Margin="10, 10, 10, 10"
-                     MouseLeftButtonDown="button_MouseLeftButtonDown"/>
+                     MouseLeftButtonDown="buttonBlue_MouseLeftButtonDown"/>
             <Ellipse x:Name="buttonGreen"
                      Fill="Green"
                      Width="50" Height="50" 
@@ -46,7 +46,9 @@
 
         <Canvas x:Name="canvasBoard"
                 Grid.Column="1" 
-                MouseLeftButtonDown="canvasBoard_MouseLeftButtonDown" >
+                Background="White"
+                MouseLeftButtonDown="canvasBoard_MouseLeftButtonDown" 
+                MouseLeftButtonUp="canvasBoard_MouseLeftButtonUp">
             
         </Canvas>
 
