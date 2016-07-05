@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Board
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private Brush BrushColor { get; set; }
@@ -54,14 +51,19 @@ namespace Board
 
         private async Task<bool> StopDrawing()
         {
-            var canvas = this.canvasBoard;
-            var where = Mouse.GetPosition(canvas);
-
             while (IsDrawing)
             {
-                where = Mouse.GetPosition(canvas);
+                var where = Mouse.GetPosition(this.canvasBoard);
                 var paint = CreatePaint(where);
-                canvas.Children.Add(paint);
+                var lastPaint = Painting.ElementAt(Painting.Count-1);
+                var line = CreateLine(new Point(lastPaint.Margin.Left,
+                                                lastPaint.Margin.Top),
+                                      where);
+
+                canvasBoard.Children.Add(line);
+                canvasBoard.Children.Add(paint);
+                Painting.Add(paint);
+
                 await Task.Delay(1);
             }
 
@@ -98,10 +100,30 @@ namespace Board
             var paint = new Ellipse();
 
             paint.Fill = BrushColor;
-            paint.Margin = new Thickness(where.X, where.Y, 0, 0);
             paint.Width = paint.Height = BrushSize;
+            paint.Margin = new Thickness(where.X - BrushSize/2, where.Y-BrushSize/2, 0, 0);
 
             return paint;
+        }
+
+        private Line CreateLine(Point beginning, Point ending)
+        {
+            var line = new Line();
+
+            line.Stroke = BrushColor;
+            line.X1 = beginning.X;
+            line.Y1 = beginning.Y;
+            line.X2 = ending.X;
+            line.Y2 = ending.Y;
+            line.StrokeThickness = BrushSize;
+            line.Margin = new Thickness(0, 0, 0, 0);
+
+            return line;
+        }
+
+        private void canvasBoard_MouseLeave(object sender, MouseEventArgs e)
+        {
+            IsDrawing = false;
         }
     }
 }

@@ -48,7 +48,8 @@
                 Grid.Column="1" 
                 Background="White"
                 MouseLeftButtonDown="canvasBoard_MouseLeftButtonDown" 
-                MouseLeftButtonUp="canvasBoard_MouseLeftButtonUp">
+                MouseLeftButtonUp="canvasBoard_MouseLeftButtonUp"
+                MouseLeave="canvasBoard_MouseLeave">
             
         </Canvas>
 
