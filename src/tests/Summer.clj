@@ -9,4 +9,7 @@
 			(recur (read-line)
 				   (conj stuff line)))))
 
-(println (reduce + (map parse-int (read-data))))
+(->> (read-data)
+     (map parse-int)
+     (reduce +)
+     println)

@@ -43,6 +43,7 @@ namespace Board
             Painting.Add(paint);
             canvas.Children.Add(paint);
             IsDrawing = true;
+
             await StopDrawing();
         }
 
@@ -61,7 +62,7 @@ namespace Board
                 where = Mouse.GetPosition(canvas);
                 var paint = CreatePaint(where);
                 canvas.Children.Add(paint);
-                await Task.Delay(5);
+                await Task.Delay(1);
             }
 
             return IsDrawing;
