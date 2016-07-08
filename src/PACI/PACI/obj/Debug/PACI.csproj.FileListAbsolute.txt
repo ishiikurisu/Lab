@@ -12,3 +12,31 @@ C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.FormArea.resources
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.FormGoal.resources
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.FormRank.resources
 C:\Users\cris\Documents\work\EEG\src\PACI\PACI\obj\Debug\PACI.FormThanks.resources
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\PACI.exe.config
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\PACI.exe
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\PACI.pdb
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\mscorlib.dll
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\System.Data.dll
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\System.Transactions.dll
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\System.EnterpriseServices.dll
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\System.Web.dll
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\System.Data.OracleClient.dll
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\pt-BR\mscorlib.resources.dll
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\normidna.nlp
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\normnfc.nlp
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\normnfd.nlp
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\normnfkc.nlp
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\normnfkd.nlp
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\bin\Debug\System.EnterpriseServices.Wrapper.dll
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\obj\Debug\PACI.Form1.resources
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\obj\Debug\PACI.FormArea.resources
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\obj\Debug\PACI.FormGoal.resources
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\obj\Debug\PACI.FormRank.resources
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\obj\Debug\PACI.FormText.resources
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\obj\Debug\PACI.FormThanks.resources
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\obj\Debug\PACI.Properties.Resources.resources
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\obj\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\obj\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\obj\Debug\PACI.exe
+C:\Documents and Settings\Laboratorio.LABORATO-6A7377\Meus documentos\software\EEG\src\PACI\PACI\obj\Debug\PACI.pdb
