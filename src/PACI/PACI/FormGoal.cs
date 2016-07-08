@@ -77,10 +77,16 @@ namespace PACI
             else
             {
                 // Setup next question
-                labelGoal.Text = string.Format("Objetivo: {0}", Goals[CurrentGoal]);
+                labelGoal.Text = string.Format("Objetivo\n{0}", FormatGoal(Goals[CurrentGoal]));
                 labelQuestion.Text = Questions[(CurrentQuestion++) % Questions.Length];
             }
+        }
 
+        private string FormatGoal(string inlet)
+        {
+            int lowerBound = 0;
+            while (inlet[lowerBound++] != ':') ;
+            return inlet.Substring(lowerBound + 1);
         }
 
         private void CollectData()
