@@ -17,6 +17,7 @@ namespace PACI
         public FormThanks()
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
         }
 
         private void buttonContinue_Click(object sender, EventArgs e)

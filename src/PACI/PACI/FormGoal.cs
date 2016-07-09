@@ -91,12 +91,15 @@ namespace PACI
 
         private void CollectData()
         {
-            // Add life are to answer
+            // Add life area to answer
             Answers.Enqueue(GetAnswer());
         }
 
         private string[] FormatData()
         {
+            // thinking about this, maybe I should
+            // separate this function from the rest
+            // of the class?
             List<string> outlet = new List<string>();
             int dutyCycle = Answers.Count / Goals.Length;
 
