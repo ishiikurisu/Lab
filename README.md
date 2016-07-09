@@ -4,7 +4,7 @@ This folder contains the code made by [me](https://github.com/ishiikurisu) while
 
 # Projects
 
-My projects can be accessed in the [`src`](https://github.com/ishiikurisu/EEG/tree/master/src) folder. Every code here is intended to be run on Windows.
+My projects can be accessed in the [`src`](https://github.com/ishiikurisu/EEG/tree/master/src) folder. Every code here is intended to be run on Windows. Just fooling around.
 
 EDF
 ---
