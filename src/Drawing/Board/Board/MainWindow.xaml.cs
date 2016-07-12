@@ -57,8 +57,8 @@ namespace Board
                 var paint = CreatePaint(where);
                 var lastPaint = Painting.ElementAt(Painting.Count-1);
                 var line = CreateLine(where, 
-                                      new Point(lastPaint.Margin.Left,
-                                                lastPaint.Margin.Top));
+                                      new Point(lastPaint.Margin.Left + BrushSize/2,
+                                                lastPaint.Margin.Top + BrushSize/2));
 
                 canvasBoard.Children.Add(line);
                 canvasBoard.Children.Add(paint);
@@ -101,7 +101,7 @@ namespace Board
 
             paint.Fill = BrushColor;
             paint.Width = paint.Height = BrushSize;
-            paint.Margin = new Thickness(where.X - BrushSize/2, where.Y - BrushSize/2, 0, 0);
+            paint.Margin = new Thickness(where.X - BrushSize / 2, where.Y - BrushSize / 2, 0, 0);
 
             return paint;
         }
