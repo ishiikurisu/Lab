@@ -1,6 +1,0 @@
-﻿0 11 Estes altos e baixos são considerados normais.
-11 17 Variação emocional média.
-17 21 Depressão clínica borderline.
-21 31 Depressão moderada.
-31 40 Depressão severa.
-40 100 Depressão extrema.
