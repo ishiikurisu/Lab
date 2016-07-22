@@ -112,3 +112,11 @@ func extractBits(inlet int16) []byte {
 
     return outlet
 }
+
+func Iff(s bool, t, e string) string {
+    if s {
+        return t
+    } else {
+        return e
+    }
+}

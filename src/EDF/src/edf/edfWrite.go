@@ -14,33 +14,36 @@ func WriteGo(header map[string]string, records [][]int16) {
 }
 
 /**
- * Translates the data to the *.csv format into the standard output.
+ * Formats the data to the *.csv format into the standard output.
  * @param header a map containg the EDF header data as strings.
  * @param records the data records as 16bit integers.
  */
 func WriteCSV(header map[string]string, records [][]int16) {
 	numberSignals := getNumberSignals(header)
 	convertionFactor := setConvertionFactor(header)
+	notesChannel := getAnnotationsChannel(header)
 
 	// writing header...
 	fmt.Printf("title:%s,", header["recording"])
 	fmt.Printf("recorded:%s %s,", header["startdate"], header["starttime"])
-	fmt.Printf("sampling:128,")
+	fmt.Printf("sampling:128,") // TODO extract sampling rate
 	fmt.Printf("subject:%s,", header["patient"])
 	fmt.Printf("labels:%v,", getLabels(header))
 	fmt.Printf("chan:%s,", header["numbersignals"])
-	fmt.Printf("units:uV\n")
+	fmt.Printf("units:uV\n") // TODO extract units 
 
 	// writing data records...
 	limit := len(records[0])
 	for j := 0; j < limit; j++ {
 		for i := 0; i < numberSignals; i++ {
-			data := float64(records[i][j]) * convertionFactor[i]
+			if i != notesChannel {
+				data := float64(records[i][j]) * convertionFactor[i]
 
-			if i == 0 {
-				fmt.Printf("%f", data)
-			} else {
-				fmt.Printf(", %f", data)
+				if i == 0 {
+					fmt.Printf("%f", data)
+				} else {
+					fmt.Printf(", %f", data)
+				}
 			}
 		}
 		fmt.Printf("\n")
