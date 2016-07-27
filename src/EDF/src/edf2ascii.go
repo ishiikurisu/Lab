@@ -1,10 +1,10 @@
 package main
 
 import "os"
-// import "fmt"
+import "fmt"
 import "./edf"
 
 func main() {
 	header, records := edf.ReadFile(os.Args[1])
-	edf.WriteASCII(header, records)
+	fmt.Println(edf.WriteASCII(header, records))
 }
