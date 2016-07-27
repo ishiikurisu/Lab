@@ -18,19 +18,20 @@ func WriteGo(header map[string]string, records [][]int16) {
  * @param header a map containg the EDF header data as strings.
  * @param records the data records as 16bit integers.
  */
-func WriteCSV(header map[string]string, records [][]int16) {
+func WriteCSV(header map[string]string, records [][]int16) string {
 	numberSignals := getNumberSignals(header)
 	convertionFactor := setConvertionFactor(header)
 	notesChannel := getAnnotationsChannel(header)
+	outlet := ""
 
 	// writing header...
-	fmt.Printf("title:%s,", header["recording"])
-	fmt.Printf("recorded:%s %s,", header["startdate"], header["starttime"])
-	fmt.Printf("sampling:128,") // TODO extract sampling rate
-	fmt.Printf("subject:%s,", header["patient"])
-	fmt.Printf("labels:%v,", getLabels(header))
-	fmt.Printf("chan:%s,", header["numbersignals"])
-	fmt.Printf("units:uV\n") // TODO extract units 
+	outlet += fmt.Sprintf("title:%s,", header["recording"])
+	outlet += fmt.Sprintf("recorded:%s %s,", header["startdate"], header["starttime"])
+	outlet += fmt.Sprintf("sampling:128,") // TODO extract sampling rate
+	outlet += fmt.Sprintf("subject:%s,", header["patient"])
+	outlet += fmt.Sprintf("labels:%v,", getLabels(header))
+	outlet += fmt.Sprintf("chan:%s,", header["numbersignals"])
+	outlet += fmt.Sprintf("units:uV\n") // TODO extract units 
 
 	// writing data records...
 	limit := len(records[0])
@@ -40,14 +41,16 @@ func WriteCSV(header map[string]string, records [][]int16) {
 				data := float64(records[i][j]) * convertionFactor[i]
 
 				if i == 0 {
-					fmt.Printf("%f", data)
+					outlet += fmt.Sprintf("%f", data)
 				} else {
-					fmt.Printf(", %f", data)
+					outlet += fmt.Sprintf(", %f", data)
 				}
 			}
 		}
-		fmt.Printf("\n")
+		outlet += fmt.Sprintf("\n")
 	}
+
+	return outlet
 }
 
 /**
@@ -81,13 +84,16 @@ func WriteASCII(header map[string]string, records [][]int16) {
  * @param header a map containg the EDF header data as strings.
  * @param records the data records as 16bit integers.
  */
-func WriteNotes(header map[string]string, records [][]int16) {
+func WriteNotes(header map[string]string, records [][]int16) string {
 	which := getAnnotationsChannel(header)
+	outlet := ""
 
 	if which > 0 && which < len(records) {
 		annotations := convertInt16ToByte(records[which])
-		fmt.Printf("%s\n", formatAnnotations(annotations))
+		outlet += fmt.Sprintf("%s\n", formatAnnotations(annotations))
 	}
+
+	return outlet
 }
 
 /* --- AUXILIAR FUNCTIONS --- */
