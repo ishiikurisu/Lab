@@ -4,7 +4,7 @@ import "os"
 import "fmt"
 import "strings"
 import "./edf"
-// import "./sst"
+import "./sst"
 
 func main() {
     for i := 1; i < len(os.Args); i++ {
@@ -17,10 +17,14 @@ func main() {
         firstMoment := getFirstMoment(header)
 
         // populating lines to file
-        // lines[0] = createFirstLine
+        // lines[0] = createFirstLine()
+        // for each line {
+        //     Create each line
+        // }
 
         // saving data
-        linesToFile(outlet + fmt.Sprintf("%v", firstMoment), lines)
+        fmt.Printf("%v\n", firstMoment)
+        linesToFile(outlet, lines)
     }
 }
 
@@ -29,8 +33,14 @@ func createOutlet(inlet string) string {
 }
 
 func getFirstMoment(header map[string]string) int {
-    // TODO Extract first moment
-    return 0
+    startDate := header["startdate"]
+    startTime := header["starttime"]
+    dateRaw := strings.Split(startDate, ".")
+    timeRaw := strings.Split(startTime, ".")
+    timestamp := fmt.Sprintf("20%v-%v-%vT%v:%v:%vZ", dateRaw[2], dateRaw[1], dateRaw[0],
+                                                     timeRaw[0], timeRaw[1], timeRaw[2])
+    result := sst.ConvertToUnixTime(timestamp)
+    return result
 }
 
 func linesToFile(output string, data []string) {
