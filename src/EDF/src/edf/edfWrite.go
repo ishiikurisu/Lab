@@ -25,14 +25,14 @@ func WriteCSV(header map[string]string, records [][]int16) string {
 
 	// writing header...
 	outlet := fmt.Sprintf("title:%s,", header["recording"])
-	outlet += fmt.Sprintf("recorded:%s %s,", 
-		                  header["startdate"], 
+	outlet += fmt.Sprintf("recorded:%s %s,",
+		                  header["startdate"],
 		                  header["starttime"])
-	outlet += fmt.Sprintf("sampling:128,") // TODO extract sampling rate
+	outlet += fmt.Sprintf("sampling:%s,", getSampling(header)) // TODO extract sampling rate
 	outlet += fmt.Sprintf("subject:%s,", header["patient"])
 	outlet += fmt.Sprintf("labels:%v,", getLabels(header))
 	outlet += fmt.Sprintf("chan:%s,", header["numbersignals"])
-	outlet += fmt.Sprintf("units:uV\n") // TODO extract units 
+	outlet += fmt.Sprintf("units:%s\n", getUnits(header)) // TODO extract units
 
 	// writing data records...
 	limit := len(records[0])
@@ -72,8 +72,8 @@ func WriteASCII(header map[string]string, records [][]int16) string {
 
 		for i := 0; i < numberSignals; i++ {
 			if i != notesChannel {
-				data, count := writeASCIIChannel(records[i], 
-					                             convertionFactor[i], 
+				data, count := writeASCIIChannel(records[i],
+					                             convertionFactor[i],
 					                             j)
 				outlet += data
 				flag += count
@@ -105,6 +105,14 @@ func WriteNotes(header map[string]string, records [][]int16) string {
 }
 
 /* --- AUXILIAR FUNCTIONS --- */
+func getSampling(header map[string]string) string {
+	return "128"
+}
+
+func getUnits(header map[string]string) string {
+	return "uV"
+}
+
 func setConvertionFactor(header map[string]string) []float64 {
 	ns := getNumberSignals(header)
 	factors := make([]float64, ns)
@@ -152,8 +160,8 @@ func getAnnotationsChannel(header map[string]string) int {
 }
 
 /* returns false when it can't write anymore */
-func writeASCIIChannel(record []int16, 
-	                   convertionFactor float64, 
+func writeASCIIChannel(record []int16,
+	                   convertionFactor float64,
 	                   index int) (string, int) {
 	outlet := ""
 	flag := 1
@@ -172,29 +180,29 @@ func writeASCIIChannel(record []int16,
 func formatAnnotations(raw []byte) string {
 	return formatAnnotationsFeedback(0, raw, false, "")
 }
-func formatAnnotationsFeedback(index int, 
-	                           raw []byte, 
-	                           inside bool, 
+func formatAnnotationsFeedback(index int,
+	                           raw []byte,
+	                           inside bool,
 	                           box string) string {
-	if index == len(raw) { 
+	if index == len(raw) {
 		return box
 	} else if inside {
 		if raw[index] == 0 {
-			return formatAnnotationsFeedback(index + 1, 
-				                             raw, 
-				                             false, 
+			return formatAnnotationsFeedback(index + 1,
+				                             raw,
+				                             false,
 				                             box + fmt.Sprintf("\n"))
 		} else {
 			if raw[index] == 20 || raw[index] == 21 { raw[index] = ' ' }
-			return formatAnnotationsFeedback(index + 1, 
-				                             raw, 
-				                             inside, 
+			return formatAnnotationsFeedback(index + 1,
+				                             raw,
+				                             inside,
 				                             box + fmt.Sprintf("%c", raw[index]))
 		}
 	} else if raw[index] == '+' || raw[index] == '-' {
-		return formatAnnotationsFeedback(index + 1, 
-				                         raw, 
-				                         true, 
+		return formatAnnotationsFeedback(index + 1,
+				                         raw,
+				                         true,
 				                         box + string(raw[index]))
 	} else {
 		return formatAnnotationsFeedback(index+1, raw, inside, box)

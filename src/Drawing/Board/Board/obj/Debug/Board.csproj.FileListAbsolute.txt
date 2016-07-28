@@ -12,3 +12,6 @@ C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\Board.Propert
 C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\Board.csproj.GenerateResource.Cache
 C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\Board.exe
 C:\Users\cris\Documents\work\EEG\src\Drawing\Board\Board\obj\Debug\Board.pdb
+C:\Users\cris\Documents\work\Lab\EEG\src\Drawing\Board\Board\bin\Debug\Board.exe.config
+C:\Users\cris\Documents\work\Lab\EEG\src\Drawing\Board\Board\obj\Debug\Board.exe
+C:\Users\cris\Documents\work\Lab\EEG\src\Drawing\Board\Board\obj\Debug\Board.pdb
