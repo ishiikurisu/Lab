@@ -29,7 +29,13 @@ func main() {
 }
 
 func createOutlet(inlet string) string {
-    return inlet + ".csv"
+    limit := len(inlet) - 1
+
+    for inlet[limit] != '.' {
+        limit--
+    }
+
+    return inlet[:limit] + ".csv"
 }
 
 func getFirstMoment(header map[string]string) int {
@@ -53,7 +59,10 @@ func createIthLine(inlet string, note string, start int) string {
 
     if len(raw) > 2 {
         // Getting annotation
-        annotation := raw[2]
+        annotation := ""
+        for i := 1; i < len(raw); i++ {
+            annotation += raw[i] + " "
+        }
 
         // Getting moment
         number, _ := strconv.ParseFloat(raw[0][1:], 32)
