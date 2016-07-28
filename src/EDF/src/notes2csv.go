@@ -17,9 +17,9 @@ func main() {
         firstMoment := getFirstMoment(header)
 
         // populating lines to file
-        // lines[0] = createFirstLine()
-        // for each line {
-        //     Create each line
+        lines[0] = createFirstLine(inlet, firstMoment)
+        // for i, note := range notes {
+        //     lines[i+1] = createIthLine(inlet, notes[i])
         // }
 
         // saving data
@@ -41,6 +41,10 @@ func getFirstMoment(header map[string]string) int {
                                                      timeRaw[0], timeRaw[1], timeRaw[2])
     result := sst.ConvertToUnixTime(timestamp)
     return result
+}
+
+func createFirstLine(inlet string, moment int) string {
+    return fmt.Sprintf("%v\tComeço da gravação\t%v\n", inlet, sst.ConvertToTimeStamp(moment))
 }
 
 func linesToFile(output string, data []string) {
