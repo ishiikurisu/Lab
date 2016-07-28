@@ -3,6 +3,7 @@ package main
 import "os"
 import "fmt"
 import "strings"
+import "strconv"
 import "./edf"
 import "./sst"
 
@@ -18,12 +19,11 @@ func main() {
 
         // populating lines to file
         lines[0] = createFirstLine(inlet, firstMoment)
-        // for i, note := range notes {
-        //     lines[i+1] = createIthLine(inlet, notes[i])
-        // }
+        for i, note := range notes {
+            lines[i+1] = createIthLine(inlet, note, firstMoment)
+        }
 
         // saving data
-        fmt.Printf("%v\n", firstMoment)
         linesToFile(outlet, lines)
     }
 }
@@ -47,11 +47,31 @@ func createFirstLine(inlet string, moment int) string {
     return fmt.Sprintf("%v\tComeço da gravação\t%v\n", inlet, sst.ConvertToTimeStamp(moment))
 }
 
+func createIthLine(inlet string, note string, start int) string {
+    raw := strings.Split(note, " ")
+    outlet := ""
+
+    if len(raw) > 2 {
+        // Getting annotation
+        annotation := raw[2]
+
+        // Getting moment
+        number, _ := strconv.ParseFloat(raw[0][1:], 32)
+        unixtime := start + int(number - 1)
+        moment := sst.ConvertToTimeStamp(unixtime)
+
+        // Building outlet
+        outlet = fmt.Sprintf("%v\t%v\t%v\n", inlet, annotation, moment)
+    }
+
+    return outlet
+}
+
 func linesToFile(output string, data []string) {
     file, _ := os.Create(output)
 
     defer file.Close()
     for _, line := range data {
-        file.WriteString(line + "\n")
+        file.WriteString(line)
     }
 }
