@@ -51,6 +51,41 @@ bool is_label_valid(char *label)
 }
 
 /**
+* Gets the number of channels in this CSV file
+* @param line the header
+*/
+int get_chan(char *line)
+{
+    LIST *fields = NULL;
+    LIST *field = NULL;
+    char *key = NULL;
+    int result = -1;
+
+    if (strlen(line) <= 1) return result;
+
+    fields = list_strsplit(line, ',');
+    for (field = fields->next; field != NULL && key == NULL; inc(field))
+        if (match("chan", tidy_string(field->value)))
+            key = substring(tidy_string(field->value), 5, strlen(tidy_string(field->value)));
+        else
+            key = NULL;
+
+    sscanf(key, "%d", &result);
+    return result;
+}
+
+/**
+* Splits a string into equal pieces
+* @param labels the part of the string containing labels
+* @param chan the number of channels
+* @return the list of labels
+*/
+LIST* equal_split(char *labels, int chan)
+{
+    return NULL;
+}
+
+/**
  * Extract the 'labels' field as a list from the CSV header
  * @param  line   a c_string containing the file's header
  * @return fields a joe_list containing the label for each signal
@@ -67,7 +102,9 @@ LIST* parse_header(char *line)
         labels = are_these_labels(field->value);
 
     list_free(fields);
-    return list_strsplit(labels, ' ');
+    printf("<labels>%s</labels>\n", labels);
+    // return list_strsplit(labels, ' ');
+    return equal_split(labels, get_chan(line));
 }
 
 /**

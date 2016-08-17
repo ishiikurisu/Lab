@@ -1,6 +1,8 @@
 cd src
-go build csv2single.go
-move csv2single.exe ..\c2s.exe
+go build csv2multiple.go
+move csv2multiple.exe ..\c2m.exe
 cd ..
-c2s.exe data\teste.CSV
+c2m.exe data\HCT-4-1.csv
+dir data\*.ascii
 del c2s.exe
+del data\*.ascii
