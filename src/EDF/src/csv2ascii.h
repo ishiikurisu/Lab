@@ -10,9 +10,12 @@
 /*
 # Common functions
 
++ void write_line(BUFFER *outlet, LIST *line)
++ int get_chan(char* line)
++ LIST* equal_split(char* labels, int chan)
++ char* get_labels(char* line)
 + LIST* parse_header(char *line);
 + LIST* parse_line(char *line);
-+ void write_line(BUFFER *outlet, LIST *line)
 */
 
 char* are_these_labels(char *field)
@@ -50,6 +53,23 @@ bool is_label_valid(char *label)
     return true;
 }
 
+LIST* filter_annotations(LIST* stuff)
+{
+    int index = 0;
+    LIST* it = NULL;
+
+    for (it = stuff->next; it != NULL; inc(it))
+        if (match(it->value, "EDF Annotations"))
+            break;
+        else
+            index++;
+    stuff = list_remove(stuff, index);
+    for (it = stuff->next; it != NULL; inc(it))
+        it->value = tidy_string(it->value);
+
+    return stuff;
+}
+
 /**
 * Gets the number of channels in this CSV file
 * @param line the header
@@ -70,6 +90,7 @@ int get_chan(char *line)
         else
             key = NULL;
 
+    list_free(fields);
     sscanf(key, "%d", &result);
     return result;
 }
@@ -122,8 +143,12 @@ char* get_labels(char *line)
 LIST* parse_header(char *line)
 {
     char *labels = get_labels(line);
-    // return list_strsplit(labels, ' ');
-    return equal_split(labels, get_chan(line));
+    LIST* stuff = equal_split(labels, get_chan(line));
+    // stuff = list_strsplit(labels, ' ');
+
+    stuff = filter_annotations(stuff);
+
+    return stuff;
 }
 
 /**

@@ -21,6 +21,8 @@ int main(int argc, char *argv[]) {
     // char* list_yaml(LIST*)
     stuff = equal_split(labels, chan);
     printf("%s\n", list_yaml(stuff));
+    printf("# Filtering annotations\n");
+    printf("%s\n", list_yaml(filter_annotations(stuff)));
 
     printf("...\n");
     buffer_close(inlet);
