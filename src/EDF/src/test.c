@@ -5,13 +5,22 @@
 
 int main(int argc, char *argv[]) {
     BUFFER *inlet = buffer_new(argv[1], "r", 256);
-    char* line = buffer_readline(inlet);
+    char* header = buffer_readline(inlet);
     int chan = 0;
+    char *labels = NULL;
+    LIST *stuff = NULL;
 
-    printf("---\n");
     printf("# Getting channels\n");
-    chan = get_chan(line);
+    printf("---\n");
+    chan = get_chan(header);
+    labels = get_labels(header);
     printf("chan: %d\n", chan);
+    printf("labels: %s\n", labels);
+    printf("\n");
+    printf("# Equally splitting\n");
+    // char* list_yaml(LIST*)
+    stuff = equal_split(labels, chan);
+    printf("%s\n", list_yaml(stuff));
 
     printf("...\n");
     buffer_close(inlet);

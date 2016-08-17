@@ -82,7 +82,16 @@ int get_chan(char *line)
 */
 LIST* equal_split(char *labels, int chan)
 {
-    return NULL;
+    LIST *outlet = list_new();
+    char *temp = NULL;
+    int total = strlen(labels);
+    int piece = total / chan;
+    int i, j;
+
+    for (j = 0; j < chan; ++j)
+        outlet = list_add(outlet, substring(labels, j * piece + j, (j+1) * piece + j));
+
+    return outlet;
 }
 
 /**
@@ -90,7 +99,7 @@ LIST* equal_split(char *labels, int chan)
  * @param  line   a c_string containing the file's header
  * @return fields a joe_list containing the label for each signal
  */
-LIST* parse_header(char *line)
+char* get_labels(char *line)
 {
     LIST *fields = NULL;
     LIST *field = NULL;
@@ -102,7 +111,17 @@ LIST* parse_header(char *line)
         labels = are_these_labels(field->value);
 
     list_free(fields);
-    printf("<labels>%s</labels>\n", labels);
+    return labels;
+}
+
+/**
+ * Extract the 'labels' field as a list from the CSV header as a list
+ * @param  line   a c_string containing the file's header
+ * @return fields a joe_list containing the label for each signal
+ */
+LIST* parse_header(char *line)
+{
+    char *labels = get_labels(line);
     // return list_strsplit(labels, ' ');
     return equal_split(labels, get_chan(line));
 }
