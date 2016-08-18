@@ -28,11 +28,11 @@ func WriteCSV(header map[string]string, records [][]int16) string {
 	outlet += fmt.Sprintf("recorded:%s %s,",
 		                  header["startdate"],
 		                  header["starttime"])
-	outlet += fmt.Sprintf("sampling:%s,", getSampling(header)) // TODO extract sampling rate
+	outlet += fmt.Sprintf("sampling:%s,", GetSampling(header)) 
 	outlet += fmt.Sprintf("subject:%s,", header["patient"])
 	outlet += fmt.Sprintf("labels:%v,", getLabels(header))
 	outlet += fmt.Sprintf("chan:%s,", header["numbersignals"])
-	outlet += fmt.Sprintf("units:%s\n", getUnits(header)) // TODO extract units
+	outlet += fmt.Sprintf("units:%s\n", GetUnits(header)) 
 
 	// writing data records...
 	limit := len(records[0])
@@ -105,11 +105,26 @@ func WriteNotes(header map[string]string, records [][]int16) string {
 }
 
 /* --- AUXILIAR FUNCTIONS --- */
-func getSampling(header map[string]string) string {
-	return "128"
+func GetSampling(header map[string]string) string {
+	ns := getNumberSignals(header)
+	raw := separateString(header["samplesrecord"], ns)
+	rates := make([]int, ns)
+
+	// Turning sampling rates into numbers
+	for i := 0; i < ns; i++ {
+		fmt.Sscanf(raw[i], "%d", &rates[i])
+	}
+
+	// Getting most common designated sampling rate
+	// TODO Write this part too
+	// After thought: this might not be needed
+
+	outlet := fmt.Sprintf("%d", rates[0])
+	return outlet
 }
 
-func getUnits(header map[string]string) string {
+func GetUnits(header map[string]string) string {
+	// TODO extract units
 	return "uV"
 }
 
