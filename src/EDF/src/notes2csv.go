@@ -18,7 +18,7 @@ func main() {
         firstMoment := getFirstMoment(header)
 
         // populating lines to file
-        lines[0] = createFirstLine(inlet, firstMoment)
+        lines[0] = addendumToFirstLine(inlet, header) + createFirstLine(inlet, firstMoment)
         for i, note := range notes {
             lines[i+1] = createIthLine(inlet, note, firstMoment)
         }
@@ -51,6 +51,10 @@ func getFirstMoment(header map[string]string) int {
 
 func createFirstLine(inlet string, moment int) string {
     return fmt.Sprintf("%v\tComeço da gravação\t%v\n", inlet, sst.ConvertToTimeStamp(moment))
+}
+
+func addendumToFirstLine(inlet string, header map[string]string) string {
+    return fmt.Sprintf("%v\tTaxa de amostragem\t%v\n", inlet, edf.GetSampling(header))
 }
 
 func createIthLine(inlet string, note string, start int) string {
