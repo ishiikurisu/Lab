@@ -51,7 +51,7 @@ func getFirstMoment(header map[string]string) int {
 }
 
 func createFirstLine(inlet string, moment int) string {
-    return fmt.Sprintf("%v\tComeço da gravação\t%v\n", inlet, sst.ConvertToTimeStamp(moment))
+    return fmt.Sprintf("%v\tRecord\t%v\n", inlet, sst.ConvertToTimeStamp(moment - 1))
 }
 
 func addendumToFirstLine(inlet string, header map[string]string) string {
