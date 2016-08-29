@@ -1,4 +1,4 @@
-version = 1.6
+version = 1.4
 
 clean:
 	del donuts\*.class
