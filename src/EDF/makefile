@@ -1,14 +1,16 @@
-sourcefiles = src/kun/Domo.java
-classfiles = kun/Domo.class
+sourcefiles = src/br/unb/biologiaanimal/edf/EDF.java
+classfiles = src/br/unb/biologiaanimal/edf/EDF.class
+classname = br.unb.biologiaanimal.edf.EDF
+targetname = target/edf.jar
 
 classes:
-	javac -cp src -target 1.4 -source 1.4 -nowarn $(sourcefiles)
+	javac -target 1.4 -source 1.4 -nowarn $(sourcefiles)
 
 test: classes
-	java -cp src kun.Domo
+	java -cp src $(classname)
 
 jar: classes
-	jar cvfm target/domo.jar manifest.txt  -C src $(classfiles)
+	jar cvfm $(targetname) manifest.txt  -C src $(classfiles)
 
 do: jar
-	java -jar target/domo.jar
+	java -jar $(targetname)
