@@ -19,6 +19,7 @@ class EDFReader
             byte[] buffer = new byte[256];
             FileInputStream stream = new FileInputStream(path);
             this.readHeader(stream);
+            this.readRecords(stream);
         }
         catch (Exception any) {
             System.out.println(any);
@@ -31,7 +32,7 @@ class EDFReader
     {
         int limit = EDFConstants.specs.length;
         byte[] buffer;
-        String spec;
+        String data;
         int i = 0;
         header = new HashMap();
 
@@ -39,8 +40,8 @@ class EDFReader
         for (i = 0; i < limit; ++i)
         {
             buffer = new byte[EDFConstants.lenghts[i]];
-            spec = (String) EDFConstants.specs[i];
-            if (spec != "label") {
+            data = (String) EDFConstants.specs[i];
+            if (data != "label") {
                 stream.read(buffer);
                 header.put(EDFConstants.specs[i], new String(buffer));
             }
@@ -54,8 +55,8 @@ class EDFReader
         int numberSignals = Integer.parseInt(ns.trim());
         for (i = i; i < limit; ++i)
         {
-            String data = "";
             buffer = new byte[EDFConstants.lenghts[i]];
+            data = "";
             for (int n = 0; n < numberSignals; ++n)
             {
                 stream.read(buffer);
@@ -66,6 +67,11 @@ class EDFReader
     }
 
     // TODO Read records
+    private void readRecords(FileInputStream stream)
+    throws IOException
+    {
+
+    }
 
     /* INTERFACE METHODS  */
     public String getPath()
@@ -76,5 +82,15 @@ class EDFReader
     public String getData()
     {
         return header.toString();
+    }
+
+    public HashMap getHeader()
+    {
+        return this.header;
+    }
+
+    public HashMap getRecords()
+    {
+        return this.records;
     }
 }
