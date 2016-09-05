@@ -1,1 +1,1 @@
-Main-Class: kun.Domo
+Main-Class: br.unb.biologiaanimal.edf.EDF;

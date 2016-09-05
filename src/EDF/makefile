@@ -1,6 +1,10 @@
-sourcefiles = src/br/unb/biologiaanimal/edf/EDF.java
-classfiles = src/br/unb/biologiaanimal/edf/EDF.class
+sourcefiles = src/br/unb/biologiaanimal/edf/EDF.java src/br/unb/biologiaanimal/edf/EDFReader.java
+classfiles = -C src br/unb/biologiaanimal/edf/EDF.class -C src br/unb/biologiaanimal/edf/EDFReader.class
+testfiles = test/br/unb/biologiaanimal/test/Test.java
+runtestfiles = test/br/unb/biologiaanimal/test/Run.java
 classname = br.unb.biologiaanimal.edf.EDF
+testclassname = br.unb.biologiaanimal.test.Test
+runtestclassname = br.unb.biologiaanimal.test.Run
 targetname = target/edf.jar
 
 classes:
@@ -10,7 +14,19 @@ test: classes
 	java -cp src $(classname)
 
 jar: classes
-	jar cvfm $(targetname) manifest.txt  -C src $(classfiles)
+	jar cvfm $(targetname) manifest.txt $(classfiles)
+
+compiletests:
+	javac -cp $(testfiles)
+
+unittest: jar compiletests
+	java -cp test $(testclassname)
+
+compileruntest:
+	javac -cp $(targetname) $(runtestfiles)
+
+runtest: jar compileruntest
+	java -cp $(targetname);test $(runtestclassname)
 
 do: jar
 	java -jar $(targetname)
