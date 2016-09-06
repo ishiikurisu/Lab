@@ -3,6 +3,8 @@ package br.unb.biologiaanimal.edf;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.LinkedList;
 
 class EDFReader
 {
@@ -71,7 +73,6 @@ class EDFReader
         }
     }
 
-    // TODO Read records
     /**
      * Reads the records of an EDF file
      * @param stream the file input
@@ -79,7 +80,46 @@ class EDFReader
     private void readRecords(FileInputStream stream)
     throws IOException
     {
+        records = new HashMap();
+        int numberSignals = getNumberSignals();
+        int[] numberSamples = getNumberSamples();
+        int[] sampling = new int[numberSignals];
+        int duration = paramToInt("duration");
+        int dataRecords = paramToInt("dataRecords");
+        List[] recordList = new LinkedList[numberSignals];
+        String[] labels = getLabels();
+        byte[] buffer = null;
 
+        // TODO Read records
+        // Initalizing variables
+        for (int i = 0; i < numberSignals; ++i)
+        {
+            sampling[i] = duration * numberSamples[i];
+            recordList[i] = new LinkedList();
+        }
+
+        // Reading records
+        for (int d = 0; d < dataRecords; ++d)
+        {
+            for (int i = 0; i < numberSignals; ++i)
+            {
+                duration = 2 * sampling[i];
+                buffer = new byte[duration];
+                stream.read(buffer);
+                for (int j = 0; j < duration; ++j)
+                {
+                    recordList[i].add(new Byte(buffer[j]));
+                }
+            }
+        }
+
+        // Packing records
+        for (int i = 0; i < numberSignals; ++i)
+        {
+            String label = labels[i].trim();
+            Byte[] bytes = (Byte[]) recordList[i].toArray();
+            records.put(label, buffer);
+        }
     }
 
     /* AUXILIAR LOAD FUNCTIONS */
@@ -98,10 +138,15 @@ class EDFReader
 
         for (int i = 0; i < numberSignals; ++i)
         {
-            numberSamples[i] = Integer.parseInt(samples[i]);
+            numberSamples[i] = Integer.parseInt(samples[i].trim());
         }
 
         return numberSamples;
+    }
+
+    private int paramToInt(String param)
+    {
+        return Integer.parseInt(((String) header.get(param)).trim());
     }
 
     /* #####################
@@ -125,5 +170,13 @@ class EDFReader
     public HashMap getRecords()
     {
         return this.records;
+    }
+
+    public String[] getLabels()
+    {
+        int numberSignals = getNumberSignals();
+        String rawLabels = (String) header.get("label");
+        String[] labels = EDFUtil.separateString(rawLabels, numberSignals);
+        return labels;
     }
 }

@@ -16,7 +16,13 @@ public class Run {
         System.out.println("--- # Reading EDF file");
         EDF edf = new EDF("data\\linhadebase.edf");
         System.out.println("File: " + edf.getFile());
-        System.out.println("Data: " + edf.getData());
+        // System.out.println("Data: " + edf.getData());
+        System.out.println("Labels:");
+        String[] labels = edf.getLabels();
+        for (int i = 0; i < labels.length; ++i)
+        {
+        	System.out.println("- " + labels[i]);
+        }
         System.out.println("...");
     }
 }

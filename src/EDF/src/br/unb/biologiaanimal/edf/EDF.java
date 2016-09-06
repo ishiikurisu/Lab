@@ -1,5 +1,8 @@
 package br.unb.biologiaanimal.edf;
 
+import java.util.HashMap;
+import java.util.Set;
+
 /**
  * The class to hold the EDF file information.
  */
@@ -32,6 +35,30 @@ public class EDF
     public String getData()
     {
         return reader.getData();
+    }
+
+    /**
+     * Gets raw EDF header
+     */
+    public HashMap getHeader()
+    {
+        return reader.getHeader();
+    }
+
+    /**
+     * Gets raw EDF records
+     */
+    public HashMap getRecords()
+    {
+        return reader.getRecords();
+    }
+
+    /**
+     * Get the labels involved in this 
+     */
+    public String[] getLabels()
+    {
+        return reader.getLabels();
     }
 
     public static void main(String[] args)
