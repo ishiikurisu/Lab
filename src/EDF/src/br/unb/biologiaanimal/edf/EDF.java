@@ -61,6 +61,8 @@ public class EDF
         return reader.getLabels();
     }
 
+    // TODO Enable EDF file to be written in the standard output formats
+
     public static void main(String[] args)
     {
         System.out.println("Let's work this monster!");

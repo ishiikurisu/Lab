@@ -12,6 +12,7 @@ class EDFReader
     private String data;
     private HashMap header;  // <String, String>
     private HashMap records; // <String, Double[]>
+    private int numberSignals;
 
     public EDFReader(String input)
     {
@@ -59,7 +60,7 @@ class EDFReader
         }
 
         /* Reading header's records */
-        int numberSignals = getNumberSignals();
+        numberSignals = paramToInt("numbersignals");
         for (i = i; i < limit; ++i)
         {
             buffer = new byte[EDFConstants.lenghts[i]];
@@ -81,7 +82,6 @@ class EDFReader
     throws IOException
     {
         records = new HashMap();
-        int numberSignals = getNumberSignals();
         int[] numberSamples = getNumberSamples();
         int[] sampling = new int[numberSignals];
         int duration = paramToInt("duration");
@@ -123,15 +123,8 @@ class EDFReader
     }
 
     /* AUXILIAR LOAD FUNCTIONS */
-    private int getNumberSignals()
-    {
-        String ns = (String) header.get("numbersignals");
-        return Integer.parseInt(ns.trim());
-    }
-
     private int[] getNumberSamples()
     {
-        int numberSignals = getNumberSignals();
         int[] numberSamples = new int[numberSignals];
         String rawSamples = (String) header.get("samplesrecord");
         String[] samples = EDFUtil.separateString(rawSamples, numberSignals);
@@ -172,11 +165,20 @@ class EDFReader
         return this.records;
     }
 
+    public int getNumberSignals()
+    {
+        return paramToInt("numbersignals");
+    }
+
+    /**
+     * Gets list of labels in this EDF file
+     */
     public String[] getLabels()
     {
-        int numberSignals = getNumberSignals();
         String rawLabels = (String) header.get("label");
         String[] labels = EDFUtil.separateString(rawLabels, numberSignals);
         return labels;
     }
+
+    // TODO Add method to get 
 }
