@@ -8,7 +8,7 @@ class EDFReader
 {
     private String path;
     private String data;
-    private HashMap header; // <String, String>
+    private HashMap header;  // <String, String>
     private HashMap records; // <String, Double[]>
 
     public EDFReader(String input)
@@ -26,7 +26,13 @@ class EDFReader
         }
     }
 
-    /* LOAD METHODS */
+    /* ################
+       # LOAD METHODS # 
+       ################ */
+    /**
+     * Reads the header of an EDF file
+     * @param stream the file input
+     */
     private void readHeader(FileInputStream stream)
     throws IOException
     {
@@ -51,8 +57,7 @@ class EDFReader
         }
 
         /* Reading header's records */
-        String ns = (String) header.get("numbersignals");
-        int numberSignals = Integer.parseInt(ns.trim());
+        int numberSignals = getNumberSignals();
         for (i = i; i < limit; ++i)
         {
             buffer = new byte[EDFConstants.lenghts[i]];
@@ -67,13 +72,41 @@ class EDFReader
     }
 
     // TODO Read records
+    /**
+     * Reads the records of an EDF file
+     * @param stream the file input
+     */
     private void readRecords(FileInputStream stream)
     throws IOException
     {
 
     }
 
-    /* INTERFACE METHODS  */
+    /* AUXILIAR LOAD FUNCTIONS */
+    private int getNumberSignals()
+    {
+        String ns = (String) header.get("numbersignals");
+        return Integer.parseInt(ns.trim());
+    }
+
+    private int[] getNumberSamples()
+    {
+        int numberSignals = getNumberSignals();
+        int[] numberSamples = new int[numberSignals];
+        String rawSamples = (String) header.get("samplesrecord");
+        String[] samples = EDFUtil.separateString(rawSamples, numberSignals);
+
+        for (int i = 0; i < numberSignals; ++i)
+        {
+            numberSamples[i] = Integer.parseInt(samples[i]);
+        }
+
+        return numberSamples;
+    }
+
+    /* #####################
+       # INTERFACE METHODS # 
+       ##################### */
     public String getPath()
     {
         return this.path;
