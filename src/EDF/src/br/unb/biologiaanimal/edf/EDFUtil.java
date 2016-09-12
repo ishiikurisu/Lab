@@ -20,4 +20,28 @@ public class EDFUtil
 
 		return outlet;
 	}
+
+	/**
+	 * Inserts a byte in a byte array
+	 * @param box the array to contain the new byte
+	 * @param it the byte to be added
+	 */
+	public static byte[] insert(byte[] box, byte it)
+	{
+		byte[] newBox;
+
+		if (box == null) {
+			newBox = new byte[1];
+		}
+		else {
+			newBox = new byte[box.length + 1];
+			for (int i = 0; i < box.length; ++i)
+			{
+				newBox[i] = box[i];
+			}
+		}
+
+		newBox[newBox.length-1] = it;
+		return newBox;
+	}
 }

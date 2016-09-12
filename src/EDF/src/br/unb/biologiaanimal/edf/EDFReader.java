@@ -30,7 +30,7 @@ class EDFReader
     }
 
     /* ################
-       # LOAD METHODS # 
+       # LOAD METHODS #
        ################ */
     /**
      * Reads the header of an EDF file
@@ -85,8 +85,8 @@ class EDFReader
         int[] numberSamples = getNumberSamples();
         int[] sampling = new int[numberSignals];
         int duration = paramToInt("duration");
-        int dataRecords = paramToInt("dataRecords");
-        List[] recordList = new LinkedList[numberSignals];
+        int dataRecords = paramToInt("datarecords");
+        byte[][] recordList = new byte[numberSignals][];
         String[] labels = getLabels();
         byte[] buffer = null;
 
@@ -95,7 +95,7 @@ class EDFReader
         for (int i = 0; i < numberSignals; ++i)
         {
             sampling[i] = duration * numberSamples[i];
-            recordList[i] = new LinkedList();
+            recordList[i] = null;
         }
 
         // Reading records
@@ -108,7 +108,7 @@ class EDFReader
                 stream.read(buffer);
                 for (int j = 0; j < duration; ++j)
                 {
-                    recordList[i].add(new Byte(buffer[j]));
+                    recordList[i] = EDFUtil.insert(recordList[i], buffer[j]);
                 }
             }
         }
@@ -117,8 +117,7 @@ class EDFReader
         for (int i = 0; i < numberSignals; ++i)
         {
             String label = labels[i].trim();
-            Byte[] bytes = (Byte[]) recordList[i].toArray();
-            records.put(label, buffer);
+            records.put(label, recordList[i]);
         }
     }
 
@@ -143,7 +142,7 @@ class EDFReader
     }
 
     /* #####################
-       # INTERFACE METHODS # 
+       # INTERFACE METHODS #
        ##################### */
     public String getPath()
     {
@@ -180,5 +179,5 @@ class EDFReader
         return labels;
     }
 
-    // TODO Add method to get 
+    // TODO Add method to get
 }
