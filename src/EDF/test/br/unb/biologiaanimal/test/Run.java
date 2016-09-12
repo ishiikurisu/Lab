@@ -23,6 +23,8 @@ public class Run {
         {
         	System.out.println("- " + labels[i]);
         }
+        System.out.println("--- # Lengths of each record");
+        System.out.println(edf.getData());
         System.out.println("...");
     }
 }

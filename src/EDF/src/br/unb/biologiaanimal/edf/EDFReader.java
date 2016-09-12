@@ -86,7 +86,7 @@ class EDFReader
         int[] sampling = new int[numberSignals];
         int duration = paramToInt("duration");
         int dataRecords = paramToInt("datarecords");
-        byte[][] recordList = new byte[numberSignals][];
+        byte[][] recordList = new byte[numberSignals][5];
         String[] labels = getLabels();
         byte[] buffer = null;
 
@@ -106,9 +106,11 @@ class EDFReader
                 duration = 2 * sampling[i];
                 buffer = new byte[duration];
                 stream.read(buffer);
-                for (int j = 0; j < duration; ++j)
-                {
-                    recordList[i] = EDFUtil.insert(recordList[i], buffer[j]);
+                if (recordList[i] == null) {
+                    recordList[i] = buffer;
+                }
+                else {
+                    recordList[i] = EDFUtil.insert(recordList[i], buffer);
                 }
             }
         }
@@ -151,7 +153,18 @@ class EDFReader
 
     public String getData()
     {
-        return header.toString();
+        String outlet = "";
+        String[] labels = this.getLabels();
+        int limit = labels.length;
+
+        for (int i = 0; i < limit; ++i)
+        {
+            String label = labels[i];
+            byte[] record = (byte[]) records.get(label);
+            outlet += label + ": " + record.length + "\n";
+        }
+
+        return outlet;
     }
 
     public HashMap getHeader()
@@ -174,10 +187,17 @@ class EDFReader
      */
     public String[] getLabels()
     {
-        String rawLabels = (String) header.get("label");
-        String[] labels = EDFUtil.separateString(rawLabels, numberSignals);
+        String rawData = (String) header.get("label");
+        String[] raw = EDFUtil.separateString(rawData, numberSignals);
+        String[] labels = new String[numberSignals];
+
+        for (int i = 0; i < numberSignals; ++i)
+        {
+            labels[i] = raw[i].trim();
+        }
+
         return labels;
     }
 
-    // TODO Add method to get
+    // TODO Add method to get each signal by their label
 }

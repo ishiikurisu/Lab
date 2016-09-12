@@ -44,4 +44,32 @@ public class EDFUtil
 		newBox[newBox.length-1] = it;
 		return newBox;
 	}
+
+	/**
+	 * Inserts a byte array in another byte array
+	 * @param box the array to contain the new byte
+	 * @param it the bytes to be added
+	 */
+	public static byte[] insert(byte[] inlet, byte[] toAdd)
+	{
+		byte[] outlet;
+
+		if (inlet == null) {
+			outlet = toAdd;
+		}
+		else {
+			outlet = new byte[inlet.length + toAdd.length];
+			int j = 0;
+			for (int i = 0; i < inlet.length; i++, j++)
+			{
+				outlet[j] = inlet[i];
+			}
+			for (int i = 0; i < toAdd.length; i++, j++)
+			{
+				outlet[j] = toAdd[i];
+			}
+		}
+
+		return outlet;
+	}
 }
