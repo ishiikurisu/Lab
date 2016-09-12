@@ -10,6 +10,7 @@ public class EDF
 {
     private String file;
     private EDFReader reader;
+    private EDFWriter writer;
 
     /**
      * Generates new EDF object based on the filepath.
@@ -54,11 +55,22 @@ public class EDF
     }
 
     /**
-     * Get the labels involved in this 
+     * Get the labels involved in this
      */
     public String[] getLabels()
     {
         return reader.getLabels();
+    }
+
+    public String write()
+    {
+        return EDFWriter.sayHi();
+    }
+
+    public void toAscii(String filePath)
+    {
+        EDFWriter writer = new EDFWriter(getHeader(), getRecords());
+        writer.toAscii(filePath);
     }
 
     // TODO Enable EDF file to be written in the standard output formats

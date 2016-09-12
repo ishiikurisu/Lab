@@ -1,5 +1,5 @@
-sourcefiles = src/br/unb/biologiaanimal/edf/EDF.java src/br/unb/biologiaanimal/edf/EDFReader.java src/br/unb/biologiaanimal/edf/EDFConstants.java src/br/unb/biologiaanimal/edf/EDFUtil.java
-classfiles = -C src br/unb/biologiaanimal/edf/EDF.class -C src br/unb/biologiaanimal/edf/EDFReader.class -C src br/unb/biologiaanimal/edf/EDFConstants.class -C src br/unb/biologiaanimal/edf/EDFUtil.class
+sourcefiles = src/br/unb/biologiaanimal/edf/EDF.java src/br/unb/biologiaanimal/edf/EDFReader.java src/br/unb/biologiaanimal/edf/EDFConstants.java src/br/unb/biologiaanimal/edf/EDFUtil.java src/br/unb/biologiaanimal/edf/EDFWriter.java
+classfiles = -C src br/unb/biologiaanimal/edf/EDF.class -C src br/unb/biologiaanimal/edf/EDFReader.class -C src br/unb/biologiaanimal/edf/EDFConstants.class -C src br/unb/biologiaanimal/edf/EDFUtil.class -C src br/unb/biologiaanimal/edf/EDFWriter.class
 testfiles = test/br/unb/biologiaanimal/test/Test.java
 runtestfiles = test/br/unb/biologiaanimal/test/Run.java
 classname = br.unb.biologiaanimal.edf.EDF

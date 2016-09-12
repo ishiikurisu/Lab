@@ -25,6 +25,10 @@ public class Run {
         }
         System.out.println("--- # Lengths of each record");
         System.out.println(edf.getData());
+        System.out.println("--- # Let's write something");
+        System.out.println("-- " + edf.write());
+        System.out.println("-- Writing to ASCII format");
+        edf.toAscii("data\\linhadebase.ascii");
         System.out.println("...");
     }
 }
