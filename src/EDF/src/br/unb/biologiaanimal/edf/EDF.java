@@ -22,6 +22,9 @@ public class EDF
         this.reader = new EDFReader(file);
     }
 
+    /* ###############
+       # GETS & SETS #
+       ############### */
     /**
      * Gets the file path.
      */
@@ -55,13 +58,16 @@ public class EDF
     }
 
     /**
-     * Get the labels involved in this
+     * Get the labels contained in this EDF file
      */
     public String[] getLabels()
     {
         return reader.getLabels();
     }
 
+    /* ###################
+       # WRITING METHODS #
+       ################### */
     public String write()
     {
         return EDFWriter.sayHi();
@@ -69,11 +75,22 @@ public class EDF
 
     public void toAscii(String filePath)
     {
-        EDFWriter writer = new EDFWriter(getHeader(), getRecords());
-        writer.toAscii(filePath);
+        try {
+            EDFWriter writer = new EDFWriter(filePath);
+            // TODO Write records in the ASCII format
+            writer.write(reader.getData());
+            writer.close();
+        }
+        catch (Exception any) {
+            System.out.println(any);
+        }
     }
 
     // TODO Enable EDF file to be written in the standard output formats
+    // the standard output formats are:
+    // - Single ASCII matrix
+    // - Multiple ASCII arrays
+    // - CSV table
 
     public static void main(String[] args)
     {
