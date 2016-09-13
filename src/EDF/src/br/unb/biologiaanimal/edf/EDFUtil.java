@@ -1,5 +1,7 @@
 package br.unb.biologiaanimal.edf;
 
+import java.nio.ByteBuffer;
+
 public class EDFUtil
 {
 	/**
@@ -23,8 +25,9 @@ public class EDFUtil
 
 	/**
 	 * Inserts a byte in a byte array
-	 * @param box the array to contain the new byte
-	 * @param it the byte to be added
+	 * @param box  the array to contain the new byte
+	 * @param it  the byte to be added
+	 * @return the new array
 	 */
 	public static byte[] insert(byte[] box, byte it)
 	{
@@ -46,9 +49,10 @@ public class EDFUtil
 	}
 
 	/**
-	 * Inserts a byte array in another byte array
-	 * @param box the array to contain the new byte
-	 * @param it the bytes to be added
+	 * Appends a byte array in another byte array
+	 * @param box  the array to contain the new byte
+	 * @param it  the bytes to be added
+	 * @return the concatenated array
 	 */
 	public static byte[] insert(byte[] inlet, byte[] toAdd)
 	{
@@ -72,4 +76,23 @@ public class EDFUtil
 
 		return outlet;
 	}
+
+    /**
+     * Converts a byte array into a short array
+     * @param inlet  the array to be converted
+     * @return the converted array
+     */
+    public static short[] convert(byte[] inlet)
+    {
+        ByteBuffer buffer = ByteBuffer.wrap(inlet);
+        int limit = buffer.remaining()/2;
+        short[] outlet = new short[limit];
+
+        for (int i = 0; i < limit; ++i)
+        {
+            outlet[i] = buffer.getShort();
+        }
+
+        return outlet;
+    }
 }

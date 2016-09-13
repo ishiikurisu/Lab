@@ -16,15 +16,12 @@ public class Run {
         System.out.println("--- # Reading EDF file");
         EDF edf = new EDF("data\\linhadebase.edf");
         System.out.println("File: " + edf.getFile());
-        // System.out.println("Data: " + edf.getData());
         System.out.println("Labels:");
         String[] labels = edf.getLabels();
         for (int i = 0; i < labels.length; ++i)
         {
         	System.out.println("- " + labels[i]);
         }
-        System.out.println("--- # Lengths of each record");
-        System.out.println(edf.getData());
         System.out.println("--- # Let's write something");
         System.out.println("-- " + edf.write());
         System.out.println("-- Writing to ASCII format");

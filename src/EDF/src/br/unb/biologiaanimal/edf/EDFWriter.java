@@ -1,7 +1,6 @@
 package br.unb.biologiaanimal.edf;
 
 import java.util.HashMap;
-import java.nio.ByteBuffer;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -14,7 +13,7 @@ class EDFWriter
 {
     private File file;
     private String path;
-    private BufferedWriter buffer;
+    private BufferedWriter typewriter;
 
     /**
      * Creates a new writer for this EDF file depiected in these variables
@@ -31,7 +30,7 @@ class EDFWriter
                 file.createNewFile();
             }
 
-            buffer = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
+            typewriter = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
         }
         catch (IOException any) {
             any.printStackTrace();
@@ -45,7 +44,7 @@ class EDFWriter
     public void write(String data)
     throws IOException
     {
-        buffer.write(data);
+        typewriter.write(data);
     }
 
     /**
@@ -54,7 +53,7 @@ class EDFWriter
     public void close()
     throws IOException
     {
-        buffer.close();
+        typewriter.close();
     }
 
     public static String sayHi()

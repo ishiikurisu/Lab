@@ -10,7 +10,6 @@ public class EDF
 {
     private String file;
     private EDFReader reader;
-    private EDFWriter writer;
 
     /**
      * Generates new EDF object based on the filepath.
@@ -38,7 +37,16 @@ public class EDF
      */
     public String getData()
     {
-        return reader.getData();
+        String outlet = "";
+        byte[] record = reader.getRecord("DC");
+        short[] data = EDFUtil.convert(record);
+
+        for (int i = 0; i < data.length; ++i)
+        {
+            outlet += "- " + data[i] + "\n";
+        }
+
+        return outlet;
     }
 
     /**
@@ -73,12 +81,16 @@ public class EDF
         return EDFWriter.sayHi();
     }
 
+    /**
+     * Formats the read records into the ASCII format and saves it into memory.
+     * @param filePath the path to the file to be written.
+     */
     public void toAscii(String filePath)
     {
         try {
             EDFWriter writer = new EDFWriter(filePath);
             // TODO Write records in the ASCII format
-            writer.write(reader.getData());
+            writer.write(this.getData());
             writer.close();
         }
         catch (Exception any) {

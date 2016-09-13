@@ -90,7 +90,6 @@ class EDFReader
         String[] labels = getLabels();
         byte[] buffer = null;
 
-        // TODO Read records
         // Initalizing variables
         for (int i = 0; i < numberSignals; ++i)
         {
@@ -160,7 +159,7 @@ class EDFReader
         for (int i = 0; i < limit; ++i)
         {
             String label = labels[i];
-            byte[] record = (byte[]) records.get(label);
+            byte[] record = this.getRecord(label);
             outlet += label + ": " + record.length + "\n";
         }
 
@@ -175,6 +174,11 @@ class EDFReader
     public HashMap getRecords()
     {
         return this.records;
+    }
+
+    public byte[] getRecord(String label)
+    {
+        return (byte[]) records.get(label);
     }
 
     public int getNumberSignals()
