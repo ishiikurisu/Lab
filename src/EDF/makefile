@@ -22,7 +22,7 @@ compiletests:
 unittest: jar compiletests
 	java -cp test $(testclassname)
 
-compileruntest:
+compileruntest: 
 	javac -cp $(targetname) $(runtestfiles)
 
 runtest: jar compileruntest
