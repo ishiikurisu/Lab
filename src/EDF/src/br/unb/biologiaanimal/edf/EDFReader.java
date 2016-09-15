@@ -181,6 +181,10 @@ class EDFReader
         return (byte[]) records.get(label);
     }
 
+    /* #######################
+       # TRANSLATION METHODS #
+       ####################### */
+
     public int getNumberSignals()
     {
         return paramToInt("numbersignals");
@@ -201,6 +205,59 @@ class EDFReader
         }
 
         return labels;
+    }
+
+    /**
+     * Gets the factors to convert records from compressed form to actual values
+     */
+    public double[] getConvertionFactors()
+    {
+        long[] dmax = getDigitalMaxima();
+        long[] dmin = getDigitalMinima();
+        long[] pmax = getPhysicalMaxima();
+        long[] pmin = getPhysicalMinima();
+        double[] outlet = new double[numberSignals];
+
+        for (int i = 0; i < numberSignals; ++i)
+        {
+            outlet[i] = EDFUtil.convert(1, dmax[i], dmin[i], pmax[i], pmin[i]);
+        }
+
+        return outlet;
+    }
+
+    public long[] getDigitalMaxima()
+    {
+        return getLimits("digitalmaximum");
+    }
+
+    public long[] getDigitalMinima()
+    {
+        return getLimits("digitalminimum");
+    }
+
+    public long[] getPhysicalMaxima()
+    {
+        return getLimits("physicalmaximum");
+    }
+
+    public long[] getPhysicalMinima()
+    {
+        return getLimits("physicalminimum");
+    }
+
+    private long[] getLimits(String param)
+    {
+        String[] stuff = EDFUtil.separateString((String) header.get(param), 
+                                                numberSignals);
+        long[] outlet = new long[numberSignals];
+
+        for (int i = 0; i < numberSignals; ++i)
+        {
+            outlet[i] = Long.parseLong(stuff[i].trim());
+        } 
+
+        return outlet;
     }
 
     // TODO Add method to get each signal by their label

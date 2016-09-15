@@ -13,6 +13,8 @@ public class Run {
         {
         	System.out.println("- " + chopped[i]);
         }
+        System.out.println("25 celsius to fahrenheit:");        
+        System.out.println("  Ans: " + EDFUtil.map(25, 100, 0, 212, 32) + "F");
         System.out.println("--- # Reading EDF file");
         EDF edf = new EDF("data\\linhadebase.edf");
         System.out.println("File: " + edf.getFile());

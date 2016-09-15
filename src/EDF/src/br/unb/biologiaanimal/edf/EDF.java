@@ -38,12 +38,15 @@ public class EDF
     public String getData()
     {
         String outlet = "";
-        byte[] record = reader.getRecord("DC");
+        String channel = "EEG Cz-A1";
+        byte[] record = reader.getRecord(channel);
         short[] data = EDFUtil.convert(record);
+        double convertionFactor = getConvertionFactor(channel);
 
         for (int i = 0; i < data.length; ++i)
         {
-            outlet += "- " + data[i] + "\n";
+            double value = data[i] * convertionFactor;
+            outlet += value + "\n";
         }
 
         return outlet;
@@ -103,6 +106,39 @@ public class EDF
     // - Single ASCII matrix
     // - Multiple ASCII arrays
     // - CSV table
+
+    /* ##########################
+       # LABEL SPECIFIC METHODS #
+       ########################## */
+
+    /**
+     * Gets the index related to a label
+     */
+    private int getLabelIndex(String label)
+    {
+        String[] labels = reader.getLabels();
+        int limit = reader.getNumberSignals();
+        int result = -1;
+
+        for (int i = 0; (i < limit) && (result < 0); ++i)
+        {
+            if (label.equals(labels[i])) {
+                result = i;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the convertion factor related to the given label
+     * @param label  the channel's label whose convertion factor we want
+     * @return the convertion factor
+     */
+    public double getConvertionFactor(String label)
+    {
+        return reader.getConvertionFactors()[getLabelIndex(label)];
+    }
 
     public static void main(String[] args)
     {
