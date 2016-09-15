@@ -50,7 +50,7 @@ class EDFReader
         {
             buffer = new byte[EDFConstants.lenghts[i]];
             data = (String) EDFConstants.specs[i];
-            if (data != "label") {
+            if (!data.equals("label")) {
                 stream.read(buffer);
                 header.put(EDFConstants.specs[i], new String(buffer));
             }
@@ -150,6 +150,9 @@ class EDFReader
         return this.path;
     }
 
+    /**
+     * For testing purposes only
+     */
     public String getData()
     {
         String outlet = "";

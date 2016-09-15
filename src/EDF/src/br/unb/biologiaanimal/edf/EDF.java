@@ -38,7 +38,7 @@ public class EDF
     public String getData()
     {
         String outlet = "";
-        String channel = "EEG Cz-A1";
+        String channel = "ECG";
         byte[] record = reader.getRecord(channel);
         short[] data = EDFUtil.convert(record);
         double convertionFactor = getConvertionFactor(channel);
@@ -138,10 +138,5 @@ public class EDF
     public double getConvertionFactor(String label)
     {
         return reader.getConvertionFactors()[getLabelIndex(label)];
-    }
-
-    public static void main(String[] args)
-    {
-        System.out.println("Let's work this monster!");
     }
 }
