@@ -9,7 +9,7 @@ My projects can be accessed in the [`src`](https://github.com/ishiikurisu/EEG/tr
 EDF
 ---
 
-The objective of this project is to read files in EDF format using [Go](https://golang.org) so they can be treated by many different software. It's composed of the [`edf`](https://github.com/ishiikurisu/EEG/tree/master/src/EDF) folder. Currently, we can manage EDF+ files, and they are expected to be used as part of [PROTOLIZE!2](https://github.com/lab-neuro-comp/P2).
+The objective of this branch is to read files in EDF format using Java so they can be treated by many different software. It's composed of the [`edf`](https://github.com/ishiikurisu/EEG/tree/master/src/EDF) folder. They are expected to be used as part of [PROTOLIZE!2](https://github.com/lab-neuro-comp/P2).
 
 ## Beck's Inventories ##
 
