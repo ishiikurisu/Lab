@@ -82,7 +82,7 @@ public class EDFUtil
      * @param inlet  the array to be converted
      * @return the converted array
      */
-    public static short[] convert(byte[] inlet)
+    public static short[] translate(byte[] inlet)
     {
         ByteBuffer buffer = ByteBuffer.wrap(inlet);
         int limit = buffer.remaining()/2;
@@ -105,10 +105,10 @@ public class EDFUtil
      * @param pmin  the new minimum scale value
      * @return the calculation x * (dmax - dmin) / (pmax - pmin)
      */
-    public static double convert(double x, 
-    	                         double dmax, 
-    	                         double dmin, 
-    	                         double pmax, 
+    public static double convert(double x,
+    	                         double dmax,
+    	                         double dmin,
+    	                         double pmax,
     	                         double pmin)
     {
     	return x * (dmax - dmin) / (pmax - pmin);
@@ -123,14 +123,14 @@ public class EDFUtil
      * @param out_max  the new minimum scale value
      * @return the mapped value
      */
-    public static double map(double x, 
-    	                     double in_min, 
-    	                     double in_max, 
-    	                     double out_min, 
+    public static double map(double x,
+    	                     double in_min,
+    	                     double in_max,
+    	                     double out_min,
     	                     double out_max)
     {
     	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }
 
-    
+
 }

@@ -2,6 +2,7 @@ package br.unb.biologiaanimal.edf;
 
 import java.util.HashMap;
 import java.util.Set;
+import java.io.IOException;
 
 /**
  * The class to hold the EDF file information.
@@ -40,7 +41,7 @@ public class EDF
         String outlet = "";
         String channel = "ECG";
         byte[] record = reader.getRecord(channel);
-        short[] data = EDFUtil.convert(record);
+        short[] data = EDFUtil.translate(record);
         double convertionFactor = getConvertionFactor(channel);
 
         for (int i = 0; i < data.length; ++i)
@@ -84,6 +85,13 @@ public class EDF
         return EDFWriter.sayHi();
     }
 
+    public void write(String what)
+    throws IOException
+    {
+        EDFWriter writer = new EDFWriter();
+        writer.write(what); 
+    }
+
     /**
      * Formats the read records into the ASCII format and saves it into memory.
      * @param filePath the path to the file to be written.
@@ -96,7 +104,7 @@ public class EDF
             writer.write(this.getData());
             writer.close();
         }
-        catch (Exception any) {
+        catch (IOException any) {
             System.out.println(any);
         }
     }
@@ -106,6 +114,24 @@ public class EDF
     // - Single ASCII matrix
     // - Multiple ASCII arrays
     // - CSV table
+
+    public void toSingleChannelAscii(String filePath, String channel)
+    throws IOException
+    {
+        String outlet = "";
+        byte[] record = reader.getRecord(channel);
+        short[] data = EDFUtil.translate(record);
+        double convertionFactor = this.getConvertionFactor(channel);
+        EDFWriter writer = new EDFWriter(filePath);
+
+        for (int i = 0; i < data.length; ++i)
+        {
+            double value = data[i] * convertionFactor;
+            writer.write(value + "\n");
+        }
+
+        writer.close();
+    }
 
     /* ##########################
        # LABEL SPECIFIC METHODS #

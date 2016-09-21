@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.io.IOException;
 
 /**
@@ -15,26 +16,43 @@ class EDFWriter
     private String path;
     private BufferedWriter typewriter;
 
+
+    /**
+     * Creates a new writer for this EDF file to write on standard output
+     */
+    public EDFWriter()
+    throws IOException
+    {
+        this.construct();
+    }
+
     /**
      * Creates a new writer for this EDF file depiected in these variables
-     * @param header the header of the EDF file
-     * @param records the records in the file, tagged by their label
+     * @param filePath  the file on which the data will be written
      */
     public EDFWriter(String filePath)
+    throws IOException
     {
-        path = filePath;
-        try {
+        if (filePath == null) {
+            this.construct();
+        }
+        else {
+            path = filePath;
             file = new File(path);
-
             if (!file.exists()) {
                 file.createNewFile();
             }
-
             typewriter = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
         }
-        catch (IOException any) {
-            any.printStackTrace();
-        }
+
+    }
+
+    private void construct()
+    throws IOException
+    {
+        path = null;
+        file = null;
+        typewriter = new BufferedWriter(new PrintWriter(System.out));
     }
 
     /**
