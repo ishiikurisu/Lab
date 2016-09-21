@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 import "os"
-import "./edf"
+import "github.com/ishiikurisu/edf"
 
 func main() {
 	source := os.Args[1]

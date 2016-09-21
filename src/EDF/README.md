@@ -13,4 +13,6 @@ To compile them, use the `makefile` present in the `src` folder.
 To Do
 -----
 
+- [ ] Organize folder in Go style
+- [ ] Check how to import C code from Go
 - [ ] Write documentation in Go style.

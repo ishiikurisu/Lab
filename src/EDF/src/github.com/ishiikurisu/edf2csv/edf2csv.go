@@ -1,6 +1,6 @@
 package main
 
-import "./edf"
+import "github.com/ishiikurisu/edf"
 import "os"
 
 func main() {

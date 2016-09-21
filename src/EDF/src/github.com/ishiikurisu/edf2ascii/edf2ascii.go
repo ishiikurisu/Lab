@@ -2,10 +2,9 @@ package main
 
 import "os"
 import "fmt"
-import "./edf"
+import "github.com/ishiikurisu/edf"
 
 func main() {
 	header, records := edf.ReadFile(os.Args[1])
-	notes := edf.WriteNotes(header, records)
-	fmt.Printf("%v", notes)
+	fmt.Println(edf.WriteASCII(header, records))
 }
