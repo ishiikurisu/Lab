@@ -8,3 +8,4 @@
 *.suo
 *.dll
 src/github.com/*
+b/*
