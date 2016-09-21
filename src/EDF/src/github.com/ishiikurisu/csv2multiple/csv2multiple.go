@@ -1,10 +1,8 @@
 package main
 
-// #include "C/buffer.h"
-// #include "csv2ascii.h"
-import "C"
+import "github.com/ishiikurisu/edf"
 import "os"
 
 func main() {
-    C.csv2multiple(C.CString(os.Args[1]))
+    edf.Csv2Multiple(os.Args[1])
 }

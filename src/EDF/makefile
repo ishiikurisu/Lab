@@ -1,3 +1,8 @@
+edffile = data\testelinhadebase.edf
+csv  = data\testelinhadebase.csv
+ascii = data\testelinhadebase.ascii
+
+# Headers
 edf:
 	go build github.com/ishiikurisu/edf
 
@@ -13,14 +18,15 @@ edf2csv: edf
 csv2single: edf
 	go build github.com/ishiikurisu/csv2single
 
+# Final programs
 test: edfp2notes
-	edfp2notes data/linhadebase.edf
+	edfp2notes $(edffile)
 
 e2a: edf2ascii
-	edf2ascii data/linhadebase.edf > data/linhadebase.ascii
+	edf2ascii $(edffile) > $(ascii)
 
 e2c: edf2csv
-	edf2csv data/linhadebase.edf > data/linhadebase.csv
+	edf2csv $(edffile) > $(csv)
 
-c2s: csv2single
-	csv2single data/linhadebase.csv
+c2s: csv2single e2c
+	csv2single $(csv)

@@ -1,10 +1,11 @@
 package main
 
-import "github.com/ishiikurisu/edf"
 import "os"
+import "fmt"
+import "github.com/ishiikurisu/edf"
 
 func main() {
     input := os.Args[1]
     header, records := edf.ReadFile(input)
-    edf.WriteCSV(header, records)
+    fmt.Println(edf.WriteCSV(header, records))
 }
