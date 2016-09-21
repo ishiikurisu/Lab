@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<Clock xmlns:dt="urn:schemas-microsoft-com:datatypes">
+	<Description dt:dt="string">
+		E-Prime Primary Realtime Clock
+	</Description>
+	<StartTime>
+		<Timestamp dt:dt="int">
+			0
+		</Timestamp>
+		<DateUtc dt:dt="string">
+			2015-09-18T15:22:21Z
+		</DateUtc>
+	</StartTime>
+	<FrequencyChanges>
+		<FrequencyChange>
+			<Frequency dt:dt="r8">
+				1757939
+			</Frequency>
+			<Timestamp dt:dt="r8">
+				174252768
+			</Timestamp>
+			<Current dt:dt="r8">
+				0
+			</Current>
+			<DateUtc dt:dt="string">
+				2015-09-18T15:22:21Z
+			</DateUtc>
+		</FrequencyChange>
+	</FrequencyChanges>
+</Clock>
