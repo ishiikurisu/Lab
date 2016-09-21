@@ -6,10 +6,10 @@ This folder contains some code made by [me](https://github.com/ishiikurisu) whil
 
 This folder works well with the following repositories:
 
-- github.com/ishiikurisu/edf
-- github.com/ishiikurisu/sst
-- github.com/lab-neuro-comp/EDF
-- github.com/lab-neuro-comp/SST
+- [Golang implementation of the EDF standard](github.com/ishiikurisu/edf)
+- [Applications for dealing with EDF files](github.com/lab-neuro-comp/EDF)
+- [SST analysis lib](github.com/ishiikurisu/sst)
+- [SST analysis applications](github.com/lab-neuro-comp/SST)
 
 # Sketches
 
