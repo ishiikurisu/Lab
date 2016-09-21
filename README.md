@@ -4,12 +4,16 @@ This folder contains some code made by [me](https://github.com/ishiikurisu) whil
 
 # Projects
 
-My projects can be accessed in the [`src`](https://github.com/ishiikurisu/EEG/tree/master/src) folder. Every code here is intended to be run on Windows.
+This folder works well with the following repositories:
 
-EDF
----
+- github.com/ishiikurisu/edf
+- github.com/ishiikurisu/sst
+- github.com/lab-neuro-comp/EDF
+- github.com/lab-neuro-comp/SST
 
-The objective of this project is to read files in EDF format using [Go](https://golang.org) so they can be treated by many different software. It's composed of the [`edf`](https://github.com/ishiikurisu/EEG/tree/master/src/EDF) folder. Currently, we can manage EDF+ files, and they are expected to be used as part of [PROTOLIZE!2](https://github.com/lab-neuro-comp/P2).
+# Sketches
+
+My sketches can be accessed in the [`src`](https://github.com/ishiikurisu/EEG/tree/master/src) folder. Every code here is intended to be run on Windows.
 
 ## Beck's Inventories ##
 
