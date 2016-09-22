@@ -19,6 +19,9 @@ edf2csv: edf
 csv2single: edf
 	go build github.com/lab-neuro-comp/EDF/app/csv2single
 
+notes2csv: edf sst
+	go build github.com/lab-neuro-comp/EDF/app/notes2csv
+
 # EDF Test cases
 e2n: edfp2notes
 	edfp2notes $(edffile)
@@ -32,10 +35,13 @@ e2c: edf2csv
 c2s: csv2single e2c
 	csv2single $(csv)
 
+n2c: notes2csv
+	notes2csv $(edffile)
+
 ###############################################################################
 # SST Headers
 sst:
-	go build github.com/ishiikurisu/sst
+	go build github.com/lab-neuro-comp/SST/src/sst
 
 # SST Programs
 sst-analyzer: sst
