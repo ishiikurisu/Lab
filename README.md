@@ -9,7 +9,6 @@ This folder works well with the following repositories:
 - [Golang implementation of the EDF standard](https://github.com/ishiikurisu/edf)
 - [Java implementation of the EDF standard](https://github.com/ishiikurisu/JEDF)
 - [Applications for dealing with EDF files](https://github.com/lab-neuro-comp/EDF)
-- [SST analysis lib](https://github.com/ishiikurisu/sst)
 - [SST analysis applications](https://github.com/lab-neuro-comp/SST)
 
 # Sketches
