@@ -12,11 +12,13 @@ if exist(inlet, 'file') == 2
 	labels = edf.getLabels();
 	fprintf('Labels:\n');
 	for n = 1:length(labels)
-		fprintf('- %s\n', labels(n)); % TODO Discover why this line doesn't work
+		% TODO Discover why this line doesn't work
+		fprintf('- %s\n', char(labels(n))); 
 	end
 	fprintf('Convertion factors:\n')
 	for n = 1:length(labels)
-		fprintf('- %s: %s\n', labels(n), edf.getConvertionFactor(labels(n)));
+		fprintf('- %s: %s\n', ...
+			    char(labels(n)), char(edf.getConvertionFactor(labels(n))));
 	end
 	plot(edf.getSignal(labels(1)));
 else
