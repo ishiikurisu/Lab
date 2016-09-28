@@ -1,6 +1,8 @@
 edffile = data\edf\linhadebase.edf
 csv = data\edf\linhadebase.csv
 ascii = data\edf\linhadebase.ascii
+hct = data\edf\HCT\HCT-4-23.edf
+hctcsv = data\edf\HCT\HCT-4-23.csv
 
 # EDF Headers
 edf:
@@ -19,6 +21,9 @@ edf2csv: edf
 csv2single: edf
 	go build github.com/lab-neuro-comp/EDF/app/csv2single
 
+csv2multiple: edf
+	go build github.com/lab-neuro-comp/EDF/app/csv2multiple
+
 notes2csv: edf sst
 	go build github.com/lab-neuro-comp/EDF/app/notes2csv
 
@@ -34,6 +39,10 @@ e2c: edf2csv
 
 c2s: csv2single e2c
 	csv2single $(csv)
+
+c2m: edf2csv csv2multiple
+	edf2csv $(hct) > $(hctcsv)
+	csv2multiple $(hctcsv)
 
 n2c: notes2csv
 	notes2csv $(edffile)
