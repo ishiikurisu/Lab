@@ -5,10 +5,6 @@ hct = data\edf\HCT\HCT-4-23.edf
 hctcsv = data\edf\HCT\HCT-4-23.csv
 sstexe = sst.exe
 
-test:
-	gcc -c src/github.com/ishiikurisu/OA/oa.c
-	gcc test.c oa.a -o test.exe
-
 # EDF Headers
 edf:
 	gcc -c src/github.com/ishiikurisu/OA/oa.h
