@@ -7,5 +7,6 @@
 *.syso
 *.suo
 *.dll
+*.a
 src/github.com/*
 b/*
