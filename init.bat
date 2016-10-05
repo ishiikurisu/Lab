@@ -1,1 +1,2 @@
 set GOPATH=%cd%
+cmd

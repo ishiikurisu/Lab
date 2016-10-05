@@ -3,6 +3,7 @@ csv = data\edf\linhadebase.csv
 ascii = data\edf\linhadebase.ascii
 hct = data\edf\HCT\HCT-4-23.edf
 hctcsv = data\edf\HCT\HCT-4-23.csv
+sstexe = sst.exe
 
 # EDF Headers
 edf:
@@ -54,8 +55,12 @@ sst:
 
 # SST Programs
 sst-analyzer: sst
-	go build github.com/lab-neuro-comp/SST/src/main
+	go build -o $(sstexe) github.com/lab-neuro-comp/SST/src/main
 
 # SST Test cases
 sst-simulation: sst-analyzer
-	main data\sst
+	$(sstexe) data\sst
+
+# Build SST
+sst-build: sst-simulation
+	rcedit $(sstexe) --set-icon data\sst\icon.ico
