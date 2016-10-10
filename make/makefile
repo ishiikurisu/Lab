@@ -7,7 +7,6 @@ sstexe = sst.exe
 
 # EDF Headers
 edf:
-	gcc -c src/github.com/ishiikurisu/OA/oa.h
 	go build github.com/ishiikurisu/edf
 
 # EDF Programs
