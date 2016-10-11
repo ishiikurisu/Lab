@@ -1,8 +1,8 @@
-edffile = data\edf\linhadebase.edf
-csv = data\edf\linhadebase.csv
-ascii = data\edf\linhadebase.ascii
-hct = data\edf\HCT\HCT-4-23.edf
-hctcsv = data\edf\HCT\HCT-4-23.csv
+edffile = data/edf/linhadebase.edf
+csv = data/edf/linhadebase.csv
+ascii = data/edf/linhadebase.ascii
+hct = data/edf/HCT/HCT-4-23.edf
+hctcsv = data/edf/HCT/HCT-4-23.csv
 sstexe = sst.exe
 
 # EDF Headers
@@ -59,8 +59,8 @@ sst-analyzer: sst
 
 # SST Test cases
 sst-simulation: sst-analyzer
-	$(sstexe) data\sst
+	$(sstexe) data/sst
 
 # Build SST
 sst-build: sst-simulation
-	rcedit $(sstexe) --set-icon data\sst\icon.ico
+	rcedit $(sstexe) --set-icon data/sst/icon.ico
