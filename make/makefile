@@ -28,6 +28,10 @@ csv2multiple: edf
 notes2csv: edf sst
 	go build github.com/lab-neuro-comp/EDF/app/notes2csv
 
+# EDF Test-driven development
+test: 
+	go test github.com/ishiikurisu/edf/tests/csv2anything
+
 # EDF Test cases
 e2n: edfp2notes
 	edfp2notes $(edffile)
