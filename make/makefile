@@ -29,7 +29,7 @@ notes2csv: edf sst
 	go build github.com/lab-neuro-comp/EDF/app/notes2csv
 
 # EDF Test-driven development
-test: 
+test:
 	go test github.com/ishiikurisu/edf/tests/csv2anything
 
 # EDF Test cases
@@ -54,6 +54,7 @@ n2c: notes2csv
 
 ###############################################################################
 # SST Headers
+###############################################################################
 sst:
 	go build github.com/lab-neuro-comp/SST/src/sst
 
