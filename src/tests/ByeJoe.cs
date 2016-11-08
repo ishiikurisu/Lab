@@ -4,7 +4,7 @@ using System.Linq;
 namespace ByeJoe
 {
 	public class ByeJoe
-	{
+	{	
 		public static void Main()
 		{
 			string[] letters = new string[] { "J", "o", "e" };

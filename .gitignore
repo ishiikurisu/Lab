@@ -10,3 +10,4 @@
 *.a
 src/github.com/*
 b/*
+pkg/*
