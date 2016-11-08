@@ -1,1 +1,2 @@
 $env:GOPATH = gl
+powershell
