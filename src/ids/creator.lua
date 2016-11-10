@@ -14,9 +14,19 @@ creator.createTail = function()
 ]]
 end
 
-creator.create = function()
+creator.loadData = function(source)
+  local lines = { }
+
+  for line in io.lines(source) do
+    lines[#lines + 1] = line
+  end
+
+  return table.concat(lines, '\n')
+end
+
+creator.create = function(source)
   local outlet = creator.createHeader()
-  outlet = outlet .. "% Let's write this\n"
+  outlet = outlet .. creator.loadData(source) .. '\n'
   outlet = outlet .. creator.createTail()
   return outlet
 end
