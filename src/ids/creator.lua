@@ -1,6 +1,8 @@
 local creator = { }
 
 --[[ Latex functions ]]
+
+-- Creates the standard header of a LaTeX file
 creator.createHeader = function()
   return [[
 \documentclass{article}
@@ -9,6 +11,7 @@ creator.createHeader = function()
 ]]
 end
 
+-- Creates the standard ending of a LaTeX file
 creator.createTail = function()
   return [[
 \end{document}
@@ -16,6 +19,8 @@ creator.createTail = function()
 end
 
 -- [[ IO functions ]]
+
+--- Loads a file to its raw string
 creator.loadData = function(source)
   local lines = { }
 
@@ -26,6 +31,7 @@ creator.loadData = function(source)
   return table.concat(lines, '\n')
 end
 
+-- Builds a table from a TSV string
 creator.buildTable = function(raw)
   local outlet = { }
   local data = { }
@@ -55,6 +61,7 @@ creator.buildTable = function(raw)
   return outlet
 end
 
+-- Turns a hashmap into a string
 creator.table2string = function(matrix)
   local outlet = { }
 
@@ -66,6 +73,8 @@ creator.table2string = function(matrix)
 end
 
 -- [[ Main functions ]]
+
+-- Splits a string into its fields separated by a separator
 function strsplit(inputstr, sep)
   -- http://stackoverflow.com/questions/1426954/split-string-in-lua
   local t = {}; i = 1
@@ -77,14 +86,17 @@ function strsplit(inputstr, sep)
   return t
 end
 
+-- The module's main function
 creator.create = function(source)
   local outlet = creator.createHeader()
   local raw = creator.loadData(source)
   local data = creator.buildTable(raw)
 
+  -- Formatting data
   outlet = outlet .. creator.table2string(data) .. '\n'
-  outlet = outlet .. creator.createTail()
 
+  -- Finishing file
+  outlet = outlet .. creator.createTail()
   return outlet
 end
 
