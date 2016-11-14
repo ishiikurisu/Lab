@@ -8,6 +8,8 @@ creator.createHeader = function()
 \documentclass{article}
 \usepackage[a4paper]{geometry}
 \usepackage[cm]{fullpage}
+\usepackage{tabularx}
+\usepackage[latin1]{inputenc}
 
 \begin{document}
 
@@ -79,7 +81,7 @@ creator.table2string = function(matrix)
 end
 
 creator.table2latex = function(data)
-  local text = "\\begin{tabular}{ | p{8cm} | p{8cm} | }\n\\hline\n"
+  local text = "\\begin{tabularx}{\\textwidth}{ | X | X | }\n\\hline\n"
   local k = 1
   local limit = -1
 
@@ -93,9 +95,12 @@ creator.table2latex = function(data)
   -- Iterate over each participant
   for j = 2, limit do
     local sep = " &"
-    local id = data["Nome"][k]
+    local id = ""
 
     -- TODO Create Full Id
+    id =       "Nome: " .. data["Nome"][k] .. " \\newline "
+    id = id .. "Projeto: " .. data["Projeto"][k] .. " \\newline "
+    id = id .. "Coordenador(es): " .. data["Coordenadores"][k]
 
     -- Determining separator
     if j % 2 == 1 then
@@ -107,7 +112,7 @@ creator.table2latex = function(data)
     k = k + 1
   end
 
-  text = text .. "\\end{tabular}\n"
+  text = text .. "\\end{tabularx}\n"
   return text
 end
 
@@ -132,6 +137,7 @@ creator.create = function(source)
   local data = creator.buildTable(raw)
 
   -- Formatting data
+  -- print("% " .. creator.table2string(data))
   outlet = outlet .. creator.table2latex(data) .. '\n'
 
   -- Finishing file

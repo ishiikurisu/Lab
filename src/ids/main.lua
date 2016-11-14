@@ -6,4 +6,4 @@ local creator = require "creator"
 -- print()
 -- print("--- # Latex document")
 print(creator.create(arg[1]))
-print("...")
+-- print("...")

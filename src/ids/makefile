@@ -1,5 +1,8 @@
+inlet = example/example.csv
+# inlet = ids.csv
+
 do:
-	lua main.lua example/example.csv | pdflatex
+	lua main.lua ${inlet} | pdflatex
 
 try:
-	lua main.lua example/example.csv
+	lua main.lua ${inlet}
