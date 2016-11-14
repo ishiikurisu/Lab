@@ -6,14 +6,20 @@ local creator = { }
 creator.createHeader = function()
   return [[
 \documentclass{article}
+\usepackage[a4paper]{geometry}
+\usepackage[cm]{fullpage}
 
 \begin{document}
+
+\begin{center}
 ]]
 end
 
 -- Creates the standard ending of a LaTeX file
 creator.createTail = function()
   return [[
+
+\end{center}
 \end{document}
 ]]
 end
@@ -72,6 +78,39 @@ creator.table2string = function(matrix)
   return table.concat(outlet, '\n')
 end
 
+creator.table2latex = function(data)
+  local text = "\\begin{tabular}{ | p{8cm} | p{8cm} | }\n\\hline\n"
+  local k = 1
+  local limit = -1
+
+  -- Discover limit
+  for tag, stuff in pairs(data) do
+    if #stuff > limit then
+      limit = #stuff
+    end
+  end
+
+  -- Iterate over each participant
+  for j = 2, limit do
+    local sep = " &"
+    local id = data["Nome"][k]
+
+    -- TODO Create Full Id
+
+    -- Determining separator
+    if j % 2 == 1 then
+      sep = " \\\\ \\hline\n"
+    end
+
+    -- Preparing for next step
+    text = text .. " " .. id .. sep
+    k = k + 1
+  end
+
+  text = text .. "\\end{tabular}\n"
+  return text
+end
+
 -- [[ Main functions ]]
 
 -- Splits a string into its fields separated by a separator
@@ -93,7 +132,7 @@ creator.create = function(source)
   local data = creator.buildTable(raw)
 
   -- Formatting data
-  outlet = outlet .. creator.table2string(data) .. '\n'
+  outlet = outlet .. creator.table2latex(data) .. '\n'
 
   -- Finishing file
   outlet = outlet .. creator.createTail()
