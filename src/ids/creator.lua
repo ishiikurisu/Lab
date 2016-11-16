@@ -4,6 +4,7 @@ local creator = { }
 
 -- Creates the standard header of a LaTeX file
 creator.createHeader = function()
+  -- TODO Change font to Open Sans and make it bigger
   return [[
 \documentclass{article}
 \usepackage[a4paper]{geometry}
