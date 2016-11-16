@@ -86,7 +86,7 @@ creator.table2string = function(matrix)
 end
 
 creator.table2latex = function(data)
-  local text = "\\begin{tabular}{ | p{3cm}  p{5cm} | p{3cm}  p{5cm} | }\n\\hline\n"
+  local text = "\\begin{longtable}{ | p{3cm}  p{5cm} | p{3cm}  p{5cm} | }\n\\hline\n"
   local k = 1
   local limit = -1
 
@@ -124,7 +124,7 @@ creator.table2latex = function(data)
     text = text .. " & \\\\ \\hline\n"
   end
 
-  text = text .. "\\end{tabular}\n"
+  text = text .. "\\end{longtable}\n"
   return text
 end
 
