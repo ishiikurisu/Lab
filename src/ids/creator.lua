@@ -6,7 +6,7 @@ local creator = { }
 creator.createHeader = function()
   -- TODO Change font to Open Sans and make it bigger
   return [[
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage[a4paper]{geometry}
 \usepackage[cm]{fullpage}
 \usepackage{tabularx}
@@ -15,6 +15,7 @@ creator.createHeader = function()
 \begin{document}
 
 \begin{center}
+\sffamily
 ]]
 end
 
