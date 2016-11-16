@@ -4,7 +4,6 @@ local creator = { }
 
 -- Creates the standard header of a LaTeX file
 creator.createHeader = function()
-  -- TODO Change font to Open Sans and make it bigger
   return [[
 \documentclass[12pt]{article}
 \usepackage[a4paper]{geometry}
@@ -15,10 +14,8 @@ creator.createHeader = function()
 \usepackage{graphicx}
 
 \begin{document}
-
 \begin{center}
 \sffamily
-\centering
 ]]
 end
 
@@ -103,11 +100,10 @@ creator.table2latex = function(data)
     local id = "\\raisebox{-\\totalheight}{\\includegraphics[width=3cm]{logo.png}} & "
 
     -- Building identification
-    -- TODO Add logo
     id = id .. data["Universidade"][k] .. " \\newline "
-    id = id .. "Projeto: " .. data["Projeto"][k] .. " \\newline "
     id = id .. "Nome: " .. data["Nome"][k] .. " \\newline "
-    id = id .. "Coordenador(es): " .. data["Coordenadores"][k]
+    id = id .. "Projeto: " .. data["Projeto"][k] .. " \\newline "
+    id = id .. "Responsável: " .. data["Coordenadores"][k]
 
     -- Determining separator
     if j % 2 == 0 then
