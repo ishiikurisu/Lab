@@ -93,13 +93,14 @@ creator.table2latex = function(data)
   end
 
   -- Iterate over each participant
-  for j = 2, limit do
+  for j = 1, limit do
     local sep = " &"
     local id = ""
 
-    -- TODO Create Full Id
-    id =       "Nome: " .. data["Nome"][k] .. " \\newline "
+    -- Building identification
+    id =       data["Universidade"][k] .. " \\newline "
     id = id .. "Projeto: " .. data["Projeto"][k] .. " \\newline "
+    id = id .. "Nome: " .. data["Nome"][k] .. " \\newline "
     id = id .. "Coordenador(es): " .. data["Coordenadores"][k]
 
     -- Determining separator
