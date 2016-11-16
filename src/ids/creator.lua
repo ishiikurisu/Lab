@@ -98,19 +98,25 @@ creator.table2latex = function(data)
     local id = ""
 
     -- Building identification
+    -- TODO Add logo
     id =       data["Universidade"][k] .. " \\newline "
     id = id .. "Projeto: " .. data["Projeto"][k] .. " \\newline "
     id = id .. "Nome: " .. data["Nome"][k] .. " \\newline "
     id = id .. "Coordenador(es): " .. data["Coordenadores"][k]
 
     -- Determining separator
-    if j % 2 == 1 then
+    if j % 2 == 0 then
       sep = " \\\\ \\hline\n"
     end
 
     -- Preparing for next step
     text = text .. " " .. id .. sep
     k = k + 1
+  end
+
+  -- Adding missing horizontal line, if needed
+  if limit % 2 == 1 then
+    text = text .. " \\\\ \\hline\n"
   end
 
   text = text .. "\\end{tabularx}\n"

@@ -1,0 +1,18 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx, array, blindtext}
+
+\begin{document}
+\begin{table}[ht]
+  \caption{A table arranging  images}
+  \centering
+  \begin{tabular}{*{2}{m{0.48\textwidth}}}
+    \hline
+    This is some text &
+    \begin{center}\rule{0.4\textwidth}{0.3\textwidth}\end{center}\\
+    \hline
+    \blindtext&\begin{center}\rule{0.4\textwidth}{0.3\textwidth}\end{center}\\
+    \hline
+  \end{tabular}
+  \label{tab:gt}
+\end{table}
+\end{document}
