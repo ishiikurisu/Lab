@@ -9,13 +9,16 @@ creator.createHeader = function()
 \documentclass[12pt]{article}
 \usepackage[a4paper]{geometry}
 \usepackage[cm]{fullpage}
-\usepackage{tabularx}
 \usepackage[latin1]{inputenc}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{graphicx}
 
 \begin{document}
 
 \begin{center}
 \sffamily
+\centering
 ]]
 end
 
@@ -83,7 +86,7 @@ creator.table2string = function(matrix)
 end
 
 creator.table2latex = function(data)
-  local text = "\\begin{tabularx}{\\textwidth}{ | X | X | }\n\\hline\n"
+  local text = "\\begin{tabular}{ | p{3cm}  p{5cm} | p{3cm}  p{5cm} | }\n\\hline\n"
   local k = 1
   local limit = -1
 
@@ -97,11 +100,11 @@ creator.table2latex = function(data)
   -- Iterate over each participant
   for j = 1, limit do
     local sep = " &"
-    local id = ""
+    local id = "\\raisebox{-\\totalheight}{\\includegraphics[width=3cm]{logo.png}} & "
 
     -- Building identification
     -- TODO Add logo
-    id =       data["Universidade"][k] .. " \\newline "
+    id = id .. data["Universidade"][k] .. " \\newline "
     id = id .. "Projeto: " .. data["Projeto"][k] .. " \\newline "
     id = id .. "Nome: " .. data["Nome"][k] .. " \\newline "
     id = id .. "Coordenador(es): " .. data["Coordenadores"][k]
@@ -118,10 +121,10 @@ creator.table2latex = function(data)
 
   -- Adding missing horizontal line, if needed
   if limit % 2 == 1 then
-    text = text .. " \\\\ \\hline\n"
+    text = text .. " & \\\\ \\hline\n"
   end
 
-  text = text .. "\\end{tabularx}\n"
+  text = text .. "\\end{tabular}\n"
   return text
 end
 
