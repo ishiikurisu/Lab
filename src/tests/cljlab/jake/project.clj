@@ -6,5 +6,5 @@
   :dependencies [[org.clojure/clojure "1.8.0"]]
   :main ^:skip-aot jake.core
   :target-path "target/%s"
-  :javac-options ["-target" "1.4" "-source" "1.4" "-Xlint:-options"]
+  :javac-options ["-target" "1.6" "-source" "1.6" "-Xlint:-options"]
   :profiles {:uberjar {:aot :all}})
