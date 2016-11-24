@@ -24,13 +24,9 @@
   [line]
   (map #(nth %1 1) (re-seq #"\((.*?)\)" line)))
 
-(defn task
-  [arg]
-  (let [lines (->> arg
-                   slurp
-                   get-lines
-                   (filter #(not (invalid-line %1))))
-        names (map str/trim (map get-name lines))
+(defn feed-table
+  [lines]
+  (let [names (map str/trim (map get-name lines))
         infos (map get-what-is-in-brackets lines)]
     (loop [n 0
            limit (count names)
@@ -41,10 +37,15 @@
                limit
                (str outlet (nth names n) ";"
                            (nth (nth infos n) 0) ";"
-                           (nth (nth infos n) 1) "\n"
-               ))))
-  )
-)
+                           (nth (nth infos n) 1) "\n"))))))
+
+(defn task
+  [arg]
+  (let [lines (->> arg
+                   slurp
+                   get-lines
+                   (filter #(not (invalid-line %1))))]
+    (feed-table lines)))
 
 (defn -main
   "I open a YAML file and turn it into a CSV file... I hope so."
