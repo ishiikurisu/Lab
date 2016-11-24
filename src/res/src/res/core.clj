@@ -2,10 +2,6 @@
   (:gen-class)
   (:require [clojure.string :as str]))
 
-(defn parse-args
-  [args]
-  (map slurp args))
-
 (defn get-lines
   [raw]
   (str/split-lines raw))
@@ -20,12 +16,25 @@
   (let []
     ))
 
+(defn get-name
+  [line]
+  line)
+
+(defn get-what-is-in-brackets
+  [line]
+  (map #(nth %1 1) (re-seq #"\((.*?)\)" line)))
+
+(defn task
+  [arg]
+  (->> arg
+       slurp
+       get-lines
+       (filter #(not (invalid-line %1)))
+       (map get-what-is-in-brackets)
+  )
+)
+
 (defn -main
   "I open a YAML file and turn it into a CSV file... I hope so."
   [& args]
-  (println (->> (nth args 0)
-                slurp
-                get-lines
-                (filter #(not (invalid-line %1)))
-                (map feed-table)
-           )))
+  (println (map task args)))
