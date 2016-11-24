@@ -18,7 +18,7 @@
 
 (defn get-name
   [line]
-  line)
+  (nth (re-find #"-(.*?)\(" line) 1))
 
 (defn get-what-is-in-brackets
   [line]
@@ -26,11 +26,23 @@
 
 (defn task
   [arg]
-  (->> arg
-       slurp
-       get-lines
-       (filter #(not (invalid-line %1)))
-       (map get-what-is-in-brackets)
+  (let [lines (->> arg
+                   slurp
+                   get-lines
+                   (filter #(not (invalid-line %1))))
+        names (map str/trim (map get-name lines))
+        infos (map get-what-is-in-brackets lines)]
+    (loop [n 0
+           limit (count names)
+           outlet "\nNome;E-mail;Identificação\n"]
+      (if (= n limit)
+        outlet
+        (recur (inc n)
+               limit
+               (str outlet (nth names n) ";"
+                           (nth (nth infos n) 0) ";"
+                           (nth (nth infos n) 1) "\n"
+               ))))
   )
 )
 
