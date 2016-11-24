@@ -35,9 +35,14 @@
         outlet
         (recur (inc n)
                limit
-               (str outlet (nth names n) ";"
-                           (nth (nth infos n) 0) ";"
-                           (nth (nth infos n) 1) "\n"))))))
+               (let [info (nth infos n)]
+                 (if (= (count info) 2)
+                   (str outlet (nth names n) ";"
+                               (nth info 0) ";"
+                               (nth info 1) "\n")
+                   (str outlet (nth names n) ";"
+                               (nth info 0) "; \n")))
+        )))))
 
 (defn task
   [arg]
