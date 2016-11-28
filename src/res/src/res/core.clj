@@ -11,11 +11,6 @@
   (or (= 0 (count line))
       (re-find #"([A-Za-z]:)" line)))
 
-(defn feed-table
-  [line]
-  (let []
-    ))
-
 (defn get-name
   [line]
   (nth (re-find #"-(.*?)\(" line) 1))
