@@ -4,6 +4,7 @@ ascii = data/edf/linhadebase.ascii
 hct = data/edf/HCT/HCT-4-23.edf
 hctcsv = data/edf/HCT/HCT-4-23.csv
 sstexe = sst.exe
+edffolder = data/edf
 
 # EDF Headers
 edf:
@@ -28,6 +29,9 @@ csv2multiple: edf
 notes2csv: edf sst
 	go build github.com/lab-neuro-comp/EDF/app/notes2csv
 
+sample4github: edf
+	go build github.com/lab-neuro-comp/EDF/app/sample
+
 # EDF Test-driven development
 test:
 	go test github.com/ishiikurisu/edf/tests/csv2anything
@@ -51,6 +55,9 @@ c2m: edf2csv csv2multiple
 
 n2c: notes2csv
 	notes2csv $(edffile)
+
+sample: sample4github
+	sample $(edffolder)
 
 ###############################################################################
 # SST Headers
