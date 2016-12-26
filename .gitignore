@@ -9,5 +9,6 @@
 *.dll
 *.a
 src/github.com/*
+src/golang.org/*
 b/*
 pkg/*
