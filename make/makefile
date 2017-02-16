@@ -32,6 +32,9 @@ notes2csv: edf sst
 sample4github: edf
 	go build github.com/lab-neuro-comp/EDF/app/sample
 
+edf2edf: edf
+	go build github.com/lab-neuro-comp/EDF/app/edf2edf
+
 # EDF Test-driven development
 test:
 	go test github.com/ishiikurisu/edf/tests/csv2anything
@@ -58,6 +61,9 @@ n2c: notes2csv
 
 sample: sample4github
 	sample $(edffolder)
+
+e2e: edf2edf
+	edf2edf $(edffile) $(edffile).edf
 
 ###############################################################################
 # SST Headers
