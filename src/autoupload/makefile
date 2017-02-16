@@ -1,0 +1,2 @@
+do:
+	lua main.lua
