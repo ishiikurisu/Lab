@@ -7,6 +7,7 @@ def generate_plot(label, signal):
     time = numpy.linspace(0, len(signal)/200, len(signal))
     matplotlib.pyplot.plot(time, signal, label = label)
     matplotlib.pyplot.savefig('{0}.png'.format(label))
+    matplotlib.pyplot.clf()
 
 
 def generate_plots(signals):
