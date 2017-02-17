@@ -14,6 +14,7 @@ def read_labels():
             labels = field
         if field.startswith('chan'):
             chan = field
+        # TODO Get sampling rate
 
 
     # Extracting labels
@@ -29,10 +30,30 @@ def read_labels():
 
     return outlet
 
+
+def build_struct(labels):
+    outlet = { }
+
+    for label in labels:
+        outlet[label] = [ ]
+
+    return outlet
+
+def save_signals(labels, signals):
+    line = input()
+
+    while line:
+        values = line.split(';')
+        for i, label in enumerate(labels):
+            value = float(values[i])
+            signals[label].append(value)
+        line = input()
+
+    return signals
+
 if __name__ == '__main__':
-    # TODO Get labels
     labels = read_labels()
-    print(labels)
-    # TODO Save signals
+    signals = save_signals(labels, build_struct(labels))
+    print(signals)
     # TODO Generate spectrogram
     # TODO Save figure on memory
