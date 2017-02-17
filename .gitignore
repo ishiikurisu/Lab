@@ -12,3 +12,4 @@ src/github.com/*
 src/golang.org/*
 b/*
 pkg/*
+*_pycache_*
