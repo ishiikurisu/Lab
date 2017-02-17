@@ -1,3 +1,5 @@
+import spectro
+
 __ABOUT__ = """
 This script is a line-filter for generating spectrograms from CSV files.
 """
@@ -57,3 +59,4 @@ if __name__ == '__main__':
     print(signals)
     # TODO Generate spectrogram
     # TODO Save figure on memory
+    spectro.generate_plots(signals)
