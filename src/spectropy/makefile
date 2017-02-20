@@ -1,2 +1,5 @@
 do:
-	cat linhadebase.csv | python main.py
+	python main.py < linhadebase.csv
+
+sine:
+	python sinewave.py

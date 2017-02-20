@@ -1,6 +1,6 @@
 {
     "build": {
         "local": true,
-        "command": "make do"
+        "command": "make sine"
     }
 }
