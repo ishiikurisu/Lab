@@ -56,7 +56,7 @@ def save_signals(labels, signals):
 if __name__ == '__main__':
     labels = read_labels()
     signals = save_signals(labels, build_struct(labels))
-    print(signals)
+    # print(signals)
     # TODO Generate spectrogram
     # TODO Save figure on memory
     spectro.generate_plots(signals)

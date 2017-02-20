@@ -23,7 +23,7 @@ def calculate_stft(label, signal):
 
     # Plotting stuff
     matplotlib.pyplot.pcolormesh(time, spectrum, Sxx, label=label)
-    matplotlib.pyplot.savefig('{0}.png'.format(label))
+    matplotlib.pyplot.savefig('{0}.png'.format(label), dpi=200)
     matplotlib.pyplot.clf()
 
 # From http://stackoverflow.com/questions/2459295/invertible-stft-and-istft-in-python
