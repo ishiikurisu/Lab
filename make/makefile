@@ -47,7 +47,8 @@ e2a: edf2ascii
 	edf2ascii $(edffile) > $(ascii)
 
 e2c: edf2csv
-	./edf2csv.exe $(edffile) > $(csv)
+	edf2csv.exe $(edffile) > $(csv)
+	edf2csv.exe $(hct) > $(hctcsv)
 
 c2s: csv2single e2c
 	csv2single $(csv)
