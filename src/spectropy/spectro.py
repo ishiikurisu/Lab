@@ -1,7 +1,12 @@
 import numpy
 import matplotlib.pyplot
-import scipy
+from scipy import signal as sg
 import pylab
+
+def generate_plots(signals):
+    for label in signals:
+        # generate_plot(label, signals[label])
+        calculate_stft(label, signals[label])
 
 def generate_plot(label, signal):
     # TODO Get sampling rate
@@ -11,30 +16,19 @@ def generate_plot(label, signal):
     matplotlib.pyplot.savefig('{0}.png'.format(label))
     matplotlib.pyplot.clf()
 
-
-def generate_plots(signals):
-    for label in signals:
-        # generate_plot(label, signals[label])
-        calculate_stft(label, signals[label])
-
 # TODO Calculate STFT
 def calculate_stft(label, signal):
-    fs = 200.0
-    framesize = 0.05
-    hop = framesize/2
-    X = stft(signal, fs, framesize, hop)
-    pylab.imshow(scipy.absolute(X.T), origin='lower', aspect='auto', interpolation='nearest')
-    pylab.savefig('{0}.png'.format(label))
-    pylab.clf()
+    # Calculating STFT
+    spectrum, time, Sxx = stft(signal, 200)
+
+    # Plotting stuff
+    matplotlib.pyplot.pcolormesh(time, spectrum, Sxx, label=label)
+    matplotlib.pyplot.savefig('{0}.png'.format(label))
+    matplotlib.pyplot.clf()
 
 # From http://stackoverflow.com/questions/2459295/invertible-stft-and-istft-in-python
-def stft(x, fs, framesz, hop):
-    framesamp = int(framesz*fs)
-    hopsamp = int(hop*fs)
-    w = scipy.hanning(framesamp)
-    X = scipy.array([scipy.fft(w*x[i:i+framesamp])
-                     for i in range(0, len(x)-framesamp, hopsamp)])
-    return X
+def stft(x, fs):
+    return sg.spectrogram(x, fs=fs)
 
 def istft(X, fs, T, hop):
     x = scipy.zeros(T*fs)
