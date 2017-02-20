@@ -28,7 +28,7 @@ def calculate_stft(label, signal):
 
 # From http://stackoverflow.com/questions/2459295/invertible-stft-and-istft-in-python
 def stft(x, fs):
-    return sg.spectrogram(x, fs=fs)
+    return sg.spectrogram(x, fs=fs, nperseg=1024)
 
 def istft(X, fs, T, hop):
     x = scipy.zeros(T*fs)
