@@ -25,10 +25,13 @@ def calculate_stft(label, signal):
     matplotlib.pyplot.pcolormesh(time, spectrum, Sxx, label=label)
     matplotlib.pyplot.savefig('{0}.png'.format(label), dpi=200)
     matplotlib.pyplot.clf()
+    # pylab.specgram(signal, NFFT=512, Fs=200)
+    # pylab.savefig('{0}.png'.format(label), dpi=200)
+    # pylab.clf()
 
 # From http://stackoverflow.com/questions/2459295/invertible-stft-and-istft-in-python
 def stft(x, fs):
-    return sg.spectrogram(x, fs=fs, nperseg=1024)
+    return sg.spectrogram(x, fs=fs, nperseg=512)
 
 def istft(X, fs, T, hop):
     x = scipy.zeros(T*fs)
