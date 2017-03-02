@@ -19,15 +19,15 @@ def generate_plot(label, signal):
 # TODO Calculate STFT
 def calculate_stft(label, signal):
     # Calculating STFT
-    spectrum, time, Sxx = stft(signal, 200)
+    # spectrum, time, Sxx = stft(signal, 200)
 
     # Plotting stuff
-    matplotlib.pyplot.pcolormesh(time, spectrum, Sxx, label=label)
-    matplotlib.pyplot.savefig('{0}.png'.format(label), dpi=200)
-    matplotlib.pyplot.clf()
-    # pylab.specgram(signal, NFFT=512, Fs=200)
-    # pylab.savefig('{0}.png'.format(label), dpi=200)
-    # pylab.clf()
+    # matplotlib.pyplot.pcolormesh(time, spectrum, Sxx, label=label)
+    # matplotlib.pyplot.savefig('{0}.png'.format(label), dpi=200)
+    # matplotlib.pyplot.clf()
+    pylab.specgram(signal, NFFT=1024, Fs=2000)
+    pylab.savefig('{0}.png'.format(label), dpi=200)
+    pylab.clf()
 
 # From http://stackoverflow.com/questions/2459295/invertible-stft-and-istft-in-python
 def stft(x, fs):

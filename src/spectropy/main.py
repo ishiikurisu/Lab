@@ -44,12 +44,15 @@ def build_struct(labels):
 def save_signals(labels, signals):
     line = input()
 
-    while line:
-        values = line.split(';')
-        for i, label in enumerate(labels):
-            value = float(values[i])
-            signals[label].append(value)
-        line = input()
+    try:
+        while line:
+            values = line.split(';')
+            for i, label in enumerate(labels):
+                value = float(values[i])
+                signals[label].append(value)
+            line = input()
+    except EOFError:
+        pass
 
     return signals
 

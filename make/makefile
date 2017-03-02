@@ -35,6 +35,9 @@ sample4github: edf
 edf2edf: edf
 	go build github.com/lab-neuro-comp/EDF/app/edf2edf
 
+edf2csvnow: edf
+	go build github.com/lab-neuro-comp/EDF/app/edf2csvnow
+
 # EDF Test-driven development
 test:
 	go test github.com/ishiikurisu/edf/tests/csv2anything
@@ -65,6 +68,9 @@ sample: sample4github
 
 e2e: edf2edf
 	edf2edf $(edffile) $(edffile).edf
+
+e2cn: edf2csvnow
+	edf2csvnow data/edf/camila.edf src/spectropy/camila.csv
 
 ###############################################################################
 # SST Headers
