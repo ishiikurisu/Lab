@@ -25,7 +25,9 @@ def calculate_stft(label, signal):
     # matplotlib.pyplot.pcolormesh(time, spectrum, Sxx, label=label)
     # matplotlib.pyplot.savefig('{0}.png'.format(label), dpi=200)
     # matplotlib.pyplot.clf()
-    pylab.specgram(signal, NFFT=1024, Fs=2000)
+    fs = 2000
+    nfft = 4096
+    pylab.specgram(signal, NFFT=nfft, Fs=fs, noverlap=int(nfft/2))
     pylab.savefig('{0}.png'.format(label), dpi=200)
     pylab.clf()
 
