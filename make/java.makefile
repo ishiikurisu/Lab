@@ -10,10 +10,13 @@ manifest = src/github.com/ishiikurisu/JEDF/manifest.txt
 testfolder = src/github.com/ishiikurisu/JEDF/test
 src = src/github.com/ishiikurisu/JEDF/java
 
+do: jar
+	java -jar $(targetname)
+
 classes:
 	javac -target 1.4 -source 1.4 -nowarn $(sourcefiles)
 
-test: classes
+try: classes
 	java -cp $(src) $(classname)
 
 jar: classes
@@ -22,14 +25,8 @@ jar: classes
 compiletests:
 	javac -cp $(testfiles)
 
-unittest: jar compiletests
-	java -cp test $(testclassname)
-
 compileruntest:
 	javac -cp $(targetname) $(runtestfiles)
 
-runtest: jar compileruntest
+test: jar compileruntest
 	java -cp $(targetname);$(testfolder) $(runtestclassname)
-
-do: jar
-	java -jar $(targetname)
