@@ -8,3 +8,7 @@ camila:
 
 sine:
 	python sinewave.py
+
+clean:
+	rm *.png
+	rm camila.csv

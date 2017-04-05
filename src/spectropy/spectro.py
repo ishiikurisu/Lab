@@ -6,7 +6,7 @@ import pylab
 def generate_plots(signals):
     for label in signals:
         # generate_plot(label, signals[label])
-        calculate_stft(label, signals[label])
+        spectrogram(label, signals[label])
 
 def generate_plot(label, signal):
     # TODO Get sampling rate
@@ -19,12 +19,14 @@ def generate_plot(label, signal):
 # TODO Calculate STFT
 def calculate_stft(label, signal):
     # Calculating STFT
-    # spectrum, time, Sxx = stft(signal, 200)
+    spectrum, time, Sxx = stft(signal, 200)
 
     # Plotting stuff
-    # matplotlib.pyplot.pcolormesh(time, spectrum, Sxx, label=label)
-    # matplotlib.pyplot.savefig('{0}.png'.format(label), dpi=200)
-    # matplotlib.pyplot.clf()
+    matplotlib.pyplot.pcolormesh(time, spectrum, Sxx, label=label)
+    matplotlib.pyplot.savefig('{0}.png'.format(label), dpi=200)
+    matplotlib.pyplot.clf()
+
+def spectrogram(label, signal):
     fs = 2000
     nfft = 4096
     pylab.specgram(signal, NFFT=nfft, Fs=fs, noverlap=int(nfft/2))
