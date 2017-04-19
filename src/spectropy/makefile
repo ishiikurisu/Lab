@@ -1,13 +1,16 @@
-do: camila
+do: ascii
 
 hct:
-	python main.py < HCT-4-23.csv
+	python main.csv.py < HCT-4-23.csv
 
 camila:
-	python main.py < camila.csv
+	python main.csv.py < camila.csv
 
 sine:
 	python sinewave.py
+
+ascii:
+	python main.ascii.py < HCT-4-23.ascii
 
 clean:
 	rm *.png
