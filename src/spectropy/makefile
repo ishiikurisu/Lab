@@ -10,7 +10,7 @@ sine:
 	python sinewave.py
 
 ascii:
-	python main.ascii.py < HCT-4-23.ascii
+	python main.ascii.py < ../github.com/lab-neuro-comp/P2/b/SST/HCT-4-23.ascii
 
 clean:
 	rm *.png

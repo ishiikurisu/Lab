@@ -1,3 +1,5 @@
+import spectro
+
 __ABOUT__ = """
 This script is a line-filter for generating spectrograms from ASCII files. It
 is expected these files have already been filtered from MATLAB.
@@ -19,6 +21,6 @@ def read():
     return outlet
 
 if __name__ == '__main__':
-    # TODO Load files to a dict
     data = read()
     # TODO Plot files as we do with main.csv.py
+    spectro.generate_plots(data)

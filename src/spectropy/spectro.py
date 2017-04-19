@@ -27,8 +27,8 @@ def calculate_stft(label, signal):
     matplotlib.pyplot.clf()
 
 def spectrogram(label, signal):
-    fs = 2000
-    nfft = 4096
+    fs = 200
+    nfft = 1024
     pylab.specgram(signal, NFFT=nfft, Fs=fs, noverlap=int(nfft/2))
     pylab.savefig('{0}.png'.format(label), dpi=200)
     pylab.clf()
