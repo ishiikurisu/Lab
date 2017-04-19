@@ -10,7 +10,7 @@ def read():
 
     while True:
         try:
-            line = map(float, input().rstrip().lstrip().split('\t'))
+            line = map(float, input().strip().split('\t'))
             for i, it in enumerate(line):
                 if i not in outlet:
                     outlet[i] = [ ]
@@ -22,5 +22,4 @@ def read():
 
 if __name__ == '__main__':
     data = read()
-    # TODO Plot files as we do with main.csv.py
     spectro.generate_plots(data)
