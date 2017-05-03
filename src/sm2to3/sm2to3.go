@@ -33,5 +33,36 @@ func main() {
 }
 
 func process(source string) {
-	fmt.Println(source)
+	files, _ := ioutil.ReadDir(source)
+	for _, file := range files {
+		fileName := fmt.Sprintf("%s/%s", source, file.Name())
+		if match(file.Name(), "inventory") {
+			// TODO Convert inventory file
+			fmt.Printf("%s is an inventory!\n", fileName)
+		} else if match(file.Name(), "results") {
+			// TODO Convert results files
+			fmt.Printf("%s is a results file!\n", fileName)
+		} else {
+			fmt.Printf("%s is nothing special!\n", fileName)
+		}
+	}
+}
+
+func match(s, t string) bool {
+	limit := min(len(s), len(t))
+	flag := true
+	for i := 0; i < limit; i++ {
+		if s[i] != t[i] {
+			flag = false
+		}
+	}
+	return flag
+}
+
+func min(x, y int) int {
+	if x < y {
+		return x
+	} else {
+		return y
+	}
 }
