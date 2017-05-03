@@ -42,6 +42,7 @@ func process(source string) {
 		} else if match(file.Name(), "results") {
 			// TODO Convert results files
 			fmt.Printf("%s is a results file!\n", fileName)
+			convertResults(fileName)
 		} else {
 			fmt.Printf("%s is nothing special!\n", fileName)
 		}
@@ -74,6 +75,29 @@ func convertInventory(input string) string {
 
 	return output
 }
+
+func convertResults(input string) string {
+	output := changeExtension(input, "csv")
+	outlet, _ := os.Create(output)
+	defer outlet.Close()
+
+	// Loading file
+	contents, _ := ioutil.ReadFile(input)
+	lines := strings.Split(string(contents), "\n")
+
+	// Converting lines to a table
+	for _, line := range lines {
+		if len(line) == 0 {
+			continue
+		}
+		stuff := strings.Split(line, " ")
+		result := strings.Join(stuff[2:], " ")
+		fmt.Fprintf(outlet, "%s\t%s\t%s\n", stuff[0], stuff[1], result)
+	}
+
+	return output
+}
+
 
 func match(s, t string) bool {
 	limit := min(len(s), len(t))
