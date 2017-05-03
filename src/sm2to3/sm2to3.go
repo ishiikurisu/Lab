@@ -22,15 +22,16 @@ func main() {
 	for _, it := range stuff {
 		if it.IsDir() {
 			wg.Add(1)
-			where := fmt.Sprintf("%s/%s", source, it.Name())
-			go process(where, &wg)
+			go func(s string) {
+				process(s)
+				wg.Done()
+			}(fmt.Sprintf("%s/%s", source, it.Name()))
 		}
 	}
 	wg.Wait()
 	fmt.Println("...")
 }
 
-func process(source string, wg *sync.WaitGroup) {
-	defer wg.Done()
+func process(source string) {
 	fmt.Println(source)
 }
