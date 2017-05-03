@@ -1,0 +1,7 @@
+Qual é o seu nome?
+Qual é a sua idade?
+Qual é o seu gênero?
+Qual é o seu curso?
+Qual é o seu semestre?
+Qual é o seu IRA?
+Você usa algum método de organização?

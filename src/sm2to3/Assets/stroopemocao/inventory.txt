@@ -1,0 +1,13 @@
+﻿3
+Qual etapa do teste achou mais fácil?
+Primeira, falar a expressão facial apenas com a palavra
+Segunda, ler a palavra na expressão 
+Terceira, ler a expressão e não a palavra
+Qual etapa do teste achou mais difícil?
+Primeira, falar a expressão facial apenas com a palavra
+Segunda, ler a palavra na expressão 
+Terceira, ler a expressão e não a palavra
+Qual o grau de dificuldade?
+Difícil
+Muito difícil
+Dificílimo

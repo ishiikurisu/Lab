@@ -1,0 +1,3 @@
+0 28 Left handed
+28 33 Ambidextrous
+33 500 Right handed

@@ -1,0 +1,61 @@
+5
+Escrever
+Sempre esquerda
+Geralmente esquerda
+Tanto faz
+Geralmente direita
+Sempre direita
+Desenhar
+Sempre esquerda
+Geralmente esquerda
+Tanto faz
+Geralmente direita
+Sempre direita
+Jogar uma pedra
+Sempre esquerda
+Geralmente esquerda
+Tanto faz
+Geralmente direita
+Sempre direita
+Usar uma tesoura
+Sempre esquerda
+Geralmente esquerda
+Tanto faz
+Geralmente direita
+Sempre direita
+Escovar os dentes
+Sempre esquerda
+Geralmente esquerda
+Tanto faz
+Geralmente direita
+Sempre direita
+Cortar com uma faca (sem um garfo)
+Sempre esquerda
+Geralmente esquerda
+Tanto faz
+Geralmente direita
+Sempre direita
+Usar uma colher
+Sempre esquerda
+Geralmente esquerda
+Tanto faz
+Geralmente direita
+Sempre direita
+Usar uma vassoura (mão em cima)
+Sempre esquerda
+Geralmente esquerda
+Tanto faz
+Geralmente direita
+Sempre direita
+Acender um fósforo
+Sempre esquerda
+Geralmente esquerda
+Tanto faz
+Geralmente direita
+Sempre direita
+Abrir uma caixa (mão em cima)
+Sempre esquerda
+Geralmente esquerda
+Tanto faz
+Geralmente direita
+Sempre direita
