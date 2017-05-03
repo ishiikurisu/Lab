@@ -38,7 +38,6 @@ func process(source string) {
 	for _, file := range files {
 		fileName := fmt.Sprintf("%s/%s", source, file.Name())
 		if match(file.Name(), "inventory.txt") {
-			// TODO Convert inventory file
 			convertInventory(fileName)
 		} else if match(file.Name(), "results") {
 			// TODO Convert results files
@@ -60,16 +59,17 @@ func convertInventory(input string) string {
 
 	// Analysing first line
 	size := 0
-	offset := 0
 	firstLine := lines[0]
-	for offset = 0; size == 0; offset++ {
+	for offset := 0; size == 0; offset++ {
 		fmt.Sscanf(firstLine[offset:], "%d", &size)
 	}
 
 	// Building table
 	for i, line := range lines[1:] {
-		// TODO Build table
-		fmt.Println(len(line)+i)
+		if (i % (size+1) == 0) && (i > 1) {
+			fmt.Fprintf(outlet, "\n")
+		}
+		fmt.Fprintf(outlet, "%s\t", strings.TrimSpace(line))
 	}
 
 	return output
