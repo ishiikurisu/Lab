@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"sync"
+	"strings"
 )
 
 func main() {
@@ -50,13 +51,26 @@ func process(source string) {
 
 func convertInventory(input string) string {
 	output := changeExtension(input, "csv")
-	inlet, _ := os.Open(input)
 	outlet, _ := os.Create(output)
-	defer inlet.Close()
 	defer outlet.Close()
 
-	line := ReadLine(inlet)
-	fmt.Printf("%s: %s\n", input, line)
+	// Loading file
+	stuff, _ := ioutil.ReadFile(input)
+	lines := strings.Split(string(stuff), "\n")
+
+	// Analysing first line
+	size := 0
+	offset := 0
+	firstLine := lines[0]
+	for offset = 0; size == 0; offset++ {
+		fmt.Sscanf(firstLine[offset:], "%d", &size)
+	}
+
+	// Building table
+	for i, line := range lines[1:] {
+		// TODO Build table
+		fmt.Println(len(line)+i)
+	}
 
 	return output
 }
@@ -92,27 +106,4 @@ func changeExtension(inlet, ext string) string {
 	}
 	outlet := inlet[:i] + "." + ext
 	return outlet
-}
-
-// Reads a whole line from the file in pointer.
-func ReadLine(inlet *os.File) string {
-	stuff := ""
-
-	for data := ReadChar(inlet); data != '\n'; data = ReadChar(inlet) {
-		stuff += string(data)
-	}
-
-	return stuff
-}
-
-// Reads a single char from the file pointer.
-func ReadChar(inlet *os.File) byte {
-	data := make([]byte, 2)
-	_, shit := inlet.Read(data)
-
-	if shit != nil {
-		return '\n'
-	} else {
-		return data[0]
-	}
 }
