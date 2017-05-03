@@ -18,7 +18,6 @@ func main() {
 		source = "."
 	}
 
-	fmt.Println("---")
 	stuff, _ := ioutil.ReadDir(source)
 	for _, it := range stuff {
 		if it.IsDir() {
@@ -27,10 +26,15 @@ func main() {
 				process(s)
 				wg.Done()
 			}(fmt.Sprintf("%s/%s", source, it.Name()), &wg)
+		} else if match(it.Name(), "kinds.txt") {
+			wg.Add(1)
+			go func(s string, wg *sync.WaitGroup) {
+				kindify(s)
+				wg.Done()
+			}(fmt.Sprintf("%s/%s", source, it.Name()), &wg)
 		}
 	}
 	wg.Wait()
-	fmt.Println("...")
 }
 
 func process(source string) {
@@ -40,11 +44,8 @@ func process(source string) {
 		if match(file.Name(), "inventory.txt") {
 			convertInventory(fileName)
 		} else if match(file.Name(), "results") {
-			// TODO Convert results files
-			fmt.Printf("%s is a results file!\n", fileName)
 			convertResults(fileName)
 		} else {
-			fmt.Printf("%s is nothing special!\n", fileName)
 		}
 	}
 }
@@ -98,6 +99,30 @@ func convertResults(input string) string {
 	return output
 }
 
+func kindify(input string) {
+	output := changeExtension(input, "csv")
+	outlet, _ := os.Create(output)
+	defer outlet.Close()
+
+	// Loading file
+	contents, _ := ioutil.ReadFile(input)
+	lines := strings.Split(string(contents), "\n")
+
+	// Converting lines to a table
+	for _, line := range lines {
+		// FIXME: This line produces some weird stuff
+		if len(line) == 0 {
+			continue
+		}
+		stuff := strings.Split(line, " ")
+		result := strings.Join(stuff[1:], " ")
+		fmt.Fprintf(outlet, "%s\t%s\t%s\n", stuff[0], result)
+	}
+}
+
+/*********
+ * TOOLS *
+ *********/
 
 func match(s, t string) bool {
 	limit := min(len(s), len(t))
