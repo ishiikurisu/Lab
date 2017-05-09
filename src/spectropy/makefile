@@ -1,4 +1,4 @@
-do: ascii
+do: edfpy
 
 hct:
 	python main.csv.py < HCT-4-23.csv
@@ -29,3 +29,6 @@ lbnascii:
 clean:
 	rm *.png
 	rm camila.csv
+
+edfpy:
+	python readedf.py
