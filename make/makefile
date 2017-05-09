@@ -1,4 +1,4 @@
-edffile = data/edf/linhadebase.edf
+edffile = data/edf/linhadebase.edf.edf
 csv = data/edf/linhadebase.csv
 ascii = data/edf/linhadebase.ascii
 hct = data/edf/HCT/HCT-4-23.edf
