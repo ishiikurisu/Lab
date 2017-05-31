@@ -1,4 +1,5 @@
-edffile = data/edf/linhadebase.edf.edf
+edffile = data/edf/linhadebase.edf
+edfedffile = data/edf/linhadebase.edf.edf
 csv = data/edf/linhadebase.csv
 ascii = data/edf/linhadebase.ascii
 hct = data/edf/HCT/HCT-4-23.edf
@@ -70,7 +71,7 @@ e2e: edf2edf
 	./edf2edf $(edffile) $(edffile).edf
 
 e2cn: edf2csvnow
-	./edf2csvnow data/edf/camila.edf src/spectropy/camila.csv
+	./edf2csvnow $(edffile) $(csv)
 
 ###############################################################################
 # SST Headers
