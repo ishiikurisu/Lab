@@ -1,6 +1,0 @@
-{
-	"build": {
-		"local": true,
-		"command": "make"
-	}
-}
