@@ -4,6 +4,8 @@ csv = data/edf/linhadebase.csv
 ascii = data/edf/linhadebase.ascii
 hct = data/edf/HCT/HCT-4-23.edf
 hctcsv = data/edf/HCT/HCT-4-23.csv
+dudu = data/edf/dudu.edf
+duduascii = data/edf/dudu.ascii
 sstexe = sst.exe
 edffolder = data/edf
 
@@ -48,7 +50,8 @@ e2n: edfp2notes
 	./edfp2notes $(edffile)
 
 e2a: edf2ascii
-	./edf2ascii $(edffile) > $(ascii)
+	edf2ascii $(edffile) > $(ascii)
+	edf2ascii $(dudu) > $(duduascii)
 
 e2c: edf2csv
 	./edf2csv $(edffile) > $(csv)
