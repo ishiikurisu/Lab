@@ -50,12 +50,13 @@ e2n: edfp2notes
 	./edfp2notes $(edffile)
 
 e2a: edf2ascii
-	edf2ascii $(edffile) > $(ascii)
-	edf2ascii $(dudu) > $(duduascii)
+	./edf2ascii $(edffile) > $(ascii)
+	./edf2ascii $(dudu) > $(duduascii)
 
 e2c: edf2csv
 	./edf2csv $(edffile) > $(csv)
 	./edf2csv $(hct) > $(hctcsv)
+	./edf2csv $(dudu) > $(dudu)
 
 c2s: csv2single e2c
 	./csv2single $(csv)
