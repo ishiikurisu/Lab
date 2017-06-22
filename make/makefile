@@ -56,12 +56,13 @@ e2a: edf2ascii
 e2c: edf2csv
 	./edf2csv $(edffile) > $(csv)
 	./edf2csv $(hct) > $(hctcsv)
-	./edf2csv $(dudu) > $(dudu)
 
 c2s: csv2single e2c
 	./csv2single $(csv)
 
 c2m: edf2csv csv2multiple
+	./edf2csv $(dudu) > $(dudu).csv
+	./csv2multiple $(dudu).csv
 	./edf2csv $(hct) > $(hctcsv)
 	./csv2multiple $(hctcsv)
 
