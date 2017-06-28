@@ -15,31 +15,31 @@ edf:
 
 # EDF Programs
 edf2ascii: edf
-	go build github.com/lab-neuro-comp/EDF/app/edf2ascii
+	go build github.com/lab-neuro-comp/EDF-Tools/app/edf2ascii
 
 edfp2notes: edf
-	go build github.com/lab-neuro-comp/EDF/app/edfp2notes
+	go build github.com/lab-neuro-comp/EDF-Tools/app/edfp2notes
 
 edf2csv: edf
-	go build github.com/lab-neuro-comp/EDF/app/edf2csv
+	go build github.com/lab-neuro-comp/EDF-Tools/app/edf2csv
 
 csv2single: edf
-	go build github.com/lab-neuro-comp/EDF/app/csv2single
+	go build github.com/lab-neuro-comp/EDF-Tools/app/csv2single
 
 csv2multiple: edf
-	go build github.com/lab-neuro-comp/EDF/app/csv2multiple
+	go build github.com/lab-neuro-comp/EDF-Tools/app/csv2multiple
 
 notes2csv: edf sst
-	go build github.com/lab-neuro-comp/EDF/app/notes2csv
+	go build github.com/lab-neuro-comp/EDF-Tools/app/notes2csv
 
 sample4github: edf
-	go build github.com/lab-neuro-comp/EDF/app/sample
+	go build github.com/lab-neuro-comp/EDF-Tools/app/sample
 
 edf2edf: edf
-	go build github.com/lab-neuro-comp/EDF/app/edf2edf
+	go build github.com/lab-neuro-comp/EDF-Tools/app/edf2edf
 
 edf2csvnow: edf
-	go build github.com/lab-neuro-comp/EDF/app/edf2csvnow
+	go build github.com/lab-neuro-comp/EDF-Tools/app/edf2csvnow
 
 # EDF Test-driven development
 test:

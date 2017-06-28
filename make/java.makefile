@@ -1,14 +1,14 @@
-sourcefiles = src/github.com/ishiikurisu/JEDF/java/br/unb/biologiaanimal/edf/EDF.java src/github.com/ishiikurisu/JEDF/java/br/unb/biologiaanimal/edf/EDFReader.java src/github.com/ishiikurisu/JEDF/java/br/unb/biologiaanimal/edf/EDFConstants.java src/github.com/ishiikurisu/JEDF/java/br/unb/biologiaanimal/edf/EDFUtil.java src/github.com/ishiikurisu/JEDF/java/br/unb/biologiaanimal/edf/EDFWriter.java
+sourcefiles = src/github.com/lab-neuro-comp/EDF/java/br/unb/biologiaanimal/edf/EDF.java src/github.com/lab-neuro-comp/EDF/java/br/unb/biologiaanimal/edf/EDFReader.java src/github.com/lab-neuro-comp/EDF/java/br/unb/biologiaanimal/edf/EDFConstants.java src/github.com/lab-neuro-comp/EDF/java/br/unb/biologiaanimal/edf/EDFUtil.java src/github.com/lab-neuro-comp/EDF/java/br/unb/biologiaanimal/edf/EDFWriter.java
 classfiles = -C $(src) br/unb/biologiaanimal/edf/EDF.class -C $(src) br/unb/biologiaanimal/edf/EDFReader.class -C $(src) br/unb/biologiaanimal/edf/EDFConstants.class -C $(src) br/unb/biologiaanimal/edf/EDFUtil.class -C $(src) br/unb/biologiaanimal/edf/EDFWriter.class
-testfiles = src/github.com/ishiikurisu/JEDF/test/br/unb/biologiaanimal/test/Test.java
-runtestfiles = src/github.com/ishiikurisu/JEDF/test/br/unb/biologiaanimal/test/Run.java
+testfiles = src/github.com/lab-neuro-comp/EDF/test/br/unb/biologiaanimal/test/Test.java
+runtestfiles = src/github.com/lab-neuro-comp/EDF/test/br/unb/biologiaanimal/test/Run.java
 classname = br.unb.biologiaanimal.edf.EDF
 testclassname = br.unb.biologiaanimal.test.Test
 runtestclassname = br.unb.biologiaanimal.test.Run
-targetname = src/github.com/ishiikurisu/JEDF/target/edf.jar
-manifest = src/github.com/ishiikurisu/JEDF/manifest.txt
-testfolder = src/github.com/ishiikurisu/JEDF/test
-src = src/github.com/ishiikurisu/JEDF/java
+targetname = src/github.com/lab-neuro-comp/EDF/target/edf.jar
+manifest = src/github.com/lab-neuro-comp/EDF/manifest.txt
+testfolder = src/github.com/lab-neuro-comp/EDF/test
+src = src/github.com/lab-neuro-comp/EDF/java
 
 do: jar
 	java -jar $(targetname)
