@@ -72,8 +72,9 @@ n2c: notes2csv
 sample: sample4github
 	./sample $(edffolder)
 
-e2e: edf2edf
+e2e: edf2edf edf2ascii
 	./edf2edf $(edffile) $(edffile).edf
+	edf2ascii $(edffile).edf > $(edffile).edf.ascii
 
 e2cn: edf2csvnow
 	./edf2csvnow $(edffile) $(csv)
