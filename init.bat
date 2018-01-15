@@ -1,2 +1,0 @@
-set GOPATH=%cd%
-cmd
